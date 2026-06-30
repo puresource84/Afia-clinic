@@ -1,11 +1,11 @@
-# Afia Clinic — GUI Wizard Installer
+# Afia Clinic - GUI Wizard Installer
 # Run as Administrator for best results
 # Usage: .\install.ps1
 
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
-# ── Branding ──────────────────────────────────────────────────────────────────
+# -- Branding ------------------------------------------------------------------
 $BRAND_BLUE   = [System.Drawing.Color]::FromArgb(26, 115, 167)
 $BRAND_DARK   = [System.Drawing.Color]::FromArgb(13, 90, 138)
 $BRAND_LIGHT  = [System.Drawing.Color]::FromArgb(214, 232, 245)
@@ -16,7 +16,7 @@ $SCRIPT_DIR   = Split-Path -Parent $MyInvocation.MyCommand.Path
 $MODULES_DIR  = Join-Path $SCRIPT_DIR "modules"
 $DOCKER_DIR   = Join-Path $SCRIPT_DIR "docker"
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
+# -- Helpers -------------------------------------------------------------------
 function New-Label($text, $x, $y, $w, $h, $size=10, $bold=$false, $color=$null) {
     $l = New-Object System.Windows.Forms.Label
     $l.Text = $text; $l.Left = $x; $l.Top = $y; $l.Width = $w; $l.Height = $h
@@ -42,9 +42,9 @@ function New-Panel($x, $y, $w, $h, $color) {
     return $p
 }
 
-# ── Main Form ─────────────────────────────────────────────────────────────────
+# -- Main Form -----------------------------------------------------------------
 $form = New-Object System.Windows.Forms.Form
-$form.Text = "Afia Clinic — Setup Wizard"
+$form.Text = "Afia Clinic - Setup Wizard"
 $form.Size = New-Object System.Drawing.Size(620, 480)
 $form.StartPosition = "CenterScreen"
 $form.FormBorderStyle = "FixedDialog"
@@ -68,7 +68,7 @@ $form.Controls.Add($stepBar)
 $stepProg = New-Panel 0 90 155 4 $BRAND_BLUE
 $form.Controls.Add($stepProg)
 
-# ── Page container ────────────────────────────────────────────────────────────
+# -- Page container ------------------------------------------------------------
 $pages = @{}
 $currentPage = 0
 
@@ -77,15 +77,15 @@ function Show-Page($name) {
     $pages[$name].Visible = $true
 }
 
-# ══════════════════════════════════════════════════════════════════════════════
-# PAGE 1 — WELCOME
-# ══════════════════════════════════════════════════════════════════════════════
+# ==============================================================================
+# PAGE 1 - WELCOME
+# ==============================================================================
 $p1 = New-Panel 0 100 620 320 $WHITE
 $form.Controls.Add($p1)
 $pages["welcome"] = $p1
 
 $p1.Controls.Add((New-Label "Welcome to Afia Clinic Setup" 40 20 540 34 16 $true))
-$p1.Controls.Add((New-Label "This wizard will install Afia Clinic — 38 dental practice management`nmodules — on your computer in a few simple steps." 40 60 540 50 10))
+$p1.Controls.Add((New-Label "This wizard will install Afia Clinic - 38 dental practice management`nmodules - on your computer in a few simple steps." 40 60 540 50 10))
 $p1.Controls.Add((New-Label "What this installer does:" 40 120 540 22 10 $true))
 
 $steps_text = @(
@@ -99,14 +99,14 @@ foreach ($s in $steps_text) {
     $p1.Controls.Add((New-Label $s 56 $ty 500 20 10 $false $GREY_TEXT))
     $ty += 22
 }
-$p1.Controls.Add((New-Label "Developed by ITCS (IT Corner Solutions) — itcornersolutions.net" 40 250 540 20 9 $false $GREY_TEXT))
+$p1.Controls.Add((New-Label "Developed by ITCS (IT Corner Solutions) - itcornersolutions.net" 40 250 540 20 9 $false $GREY_TEXT))
 
 $btnNext1 = New-Btn "Next >" 480 270
 $p1.Controls.Add($btnNext1)
 
-# ══════════════════════════════════════════════════════════════════════════════
-# PAGE 2 — CHOOSE METHOD
-# ══════════════════════════════════════════════════════════════════════════════
+# ==============================================================================
+# PAGE 2 - CHOOSE METHOD
+# ==============================================================================
 $p2 = New-Panel 0 100 620 320 $WHITE
 $p2.Visible = $false
 $form.Controls.Add($p2)
@@ -148,9 +148,9 @@ $btnNext2 = New-Btn "Install >" 476 270
 $p2.Controls.Add($btnBack2)
 $p2.Controls.Add($btnNext2)
 
-# ══════════════════════════════════════════════════════════════════════════════
-# PAGE 3 — INSTALLING
-# ══════════════════════════════════════════════════════════════════════════════
+# ==============================================================================
+# PAGE 3 - INSTALLING
+# ==============================================================================
 $p3 = New-Panel 0 100 620 320 $WHITE
 $p3.Visible = $false
 $form.Controls.Add($p3)
@@ -186,15 +186,15 @@ function Set-Status($msg, $pct) {
     [System.Windows.Forms.Application]::DoEvents()
 }
 
-# ══════════════════════════════════════════════════════════════════════════════
-# PAGE 4 — COMPLETE
-# ══════════════════════════════════════════════════════════════════════════════
+# ==============================================================================
+# PAGE 4 - COMPLETE
+# ==============================================================================
 $p4 = New-Panel 0 100 620 320 $WHITE
 $p4.Visible = $false
 $form.Controls.Add($p4)
 $pages["done"] = $p4
 
-$doneIcon = New-Label "✓" 40 20 60 60 32 $true $GREEN
+$doneIcon = New-Label "OK" 40 20 60 60 32 $true $GREEN
 $p4.Controls.Add($doneIcon)
 $p4.Controls.Add((New-Label "Installation Complete!" 100 28 440 36 16 $true $GREEN))
 $p4.Controls.Add((New-Label "Afia Clinic is ready. Open your browser to get started:" 40 90 540 22 10))
@@ -215,9 +215,9 @@ $p4.Controls.Add($btnFinish)
 $btnBrowser.Add_Click({ Start-Process "http://localhost:8069" })
 $btnFinish.Add_Click({ $form.Close() })
 
-# ══════════════════════════════════════════════════════════════════════════════
+# ==============================================================================
 # NAVIGATION
-# ══════════════════════════════════════════════════════════════════════════════
+# ==============================================================================
 $btnNext1.Add_Click({
     $stepProg.Width = 310
     Show-Page "method"
@@ -243,9 +243,9 @@ $btnNext2.Add_Click({
     Show-Page "done"
 })
 
-# ══════════════════════════════════════════════════════════════════════════════
-# INSTALL LOGIC — DOCKER
-# ══════════════════════════════════════════════════════════════════════════════
+# ==============================================================================
+# INSTALL LOGIC - DOCKER
+# ==============================================================================
 function Install-WithDocker {
     $lblStatus.Text = "Checking Docker..."
     [System.Windows.Forms.Application]::DoEvents()
@@ -269,7 +269,7 @@ function Install-WithDocker {
             $wc.DownloadFile($url, $dockerInstaller)
             Set-Status "Installing Docker Desktop..." 30
             Log "Download complete. Installing Docker Desktop..."
-            Log "A UAC prompt may appear — please accept it."
+            Log "A UAC prompt may appear - please accept it."
             Start-Process $dockerInstaller -ArgumentList "install --quiet --accept-license" -Wait
             Log "Docker Desktop installed."
             Log "IMPORTANT: Please restart your computer, then re-run this installer."
@@ -313,9 +313,9 @@ function Install-WithDocker {
     }
 }
 
-# ══════════════════════════════════════════════════════════════════════════════
-# INSTALL LOGIC — NATIVE ODOO
-# ══════════════════════════════════════════════════════════════════════════════
+# ==============================================================================
+# INSTALL LOGIC - NATIVE ODOO
+# ==============================================================================
 function Install-WithNativeOdoo {
     Set-Status "Checking for Odoo 18 CE..." 5
     Log "Checking for existing Odoo installation..."
@@ -404,7 +404,7 @@ function Install-WithNativeOdoo {
     Log "Go to Apps > Update Apps List, then install 'Dental Hospital'."
 }
 
-# ── Launch ────────────────────────────────────────────────────────────────────
+# -- Launch --------------------------------------------------------------------
 Show-Page "welcome"
 $form.Add_Shown({ $form.Activate() })
 [System.Windows.Forms.Application]::Run($form)
