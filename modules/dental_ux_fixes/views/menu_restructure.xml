@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ─── Menu Restructure: Dental Clinic App ──────────────────────────────
+         Reduces 9 top-level items to 6 by grouping clinical items logically.
+
+         BEFORE (top-level):
+           Appointments | Patient Flow | Clinical Notes | Perio Exams | Patients
+           Billing & Insurance | Clinic Stock | Reporting | Configuration
+
+         AFTER (top-level):
+           Appointments (+ Patient Flow, Front Desk sub-items)
+           Patients     (+ Clinical Notes, Perio Exams)
+           Billing & Insurance | Clinic Stock | Reporting | Configuration
+    ─────────────────────────────────────────────────────────────────────── -->
+
+    <!-- 0. Rename root menu from "Dental Clinic" → "Afia Clinic"
+         dental_hospital.hospital_root_menu defines id=447; we override name here
+         so the branding survives every future upgrade of dental_hospital. -->
+    <function model="ir.ui.menu" name="write"
+              eval="([ref('dental_hospital.hospital_root_menu')], {'name': 'Afia Clinic'})"/>
+
+    <!-- 1. Patient Flow → under Appointments (was a root-level item, seq=10)
+         Using <function> to guarantee the write runs regardless of ir.model.data state. -->
+    <function model="ir.ui.menu" name="write"
+              eval="([ref('dental_patient_flow.menu_patient_flow_board')],
+                     {'parent_id': ref('dental_hospital.hospital_appointment_info'),
+                      'sequence': 30})"/>
+
+    <!-- 2. Clinical Notes → under Patients (was root-level, seq=15) -->
+    <function model="ir.ui.menu" name="write"
+              eval="([ref('dental_soap_notes.menu_soap_notes')],
+                     {'parent_id': ref('custom_dental_menu.menu_patient_group'),
+                      'sequence': 20})"/>
+
+    <!-- 3. Perio Exams → under Patients (was root-level, seq=16) -->
+    <function model="ir.ui.menu" name="write"
+              eval="([ref('dental_perio_charting.menu_perio_exams')],
+                     {'parent_id': ref('custom_dental_menu.menu_patient_group'),
+                      'sequence': 25})"/>
+
+</odoo>

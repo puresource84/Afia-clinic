@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_afia_launcher" model="ir.ui.view">
+        <field name="name">res.config.settings.view.afia.launcher</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="clinic_core.view_clinic_core_res_config_settings"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='clinic_core']" position="inside">
+                <block title="Afia Launcher Branding">
+                    <setting string="Background Image"
+                             help="Upload a logo or pattern for the app launcher page background. PNG recommended.">
+                        <field name="launcher_bg_image" widget="image"
+                               options="{'size': [160, 100], 'edit_on_upload': True}"/>
+                    </setting>
+                    <setting string="Background Opacity"
+                             help="How strongly the image shows (0.0 = hidden, 1.0 = solid). Recommended: 0.50 – 0.80.">
+                        <field name="launcher_bg_opacity"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_dental_kpi_list" model="ir.ui.view">
+        <field name="name">dental.kpi.list</field>
+        <field name="model">dental.kpi</field>
+        <field name="arch" type="xml">
+            <list string="KPI Snapshots">
+                <field name="date"/>
+                <field name="total_appointments"/>
+                <field name="completed_appointments"/>
+                <field name="completion_rate" string="Completion %"/>
+                <field name="cancellation_rate" string="Cancel %"/>
+                <field name="new_patients"/>
+                <field name="total_active_patients"/>
+                <field name="total_revenue"/>
+                <field name="revenue_per_dentist"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_dental_kpi_form" model="ir.ui.view">
+        <field name="name">dental.kpi.form</field>
+        <field name="model">dental.kpi</field>
+        <field name="arch" type="xml">
+            <form string="KPI Snapshot">
+                <header>
+                    <button name="action_compute_now" type="object"
+                        string="Refresh Snapshot" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group string="Period">
+                        <field name="date"/><field name="company_id"/>
+                    </group>
+                    <group string="Appointments">
+                        <field name="total_appointments"/>
+                        <field name="completed_appointments"/>
+                        <field name="cancelled_appointments"/>
+                        <field name="completion_rate"/>
+                        <field name="cancellation_rate"/>
+                    </group>
+                    <group string="Patients">
+                        <field name="new_patients"/>
+                        <field name="total_active_patients"/>
+                    </group>
+                    <group string="Revenue">
+                        <field name="total_revenue"/>
+                        <field name="revenue_per_dentist"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_dental_kpi" model="ir.actions.act_window">
+        <field name="name">Dental KPIs</field>
+        <field name="res_model">dental.kpi</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Treatment list: remove inline-edit so clicking a row opens the form -->
+    <record id="view_dental_treatment_list_bom" model="ir.ui.view">
+        <field name="name">dental.treatment.list.consumables</field>
+        <field name="model">dental.treatment</field>
+        <field name="inherit_id" ref="dental_hospital.dental_treatment_view_tree"/>
+        <field name="arch" type="xml">
+            <list position="attributes">
+                <attribute name="editable"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Treatment form: primary form with Consumed Materials tab -->
+    <record id="view_dental_treatment_form_bom" model="ir.ui.view">
+        <field name="name">dental.treatment.form.consumables</field>
+        <field name="model">dental.treatment</field>
+        <field name="priority">8</field>
+        <field name="arch" type="xml">
+            <form string="Treatment">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="treatment_categ_id"/>
+                        </group>
+                        <group>
+                            <field name="cost"/>
+                            <field name="material_cost"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Consumed Materials" name="consumables">
+                            <field name="consumable_line_ids">
+                                <list editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="quantity"/>
+                                    <field name="uom_id"/>
+                                    <field name="standard_cost"/>
+                                </list>
+                            </field>
+                            <p class="text-muted">Materials are deducted from stock when an appointment with this treatment is marked Done.</p>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Update the treatment action to include form mode -->
+    <record id="dental_hospital.dental_treatment_menu_action" model="ir.actions.act_window">
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Materials smart info on the appointment -->
+    <record id="view_appointment_form_materials" model="ir.ui.view">
+        <field name="name">dental.appointment.form.materials</field>
+        <field name="model">dental.appointment</field>
+        <field name="inherit_id" ref="dental_hospital.view_dental_appointment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='treatments']" position="after">
+                <field name="material_cost" invisible="material_cost == 0"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

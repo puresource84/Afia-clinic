@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Show the Telegram link status on the patient form, next to Mobile -->
+    <record id="view_partner_form_telegram" model="ir.ui.view">
+        <field name="name">res.partner.form.telegram.chat.id</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='mobile']" position="after">
+                <field name="telegram_chat_id" readonly="1"
+                       invisible="not is_patient"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

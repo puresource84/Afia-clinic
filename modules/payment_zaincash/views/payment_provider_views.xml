@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Add ZainCash credential tab to the provider form -->
+    <record id="payment_provider_form_zaincash" model="ir.ui.view">
+        <field name="name">payment.provider.form.zaincash</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="ZainCash Credentials"
+                      invisible="code != 'zaincash'">
+                    <group string="API Credentials">
+                        <field name="zaincash_merchant_id"
+                               required="code == 'zaincash'"
+                               password="True"/>
+                        <field name="zaincash_msisdn"
+                               required="code == 'zaincash'"/>
+                        <field name="zaincash_secret"
+                               required="code == 'zaincash'"
+                               password="True"/>
+                        <field name="zaincash_api_url"
+                               required="code == 'zaincash'"/>
+                    </group>
+                    <div class="alert alert-info" role="alert">
+                        <strong>Notes:</strong>
+                        Only IQD transactions are supported.
+                        Sandbox: <code>https://test.zaincash.iq</code> |
+                        Production: <code>https://api.zaincash.iq</code> |
+                        Webhook: <code>/payment/zaincash/webhook</code>
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

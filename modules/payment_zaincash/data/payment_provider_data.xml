@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!--
+        Bootstrap a ZainCash provider record.
+        noupdate="1" means this record is created on first install only —
+        live credential edits in the UI are not overwritten on upgrade.
+    -->
+    <record id="payment_provider_zaincash" model="payment.provider">
+        <field name="name">ZainCash</field>
+        <field name="code">zaincash</field>
+        <field name="state">disabled</field>
+        <field name="is_published">False</field>
+        <field name="allow_tokenization">False</field>
+        <field name="support_refund">none</field>
+        <!-- Sandbox URL by default; switch to production in Settings > Payment Providers -->
+        <field name="zaincash_api_url">https://test.zaincash.iq</field>
+    </record>
+
+</odoo>

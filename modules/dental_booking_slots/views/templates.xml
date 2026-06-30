@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- C2: inject the slot picker into the public booking form -->
+    <template id="booking_page_slots" inherit_id="dental_portal_booking.booking_page">
+
+        <!-- Date field: hook the slot loader -->
+        <xpath expr="//input[@name='appointment_date']" position="attributes">
+            <attribute name="id">bk_date</attribute>
+        </xpath>
+        <xpath expr="//select[@name='dentist_id']" position="attributes">
+            <attribute name="id">bk_dentist</attribute>
+        </xpath>
+
+        <!-- Slot picker block after the dentist column -->
+        <xpath expr="//select[@name='dentist_id']/.." position="after">
+            <div class="col-12" id="bk_slot_block" style="display: none;">
+                <label class="form-label fw-bold">Available Times *</label>
+                <div id="bk_slots" class="d-flex flex-wrap gap-2"></div>
+                <input type="hidden" name="slot_value" id="bk_slot_value"/>
+                <input type="hidden" name="slot_dentist" id="bk_slot_dentist"/>
+                <div id="bk_slot_empty" class="text-muted small mt-1"
+                     style="display: none;">
+                    No free times on this date — please pick another day.
+                </div>
+            </div>
+            <script type="text/javascript">
+                (function () {
+                    "use strict";
+                    var dateEl, dentistEl;
+                    function loadSlots() {
+                        var date = dateEl.value;
+                        var block = document.getElementById("bk_slot_block");
+                        var box = document.getElementById("bk_slots");
+                        var empty = document.getElementById("bk_slot_empty");
+                        document.getElementById("bk_slot_value").value = "";
+                        document.getElementById("bk_slot_dentist").value = "";
+                        if (!date) { block.style.display = "none"; return; }
+                        block.style.display = "";
+                        box.innerHTML = "";
+                        var loading = document.createElement("span");
+                        loading.className = "text-muted small";
+                        loading.textContent = "Loading times…";
+                        box.appendChild(loading);
+                        empty.style.display = "none";
+                        var params = new URLSearchParams({date: date});
+                        if (dentistEl.value) { params.append("dentist_id", dentistEl.value); }
+                        var url = "/dental/book/slots?" + params.toString();
+                        fetch(url).then(function (r) { return r.json(); }).then(function (data) {
+                            box.innerHTML = "";
+                            var slots = (data &amp;&amp; data.slots) || [];
+                            if (!slots.length) { empty.style.display = ""; return; }
+                            slots.forEach(function (s) {
+                                var btn = document.createElement("button");
+                                btn.type = "button";
+                                btn.className = "btn btn-outline-primary btn-sm bk-slot";
+                                btn.textContent = s.label;
+                                btn.dataset.value = s.value;
+                                btn.dataset.dentist = s.dentist_id;
+                                btn.addEventListener("click", function () {
+                                    box.querySelectorAll(".bk-slot").forEach(function (b) {
+                                        b.classList.remove("btn-primary");
+                                        b.classList.add("btn-outline-primary");
+                                    });
+                                    btn.classList.remove("btn-outline-primary");
+                                    btn.classList.add("btn-primary");
+                                    document.getElementById("bk_slot_value").value = s.value;
+                                    document.getElementById("bk_slot_dentist").value = s.dentist_id;
+                                });
+                                box.appendChild(btn);
+                            });
+                        }).catch(function () {
+                            box.innerHTML = "";
+                            var err = document.createElement("span");
+                            err.className = "text-danger small";
+                            err.textContent = "Could not load times.";
+                            box.appendChild(err);
+                        });
+                    }
+                    document.addEventListener("DOMContentLoaded", function () {
+                        dateEl = document.getElementById("bk_date");
+                        dentistEl = document.getElementById("bk_dentist");
+                        if (!dateEl || !dentistEl) { return; }
+                        dateEl.addEventListener("change", loadSlots);
+                        dentistEl.addEventListener("change", loadSlots);
+                        var form = dateEl.closest("form");
+                        if (form) {
+                            form.addEventListener("submit", function (ev) {
+                                var block = document.getElementById("bk_slot_block");
+                                var val = document.getElementById("bk_slot_value").value;
+                                var visible = block &amp;&amp; block.style.display !== "none";
+                                var hasSlots = document.querySelectorAll(".bk-slot").length > 0;
+                                if (visible &amp;&amp; hasSlots &amp;&amp; !val) {
+                                    ev.preventDefault();
+                                    alert("Please choose an available time.");
+                                }
+                            });
+                        }
+                    });
+                })();
+            </script>
+        </xpath>
+    </template>
+
+</odoo>

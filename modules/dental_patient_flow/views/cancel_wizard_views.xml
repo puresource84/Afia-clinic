@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_appointment_cancel_wizard_form" model="ir.ui.view">
+        <field name="name">appointment.cancel.wizard.form</field>
+        <field name="model">appointment.cancel.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Cancel Appointment">
+                <sheet>
+                    <group string="Appointment">
+                        <field name="patient_name" readonly="1"/>
+                        <field name="appointment_date" readonly="1"/>
+                    </group>
+                    <group string="Cancellation">
+                        <field name="reason" nolabel="1"
+                               placeholder="Enter the cancellation reason (required)…"
+                               widget="text"
+                               class="w-100"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_confirm_cancel" type="object"
+                            string="Confirm Cancellation"
+                            class="btn-danger"/>
+                    <button string="Go Back" class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

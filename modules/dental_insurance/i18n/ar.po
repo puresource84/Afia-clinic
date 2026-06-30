@@ -1,0 +1,29 @@
+# Translation for dental_insurance - Arabic
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 18.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: dental_insurance
+#: model:ir.ui.menu,name:dental_insurance.menu_insurers
+msgid "Insurers"
+msgstr "شركات التأمين"
+
+#. module: dental_insurance
+#: model:ir.ui.menu,name:dental_insurance.menu_policies
+msgid "Policies"
+msgstr "بوليصات التأمين"
+
+#. module: dental_insurance
+#: model:ir.ui.menu,name:dental_insurance.menu_claims
+msgid "Claims"
+msgstr "مطالبات التأمين"
+
+#. module: dental_insurance
+#: model:ir.ui.menu,name:dental_insurance.menu_insurance_root
+msgid "Insurance"
+msgstr "التأمين"

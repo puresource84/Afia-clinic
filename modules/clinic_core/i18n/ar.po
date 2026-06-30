@@ -1,0 +1,39 @@
+# Translation for clinic_core - Arabic
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 18.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: clinic_core
+#: model:ir.ui.menu,name:clinic_core.menu_clinic_core_settings
+msgid "Core Settings"
+msgstr "الإعدادات الأساسية"
+
+#. module: clinic_core
+#: model_terms:ir.ui.view,arch_db:clinic_core.view_clinic_core_res_config_settings
+msgid "Clinic Core"
+msgstr "عيادة عافية"
+
+#. module: clinic_core
+#: model_terms:ir.ui.view,arch_db:clinic_core.view_clinic_core_res_config_settings
+msgid "Appointment Duration"
+msgstr "مدة الموعد"
+
+#. module: clinic_core
+#: model_terms:ir.ui.view,arch_db:clinic_core.view_clinic_core_res_config_settings
+msgid "Grace Period"
+msgstr "فترة السماح"
+
+#. module: clinic_core
+#: model_terms:ir.ui.view,arch_db:clinic_core.view_clinic_core_res_config_settings
+msgid "Require Patient Mobile"
+msgstr "إلزام رقم الجوال"
+
+#. module: clinic_core
+#: model_terms:ir.ui.view,arch_db:clinic_core.view_clinic_core_res_config_settings
+msgid "WhatsApp Reminders"
+msgstr "تذكيرات واتساب"

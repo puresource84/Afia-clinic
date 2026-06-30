@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+
+# Odoo
+*.pyc
+.odoo_module_cache
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+odoo.log
+
+# Docker volumes (local only)
+docker/volumes/
+
+# Secrets
+.env
+*.env.local

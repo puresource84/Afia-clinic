@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ── Report action (bound to dental.soap.note) ──────────────────────── -->
+    <record id="action_report_soap_note" model="ir.actions.report">
+        <field name="name">SOAP Clinical Note</field>
+        <field name="model">dental.soap.note</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">dental_soap_notes.report_soap_note_document</field>
+        <field name="report_file">dental_soap_notes.report_soap_note_document</field>
+        <field name="print_report_name">
+            ('SOAP-%s-%s' % (object.appointment_id.appointment_no or '', object.note_date)).replace('/','-')
+        </field>
+        <field name="binding_model_id" ref="model_dental_soap_note"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- ── Paper format: A4 portrait ──────────────────────────────────────── -->
+    <record id="paperformat_soap_a4" model="report.paperformat">
+        <field name="name">Dental SOAP — A4 Portrait</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">15</field>
+        <field name="margin_right">15</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">3</field>
+        <field name="dpi">96</field>
+    </record>
+
+    <!-- ── QWeb template ──────────────────────────────────────────────────── -->
+    <template id="report_soap_note_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page" style="font-family: 'Segoe UI', Tahoma, Arial, sans-serif; font-size: 12px; color: #1a1a1a;">
+
+                        <!-- ── Title bar ────────────────────────────────── -->
+                        <div style="background:#1B4F72; color:#fff; padding:10px 14px; border-radius:4px; margin-bottom:14px;">
+                            <h3 style="margin:0; font-size:15px; letter-spacing:0.5px;">
+                                &#x1F4CB; SOAP Clinical Note — ملاحظة سريرية
+                            </h3>
+                        </div>
+
+                        <!-- ── Patient / Visit header ───────────────────── -->
+                        <table style="width:100%; border-collapse:collapse; margin-bottom:12px; font-size:11.5px;">
+                            <tr>
+                                <td style="width:50%; vertical-align:top; padding:4px 6px; border:1px solid #d0d7de; background:#f6f8fa;">
+                                    <strong>Patient / المريض:</strong><br/>
+                                    <t t-esc="o.patient_id.name or '—'"/>
+                                    <t t-if="o.patient_id.patient_no">
+                                        &amp;nbsp;·&amp;nbsp;<span style="color:#555;">
+                                            <t t-esc="o.patient_id.patient_no"/>
+                                        </span>
+                                    </t>
+                                </td>
+                                <td style="width:50%; vertical-align:top; padding:4px 6px; border:1px solid #d0d7de; background:#f6f8fa;">
+                                    <strong>Dentist / الطبيب:</strong>&amp;nbsp;
+                                    <t t-esc="o.dentist_id.name or '—'"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:4px 6px; border:1px solid #d0d7de;">
+                                    <strong>Visit Date / تاريخ الزيارة:</strong>&amp;nbsp;
+                                    <t t-esc="o.note_date"/>
+                                </td>
+                                <td style="padding:4px 6px; border:1px solid #d0d7de;">
+                                    <strong>Appointment / الموعد:</strong>&amp;nbsp;
+                                    <t t-esc="o.appointment_id.appointment_no or '—'"/>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- ── S — Subjective ───────────────────────────── -->
+                        <div style="margin-bottom:10px; border-left:4px solid #2E86C1; padding-left:8px;">
+                            <p style="margin:0 0 4px; font-weight:700; color:#2E86C1; font-size:12.5px;">
+                                S — Subjective / الشكوى الرئيسية
+                            </p>
+                            <t t-if="o.chief_complaint">
+                                <p style="margin:0 0 4px; font-style:italic; color:#444;">
+                                    "<t t-esc="o.chief_complaint"/>"
+                                </p>
+                            </t>
+                            <t t-if="o.s_ids">
+                                <ul style="margin:2px 0 0 16px; padding:0;">
+                                    <t t-foreach="o.s_ids" t-as="s">
+                                        <li><t t-esc="s.name"/></li>
+                                    </t>
+                                </ul>
+                            </t>
+                            <t t-if="not o.chief_complaint and not o.s_ids">
+                                <span style="color:#999;">—</span>
+                            </t>
+                        </div>
+
+                        <!-- ── O — Objective ────────────────────────────── -->
+                        <div style="margin-bottom:10px; border-left:4px solid #1E8449; padding-left:8px;">
+                            <p style="margin:0 0 4px; font-weight:700; color:#1E8449; font-size:12.5px;">
+                                O — Objective / الفحص السريري
+                            </p>
+                            <t t-if="o.vital_signs">
+                                <p style="margin:0 0 4px; color:#444;">
+                                    <strong>Vital Signs:</strong>
+                                    <t t-esc="o.vital_signs"/>
+                                </p>
+                            </t>
+                            <t t-if="o.tooth_ids">
+                                <p style="margin:0 0 4px; color:#444;">
+                                    <strong>Teeth / الأسنان:</strong>&amp;nbsp;
+                                    <t t-esc="', '.join(t.name for t in o.tooth_ids)"/>
+                                </p>
+                            </t>
+                            <t t-if="o.o_ids">
+                                <ul style="margin:2px 0 0 16px; padding:0;">
+                                    <t t-foreach="o.o_ids" t-as="s">
+                                        <li><t t-esc="s.name"/></li>
+                                    </t>
+                                </ul>
+                            </t>
+                            <t t-if="not o.vital_signs and not o.tooth_ids and not o.o_ids">
+                                <span style="color:#999;">—</span>
+                            </t>
+                        </div>
+
+                        <!-- ── A — Assessment ───────────────────────────── -->
+                        <div style="margin-bottom:10px; border-left:4px solid #B7950B; padding-left:8px;">
+                            <p style="margin:0 0 4px; font-weight:700; color:#B7950B; font-size:12.5px;">
+                                A — Assessment / التشخيص
+                            </p>
+                            <t t-if="o.cdt_codes">
+                                <p style="margin:0 0 4px; color:#444;">
+                                    <strong>CDT Codes:</strong>&amp;nbsp;
+                                    <t t-esc="o.cdt_codes"/>
+                                </p>
+                            </t>
+                            <t t-if="o.a_ids">
+                                <ul style="margin:2px 0 0 16px; padding:0;">
+                                    <t t-foreach="o.a_ids" t-as="s">
+                                        <li><t t-esc="s.name"/></li>
+                                    </t>
+                                </ul>
+                            </t>
+                            <t t-if="not o.cdt_codes and not o.a_ids">
+                                <span style="color:#999;">—</span>
+                            </t>
+                        </div>
+
+                        <!-- ── P — Plan ─────────────────────────────────── -->
+                        <div style="margin-bottom:16px; border-left:4px solid #922B21; padding-left:8px;">
+                            <p style="margin:0 0 4px; font-weight:700; color:#922B21; font-size:12.5px;">
+                                P — Plan / خطة العلاج
+                            </p>
+                            <t t-if="o.p_ids">
+                                <ul style="margin:2px 0 0 16px; padding:0;">
+                                    <t t-foreach="o.p_ids" t-as="s">
+                                        <li><t t-esc="s.name"/></li>
+                                    </t>
+                                </ul>
+                            </t>
+                            <t t-if="not o.p_ids">
+                                <span style="color:#999;">—</span>
+                            </t>
+                        </div>
+
+                        <!-- ── Signature block ──────────────────────────── -->
+                        <div style="border-top:1px solid #bbb; padding-top:8px; margin-top:8px; font-size:11px; color:#555;">
+                            <table style="width:100%; border-collapse:collapse;">
+                                <tr>
+                                    <td style="width:50%;">
+                                        <strong>Status / الحالة:</strong>&amp;nbsp;
+                                        <t t-if="o.state == 'signed'">
+                                            <span style="color:#1E8449; font-weight:600;">&#x2713; Signed / موقّعة</span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="color:#E67E22;">Draft / مسودة</span>
+                                        </t>
+                                    </td>
+                                    <td style="width:50%; text-align:right;">
+                                        <t t-if="o.signed_by">
+                                            <strong>Signed by:</strong>
+                                            <t t-esc="o.signed_by.name"/>&amp;nbsp;
+                                            <t t-if="o.signed_date">
+                                                @ <t t-esc="o.signed_date"/>
+                                            </t>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div><!-- /page -->
+                </t><!-- /external_layout -->
+            </t>
+        </t>
+    </template>
+
+</odoo>

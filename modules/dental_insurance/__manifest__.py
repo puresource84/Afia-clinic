@@ -1,0 +1,24 @@
+{
+    'name': 'Dental Insurance & Claims',
+    'version': '18.0.1.0.0',
+    'category': 'Dental',
+    'summary': 'Insurance policy management, pre-authorisation requests and claims submission for dental clinics.',
+    'author': 'ITCS (IT Corner Solutions)',
+    'website': 'https://www.itcornersolutions.net/',
+    'license': 'OPL-1',
+    'depends': [
+        'dental_hospital',
+        'account',
+    ],
+    'data': [
+        'security/ir.model.access.csv',
+        'data/sequence.xml',
+        'views/dental_insurance_views.xml',
+        'views/menus.xml',
+    ],
+    'installable': True,
+    'application': False,
+    'description': 'Dental Insurance & Claims\n=========================\nFull insurance workflow management for dental practices working with insurance providers.\n\nFeatures\n--------\n- Insurance company and policy catalogue\n- Patient insurance card linked to patient record\n- Coverage rules per policy (procedures covered, co-pay percentage, annual limit)\n- Pre-authorisation request creation and tracking\n- Claim generation from completed invoices\n- Claim status workflow: draft → submitted → approved / rejected\n- Co-pay calculation and patient balance invoicing\n- Insurance ageing report — outstanding claims by payer\n\nUpgrade with Dental Insurance v2 for document attachments and payer-specific print templates.\n',
+    'price': 0,
+    'currency': 'USD',
+}

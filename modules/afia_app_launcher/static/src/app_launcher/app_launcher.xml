@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+<t t-name="afia_app_launcher.AppLauncher">
+    <div class="afia-launcher o-action" t-ref="root" t-on-click="onContainerClick">
+
+        <!-- ─── Search bar + dropdown ─────────────────────────────────── -->
+        <div class="afia-launcher__search-wrap"
+             t-att-class="{ 'afia-launcher__search-wrap--active': state.searchVisible }">
+
+            <div class="afia-launcher__search-inner">
+                <span class="afia-launcher__search-icon">
+                    <i class="fa fa-search"/>
+                </span>
+                <input
+                    t-ref="search"
+                    type="text"
+                    class="afia-launcher__search-input"
+                    autocomplete="off"
+                    spellcheck="false"
+                    placeholder="ابحث في التطبيقات والقوائم…"
+                    t-on-input="onSearchInput"
+                    t-on-keydown="onSearchKeydown"
+                />
+                <button class="afia-launcher__search-clear"
+                        t-if="state.query"
+                        t-on-click.stop="_clearSearch">
+                    <i class="fa fa-times"/>
+                </button>
+            </div>
+
+            <!-- Results dropdown — shown when there are results -->
+            <t t-if="state.results.length">
+                <div class="afia-launcher__dropdown">
+                    <t t-foreach="state.results" t-as="result" t-key="result.id">
+                        <div class="afia-launcher__result"
+                             t-att-class="{ 'afia-launcher__result--active': result_index === state.activeIdx }"
+                             t-att-data-menu-id="result.id"
+                             t-on-click.stop="onResultClick"
+                             t-on-mouseover="onResultHover">
+
+                            <!-- App colour chip -->
+                            <div class="afia-launcher__result-icon"
+                                 t-att-style="'background:' + getTileColor(result.app)">
+                                <t t-esc="getInitials(result.app)"/>
+                            </div>
+
+                            <div class="afia-launcher__result-text">
+                                <!-- Menu item name -->
+                                <div class="afia-launcher__result-name">
+                                    <t t-esc="result.name"/>
+                                </div>
+                                <!-- Full breadcrumb path -->
+                                <div class="afia-launcher__result-path">
+                                    <t t-esc="result.path"/>
+                                </div>
+                            </div>
+
+                            <!-- Keyboard shortcut hint -->
+                            <span class="afia-launcher__result-enter">
+                                <i class="fa fa-level-down fa-rotate-90"/>
+                            </span>
+                        </div>
+                    </t>
+
+                    <!-- "No results" row when index built but nothing matched -->
+                    <t t-if="state.results.length === 0 and state.query">
+                        <div class="afia-launcher__result afia-launcher__result--empty">
+                            <i class="fa fa-search me-2"/>
+                            لا توجد نتائج لـ "<t t-esc="state.query"/>"
+                        </div>
+                    </t>
+                </div>
+            </t>
+
+        </div><!-- /.afia-launcher__search-wrap -->
+
+        <!-- ─── App tile grid — always visible ────────────────────────── -->
+        <div class="afia-launcher__grid">
+            <t t-foreach="state.apps" t-as="app" t-key="app.id">
+                <div class="afia-launcher__tile"
+                     t-att-class="{
+                         'afia-launcher__tile--drag-over': state.dragOver === app.id,
+                         'afia-launcher__tile--dragging':  state.dragSrc  === app.id,
+                     }"
+                     t-att-data-app-id="app.id"
+                     draggable="true"
+                     t-on-click.stop="onTileClick"
+                     t-on-dragstart="onDragStart"
+                     t-on-dragover="onDragOver"
+                     t-on-dragleave="onDragLeave"
+                     t-on-drop="onDrop"
+                     t-on-dragend="onDragEnd">
+
+                    <div class="afia-launcher__tile-icon"
+                         t-att-style="'background:' + getTileColor(app)">
+                        <t t-if="getIconSrc(app)">
+                            <img t-att-src="getIconSrc(app)"
+                                 t-att-alt="app.name"
+                                 class="afia-launcher__tile-img"/>
+                        </t>
+                        <t t-else="">
+                            <span class="afia-launcher__tile-initials">
+                                <t t-esc="getInitials(app)"/>
+                            </span>
+                        </t>
+                    </div>
+
+                    <div class="afia-launcher__tile-name">
+                        <t t-esc="app.name"/>
+                    </div>
+
+                    <span class="afia-launcher__drag-handle" title="اسحب لإعادة الترتيب">
+                        <i class="fa fa-grip-vertical"/>
+                    </span>
+                </div>
+            </t>
+        </div>
+
+    </div><!-- /.afia-launcher -->
+</t>
+
+</templates>

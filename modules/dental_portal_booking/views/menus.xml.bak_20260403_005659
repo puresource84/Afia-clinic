@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_book_appointment_page" model="ir.actions.act_url">
+        <field name="name">Book Appointment (Website)</field>
+        <field name="url">/dental/book</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="menu_dental_book_link" name="Online Booking Page"
+        parent="dental_hospital.menu_dental_root"
+        action="action_book_appointment_page" sequence="99"/>
+</odoo>

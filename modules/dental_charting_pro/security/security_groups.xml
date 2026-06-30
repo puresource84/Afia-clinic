@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- NOW-bucket B1: clinical records must not be writable by every user. -->
+    <record id="group_dental_clinician" model="res.groups">
+        <field name="name">Dental Clinician</field>
+        <field name="comment">Dentists/hygienists: may create and edit clinical tooth records. Reception stays read-only.</field>
+    </record>
+</odoo>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--  Tree View-->
+    <record id="dental_specialist_view_tree" model="ir.ui.view">
+            <field name="name">dental.specialist.view.tree</field>
+            <field name="model">dental.specialist</field>
+            <field name="arch" type="xml">
+                <list string="Specialized" editable="bottom">
+                    <field name="name" required="True"/>
+                    <field name="code" required="True"/>
+                </list>
+            </field>
+    </record>
+    <record id="dental_specialist_menu_action" model="ir.actions.act_window">
+        <field name="name">Specialized</field>
+        <field name="res_model">dental.specialist</field>
+        <field name="view_mode">list</field>
+    </record>
+     <menuitem id="hospital_root_menu" name="Dental Clinic" sequence="1"/>
+    <menuitem id="dental_configure" name="Configure" parent="hospital_root_menu" sequence="5"/>
+    <menuitem id="dental_specialist_menu" name="Specialist" parent="dental_configure" sequence="11"
+              action="dental_specialist_menu_action"/>
+
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+dental_insurance.access_insurer,dental.insurer,model_dental_insurer,base.group_user,1,1,1,1
+dental_insurance.access_policy,dental.policy,model_dental_policy,base.group_user,1,1,1,1
+dental_insurance.access_claim,dental.claim,model_dental_claim,base.group_user,1,1,1,1

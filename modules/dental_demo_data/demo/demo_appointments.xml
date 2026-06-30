@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- ═══════════════════════════════════════════════════════════
+             HISTORICAL — state=done — feeds the commission report pivot
+             All dates are relative to install date so the data stays
+             fresh after deployment.
+        ════════════════════════════════════════════════════════════════ -->
+
+        <!-- Month −2: 4 done appointments -->
+        <record id="apt_done_01" model="dental.appointment">
+            <field name="patient_id" ref="patient_ali"/>
+            <field name="dentist_id" ref="dentist_ahmed"/>
+            <field name="appointment_date"
+                   eval="(DateTime.now() - timedelta(days=65)).strftime('%Y-%m-%d')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_cleaning'), ref('dental_demo_data.treat_filling')])]"/>
+            <field name="state">done</field>
+        </record>
+        <record id="apt_done_02" model="dental.appointment">
+            <field name="patient_id" ref="patient_fatima"/>
+            <field name="dentist_id" ref="dentist_zainab"/>
+            <field name="appointment_date"
+                   eval="(DateTime.now() - timedelta(days=62)).strftime('%Y-%m-%d')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_veneer')])]"/>
+            <field name="state">done</field>
+        </record>
+        <record id="apt_done_03" model="dental.appointment">
+            <field name="patient_id" ref="patient_omar"/>
+            <field name="dentist_id" ref="dentist_hassan"/>
+            <field name="appointment_date"
+                   eval="(DateTime.now() - timedelta(days=58)).strftime('%Y-%m-%d')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_rct')])]"/>
+            <field name="state">done</field>
+        </record>
+        <record id="apt_done_04" model="dental.appointment">
+            <field name="patient_id" ref="patient_sara"/>
+            <field name="dentist_id" ref="dentist_ahmed"/>
+            <field name="appointment_date"
+                   eval="(DateTime.now() - timedelta(days=55)).strftime('%Y-%m-%d')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_implant')])]"/>
+            <field name="state">done</field>
+        </record>
+
+        <!-- Month −1: 6 done appointments -->
+        <record id="apt_done_05" model="dental.appointment">
+            <field name="patient_id" ref="patient_khalid"/>
+            <field name="dentist_id" ref="dentist_ahmed"/>
+            <field name="appointment_date"
+                   eval="(DateTime.now() - timedelta(days=28)).strftime('%Y-%m-%d')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_extraction')])]"/>
+            <field name="state">done</field>
+        </record>
+        <record id="apt_done_06" model="dental.appointment">
+            <field name="patient_id" ref="patient_rania"/>
+            <field name="dentist_id" ref="dentist_zainab"/>
+            <field name="appointment_date"
+                   eval="(DateTime.now() - timedelta(days=25)).strftime('%Y-%m-%d')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_veneer'), ref('dental_demo_data.treat_cleaning')])]"/>
+            <field name="state">done</field>
+        </record>
+        <record id="apt_done_07" model="dental.appointment">
+            <field name="patient_id" ref="patient_ali"/>
+            <field name="dentist_id" ref="dentist_hassan"/>
+            <field name="appointment_date"
+                   eval="(DateTime.now() - timedelta(days=22)).strftime('%Y-%m-%d')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_rct')])]"/>
+            <field name="state">done</field>
+        </record>
+        <record id="apt_done_08" model="dental.appointment">
+            <field name="patient_id" ref="patient_fatima"/>
+            <field name="dentist_id" ref="dentist_ahmed"/>
+            <field name="appointment_date"
+                   eval="(DateTime.now() - timedelta(days=18)).strftime('%Y-%m-%d')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_filling'), ref('dental_demo_data.treat_cleaning')])]"/>
+            <field name="state">done</field>
+        </record>
+        <record id="apt_done_09" model="dental.appointment">
+            <field name="patient_id" ref="patient_noor"/>
+            <field name="dentist_id" ref="dentist_zainab"/>
+            <field name="appointment_date"
+                   eval="(DateTime.now() - timedelta(days=14)).strftime('%Y-%m-%d')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_veneer')])]"/>
+            <field name="state">done</field>
+        </record>
+        <record id="apt_done_10" model="dental.appointment">
+            <field name="patient_id" ref="patient_omar"/>
+            <field name="dentist_id" ref="dentist_ahmed"/>
+            <field name="appointment_date"
+                   eval="(DateTime.now() - timedelta(days=10)).strftime('%Y-%m-%d')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_implant')])]"/>
+            <field name="state">done</field>
+        </record>
+
+        <!-- ═══════════════════════════════════════════════════════════
+             UPCOMING — confirmed / draft — show on calendar
+        ════════════════════════════════════════════════════════════════ -->
+
+        <record id="apt_upcoming_01" model="dental.appointment">
+            <field name="patient_id" ref="patient_ali"/>
+            <field name="dentist_id" ref="dentist_ahmed"/>
+            <field name="appointment_date"
+                   eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_cleaning')])]"/>
+            <field name="state">draft</field>
+        </record>
+        <record id="apt_upcoming_02" model="dental.appointment">
+            <field name="patient_id" ref="patient_fatima"/>
+            <field name="dentist_id" ref="dentist_zainab"/>
+            <field name="appointment_date"
+                   eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_veneer')])]"/>
+            <field name="state">draft</field>
+        </record>
+        <record id="apt_upcoming_03" model="dental.appointment">
+            <field name="patient_id" ref="patient_omar"/>
+            <field name="dentist_id" ref="dentist_ahmed"/>
+            <field name="appointment_date"
+                   eval="(DateTime.now() + timedelta(days=3)).strftime('%Y-%m-%d')"/>
+            <field name="state">draft</field>
+        </record>
+        <record id="apt_upcoming_04" model="dental.appointment">
+            <field name="patient_id" ref="patient_noor"/>
+            <field name="dentist_id" ref="dentist_zainab"/>
+            <field name="appointment_date"
+                   eval="(DateTime.now() + timedelta(days=5)).strftime('%Y-%m-%d')"/>
+            <field name="state">draft</field>
+        </record>
+        <record id="apt_upcoming_05" model="dental.appointment">
+            <field name="patient_id" ref="patient_khalid"/>
+            <field name="dentist_id" ref="dentist_hassan"/>
+            <field name="appointment_date"
+                   eval="(DateTime.now() + timedelta(days=7)).strftime('%Y-%m-%d')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_filling')])]"/>
+            <field name="state">draft</field>
+        </record>
+        <record id="apt_upcoming_06" model="dental.appointment">
+            <field name="patient_id" ref="patient_sara"/>
+            <field name="dentist_id" ref="dentist_ahmed"/>
+            <field name="appointment_date"
+                   eval="(DateTime.now() + timedelta(days=9)).strftime('%Y-%m-%d')"/>
+            <field name="state">draft</field>
+        </record>
+
+    </data>
+</odoo>

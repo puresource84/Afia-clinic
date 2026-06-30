@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Prescription PDF: RTL-safe layout + two-column header fix (2026-06-14)
+         Original template used block <div> elements for side-by-side columns
+         (they rendered stacked, not side by side — broken in LTR too), and
+         hardcoded `text-align: left/right` which flips incorrectly in Arabic.
+         Fix: Bootstrap `d-flex justify-content-between` for header pairs,
+         `text-start` / `text-center` utility classes (logical, RTL-aware).
+    -->
+    <template id="report_prescription_rtl_fix"
+              inherit_id="dental_hospital.report_prescription"
+              priority="20">
+        <xpath expr="//div[hasclass('page')]" position="replace">
+            <div class="page">
+
+                <!-- Report title -->
+                <div class="text-center mb-4">
+                    <h2 style="text-transform: uppercase; font-weight: bold;">
+                        Dental Prescription Report
+                    </h2>
+                </div>
+
+                <!-- Header metadata: two per row, flexbox so RTL flips correctly -->
+                <div class="d-flex justify-content-between mb-1">
+                    <div>
+                        <strong>Prescription No:</strong>
+                        <span t-out="doc.sequence_no"/>
+                    </div>
+                    <div>
+                        <strong>Appointment No:</strong>
+                        <span t-out="doc.appointment_id.appointment_no"/>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between mb-1">
+                    <div>
+                        <strong>Patient Name:</strong>
+                        <span t-out="doc.patient_id.name"/>
+                    </div>
+                    <div>
+                        <strong>Prescription Date:</strong>
+                        <span t-out="doc.prescription_date"/>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between mb-1">
+                    <div>
+                        <strong>Patient No:</strong>
+                        <span t-out="doc.patient_id.patient_no"/>
+                    </div>
+                    <div>
+                        <strong>Prescribed Doctor:</strong>
+                        <span t-out="doc.prescribed_doctor_id.name"/>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between mb-3">
+                    <div>
+                        <strong>Treatment:</strong>
+                        <span t-out="doc.treatment_id.name"/>
+                    </div>
+                    <div>
+                        <strong>Teeth:</strong>
+                        <span t-out="doc.selected_teeth"/>
+                    </div>
+                </div>
+
+                <!-- Medicines table — text-start/text-center are logical CSS,
+                     correct in both LTR and RTL -->
+                <table class="table table-bordered table-sm" style="width: 100%;">
+                    <thead style="background-color: #f2f2f2; font-weight: bold;">
+                        <tr>
+                            <th class="text-start p-2">Medicament</th>
+                            <th class="text-start p-2">Generic Name</th>
+                            <th class="text-start p-2">Dosage</th>
+                            <th class="text-start p-2">Form</th>
+                            <th class="text-center p-2">Qty</th>
+                            <th class="text-center p-2">Take</th>
+                            <th class="text-center p-2">Morning</th>
+                            <th class="text-center p-2">Afternoon</th>
+                            <th class="text-center p-2">Night</th>
+                            <th class="text-center p-2">Days</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="doc.medicine_ids" t-as="med">
+                            <tr>
+                                <td class="p-2">
+                                    <span t-out="med.medicament_id.name"/>
+                                </td>
+                                <td class="p-2">
+                                    <span t-out="med.generic_name"/>
+                                </td>
+                                <td class="p-2">
+                                    <span t-out="med.dosage_strength"/>
+                                </td>
+                                <td class="p-2">
+                                    <span t-out="med.medicament_form"/>
+                                </td>
+                                <td class="text-center p-2">
+                                    <span t-out="med.quantity"/>
+                                </td>
+                                <td class="text-center p-2">
+                                    <span t-out="med.medicine_take"/>
+                                </td>
+                                <td class="text-center p-2">
+                                    <span t-out="'✔' if med.morning else '–'"/>
+                                </td>
+                                <td class="text-center p-2">
+                                    <span t-out="'✔' if med.noon else '–'"/>
+                                </td>
+                                <td class="text-center p-2">
+                                    <span t-out="'✔' if med.night else '–'"/>
+                                </td>
+                                <td class="text-center p-2">
+                                    <span t-out="med.days"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+
+                <!-- Doctor's note -->
+                <div class="mt-4 pt-3" style="border-top: 1px solid #000;">
+                    <p class="text-center" style="font-size: 14px;">
+                        <strong>Note:</strong>
+                        Please follow the prescribed medication schedule strictly.
+                    </p>
+                </div>
+
+            </div>
+        </xpath>
+    </template>
+</odoo>

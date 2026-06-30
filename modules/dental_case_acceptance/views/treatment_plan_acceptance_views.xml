@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_treatment_plan_form_acceptance" model="ir.ui.view">
+        <field name="name">dental.treatment.plan.form.acceptance</field>
+        <field name="model">dental.treatment.plan</field>
+        <field name="inherit_id" ref="dental_treatment_plan.view_treatment_plan_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Start Plan also allowed from Accepted -->
+            <button name="action_start" position="attributes">
+                <attribute name="invisible">state not in ('draft', 'accepted')</attribute>
+            </button>
+
+            <button name="action_start" position="before">
+                <button name="action_present" type="object" string="Present to Patient"
+                        invisible="state != 'draft'" class="btn-primary"/>
+                <button name="action_accept" type="object" string="Accept (Signed)"
+                        invisible="state != 'proposed'" class="btn-success"/>
+                <button name="action_decline_case" type="object" string="Decline"
+                        invisible="state != 'proposed'"/>
+                <button name="action_reopen_proposal" type="object" string="Re-Present (Revised)"
+                        invisible="state != 'declined'"/>
+            </button>
+
+            <field name="state" position="attributes">
+                <attribute name="statusbar_visible">draft,proposed,accepted,in_progress,completed</attribute>
+            </field>
+
+            <page name="notes" position="before">
+                <page name="case_acceptance" string="Case Acceptance">
+                    <group>
+                        <group string="Decision">
+                            <field name="presented_date"/>
+                            <field name="accepted_date"/>
+                            <field name="declined_date"/>
+                            <field name="days_to_decision"/>
+                        </group>
+                        <group string="Signature">
+                            <field name="accepted_by"
+                                   readonly="state in ('accepted', 'in_progress', 'completed')"/>
+                        </group>
+                    </group>
+                    <separator string="Patient Signature (sign on screen/tablet)"/>
+                    <field name="patient_signature" widget="signature"
+                           readonly="state in ('accepted', 'in_progress', 'completed')"/>
+                    <group string="If Declined">
+                        <field name="decline_reason" nolabel="1" colspan="2"
+                               placeholder="Why was the plan declined? (price, time, second opinion...)"/>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <!-- A8 KPI: case-acceptance analysis -->
+    <record id="view_treatment_plan_pivot" model="ir.ui.view">
+        <field name="name">dental.treatment.plan.pivot.acceptance</field>
+        <field name="model">dental.treatment.plan</field>
+        <field name="arch" type="xml">
+            <pivot string="Case Acceptance">
+                <field name="dentist_id" type="row"/>
+                <field name="state" type="col"/>
+                <field name="total_cost" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_treatment_plan_graph" model="ir.ui.view">
+        <field name="name">dental.treatment.plan.graph.acceptance</field>
+        <field name="model">dental.treatment.plan</field>
+        <field name="arch" type="xml">
+            <graph string="Case Acceptance" type="bar">
+                <field name="dentist_id"/>
+                <field name="state"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_case_acceptance_analysis" model="ir.actions.act_window">
+        <field name="name">Case Acceptance</field>
+        <field name="res_model">dental.treatment.plan</field>
+        <field name="view_mode">pivot,graph,list</field>
+        <field name="domain">[('state', 'in', ('proposed', 'accepted', 'declined', 'in_progress', 'completed'))]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No presented plans yet</p>
+            <p>Acceptance rate = Accepted (+ started/completed) ÷ all presented plans.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_case_acceptance_analysis" name="Case Acceptance"
+              parent="dental_analytics.menu_dental_analytics"
+              action="action_case_acceptance_analysis" sequence="30"/>
+
+</odoo>

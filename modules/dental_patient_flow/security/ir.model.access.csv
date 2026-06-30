@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_dental_appointment_flow_user,dental.appointment.flow.user,dental_hospital.model_dental_appointment,clinic_core.group_clinic_receptionist,1,1,0,0
+access_dental_appointment_flow_dentist,dental.appointment.flow.dentist,dental_hospital.model_dental_appointment,clinic_core.group_clinic_dentist,1,1,0,0
+access_dental_appointment_flow_admin,dental.appointment.flow.admin,dental_hospital.model_dental_appointment,clinic_core.group_clinic_admin,1,1,1,1
+access_appointment_cancel_wizard_receptionist,appointment.cancel.wizard.receptionist,model_appointment_cancel_wizard,clinic_core.group_clinic_receptionist,1,1,1,1
+access_appointment_cancel_wizard_dentist,appointment.cancel.wizard.dentist,model_appointment_cancel_wizard,clinic_core.group_clinic_dentist,1,1,1,1
+access_appointment_cancel_wizard_admin,appointment.cancel.wizard.admin,model_appointment_cancel_wizard,clinic_core.group_clinic_admin,1,1,1,1

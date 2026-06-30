@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_lab_order_list" model="ir.ui.view">
+        <field name="name">dental.lab.order.list</field>
+        <field name="model">dental.lab.order</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="due_date &lt; current_date and state not in ('received','fitted','cancelled')"
+                  decoration-success="state == 'fitted'">
+                <field name="name"/><field name="patient_id"/>
+                <field name="lab_name"/><field name="work_type"/>
+                <field name="shade"/><field name="order_date"/>
+                <field name="due_date"/><field name="cost"/>
+                <field name="state" widget="badge"
+                    decoration-success="state in ('received','fitted')"
+                    decoration-warning="state in ('sent','in_progress')"
+                    decoration-muted="state in ('draft','cancelled')"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_lab_order_form" model="ir.ui.view">
+        <field name="name">dental.lab.order.form</field>
+        <field name="model">dental.lab.order</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_send" type="object" string="Send to Lab"
+                        invisible="state != 'draft'" class="btn-primary"/>
+                    <button name="action_receive" type="object" string="Mark Received"
+                        invisible="state not in ('sent','in_progress')"/>
+                    <button name="action_fit" type="object" string="Mark Fitted"
+                        invisible="state != 'received'"/>
+                    <button name="action_cancel" type="object" string="Cancel"
+                        invisible="state in ('fitted','cancelled')"/>
+                    <field name="state" widget="statusbar"
+                        statusbar_visible="draft,sent,received,fitted"/>
+                </header>
+                <sheet>
+                    <group><group>
+                        <field name="name" readonly="1"/>
+                        <field name="patient_id"/>
+                        <field name="dentist_id"/>
+                        <field name="appointment_id"/>
+                    </group><group>
+                        <field name="lab_name"/>
+                        <field name="lab_contact"/>
+                        <field name="work_type"/>
+                        <field name="material"/>
+                        <field name="shade"/>
+                    </group></group>
+                    <group><group>
+                        <field name="order_date"/>
+                        <field name="due_date"/>
+                        <field name="received_date"/>
+                    </group><group>
+                        <field name="cost"/>
+                        <field name="tooth_ids" widget="many2many_tags"/>
+                    </group></group>
+                    <field name="instructions" placeholder="Lab instructions..."/>
+                    <field name="notes"/>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_lab_order" model="ir.actions.act_window">
+        <field name="name">Lab Orders</field>
+        <field name="res_model">dental.lab.order</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

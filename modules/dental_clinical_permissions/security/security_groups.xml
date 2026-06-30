@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- NOW-bucket B1: clinical role matrix.
+         clinic_core already ships Administrator / Dentist / Receptionist;
+         we add Hygienist and wire the implication chain. -->
+
+    <record id="group_clinic_hygienist" model="res.groups">
+        <field name="name">Clinic Hygienist</field>
+        <field name="category_id" ref="clinic_core.clinic_category"/>
+        <field name="comment">May edit charting and questionnaires; cannot prescribe or edit treatment plans.</field>
+        <field name="implied_ids" eval="[(4, ref('dental_charting_pro.group_dental_clinician'))]"/>
+    </record>
+
+    <!-- Dentists are clinicians (tooth-record gate from dental_charting_pro). -->
+    <record id="clinic_core.group_clinic_dentist" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('dental_charting_pro.group_dental_clinician'))]"/>
+    </record>
+
+    <!-- Clinic Administrator gets every clinic role. -->
+    <record id="clinic_core.group_clinic_admin" model="res.groups">
+        <field name="implied_ids" eval="[
+            (4, ref('clinic_core.group_clinic_dentist')),
+            (4, ref('clinic_core.group_clinic_receptionist')),
+            (4, ref('group_clinic_hygienist')),
+        ]"/>
+    </record>
+
+    <!-- The admin user keeps working out of the box. -->
+    <record id="base.user_admin" model="res.users">
+        <field name="groups_id" eval="[(4, ref('clinic_core.group_clinic_admin'))]"/>
+    </record>
+
+    <!-- Signed consent forms are immutable except for Clinic Administrators.
+         Group rules OR together: admins match the second rule and bypass. -->
+    <record id="rule_consent_form_signed_locked" model="ir.rule">
+        <field name="name">Consent forms: signed forms are locked</field>
+        <field name="model_id" ref="dental_consent.model_dental_consent_form"/>
+        <field name="domain_force">[('state', '!=', 'signed')]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        <field name="perm_read" eval="False"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="rule_consent_form_admin_bypass" model="ir.rule">
+        <field name="name">Consent forms: clinic admin bypass</field>
+        <field name="model_id" ref="dental_consent.model_dental_consent_form"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('clinic_core.group_clinic_admin'))]"/>
+        <field name="perm_read" eval="False"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+</odoo>

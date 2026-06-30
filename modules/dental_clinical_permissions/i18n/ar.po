@@ -1,0 +1,14 @@
+# Translation for dental_clinical_permissions - Arabic
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 18.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: dental_clinical_permissions
+#: model:res.groups,name:dental_clinical_permissions.group_clinic_hygienist
+msgid "Clinic Hygienist"
+msgstr "أخصائي صحة الفم"

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Substance catalog -->
+    <record id="allergy_substance_view_list" model="ir.ui.view">
+        <field name="name">dental.allergy.substance.list</field>
+        <field name="model">dental.allergy.substance</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="keywords"/>
+                <field name="note" optional="show"/>
+            </list>
+        </field>
+    </record>
+    <record id="allergy_substance_view_form" model="ir.ui.view">
+        <field name="name">dental.allergy.substance.form</field>
+        <field name="model">dental.allergy.substance</field>
+        <field name="arch" type="xml">
+            <form string="Allergy Substance">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="keywords"
+                               placeholder="penicillin,amoxicillin,augmentin,بنسلين"/>
+                        <field name="note"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_allergy_substances" model="ir.actions.act_window">
+        <field name="name">Allergy Substances</field>
+        <field name="res_model">dental.allergy.substance</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <menuitem id="menu_allergy_substances"
+              name="Allergy Substances"
+              parent="dental_hospital.dental_configure"
+              action="action_allergy_substances"
+              sequence="60"/>
+
+    <!-- Structured allergy list on the patient form, under the free-text
+         banner added by dental_ux_fixes. -->
+    <record id="view_partner_form_allergy_lines" model="ir.ui.view">
+        <field name="name">res.partner.form.allergy.lines</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="dental_ux_fixes.view_partner_form_dental_ux"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='allergy_alert']" position="after">
+                <field name="allergy_ids" invisible="not is_patient"
+                       context="{'default_partner_id': id}">
+                    <list editable="bottom">
+                        <field name="substance_id"/>
+                        <field name="severity"/>
+                        <field name="reaction"/>
+                    </list>
+                </field>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Prescription form: red allergy banner + override reason -->
+    <record id="dental_prescription_form_allergy_guard" model="ir.ui.view">
+        <field name="name">dental.prescription.form.allergy.guard</field>
+        <field name="model">dental.prescription</field>
+        <field name="inherit_id" ref="dental_hospital.dental_prescription_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <div class="alert alert-danger" role="alert"
+                     invisible="not patient_allergy_summary">
+                    <strong>⚠ ALLERGY / CLINICAL ALERT: </strong>
+                    <field name="patient_allergy_summary" class="o_inline"/>
+                </div>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <group>
+                    <field name="allergy_override_reason"
+                           invisible="not patient_allergy_summary"
+                           placeholder="Only fill to bypass the allergy hard stop — logged for audit"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

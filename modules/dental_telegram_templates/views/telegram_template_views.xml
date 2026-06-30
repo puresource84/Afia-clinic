@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="telegram_template_view_list" model="ir.ui.view">
+        <field name="name">dental.telegram.template.list</field>
+        <field name="model">dental.telegram.template</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="template_key"/>
+                <field name="offset_value" optional="show"/>
+                <field name="offset_unit" optional="show"/>
+                <field name="offset_direction" optional="show"/>
+                <field name="send_after_hour" widget="float_time" optional="show"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="telegram_template_view_form" model="ir.ui.view">
+        <field name="name">dental.telegram.template.form</field>
+        <field name="model">dental.telegram.template</field>
+        <field name="arch" type="xml">
+            <form string="Telegram Message">
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Message name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Message">
+                            <field name="template_key"/>
+                            <field name="active" invisible="1"/>
+                            <field name="show_timing" invisible="1"/>
+                            <field name="show_hour" invisible="1"/>
+                        </group>
+                        <group string="Timing (clinic timezone)">
+                            <label for="offset_value" string="Send Offset"
+                                   invisible="not show_timing"/>
+                            <div invisible="not show_timing" class="o_row">
+                                <field name="offset_value"/>
+                                <field name="offset_unit"/>
+                                <field name="offset_direction"/>
+                            </div>
+                            <field name="send_after_hour" widget="float_time"
+                                   invisible="not show_hour"/>
+                        </group>
+                    </group>
+                    <div class="alert alert-success" role="alert"
+                         invisible="not show_timing">
+                        <strong>Timing matrix: </strong>
+                        timed messages support <em>N hours/days BEFORE or
+                        AFTER the visit</em> and may have SEVERAL active
+                        templates — e.g. reminder 1 day before + 1 hour
+                        before, or care instructions 2 hours after + review
+                        request 1 day after. Each template sends once per
+                        appointment. BEFORE targets confirmed appointments;
+                        AFTER targets done visits. Hour-based timing needs an
+                        appointment time (online-booking slot or shift) and
+                        skips time-less appointments.
+                    </div>
+                    <group string="Text (Arabic + English in one message)">
+                        <field name="body" nolabel="1" colspan="2"
+                               placeholder="مرحباً {patient_name}… / Hello {patient_name}…"/>
+                    </group>
+                    <div class="alert alert-info" role="alert">
+                        <strong>Placeholders / المتغيرات: </strong>
+                        <code>{patient_name}</code> patient name ·
+                        <code>{patient_no}</code> patient number ·
+                        <code>{clinic_name}</code> clinic ·
+                        <code>{date}</code> appointment date ·
+                        <code>{time}</code> appointment time (HH:MM) ·
+                        <code>{shift}</code> booking time/shift ·
+                        <code>{dentist}</code> dentist name ·
+                        <code>{review_link}</code> Google review link.
+                        Unknown placeholders are sent as-is. Deactivating a
+                        template falls back to the built-in default text.
+                    </div>
+                    <group string="Preview on a real phone">
+                        <field name="test_partner_id"/>
+                        <button name="action_send_test" type="object"
+                                string="Send Test" class="btn-secondary"
+                                icon="fa-paper-plane"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_telegram_templates" model="ir.actions.act_window">
+        <field name="name">Telegram Messages</field>
+        <field name="res_model">dental.telegram.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'active_test': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Configure the messages your patients receive on Telegram</p>
+            <p>Templates are pre-seeded — open one to edit its text, timing, or send a test.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_telegram_templates"
+              name="Telegram Messages"
+              parent="dental_hospital.dental_configure"
+              action="action_telegram_templates"
+              sequence="101"/>
+
+    <!-- Sent-message log: visibility for the front desk -->
+    <record id="telegram_log_view_list" model="ir.ui.view">
+        <field name="name">dental.telegram.message.log.list</field>
+        <field name="model">dental.telegram.message.log</field>
+        <field name="arch" type="xml">
+            <list create="false" edit="false">
+                <field name="sent_date"/>
+                <field name="patient_id"/>
+                <field name="appointment_id"/>
+                <field name="template_id"/>
+                <field name="template_key" optional="hide"/>
+                <field name="is_test" optional="show"/>
+                <field name="body" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="telegram_log_view_search" model="ir.ui.view">
+        <field name="name">dental.telegram.message.log.search</field>
+        <field name="model">dental.telegram.message.log</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="patient_id"/>
+                <field name="appointment_id"/>
+                <filter name="filter_today" string="Today"
+                        domain="[('sent_date', '&gt;=', 'today')]"/>
+                <filter name="filter_no_test" string="Exclude Tests"
+                        domain="[('is_test', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_template" string="Message"
+                            context="{'group_by': 'template_id'}"/>
+                    <filter name="group_patient" string="Patient"
+                            context="{'group_by': 'patient_id'}"/>
+                    <filter name="group_date" string="Sent Date"
+                            context="{'group_by': 'sent_date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_telegram_log" model="ir.actions.act_window">
+        <field name="name">Telegram Sent Log</field>
+        <field name="res_model">dental.telegram.message.log</field>
+        <field name="view_mode">list</field>
+        <field name="context">{'search_default_filter_no_test': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No messages sent yet</p>
+            <p>Every Telegram message sent to a patient is logged here.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_telegram_log"
+              name="Telegram Sent Log"
+              parent="dental_hospital.dental_configure"
+              action="action_telegram_log"
+              sequence="102"/>
+</odoo>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Sprint A data fixes are handled by the Python migration:
+         migrations/18.0.1.1.0/post-migrate.py
+         This file is intentionally empty. -->
+</odoo>

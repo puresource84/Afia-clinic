@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Claim form: Pre-Authorisation tab -->
+    <record id="view_claim_form_v2" model="ir.ui.view">
+        <field name="name">dental.claim.form.v2</field>
+        <field name="model">dental.claim</field>
+        <field name="inherit_id" ref="dental_insurance.view_claim_form"/>
+        <field name="arch" type="xml">
+            <field name="notes" position="before">
+                <group string="Pre-Authorisation"
+                       invisible="state == 'draft' and not requires_pre_auth">
+                    <group>
+                        <field name="requires_pre_auth"/>
+                        <field name="pre_auth_no"/>
+                        <field name="pre_auth_date"/>
+                    </group>
+                    <group>
+                        <field name="pre_auth_attachment_ids"
+                               widget="many2many_binary" nolabel="1" colspan="2"/>
+                    </group>
+                </group>
+            </field>
+        </field>
+    </record>
+
+    <!-- Insurer form: payer claim-template settings -->
+    <record id="view_insurer_form_v2" model="ir.ui.view">
+        <field name="name">dental.insurer.form.v2</field>
+        <field name="model">dental.insurer</field>
+        <field name="inherit_id" ref="dental_insurance.view_insurer_form"/>
+        <field name="arch" type="xml">
+            <field name="notes" position="before">
+                <group>
+                    <field name="requires_pre_auth"/>
+                </group>
+                <separator string="Claim Form Template (printed on claims for this payer)"/>
+                <field name="claim_template_body"
+                       placeholder="Declarations, submission address, payer-specific instructions..."/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

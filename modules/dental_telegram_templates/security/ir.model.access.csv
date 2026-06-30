@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tg_template_user,dental.telegram.template.user,model_dental_telegram_template,base.group_user,1,0,0,0
+access_tg_template_clinic_admin,dental.telegram.template.clinic.admin,model_dental_telegram_template,clinic_core.group_clinic_admin,1,1,1,1
+access_tg_log_user,dental.telegram.message.log.user,model_dental_telegram_message_log,base.group_user,1,0,0,0
+access_tg_log_clinic_admin,dental.telegram.message.log.clinic.admin,model_dental_telegram_message_log,clinic_core.group_clinic_admin,1,0,0,1

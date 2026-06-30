@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ── Portal home: add three new tiles ─────────────────────────────── -->
+    <template id="portal_home_dental_v2" inherit_id="portal.portal_my_home" priority="31">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">My Treatment Plans</t>
+                <t t-set="url">/my/treatment-plans</t>
+                <t t-set="count" t-value="plan_count"/>
+                <t t-set="icon" class="fa fa-clipboard"/>
+            </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Payment History</t>
+                <t t-set="url">/my/dental/invoices</t>
+                <t t-set="count" t-value="dental_invoice_count"/>
+                <t t-set="icon" class="fa fa-file-text-o"/>
+            </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">My Documents</t>
+                <t t-set="url">/my/dental/documents</t>
+                <t t-set="count" t-value="consent_count"/>
+                <t t-set="icon" class="fa fa-folder-open-o"/>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- ── Treatment plan list ──────────────────────────────────────────── -->
+    <template id="portal_treatment_plans" name="My Treatment Plans">
+        <t t-call="portal.portal_layout">
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">My Treatment Plans</t>
+            </t>
+            <t t-if="not plans">
+                <div class="alert alert-info mt-3">No treatment plans found.</div>
+            </t>
+            <t t-if="plans">
+                <div class="card mt-3">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Ref</th>
+                                <th>Dentist</th>
+                                <th>Sessions</th>
+                                <th>Total Cost</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="plans" t-as="plan">
+                                <tr>
+                                    <td><t t-out="plan.name"/></td>
+                                    <td><t t-out="plan.dentist_id.name or '—'"/></td>
+                                    <td><t t-out="plan.total_sessions"/></td>
+                                    <td>
+                                        <t t-out="'{:,.0f}'.format(plan.total_cost)"/>
+                                        IQD
+                                    </td>
+                                    <td>
+                                        <span t-attf-class="badge #{
+                                            'bg-warning text-dark' if plan.state == 'proposed' else
+                                            'bg-success' if plan.state == 'accepted' else
+                                            'bg-danger' if plan.state == 'declined' else
+                                            'bg-info' if plan.state == 'in_progress' else
+                                            'bg-secondary'}">
+                                            <t t-out="plan.state.replace('_',' ').title()"/>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <a t-attf-href="/my/treatment-plans/#{plan.id}"
+                                           class="btn btn-sm btn-outline-primary">
+                                            <t t-if="plan.state == 'proposed'">Review</t>
+                                            <t t-else="">View</t>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- ── Treatment plan detail + accept/decline form ──────────────────── -->
+    <template id="portal_plan_detail" name="Treatment Plan Detail">
+        <t t-call="portal.portal_layout">
+            <div class="container mt-3">
+
+                <!-- Breadcrumb -->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/my/home">My Account</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="/my/treatment-plans">Treatment Plans</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            <t t-out="plan.name"/>
+                        </li>
+                    </ol>
+                </nav>
+
+                <!-- Alerts -->
+                <t t-if="error == 'name_required'">
+                    <div class="alert alert-danger">
+                        Please enter your full name to confirm acceptance.
+                    </div>
+                </t>
+                <t t-if="error == 'not_proposed'">
+                    <div class="alert alert-warning">
+                        This plan is no longer awaiting your decision.
+                    </div>
+                </t>
+                <t t-if="success == 'accepted'">
+                    <div class="alert alert-success">
+                        ✓ You have accepted this treatment plan. The clinic will contact you
+                        to schedule your sessions.
+                    </div>
+                </t>
+                <t t-if="success == 'declined'">
+                    <div class="alert alert-info">
+                        You have declined this treatment plan. Please contact the clinic
+                        if you have questions.
+                    </div>
+                </t>
+
+                <!-- Plan summary -->
+                <div class="card mb-3">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Treatment Plan — <t t-out="plan.name"/></h5>
+                        <span t-attf-class="badge #{
+                            'bg-warning text-dark' if plan.state == 'proposed' else
+                            'bg-success' if plan.state == 'accepted' else
+                            'bg-danger' if plan.state == 'declined' else
+                            'bg-info' if plan.state == 'in_progress' else
+                            'bg-secondary'}">
+                            <t t-out="plan.state.replace('_',' ').title()"/>
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <dl class="row mb-0">
+                            <dt class="col-sm-3">Dentist</dt>
+                            <dd class="col-sm-9">
+                                <t t-out="plan.dentist_id.name or '—'"/>
+                            </dd>
+                            <t t-if="plan.diagnosis">
+                                <dt class="col-sm-3">Diagnosis</dt>
+                                <dd class="col-sm-9"><t t-out="plan.diagnosis"/></dd>
+                            </t>
+                            <dt class="col-sm-3">Sessions</dt>
+                            <dd class="col-sm-9">
+                                <t t-out="plan.total_sessions"/>
+                            </dd>
+                            <dt class="col-sm-3">Estimated Total</dt>
+                            <dd class="col-sm-9">
+                                <strong>
+                                    <t t-out="'{:,.0f}'.format(plan.total_cost)"/> IQD
+                                </strong>
+                            </dd>
+                            <t t-if="plan.accepted_by">
+                                <dt class="col-sm-3">Accepted By</dt>
+                                <dd class="col-sm-9"><t t-out="plan.accepted_by"/></dd>
+                            </t>
+                            <t t-if="plan.accepted_date">
+                                <dt class="col-sm-3">Accepted On</dt>
+                                <dd class="col-sm-9">
+                                    <t t-out="plan.accepted_date.strftime('%Y-%m-%d')"/>
+                                </dd>
+                            </t>
+                            <t t-if="plan.decline_reason">
+                                <dt class="col-sm-3">Decline Reason</dt>
+                                <dd class="col-sm-9"><t t-out="plan.decline_reason"/></dd>
+                            </t>
+                        </dl>
+                    </div>
+                </div>
+
+                <!-- Session lines -->
+                <t t-if="plan.line_ids">
+                    <div class="card mb-3">
+                        <div class="card-header"><strong>Planned Sessions</strong></div>
+                        <table class="table table-sm mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Treatment</th>
+                                    <th>Cost (IQD)</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="plan.line_ids" t-as="line">
+                                    <tr>
+                                        <td><t t-out="line_index + 1"/></td>
+                                        <td>
+                                            <t t-out="line.name or '—'"/>
+                                        </td>
+                                        <td>
+                                            <t t-out="'{:,.0f}'.format(line.cost or 0)"/>
+                                        </td>
+                                        <td>
+                                            <span t-attf-class="badge #{
+                                                'bg-success' if line.state == 'done' else
+                                                'bg-secondary'}">
+                                                <t t-out="(line.state or 'pending').title()"/>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+
+                <!-- Accept / Decline forms — only if plan is proposed -->
+                <t t-if="plan.state == 'proposed'">
+                    <div class="row g-3">
+                        <!-- Accept -->
+                        <div class="col-md-6">
+                            <div class="card border-success">
+                                <div class="card-header bg-success text-white">
+                                    <strong>Accept this Plan</strong>
+                                </div>
+                                <div class="card-body">
+                                    <p class="small text-muted">
+                                        By entering your full name and clicking Accept, you
+                                        confirm that you agree to proceed with the treatment
+                                        plan as outlined above.
+                                    </p>
+                                    <form t-attf-action="/my/treatment-plans/#{plan.id}/accept"
+                                          method="post">
+                                        <input type="hidden" name="csrf_token"
+                                               t-att-value="request.csrf_token()"/>
+                                        <div class="mb-3">
+                                            <label class="form-label fw-bold">
+                                                Your Full Name (printed)
+                                            </label>
+                                            <input type="text" name="accepted_by"
+                                                   class="form-control"
+                                                   placeholder="Enter your full name"
+                                                   required="required"/>
+                                        </div>
+                                        <button type="submit"
+                                                class="btn btn-success w-100">
+                                            ✓ Accept Treatment Plan
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Decline -->
+                        <div class="col-md-6">
+                            <div class="card border-danger">
+                                <div class="card-header bg-danger text-white">
+                                    <strong>Decline this Plan</strong>
+                                </div>
+                                <div class="card-body">
+                                    <p class="small text-muted">
+                                        If you would like to decline, you can optionally
+                                        provide a reason. The clinic will reach out to
+                                        discuss alternatives.
+                                    </p>
+                                    <form t-attf-action="/my/treatment-plans/#{plan.id}/decline"
+                                          method="post">
+                                        <input type="hidden" name="csrf_token"
+                                               t-att-value="request.csrf_token()"/>
+                                        <div class="mb-3">
+                                            <label class="form-label">
+                                                Reason (optional)
+                                            </label>
+                                            <textarea name="decline_reason"
+                                                      class="form-control" rows="3"
+                                                      placeholder="e.g. Too expensive, need a second opinion…"/>
+                                        </div>
+                                        <button type="submit"
+                                                class="btn btn-outline-danger w-100">
+                                            ✗ Decline Treatment Plan
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+
+            </div>
+        </t>
+    </template>
+
+    <!-- ── Dental invoices ───────────────────────────────────────────────── -->
+    <template id="portal_dental_invoices" name="Payment History">
+        <t t-call="portal.portal_layout">
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Payment History</t>
+            </t>
+            <t t-if="not invoices">
+                <div class="alert alert-info mt-3">No dental invoices found.</div>
+            </t>
+            <t t-if="invoices">
+                <div class="card mt-3">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Invoice #</th>
+                                <th>Date</th>
+                                <th>Amount (IQD)</th>
+                                <th>Due (IQD)</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="invoices" t-as="inv">
+                                <tr>
+                                    <td><t t-out="inv.name"/></td>
+                                    <td>
+                                        <t t-out="inv.invoice_date.strftime('%Y-%m-%d') if inv.invoice_date else '—'"/>
+                                    </td>
+                                    <td>
+                                        <t t-out="'{:,.0f}'.format(inv.amount_total)"/>
+                                    </td>
+                                    <td>
+                                        <t t-out="'{:,.0f}'.format(inv.amount_residual)"/>
+                                    </td>
+                                    <td>
+                                        <span t-attf-class="badge #{
+                                            'bg-success' if inv.payment_state == 'paid' else
+                                            'bg-danger' if inv.payment_state == 'not_paid' else
+                                            'bg-warning text-dark'}">
+                                            <t t-out="(inv.payment_state or '').replace('_',' ').title()"/>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Summary row -->
+                <div class="mt-2 text-end text-muted small">
+                    <t t-set="total_paid" t-value="sum(
+                        inv.amount_total - inv.amount_residual for inv in invoices)"/>
+                    <t t-set="total_due" t-value="sum(
+                        inv.amount_residual for inv in invoices)"/>
+                    Total paid: <strong><t t-out="'{:,.0f}'.format(total_paid)"/> IQD</strong>
+                    &amp;nbsp;|&amp;nbsp;
+                    Outstanding: <strong><t t-out="'{:,.0f}'.format(total_due)"/> IQD</strong>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- ── Consent documents ─────────────────────────────────────────────── -->
+    <template id="portal_dental_documents" name="My Documents">
+        <t t-call="portal.portal_layout">
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">My Documents</t>
+            </t>
+            <t t-if="not consents">
+                <div class="alert alert-info mt-3">No documents found.</div>
+            </t>
+            <t t-if="consents">
+                <div class="card mt-3">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Document</th>
+                                <th>Appointment</th>
+                                <th>Signed By</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="consents" t-as="cf">
+                                <tr>
+                                    <td>
+                                        <t t-out="cf.template_id.name if cf.template_id else 'Consent Form'"/>
+                                    </td>
+                                    <td>
+                                        <t t-out="cf.appointment_id.appointment_no if cf.appointment_id else '—'"/>
+                                    </td>
+                                    <td><t t-out="cf.signed_by or '—'"/></td>
+                                    <td>
+                                        <t t-out="cf.signed_date.strftime('%Y-%m-%d') if cf.signed_date else '—'"/>
+                                    </td>
+                                    <td>
+                                        <span t-attf-class="badge #{
+                                            'bg-success' if cf.state == 'signed' else
+                                            'bg-danger' if cf.state == 'declined' else
+                                            'bg-warning text-dark'}">
+                                            <t t-out="(cf.state or 'pending').title()"/>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

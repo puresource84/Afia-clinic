@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ─── Configuration sub-groups (Manhel, 2026-06-14) ────────────────────
+         Splits the flat "Configuration" menu into two headed sections:
+           • Clinical Setup  — treatment services, clinical reference data
+           • System          — operational settings, integrations, users
+         All existing menu items are re-parented here; the sequences inside
+         each sub-group start fresh (10, 20, 30 …) for easy future insertion.
+    ──────────────────────────────────────────────────────────────────────── -->
+
+    <menuitem id="menu_configure_clinical_setup"
+              name="Clinical Setup"
+              parent="dental_hospital.dental_configure"
+              sequence="10"/>
+
+    <menuitem id="menu_configure_system"
+              name="System"
+              parent="dental_hospital.dental_configure"
+              sequence="50"/>
+
+    <!-- ════════════════ Clinical Setup items ════════════════ -->
+
+    <!-- Teeth numbering chart / charting legend -->
+    <record id="dental_hospital.teeth_chart_menu" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_configure_clinical_setup"/>
+        <field name="sequence">10</field>
+    </record>
+
+    <!-- Intake questionnaire questions -->
+    <record id="dental_hospital.medical_question_menu" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_configure_clinical_setup"/>
+        <field name="sequence">20</field>
+    </record>
+
+    <!-- Treatment categories / service families -->
+    <record id="dental_hospital.treatment_category_menu" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_configure_clinical_setup"/>
+        <field name="sequence">30</field>
+    </record>
+
+    <!-- Individual treatment / procedure catalogue -->
+    <record id="dental_hospital.dental_treatment_menu" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_configure_clinical_setup"/>
+        <field name="sequence">40</field>
+    </record>
+
+    <!-- Dentist specialties -->
+    <record id="dental_hospital.dental_specialist_menu" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_configure_clinical_setup"/>
+        <field name="sequence">50</field>
+    </record>
+
+    <!-- Medicines / prescriptions list -->
+    <record id="dental_hospital.medicines_menu" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_configure_clinical_setup"/>
+        <field name="sequence">60</field>
+    </record>
+
+    <!-- NOTE: dental_allergy_guard and dental_soap_notes are optional modules
+         not installed on this instance — their menu items are not re-parented here.
+         Add entries below when those modules are activated. -->
+
+    <!-- ════════════════ System items ════════════════ -->
+
+    <!-- Clinic working-hour shifts — also fix the "Denatal" typo -->
+    <record id="dental_hospital.Shift_time_menu" model="ir.ui.menu">
+        <field name="name">Shift Times</field>
+        <field name="parent_id" ref="menu_configure_system"/>
+        <field name="sequence">10</field>
+    </record>
+
+    <!-- Staff / user accounts -->
+    <record id="dental_hospital.dental_staff" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_configure_system"/>
+        <field name="sequence">20</field>
+    </record>
+
+    <!-- Online booking page link (dental_portal_booking) -->
+    <record id="dental_portal_booking.menu_dental_book_link" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_configure_system"/>
+        <field name="sequence">30</field>
+    </record>
+
+    <!-- Clinic Core Settings (clinic_core) -->
+    <record id="clinic_core.menu_clinic_core_settings" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_configure_system"/>
+        <field name="sequence">40</field>
+    </record>
+
+    <!-- Clinic Core Plus Settings (clinic_core_plus) — sibling entry, seq 41 -->
+    <record id="clinic_core_plus.clinic_core_plus_res_config_settings_menu" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_configure_system"/>
+        <field name="sequence">41</field>
+    </record>
+
+    <!-- Telegram bot settings (dental_reminders_telegram) -->
+    <record id="dental_reminders_telegram.menu_telegram_settings" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_configure_system"/>
+        <field name="sequence">50</field>
+    </record>
+
+    <!-- Telegram message templates (dental_telegram_templates) -->
+    <record id="dental_telegram_templates.menu_telegram_templates" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_configure_system"/>
+        <field name="sequence">60</field>
+    </record>
+
+    <!-- Telegram sent log (dental_telegram_templates) -->
+    <record id="dental_telegram_templates.menu_telegram_log" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_configure_system"/>
+        <field name="sequence">70</field>
+    </record>
+</odoo>

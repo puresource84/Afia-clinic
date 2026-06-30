@@ -1,0 +1,94 @@
+# Translation for dental_case_acceptance - Arabic
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 18.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: dental_case_acceptance
+#: model:ir.model.fields.selection,name:dental_case_acceptance.selection__dental_treatment_plan__state__proposed
+msgid "Proposed"
+msgstr "معروض"
+
+#. module: dental_case_acceptance
+#: model:ir.model.fields.selection,name:dental_case_acceptance.selection__dental_treatment_plan__state__accepted
+msgid "Accepted"
+msgstr "مقبول"
+
+#. module: dental_case_acceptance
+#: model:ir.model.fields.selection,name:dental_case_acceptance.selection__dental_treatment_plan__state__declined
+msgid "Declined"
+msgstr "مرفوض"
+
+#. module: dental_case_acceptance
+#: model:ir.model.fields,field_description:dental_case_acceptance.field_dental_treatment_plan__presented_date
+msgid "Presented On"
+msgstr "تاريخ العرض"
+
+#. module: dental_case_acceptance
+#: model:ir.model.fields,field_description:dental_case_acceptance.field_dental_treatment_plan__accepted_date
+msgid "Accepted On"
+msgstr "تاريخ القبول"
+
+#. module: dental_case_acceptance
+#: model:ir.model.fields,field_description:dental_case_acceptance.field_dental_treatment_plan__declined_date
+msgid "Declined On"
+msgstr "تاريخ الرفض"
+
+#. module: dental_case_acceptance
+#: model:ir.model.fields,field_description:dental_case_acceptance.field_dental_treatment_plan__accepted_by
+msgid "Accepted By (Printed Name)"
+msgstr "اسم الموقّع"
+
+#. module: dental_case_acceptance
+#: model:ir.model.fields,field_description:dental_case_acceptance.field_dental_treatment_plan__patient_signature
+msgid "Patient Signature"
+msgstr "توقيع المريض"
+
+#. module: dental_case_acceptance
+#: model:ir.model.fields,field_description:dental_case_acceptance.field_dental_treatment_plan__decline_reason
+msgid "Decline Reason"
+msgstr "سبب الرفض"
+
+#. module: dental_case_acceptance
+#: model:ir.model.fields,field_description:dental_case_acceptance.field_dental_treatment_plan__days_to_decision
+msgid "Days to Decision"
+msgstr "أيام حتى القرار"
+
+#. module: dental_case_acceptance
+#: model:ir.ui.menu,name:dental_case_acceptance.menu_case_acceptance_analysis
+msgid "Case Acceptance"
+msgstr "قبول الخطط العلاجية"
+
+#. module: dental_case_acceptance
+#: model_terms:ir.ui.view,arch_db:dental_case_acceptance.view_treatment_plan_form_acceptance
+msgid "Present to Patient"
+msgstr "عرض على المريض"
+
+#. module: dental_case_acceptance
+#: model_terms:ir.ui.view,arch_db:dental_case_acceptance.view_treatment_plan_form_acceptance
+msgid "Accept (Signed)"
+msgstr "قبول (موقّع)"
+
+#. module: dental_case_acceptance
+#: model_terms:ir.ui.view,arch_db:dental_case_acceptance.view_treatment_plan_form_acceptance
+msgid "Decline"
+msgstr "رفض"
+
+#. module: dental_case_acceptance
+#: model_terms:ir.ui.view,arch_db:dental_case_acceptance.view_treatment_plan_form_acceptance
+msgid "Re-Present (Revised)"
+msgstr "إعادة العرض (معدّل)"
+
+#. module: dental_case_acceptance
+#: model_terms:ir.ui.view,arch_db:dental_case_acceptance.view_treatment_plan_form_acceptance
+msgid "Patient Signature (sign on screen/tablet)"
+msgstr "توقيع المريض (وقّع على الشاشة/الجهاز اللوحي)"
+
+#. module: dental_case_acceptance
+#: model:ir.actions.report,name:dental_case_acceptance.action_report_treatment_plan_proposal
+msgid "Treatment Plan Proposal"
+msgstr "عرض خطة العلاج"

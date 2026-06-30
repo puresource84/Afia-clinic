@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="treat_cat_general" model="treatment.category">
+            <field name="name">علاج عام</field>
+        </record>
+        <record id="treat_cat_cosmetic" model="treatment.category">
+            <field name="name">تجميل</field>
+        </record>
+
+        <record id="treat_cleaning" model="dental.treatment">
+            <field name="name">تنظيف وتلميع الأسنان</field>
+            <field name="treatment_categ_id" ref="treat_cat_general"/>
+            <field name="cost">25</field>
+        </record>
+        <record id="treat_filling" model="dental.treatment">
+            <field name="name">حشوة تجميلية (كومبوزت)</field>
+            <field name="treatment_categ_id" ref="treat_cat_general"/>
+            <field name="cost">35</field>
+        </record>
+        <record id="treat_rct" model="dental.treatment">
+            <field name="name">حشوة عصب (قناة الجذر)</field>
+            <field name="treatment_categ_id" ref="treat_cat_general"/>
+            <field name="cost">90</field>
+        </record>
+        <record id="treat_extraction" model="dental.treatment">
+            <field name="name">قلع سن</field>
+            <field name="treatment_categ_id" ref="treat_cat_general"/>
+            <field name="cost">20</field>
+        </record>
+        <record id="treat_implant" model="dental.treatment">
+            <field name="name">زراعة سن</field>
+            <field name="treatment_categ_id" ref="treat_cat_cosmetic"/>
+            <field name="cost">450</field>
+        </record>
+        <record id="treat_veneer" model="dental.treatment">
+            <field name="name">فينير (عدسات الأسنان)</field>
+            <field name="treatment_categ_id" ref="treat_cat_cosmetic"/>
+            <field name="cost">180</field>
+        </record>
+    </data>
+</odoo>

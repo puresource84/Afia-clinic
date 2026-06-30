@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ─── Patient Flow Board: Kanban (D5) ──────────────────────────────────
+         Single-screen board for reception staff.
+         Shows today's appointments grouped by visit stage.
+         Drag-and-drop a card to advance the patient's stage.
+         Wait time shows minutes spent in Arrived or In Chair stages.
+         Cancelled column shows appointments cancelled today with reason.
+    ──────────────────────────────────────────────────────────────────────── -->
+
+    <record id="view_patient_flow_kanban" model="ir.ui.view">
+        <field name="name">dental.appointment.flow.kanban</field>
+        <field name="model">dental.appointment</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="flow_state"
+                    group_create="false"
+                    group_delete="false"
+                    quick_create="false"
+                    records_draggable="true"
+                    create="false">
+
+                <field name="patient_id"/>
+                <field name="dentist_id"/>
+                <field name="appointment_date"/>
+                <field name="flow_state"/>
+                <field name="flow_state_changed_at"/>
+                <field name="wait_minutes"/>
+                <field name="shift_id"/>
+                <field name="urgency"/>
+                <field name="state"/>
+                <field name="cancellation_reason"/>
+                <field name="invoice_count"/>
+
+                <templates>
+                    <t t-name="card">
+                        <!-- Urgency / Cancelled accent strip -->
+                        <div t-attf-class="o_kanban_record_top #{
+                                record.flow_state.raw_value == 'cancelled' and 'bg-secondary text-white' or
+                                record.urgency.raw_value == 'urgent' and 'bg-danger text-white' or
+                                'bg-light'} p-2 rounded-top">
+                            <div class="o_kanban_record_headings d-flex align-items-center gap-2">
+                                <t t-if="record.urgency.raw_value == 'urgent' and record.flow_state.raw_value != 'cancelled'">
+                                    <span class="badge bg-danger">URGENT</span>
+                                </t>
+                                <t t-if="record.flow_state.raw_value == 'cancelled'">
+                                    <span class="badge bg-secondary">CANCELLED</span>
+                                </t>
+                                <strong class="o_kanban_record_title">
+                                    <t t-esc="record.patient_id.value"/>
+                                </strong>
+                            </div>
+                        </div>
+
+                        <div class="o_kanban_record_body p-2">
+                            <!-- Dentist -->
+                            <div class="text-muted small mb-1">
+                                <i class="fa fa-user-md me-1"/>
+                                <t t-esc="record.dentist_id.value"/>
+                            </div>
+
+                            <!-- Time slot -->
+                            <div class="text-muted small mb-1">
+                                <i class="fa fa-clock-o me-1"/>
+                                <t t-if="record.shift_id.value">
+                                    <t t-esc="record.shift_id.value"/>
+                                </t>
+                                <t t-else="">
+                                    <t t-esc="record.appointment_date.value"/>
+                                </t>
+                            </div>
+
+                            <!-- Wait time — only show while patient is actively waiting -->
+                            <t t-if="record.flow_state.raw_value == 'arrived' or record.flow_state.raw_value == 'in_chair'">
+                                <div t-attf-class="small fw-bold #{ record.wait_minutes.raw_value &gt; 30 and 'text-danger' or record.wait_minutes.raw_value &gt; 15 and 'text-warning' or 'text-success' }">
+                                    <i class="fa fa-hourglass-half me-1"/>
+                                    Waiting: <t t-esc="record.wait_minutes.value"/> min
+                                </div>
+                            </t>
+
+                            <!-- Cancellation reason — shown only in Cancelled column -->
+                            <t t-if="record.flow_state.raw_value == 'cancelled' and record.cancellation_reason.value">
+                                <div class="small text-muted mt-1 fst-italic border-start border-secondary ps-2">
+                                    <i class="fa fa-times-circle me-1"/>
+                                    <t t-esc="record.cancellation_reason.value"/>
+                                </div>
+                            </t>
+                        </div>
+
+                        <!-- Quick-action footer -->
+                        <div class="o_kanban_record_bottom border-top pt-1 px-2 pb-1 d-flex gap-1 flex-wrap">
+                            <t t-if="record.flow_state.raw_value == 'expected'">
+                                <button name="action_flow_arrived" type="object"
+                                        class="btn btn-sm btn-warning">
+                                    ✓ Arrived
+                                </button>
+                            </t>
+                            <t t-if="record.flow_state.raw_value == 'arrived'">
+                                <button name="action_flow_in_chair" type="object"
+                                        class="btn btn-sm btn-primary">
+                                    → In Chair
+                                </button>
+                            </t>
+                            <t t-if="record.flow_state.raw_value == 'in_chair'">
+                                <button name="action_flow_done" type="object"
+                                        class="btn btn-sm btn-success">
+                                    ✓ Done
+                                </button>
+                            </t>
+                            <t t-if="record.flow_state.raw_value == 'done'">
+                                <!-- Invoice button: creates invoice if none exists, opens it if one does -->
+                                <button name="action_flow_invoice" type="object"
+                                        class="btn btn-sm btn-success">
+                                    <t t-if="record.invoice_count.raw_value > 0">📄 View Invoice</t>
+                                    <t t-else="">🧾 Invoice</t>
+                                </button>
+                                <!-- Mark Paid: advances flow_state only, no invoice created -->
+                                <button name="action_flow_paid" type="object"
+                                        class="btn btn-sm btn-outline-secondary"
+                                        title="Mark as paid without creating an invoice">
+                                    ✓ Paid
+                                </button>
+                            </t>
+                            <!-- Cancel button: available on all non-cancelled stages -->
+                            <t t-if="record.flow_state.raw_value != 'cancelled'">
+                                <button name="action_request_cancel" type="object"
+                                        class="btn btn-sm btn-outline-danger ms-auto">
+                                    ✕ Cancel
+                                </button>
+                            </t>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Search view: defaults to today's appointments, can show/hide cancelled -->
+    <record id="view_patient_flow_search" model="ir.ui.view">
+        <field name="name">dental.appointment.flow.search</field>
+        <field name="model">dental.appointment</field>
+        <field name="arch" type="xml">
+            <search string="Patient Flow">
+                <field name="patient_id" string="Patient"/>
+                <field name="dentist_id" string="Dentist"/>
+                <filter string="Today" name="filter_today"
+                        domain="[('appointment_date', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="Hide Cancelled" name="filter_no_cancel"
+                        domain="[('flow_state', '!=', 'cancelled')]"/>
+                <filter string="Only Cancelled" name="filter_only_cancel"
+                        domain="[('flow_state', '=', 'cancelled')]"/>
+                <filter string="Urgent" name="filter_urgent"
+                        domain="[('urgency', '=', 'urgent')]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="Dentist" name="group_dentist"
+                            context="{'group_by': 'dentist_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Window action: open to today's appointments (cancelled shown in their column) -->
+    <record id="action_patient_flow_board" model="ir.actions.act_window">
+        <field name="name">Patient Flow</field>
+        <field name="res_model">dental.appointment</field>
+        <field name="view_mode">kanban,list</field>
+        <field name="domain">[
+            ('appointment_date', '=', context_today().strftime('%Y-%m-%d'))
+        ]</field>
+        <field name="context">{
+            'search_default_filter_today': 1
+        }</field>
+        <field name="view_id" ref="view_patient_flow_kanban"/>
+        <field name="search_view_id" ref="view_patient_flow_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No appointments for today yet.
+            </p>
+            <p>
+                Confirm appointments and they'll appear here as
+                <b>Expected</b>. Move each card as the patient progresses:
+                Arrived → In Chair → Done → Paid.
+                Use <b>✕ Cancel</b> on a card to cancel with a reason.
+            </p>
+        </field>
+    </record>
+
+    <!-- Inherit appointment form to add flow_state statusbar + cancellation reason -->
+    <record id="view_appointment_form_flow" model="ir.ui.view">
+        <field name="name">dental.appointment.form.flow</field>
+        <field name="model">dental.appointment</field>
+        <field name="inherit_id" ref="dental_hospital.view_dental_appointment_form"/>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <!-- Add flow statusbar above the main statusbar -->
+            <xpath expr="//header" position="inside">
+                <field name="flow_state" widget="statusbar"
+                       statusbar_visible="expected,arrived,in_chair,done,paid,cancelled"
+                       readonly="1"/>
+            </xpath>
+            <!-- Show cancellation reason when cancelled -->
+            <xpath expr="//header" position="after">
+                <div 

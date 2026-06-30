@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_dental_appointment_form_workflow_fix" model="ir.ui.view">
+        <field name="name">dental.appointment.form.workflow.fix</field>
+        <field name="model">dental.appointment</field>
+        <field name="inherit_id" ref="dental_hospital.view_dental_appointment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_done']" position="before">
+                <button name="action_start_treatment" type="object"
+                        string="Start Treatment" class="oe_highlight"
+                        invisible="state != 'confirmed'"/>
+            </xpath>
+            <!-- button_box inside sheet as its first child (Odoo 18 canonical position).
+                 position="before" on //sheet causes OWL FormRenderer to render
+                 the oe_button_box twice (once in the control panel, once in the sheet).
+                 All modules inject additional buttons here via xpath position="inside". -->
+            <xpath expr="//sheet/group[1]" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_view_dental_chart" type="object"
+                            class="oe_stat_button" icon="fa-stethoscope"
+                            invisible="not patient_id">
+                        <field name="tooth_record_count" widget="statinfo"
+                               string="Dental Chart"/>
+                    </button>
+                    <button name="action_view_claims" type="object"
+                            class="oe_stat_button" icon="fa-file-text-o"
+                            invisible="not patient_id">
+                        <field name="claim_count" widget="statinfo"
+                               string="Claims"/>
+                    </button>
+                    <button name="action_view_prescriptions" type="object"
+                            class="oe_stat_button" icon="fa-medkit"
+                            invisible="not patient_id">
+                        <field name="prescription_count" widget="statinfo"
+                               string="Prescriptions"/>
+                    </button>
+                    <!-- Invoice smart button — visible on done appointments -->
+                    <button name="action_view_invoices" type="object"
+                            class="oe_stat_button" icon="fa-money"
+                            invisible="state != 'done' or invoice_count == 0">
+                        <field name="invoice_count" widget="statinfo"
+                               string="Invoices"/>
+                    </button>
+                    <button name="action_create_invoice" type="object"
+                            class="oe_stat_button" icon="fa-plus-circle"
+                            invisible="state != 'done' or invoice_count != 0">
+                        <div class="o_stat_info">
+                            <span class="o_stat_text">Create Invoice</span>
+                        </div>
+                    </button>
+                </div>
+            </xpath>
+            <!-- Allergy alert before the sheet so it spans full width above the form -->
+            <xpath expr="//sheet" position="before">
+                <div class="alert alert-danger" role="alert"
+                     invisible="not allergy_alert">
+                    <strong>&#9888; CLINICAL ALERT: </strong>
+                    <field name="allergy_alert" readonly="1" nolabel="1"/>
+                </div>
+            </xpath>
+            <!-- Perio Chart button (dental_perio_charting module) -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_perio_exams" type="object"
+                        class="oe_stat_button" icon="fa-stethoscope"
+                        groups="clinic_core.group_clinic_admin,clinic_core.group_clinic_dentist,clinic_core.group_clinic_receptionist">
+                    <field name="perio_exam_count" widget="statinfo"
+                           string="Perio Chart"/>
+                </button>
+            </xpath>
+            <!-- Clinical Notes button (dental_soap_notes module) -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_soap_notes" type="object"
+                        class="oe_stat_button" icon="fa-file-text-o"
+                        groups="clinic_core.group_clinic_admin,clinic_core.group_clinic_dentist,clinic_core.group_clinic_receptionist">
+                    <field name="soap_note_count" widget="statinfo"
+                           string="Clinical Notes"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Calendar: Patient name as slot title, Dentist as subtitle
+         Remove appointment_no (APT0001 is noise) and patient_no so that
+         patient_id becomes the first visible field shown bold in the slot.
+         dentist_id stays as the subtitle line.
+    -->
+    <record id="view_appointment_calendar_label_fix" model="ir.ui.view">
+        <field name="name">dental.appointment.calendar.label.fix</field>
+        <field name="model">dental.appointment</field>
+        <field name="inherit_id" ref="dental_hospital.view_dental_appointment_calendar"/>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <!-- Drop appointment_no so patient_id becomes the bold title -->
+            <field name="appointment_no" position="replace"/>
+            <!-- Drop patient_no — noise in a narrow slot -->
+            <field name="patient_no" position="replace"/>
+        </field>
+    </record>
+
+    <!-- Appointment search: Archived filter for soft-deleted records -->
+    <record id="view_dental_appointment_search_archive" model="ir.ui.view">
+        <field name="name">dental.appointment.search.archive</field>
+        <field name="model">dental.appointment</field>
+        <field name="inherit_id" ref="dental_hospital.view_dental_appointment_search"/>
+        <field name="arch" type="xml">
+            <filter name="show_all" position="after">
+                <separator/>
+                <filter string="Archived" name="filter_archived"
+                        domain="[('active', '=', False)]"/>
+            </filter>
+        </field>
+    </record>
+</odoo>

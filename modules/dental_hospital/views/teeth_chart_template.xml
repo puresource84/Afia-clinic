@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="teeth_chart_template">
+        <div class="o_teeth_chart_container">
+            <svg width="600" height="200">
+                <!-- Example: A few teeth shapes -->
+                <circle cx="50" cy="100" r="30" fill="white" stroke="black"/>
+                <circle cx="150" cy="100" r="30" fill="white" stroke="black"/>
+                <circle cx="250" cy="100" r="30" fill="white" stroke="black"/>
+                <!-- More teeth shapes here -->
+            </svg>
+        </div>
+    </template>
+</odoo>

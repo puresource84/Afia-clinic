@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_dental_ux" model="ir.ui.view">
+        <field name="name">res.partner.form.dental.ux.fixes</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <!-- Smart button box: patient actions -->
+            <xpath expr="//sheet" position="before">
+                <div class="oe_button_box" name="button_box"
+                     invisible="not is_patient">
+                    <button name="action_view_appointments" type="object"
+                            class="oe_stat_button" icon="fa-calendar">
+                        <field name="appointment_count" widget="statinfo"
+                               string="Appointments"/>
+                    </button>
+                    <button name="action_new_appointment" type="object"
+                            class="oe_stat_button" icon="fa-plus-circle"
+                            string="New Appt"/>
+                    <button name="action_telegram_link" type="object"
+                            class="oe_stat_button" icon="fa-paper-plane-o"
+                            string="Telegram Link"/>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='is_patient']" position="attributes">
+                <attribute name="string">Is a Patient</attribute>
+            </xpath>
+            <xpath expr="//field[@name='is_patient']" position="after">
+                <field name="allergy_alert" invisible="not is_patient"
+                       class="text-danger fw-bold"
+                       placeholder="Allergies / clinical alerts (e.g. PENICILLIN)"/>
+            </xpath>
+
+            <!-- Internal Notes tab: clinic-specific medical fields for patients;
+                 standard Odoo comment field kept for non-patient contacts. -->
+            <xpath expr="//page[@name='internal_notes']" position="replace">
+                <page name="internal_notes" string="Internal Notes"
+                      invisible="not is_patient">
+                    <group string="Clinical Notes">
+                        <field name="clinical_notes" nolabel="1"
+                               placeholder="Ongoing conditions, treatment observations, clinician notes..."
+                               widget="text"/>
+                    </group>
+                    <group string="Allergies / Clinical Alerts">
+                        <field name="allergy_alert" nolabel="1"
+                               class="text-danger fw-bold"
+                               placeholder="e.g. PENICILLIN allergy, anticoagulant therapy, diabetic"
+                               widget="text"/>
+                    </group>
+                    <group string="Insurance / Coverage">
+                        <field name="insurance_notes" nolabel="1"
+                               placeholder="Provider, policy number, coverage limits, pre-auth requirements..."
+                               widget="text"/>
+                    </group>
+                    <group string="Consent">
+                        <field name="consent_signed"/>
+                        <field name="consent_date" invisible="not consent_signed"/>
+                    </group>
+                    <group string="General Notes">
+                        <field name="comment" nolabel="1"
+                               placeholder="Any other internal notes..."
+                               widget="text"/>
+                    </group>
+                </page>
+                <page name="internal_notes_vendor" string="Internal Notes"
+                      invisible="is_patient">
+                    <field name="comment" nolabel="1" placeholder="Notes..."/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

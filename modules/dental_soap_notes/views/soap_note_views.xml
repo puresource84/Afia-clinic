@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ─── List view ──────────────────────────────────────────────────── -->
+    <record id="view_soap_note_list" model="ir.ui.view">
+        <field name="name">dental.soap.note.list</field>
+        <field name="model">dental.soap.note</field>
+        <field name="arch" type="xml">
+            <list string="Clinical Notes"
+                  decoration-muted="state == 'signed'"
+                  decoration-info="state == 'draft'">
+                <field name="note_date"/>
+                <field name="appointment_id"/>
+                <field name="patient_id" optional="show"/>
+                <field name="dentist_id" optional="show"/>
+                <field name="chief_complaint"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'signed'"
+                       decoration-warning="state == 'draft'"/>
+                <field name="signed_by" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ─── Form view: flat S/O/A/P layout with autocomplete tags ──────── -->
+    <record id="view_soap_note_form" model="ir.ui.view">
+        <field name="name">dental.soap.note.form</field>
+        <field name="model">dental.soap.note</field>
+        <field name="arch" type="xml">
+            <form string="Clinical Note">
+                <header>
+                    <button name="action_sign" type="object"
+                            string="Sign Note"
+                            class="btn-primary"
+                            invisible="state == 'signed'"
+                            groups="clinic_core.group_clinic_dentist,clinic_core.group_clinic_admin,base.group_system"/>
+                    <button name="action_reset_draft" type="object"
+                            string="Reset to Draft"
+                            invisible="state == 'draft'"
+                            groups="base.group_system"
+                            confirm="Reset this signed note to Draft? This action is logged in the audit trail."/>
+                    <button name="action_print_soap_note"
+                            string="🖨 Print PDF"
+                            type="object"
+                            class="btn-secondary"
+                            invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,signed"/>
+                </header>
+                <sheet>
+                    <!-- ── Status banners ──────────────────────────── -->
+                    <div class="alert alert-warning" role="alert"
+                         invisible="not is_locked">
+                        <strong>🔒 Locked</strong> — This note was signed more than 24 hours ago and is read-only. Contact your system administrator to make corrections.
+                    </div>
+                    <div class="alert alert-info" role="alert"
+                         invisible="state == 'draft' or is_locked">
+                        <strong>✍ Signed</strong> — This note will lock automatically 24 hours after signing.
+                    </div>
+
+                    <!-- ── Title + meta ────────────────────────────── -->
+                    <div class="oe_title">
+                        <h2><field name="display_name" readonly="1"/></h2>
+                    </div>
+                    <group>
+                        <group string="Visit Details">
+                            <field name="appointment_id"
+                                   readonly="state == 'signed'"/>
+                            <field name="patient_id" readonly="1"/>
+                            <field name="note_date" readonly="1"/>
+                            <field name="dentist_id" readonly="1"/>
+                        </group>
+                        <group string="Procedure">
+                            <field name="template_id"
+                                   invisible="state == 'signed'"
+                                   options="{'no_create': True}"
+                                   help="Select a template to pre-fill all SOAP sections below."/>
+                            <field name="tooth_ids" widget="many2many_tags"
+                                   readonly="state == 'signed'"/>
+                            <field name="cdt_codes"
+                                   readonly="state == 'signed'"
+                                   placeholder="D7140, D0220"/>
+                            <field name="vital_signs"
+                                   readonly="state == 'signed'"
+                                   placeholder="BP 120/80, Pulse 72 (if relevant)"/>
+                        </group>
+                    </group>
+
+                    <!-- ══════════════════════════════════════════════
+                         S — SUBJECTIVE
+                         chief_complaint stays as free text.
+                         s_ids = autocomplete from content library (section S).
+                         Type new phrases and press Enter to add them to the library.
+                    ══════════════════════════════════════════════ -->
+                    <separator string="S — Subjective (Patient's own words)"/>
+                    <group>
+                        <field name="chief_complaint" nolabel="1"
+                               placeholder="e.g. 'Upper right back tooth pain for 3 days, worse with cold'"
+                               readonly="state == 'signed'"/>
+                    </group>
+                    <field name="s_ids" nolabel="1"
+                           widget="many2many_tags"
+                           domain="[('section', '=', 'S'), ('active', '=', True)]"
+                           context="{'default_section': 'S', 'default_template_id': template_id}"
+                           options="{'no_open': True}"
+                           placeholder="Type to search or add new Subjective phrases…"
+                           readonly="state == 'signed'"/>
+
+                    <!-- ══════════════════════════════════════════════
+                         O — OBJECTIVE
+                    ══════════════════════════════════════════════ -->
+                    <separator string="O — Objective (Clinical findings)"/>
+                    <field name="o_ids" nolabel="1"
+                           widget="many2many_tags"
+                           domain="[('section', '=', 'O'), ('active', '=', True)]"
+                           context="{'default_section': 'O', 'default_template_id': template_id}"
+                           options="{'no_open': True}"
+                           placeholder="Type to search or add new Objective findings…"
+                           readonly="state == 'signed'"/>
+
+                    <!-- ══════════════════════════════════════════════
+                         A — ASSESSMENT
+                    ══════════════════════════════════════════════ -->
+                    <separator string="A — Assessment (Diagnosis)"/>
+                    <field name="a_ids" nolabel="1"
+                           widget="many2many_tags"
+                           domain="[('section', '=', 'A'), ('active', '=', True)]"
+                           context="{'default_section': 'A', 'default_template_id': template_id}"
+                           options="{'no_open': True}"
+                           placeholder="Type to search or add new Assessment / diagnosis…"
+                           readonly="state == 'signed'"/>
+
+                    <!-- ══════════════════════════════════════════════
+                         P — PLAN
+                    ══════════════════════════════════════════════ -->
+                    <separator string="P — Plan (Treatment &amp; Next Steps)"/>
+                    <field name="p_ids" nolabel="1"
+                           widget="many2many_tags"
+                           domain="[('section', '=', 'P'), ('active', '=', True)]"
+                           context="{'default_section': 'P', 'default_template_id': template_id}"
+                           options="{'no_open': True}"
+                           placeholder="Type to search or add new Plan / next-step entries…"
+                           readonly="state == 'signed'"/>
+
+                    <!-- ══════════════════════════════════════════════
+                         Signature
+                    ══════════════════════════════════════════════ -->
+                    <group string="Signature" invisible="state == 'draft'">
+                        <field name="signed_by" readonly="1"/>
+                        <field name="signed_date" readonly="1"/>
+                        <field name="is_locked" readonly="1"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- ─── Search view ──────────────────────────────────────────────── -->
+    <record id="view_soap_note_search" model="ir.ui.view">
+        <field name="name">dental.soap.note.search</field>
+        <field name="model">dental.soap.note</field>
+        <field name="arch" type="xml">
+            <search string="Clinical Notes">
+                <field name="patient_id"/>
+                <field name="dentist_id"/>
+                <field name="chief_complaint"/>
+                <filter string="Draft" name="filter_draft"
+                        domain="[('state', '=', 'draft')]"/>
+                <filter string="Signed" name="filter_signed"
+                        domain="[('state', '=', 'signed')]"/>
+                <separator/>
+                <filter string="My Notes" name="filter_mine"
+                        domain="[('dentist_id.user_id', '=', uid)]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="Patient" name="group_patient"
+                            context="{'group_by': 'patient_id'}"/>
+                    <filter string="Dentist" name="group_dentist"
+                            context="{'group_by': 'dentist_id'}"/>
+                    <filter string="Status" name="group_state"
+                            context="{'group_by': 'state'}"/>
+                    <filter string="Visit Date" name="group_date"
+                            context="{'group_by': 'note_date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ─── Window action ────────────────────────────────────────────── -->
+    <record id="action_soap_notes" model="ir.actions.act_window">
+        <field name="name">Clinical Notes</field>
+        <field name="res_model">dental.soap.note</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No clinical notes yet.</p>
+            <p>Open an appointment and click the <b>Clinical Notes</b> smart button to write a SOAP note.</p>
+        </field>
+    </record>
+
+    <!-- ─── Menu under Dental Clinic ─────────────────────────────────── -->
+    <menuitem id="menu_soap_notes" name="Clinical Notes"
+              parent="dental_hospital.hospital_root_menu"
+              action="action_soap_notes" sequence="15"
+              groups="clinic_core.group_clinic_admin,clinic_core.group_clinic_dentist"/>
+
+</odoo>

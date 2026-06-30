@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="email_template_appointment_reminder" model="mail.template">
+        <field name="name">Dental: Appointment Reminder</field>
+        <field name="model_id" ref="dental_hospital.model_dental_appointment"/>
+        <field name="subject">Reminder: Your Dental Appointment Tomorrow</field>
+        <field name="email_to">{{ object.patient_id.email }}</field>
+        <field name="body_html"><![CDATA[
+<p>Dear {{ object.patient_id.name }},</p>
+<p>This is a friendly reminder that you have a dental appointment scheduled for
+<strong>{{ object.appointment_date }}</strong>
+with <strong>{{ object.dentist_id.name }}</strong>.</p>
+<p>Please arrive 10 minutes early. If you need to reschedule, contact us as soon as possible.</p>
+<p>Thank you,<br/>{{ object.company_id.name }}</p>
+        ]]></field>
+        <field name="auto_delete" eval="True"/>
+    </record>
+
+    <record id="email_template_patient_recall" model="mail.template">
+        <field name="name">Dental: Patient Recall</field>
+        <field name="model_id" ref="dental_hospital.model_dental_appointment"/>
+        <field name="subject">Time for Your Regular Dental Check-up!</field>
+        <field name="email_to">{{ object.patient_id.email }}</field>
+        <field name="body_html"><![CDATA[
+<p>Dear {{ object.patient_id.name }},</p>
+<p>It has been about 6 months since your last visit. Regular dental check-ups help keep your
+smile healthy!</p>
+<p>Please call us or visit our website to book your next appointment.</p>
+<p>Thank you,<br/>{{ object.company_id.name }}</p>
+        ]]></field>
+        <field name="auto_delete" eval="True"/>
+    </record>
+</odoo>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form view — opens as a dialog (target=new), the standard wizard pattern -->
+    <record id="view_afia_launcher_branding_form" model="ir.ui.view">
+        <field name="name">afia.launcher.branding.form</field>
+        <field name="model">afia.launcher.branding</field>
+        <field name="arch" type="xml">
+            <form string="Launcher Branding">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Afia Launcher Branding</h1>
+                        <p class="text-muted">
+                            Customise the app launcher page background.
+                            Changes take effect for all users on next page load.
+                        </p>
+                    </div>
+
+                    <group>
+                        <group string="Background Image">
+                            <field name="bg_image" widget="image"
+                                   options="{'size': [320, 200], 'edit_on_upload': True}"
+                                   nolabel="1"/>
+                        </group>
+                        <group string="Display">
+                            <field name="bg_opacity"/>
+                            <div class="text-muted" colspan="2">
+                                Recommended: 0.50 – 0.80 so app tiles remain readable.
+                                0.0 = hidden · 1.0 = solid.
+                            </div>
+                        </group>
+                    </group>
+                </sheet>
+
+                <footer>
+                    <button name="action_save" type="object"
+                            string="Save" class="btn-primary"/>
+                    <button name="action_clear_image" type="object"
+                            string="Clear Image"
+                            confirm="Remove the background image?"/>
+                    <button special="cancel" string="Close"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Window action — target=new opens the wizard as a dialog -->
+    <record id="action_afia_launcher_branding" model="ir.actions.act_window">
+        <field name="name">Launcher Branding</field>
+        <field name="res_model">afia.launcher.branding</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Configure menu entry -->
+    <menuitem id="menu_afia_launcher_branding"
+              name="Launcher Branding"
+              parent="dental_hospital.dental_configure"
+              action="action_afia_launcher_branding"
+              sequence="105"/>
+
+</odoo>

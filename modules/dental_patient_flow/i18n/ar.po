@@ -1,0 +1,141 @@
+# Translation for dental_patient_flow - Arabic
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 18.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: dental_patient_flow
+#: model:ir.model.fields,field_description:dental_patient_flow.field_dental_appointment__flow_state
+msgid "Visit Stage"
+msgstr "مرحلة الزيارة"
+
+#. module: dental_patient_flow
+#: model:ir.model.fields,field_description:dental_patient_flow.field_dental_appointment__flow_state_changed_at
+msgid "Stage Changed At"
+msgstr "وقت تغيير المرحلة"
+
+#. module: dental_patient_flow
+#: model:ir.model.fields,field_description:dental_patient_flow.field_dental_appointment__wait_minutes
+msgid "Wait (min)"
+msgstr "الانتظار (دقيقة)"
+
+#. module: dental_patient_flow
+#: model:ir.model.fields.selection,name:dental_patient_flow.selection__dental_appointment__flow_state__expected
+msgid "Expected"
+msgstr "منتظر"
+
+#. module: dental_patient_flow
+#: model:ir.model.fields.selection,name:dental_patient_flow.selection__dental_appointment__flow_state__arrived
+msgid "Arrived"
+msgstr "وصل"
+
+#. module: dental_patient_flow
+#: model:ir.model.fields.selection,name:dental_patient_flow.selection__dental_appointment__flow_state__in_chair
+msgid "In Chair"
+msgstr "على الكرسي"
+
+#. module: dental_patient_flow
+#: model:ir.model.fields.selection,name:dental_patient_flow.selection__dental_appointment__flow_state__done
+msgid "Done"
+msgstr "منتهى"
+
+#. module: dental_patient_flow
+#: model:ir.model.fields.selection,name:dental_patient_flow.selection__dental_appointment__flow_state__paid
+msgid "Paid"
+msgstr "مدفوع"
+
+#. module: dental_patient_flow
+#: model:ir.actions.act_window,name:dental_patient_flow.action_patient_flow_board
+#: model:ir.ui.menu,name:dental_patient_flow.menu_patient_flow_board
+#: model_terms:ir.ui.view,arch_db:dental_patient_flow.view_patient_flow_search
+msgid "Patient Flow"
+msgstr "تدفق المرضى"
+
+#. module: dental_patient_flow
+#: model_terms:ir.ui.view,arch_db:dental_patient_flow.view_patient_flow_search
+msgid "Patient"
+msgstr "مريض"
+
+#. module: dental_patient_flow
+#: model_terms:ir.ui.view,arch_db:dental_patient_flow.view_patient_flow_search
+msgid "Dentist"
+msgstr "طبيب الأسنان"
+
+#. module: dental_patient_flow
+#: model_terms:ir.ui.view,arch_db:dental_patient_flow.view_patient_flow_search
+msgid "Today"
+msgstr "اليوم"
+
+#. module: dental_patient_flow
+#: model_terms:ir.ui.view,arch_db:dental_patient_flow.view_patient_flow_search
+msgid "Hide Cancelled"
+msgstr "إخفاء الملغى"
+
+#. module: dental_patient_flow
+#: model_terms:ir.ui.view,arch_db:dental_patient_flow.view_patient_flow_search
+msgid "Urgent"
+msgstr "عاجل"
+
+#. module: dental_patient_flow
+#: model_terms:ir.ui.view,arch_db:dental_patient_flow.view_patient_flow_search
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: dental_patient_flow
+#: model_terms:ir.ui.view,arch_db:dental_patient_flow.view_patient_flow_kanban
+msgid "✓ Arrived"
+msgstr "✓ وصل"
+
+#. module: dental_patient_flow
+#: model_terms:ir.ui.view,arch_db:dental_patient_flow.view_patient_flow_kanban
+msgid "→ In Chair"
+msgstr "← على الكرسي"
+
+#. module: dental_patient_flow
+#: model_terms:ir.ui.view,arch_db:dental_patient_flow.view_patient_flow_kanban
+msgid "✓ Done"
+msgstr "✓ منتهى"
+
+#. module: dental_patient_flow
+#: model_terms:ir.ui.view,arch_db:dental_patient_flow.view_patient_flow_kanban
+msgid "💳 Paid"
+msgstr "💳 مدفوع"
+
+#. module: dental_patient_flow
+#: model_terms:ir.ui.view,arch_db:dental_patient_flow.view_patient_flow_kanban
+msgid "URGENT"
+msgstr "عاجل"
+
+#. module: dental_patient_flow
+#: model_terms:ir.ui.view,arch_db:dental_patient_flow.view_patient_flow_kanban
+msgid "Waiting:"
+msgstr "انتظار:"
+
+#. module: dental_patient_flow
+#: model_terms:ir.ui.view,arch_db:dental_patient_flow.view_patient_flow_kanban
+msgid "min"
+msgstr "دقيقة"
+
+#. module: dental_patient_flow
+#: model_terms:ir.ui.view,arch_db:dental_patient_flow.action_patient_flow_board
+msgid "No appointments for today yet."
+msgstr "لا توجد مواعيد لليوم بعد."
+
+#. module: dental_patient_flow
+#: model_terms:ir.ui.view,arch_db:dental_patient_flow.action_patient_flow_board
+msgid "Confirm appointments and they'll appear here as"
+msgstr "قم بتأكيد المواعيد وستظهر هنا كـ"
+
+#. module: dental_patient_flow
+#: model_terms:ir.ui.view,arch_db:dental_patient_flow.action_patient_flow_board
+msgid "Expected"
+msgstr "منتظر"
+
+#. module: dental_patient_flow
+#: model_terms:ir.ui.view,arch_db:dental_patient_flow.action_patient_flow_board
+msgid "Move each card as the patient progresses: Arrived → In Chair → Done → Paid."
+msgstr "حرّك كل بطاقة مع تقدم المريض: وصل → على الكرسي → منتهى → مدفوع."

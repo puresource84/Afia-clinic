@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ── Patients ───────────────────────────────────────────────── -->
+        <record id="patient_ali" model="res.partner">
+            <field name="name">علي حسين الربيعي</field>
+            <field name="is_patient" eval="True"/>
+            <field name="mobile">+964 770 111 2233</field>
+        </record>
+        <record id="patient_fatima" model="res.partner">
+            <field name="name">فاطمة جاسم العبادي</field>
+            <field name="is_patient" eval="True"/>
+            <field name="mobile">+964 781 222 3344</field>
+        </record>
+        <record id="patient_omar" model="res.partner">
+            <field name="name">عمر سعد التميمي</field>
+            <field name="is_patient" eval="True"/>
+            <field name="mobile">+964 750 333 4455</field>
+        </record>
+        <record id="patient_noor" model="res.partner">
+            <field name="name">نور كريم الشمري</field>
+            <field name="is_patient" eval="True"/>
+            <field name="mobile">+964 772 444 5566</field>
+        </record>
+        <record id="patient_sara" model="res.partner">
+            <field name="name">سارة محمد الدليمي</field>
+            <field name="is_patient" eval="True"/>
+            <field name="mobile">+964 790 555 6677</field>
+        </record>
+        <record id="patient_khalid" model="res.partner">
+            <field name="name">خالد عبدالله الحيالي</field>
+            <field name="is_patient" eval="True"/>
+            <field name="mobile">+964 780 666 7788</field>
+            <field name="allergy_alert">حساسية من البنسلين</field>
+        </record>
+        <record id="patient_rania" model="res.partner">
+            <field name="name">رانيا أحمد الجبوري</field>
+            <field name="is_patient" eval="True"/>
+            <field name="mobile">+964 771 777 8899</field>
+        </record>
+
+        <!-- ── Dental charts for demo patients ──────────────────────── -->
+        <record id="tr_ali_16_caries" model="dental.tooth.record">
+            <field name="patient_id" ref="patient_ali"/>
+            <field name="tooth_fdi">16</field>
+            <field name="condition">caries</field>
+            <field name="surface_occlusal" eval="True"/>
+            <field name="surface_mesial" eval="True"/>
+            <field name="notes">تسوس عميق — يحتاج حشوة عصب محتملة</field>
+        </record>
+        <record id="tr_ali_26_filled" model="dental.tooth.record">
+            <field name="patient_id" ref="patient_ali"/>
+            <field name="tooth_fdi">26</field>
+            <field name="condition">filled</field>
+            <field name="surface_occlusal" eval="True"/>
+        </record>
+        <record id="tr_ali_11_veneer" model="dental.tooth.record">
+            <field name="patient_id" ref="patient_ali"/>
+            <field name="tooth_fdi">11</field>
+            <field name="condition">veneer</field>
+        </record>
+        <record id="tr_ali_36_rct" model="dental.tooth.record">
+            <field name="patient_id" ref="patient_ali"/>
+            <field name="tooth_fdi">36</field>
+            <field name="condition">root_canal</field>
+        </record>
+        <record id="tr_ali_46_implant" model="dental.tooth.record">
+            <field name="patient_id" ref="patient_ali"/>
+            <field name="tooth_fdi">46</field>
+            <field name="condition">implant</field>
+        </record>
+        <record id="tr_ali_48_extracted" model="dental.tooth.record">
+            <field name="patient_id" ref="patient_ali"/>
+            <field name="tooth_fdi">48</field>
+            <field name="condition">extracted</field>
+            <field name="notes">قلع ضرس العقل</field>
+        </record>
+        <record id="tr_fatima_21_caries" model="dental.tooth.record">
+            <field name="patient_id" ref="patient_fatima"/>
+            <field name="tooth_fdi">21</field>
+            <field name="condition">caries</field>
+            <field name="surface_mesial" eval="True"/>
+        </record>
+        <record id="tr_fatima_22_crown" model="dental.tooth.record">
+            <field name="patient_id" ref="patient_fatima"/>
+            <field name="tooth_fdi">22</field>
+            <field name="condition">crown</field>
+        </record>
+        <record id="tr_khalid_14_caries" model="dental.tooth.record">
+            <field name="patient_id" ref="patient_khalid"/>
+            <field name="tooth_fdi">14</field>
+            <field name="condition">caries</field>
+            <field name="surface_distal" eval="True"/>
+            <field name="surface_occlusal" eval="True"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Front Desk patient-flow board -->
+    <record id="view_appointment_kanban_frontdesk" model="ir.ui.view">
+        <field name="name">dental.appointment.kanban.frontdesk</field>
+        <field name="model">dental.appointment</field>
+        <field name="inherit_id" ref="dental_hospital.appointment_view_kanban"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <kanban position="attributes">
+                <attribute name="default_group_by">state</attribute>
+                <attribute name="records_draggable">1</attribute>
+                <attribute name="group_create">false</attribute>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_front_desk" model="ir.actions.act_window">
+        <field name="name">Front Desk — Today</field>
+        <field name="res_model">dental.appointment</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="view_id" ref="view_appointment_kanban_frontdesk"/>
+        <field name="domain">[("appointment_date","=",time.strftime("%Y-%m-%d"))]</field>
+    </record>
+
+    <menuitem id="menu_appointments_calendar" name="Calendar"
+              parent="dental_hospital.hospital_appointment_info"
+              action="dental_hospital.dental_appointment_menu_action" sequence="10"/>
+    <menuitem id="menu_front_desk" name="Front Desk (Today)"
+              parent="dental_hospital.hospital_appointment_info"
+              action="action_front_desk" sequence="20"/>
+
+    <!-- Appointment Analysis: search view with date presets -->
+    <record id="view_appointment_analysis_search" model="ir.ui.view">
+        <field name="name">dental.appointment.analysis.search</field>
+        <field name="model">dental.appointment</field>
+        <field name="arch" type="xml">
+            <search string="Appointment Analysis">
+                <field name="patient_id" string="Patient"/>
+                <field name="dentist_id" string="Dentist"/>
+                <field name="state" string="Status"/>
+                <filter string="Appointment Date" name="filter_date"
+                        date="appointment_date"/>
+                <separator/>
+                <filter string="This Month" name="this_month"
+                        domain="[('appointment_date','&gt;=', (datetime.date.today() + relativedelta(day=1)).strftime('%Y-%m-%d')),
+                                 ('appointment_date','&lt;=', (datetime.date.today() + relativedelta(months=1, day=1) + relativedelta(days=-1)).strftime('%Y-%m-%d'))]"/>
+                <filter string="Last Month" name="last_month"
+                        domain="[('appointment_date','&gt;=', (datetime.date.today() + relativedelta(months=-1, day=1)).strftime('%Y-%m-%d')),
+                                 ('appointment_date','&lt;=', (datetime.date.today() + relativedelta(day=1) + relativedelta(days=-1)).strftime('%Y-%m-%d'))]"/>
+                <filter string="This Year" name="this_year"
+                        domain="[('appointment_date','&gt;=', datetime.date.today().strftime('%Y-01-01')),
+                                 ('appointment_date','&lt;=', datetime.date.today().strftime('%Y-12-31'))]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="Dentist" name="group_dentist"
+                            context="{'group_by': 'dentist_id'}"/>
+                    <filter string="Status" name="group_state"
+                            context="{'group_by': 'state'}"/>
+                    <filter string="Month" name="group_month"
+                            context="{'group_by': 'appointment_date:month'}"/>
+                    <filter string="Week" name="group_week"
+                            context="{'group_by': 'appointment_date:week'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_appointment_pivot" model="ir.ui.view">
+        <field name="name">dental.appointment.pivot</field>
+        <field name="model">dental.appointment</field>
+        <field name="arch" type="xml">
+            <pivot string="Appointment Analysis" sample="1">
+                <field name="dentist_id" type="row"/>
+                <field name="state" type="col"/>
+                <field name="appointment_date" interval="month" type="col"/>
+            </pivot>
+        </field>
+    </record>
+    <record id="view_appointment_graph" model="ir.ui.view">
+        <field name="name">dental.appointment.graph</field>
+        <field name="model">dental.appointment</field>
+        <field name="arch" type="xml">
+            <graph string="Appointments" sample="1" type="bar">
+                <field name="appointment_date" interval="week"/>
+                <field name="state"/>
+            </graph>
+        </field>
+    </record>
+    <record id="action_appointment_analysis" model="ir.actions.act_window">
+        <field name="name">Appointment Analysis</field>
+        <field name="res_model">dental.appointment</field>
+        <field name="view_mode">pivot,graph</field>
+        <field name="search_view_id" ref="view_appointment_analysis_search"/>
+        <field name="context">{"search_default_this_month": 1}</field>
+    </record>
+    <menuitem id="menu_appointment_analysis" name="Appointment Analysis"
+              parent="dental_analytics.menu_dental_analytics"
+              action="action_appointment_analysis" sequence="20"/>
+
+    <!-- Dentist commission report -->
+    <record id="view_commission_report_pivot" model="ir.ui.view">
+        <field name="name">dental.commission.report.pivot</field>
+        <field name="model">dental.commission.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Dentist Commissions" sample="1">
+                <field name="dentist_id" type="row"/>
+                <field name="month" interval="month" type="col"/>
+                <field name="production" type="measure"/>
+                <field name="commission" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+    <record id="view_commission_report_list" model="ir.ui.view">
+        <field name="name">dental.commission.report.list</field>
+        <field name="model">dental.commission.report</field>
+        <field name="arch" type="xml">
+            <list create="0" edit="0">
+                <field name="dentist_id"/>
+                <field name="month"/>
+                <field name="appointment_count"/>
+                <field name="production" sum="Total"/>
+                <field name="commission_pct"/>
+                <field name="commission" sum="Total"/>
+            </list>
+        </field>
+    </record>
+    <record id="action_commission_report" model="ir.actions.act_window">
+        <field name="name">Dentist Commissions</field>
+        <field name="res_model">dental.commission.report</field>
+        <field name="view_mode">pivot,list</field>
+    </record>
+    <menuitem id="menu_commission_report" name="Dentist Commissions"
+              parent="dental_analytics.menu_dental_analytics"
+              action="action_commission_report" sequence="30"
+              groups="base.group_system,clinic_core.group_clinic_admin"/>
+
+    <!-- Commission % tab on dentist profile (visible to admin + clinic admin only) -->
+    <record id="view_hr_employee_commission_pct" model="ir.ui.view">
+        <field name="name">hr.employee.commission.pct</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Commission" name="commission_tab"
+                      groups="base.group_system,clinic_core.group_clinic_admin">
+                    <group>
+                        <field name="commission_pct" string="Commission %"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- QA fix: the original dental.claim form used the deprecated
+         <div class="oe_chatter"> manual pattern, which renders as three raw
+         relational tables (followers/activities/messages) and suppresses the
+         sheet in Odoo 18. Replace it with the modern <chatter/> tag. -->
+    <record id="view_claim_form_chatter_fix" model="ir.ui.view">
+        <field name="name">dental.claim.form.chatter.fix</field>
+        <field name="model">dental.claim</field>
+        <field name="inherit_id" ref="dental_insurance.view_claim_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_chatter')]" position="replace">
+                <chatter/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

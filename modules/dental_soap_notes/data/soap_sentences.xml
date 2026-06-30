@@ -1,0 +1,872 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+<!--
+    SOAP Content Library — seeded entries per template per section.
+    noupdate="1": clinics can delete/add entries freely without upgrades overwriting them.
+-->
+
+<!-- ═══════════════════════════════════════════════════
+     EXTRACTION (SIMPLE)
+═══════════════════════════════════════════════════ -->
+<!-- S — Subjective -->
+<record id="sent_ext_s1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">S</field>
+    <field name="text">Patient presents with tooth pain for several days</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_ext_s2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">S</field>
+    <field name="text">Pain character: throbbing / constant / sharp</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_ext_s3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">S</field>
+    <field name="text">Pain aggravated by biting and percussion</field>
+    <field name="sequence">30</field>
+</record>
+<record id="sent_ext_s4" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">S</field>
+    <field name="text">No spontaneous or night pain reported</field>
+    <field name="sequence">40</field>
+</record>
+<record id="sent_ext_s5" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">S</field>
+    <field name="text">Patient requests removal — does not wish to save the tooth</field>
+    <field name="sequence">50</field>
+</record>
+<record id="sent_ext_s6" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">S</field>
+    <field name="text">Medical history reviewed — no contraindications to extraction</field>
+    <field name="sequence">60</field>
+</record>
+
+<!-- O — Objective -->
+<record id="sent_ext_o1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">O</field>
+    <field name="text">Extra-oral: no facial swelling or lymphadenopathy</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_ext_o2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">O</field>
+    <field name="text">Tooth shows grade II / III mobility</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_ext_o3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">O</field>
+    <field name="text">Percussion test: positive (tender)</field>
+    <field name="sequence">30</field>
+</record>
+<record id="sent_ext_o4" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">O</field>
+    <field name="text">Non-restorable caries involving the pulp</field>
+    <field name="sequence">40</field>
+</record>
+<record id="sent_ext_o5" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">O</field>
+    <field name="text">Periapical radiolucency evident on radiograph</field>
+    <field name="sequence">50</field>
+</record>
+<record id="sent_ext_o6" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">O</field>
+    <field name="text">Vitality test: negative (non-vital tooth)</field>
+    <field name="sequence">60</field>
+</record>
+
+<!-- A — Assessment -->
+<record id="sent_ext_a1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">A</field>
+    <field name="text">Non-restorable caries — extraction indicated</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_ext_a2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">A</field>
+    <field name="text">Root fracture — extraction indicated</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_ext_a3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">A</field>
+    <field name="text">Periapical abscess with hopeless prognosis</field>
+    <field name="sequence">30</field>
+</record>
+<record id="sent_ext_a4" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">A</field>
+    <field name="text">Patient elects extraction over further restorative treatment</field>
+    <field name="sequence">40</field>
+</record>
+
+<!-- P — Plan -->
+<record id="sent_ext_p1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">P</field>
+    <field name="text">Informed consent obtained and signed</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_ext_p2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">P</field>
+    <field name="text">Local anaesthesia administered — inferior alveolar nerve block</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_ext_p3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">P</field>
+    <field name="text">Local anaesthesia administered — buccal infiltration</field>
+    <field name="sequence">30</field>
+</record>
+<record id="sent_ext_p4" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">P</field>
+    <field name="text">Tooth extracted atraumatically using forceps</field>
+    <field name="sequence">40</field>
+</record>
+<record id="sent_ext_p5" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">P</field>
+    <field name="text">Socket irrigated and compressed — haemostasis achieved with gauze</field>
+    <field name="sequence">50</field>
+</record>
+<record id="sent_ext_p6" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">P</field>
+    <field name="text">Post-extraction instructions provided verbally and in writing</field>
+    <field name="sequence">60</field>
+</record>
+<record id="sent_ext_p7" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">P</field>
+    <field name="text">Prescribed: Ibuprofen 400 mg TID × 3 days + antibiotic as indicated</field>
+    <field name="sequence">70</field>
+</record>
+<record id="sent_ext_p8" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_extraction"/>
+    <field name="section">P</field>
+    <field name="text">Follow-up in 1 week for socket review if needed</field>
+    <field name="sequence">80</field>
+</record>
+
+<!-- ═══════════════════════════════════════════════════
+     COMPOSITE FILLING
+═══════════════════════════════════════════════════ -->
+<!-- S -->
+<record id="sent_fill_s1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_composite"/>
+    <field name="section">S</field>
+    <field name="text">Patient reports sensitivity to cold foods and drinks</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_fill_s2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_composite"/>
+    <field name="section">S</field>
+    <field name="text">Patient reports sensitivity to sweet foods</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_fill_s3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_composite"/>
+    <field name="section">S</field>
+    <field name="text">No spontaneous or night pain reported</field>
+    <field name="sequence">30</field>
+</record>
+<record id="sent_fill_s4" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_composite"/>
+    <field name="section">S</field>
+    <field name="text">Patient noticed a chip / cavity in the tooth</field>
+    <field name="sequence">40</field>
+</record>
+<record id="sent_fill_s5" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_composite"/>
+    <field name="section">S</field>
+    <field name="text">Food packing in the affected area reported</field>
+    <field name="sequence">50</field>
+</record>
+
+<!-- O -->
+<record id="sent_fill_o1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_composite"/>
+    <field name="section">O</field>
+    <field name="text">Caries present: enamel depth</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_fill_o2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_composite"/>
+    <field name="section">O</field>
+    <field name="text">Caries present: dentinal depth</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_fill_o3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_composite"/>
+    <field name="section">O</field>
+    <field name="text">Caries approaching pulp — careful excavation required</field>
+    <field name="sequence">30</field>
+</record>
+<record id="sent_fill_o4" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_composite"/>
+    <field name="section">O</field>
+    <field name="text">Vitality test: positive (vital tooth)</field>
+    <field name="sequence">40</field>
+</record>
+<record id="sent_fill_o5" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_composite"/>
+    <field name="section">O</field>
+    <field name="text">No periapical pathology on radiograph</field>
+    <field name="sequence">50</field>
+</record>
+
+<!-- A -->
+<record id="sent_fill_a1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_composite"/>
+    <field name="section">A</field>
+    <field name="text">Dentinal caries — composite restoration indicated</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_fill_a2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_composite"/>
+    <field name="section">A</field>
+    <field name="text">Enamel caries — minimal composite restoration</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_fill_a3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_composite"/>
+    <field name="section">A</field>
+    <field name="text">Fractured cusp — composite build-up planned</field>
+    <field name="sequence">30</field>
+</record>
+
+<!-- P -->
+<record id="sent_fill_p1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_composite"/>
+    <field name="section">P</field>
+    <field name="text">Local anaesthesia administered — buccal infiltration</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_fill_p2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_composite"/>
+    <field name="section">P</field>
+    <field name="text">Rubber dam placed for moisture control and asepsis</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_fill_p3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_composite"/>
+    <field name="section">P</field>
+    <field name="text">Caries excavated to sound dentine</field>
+    <field name="sequence">30</field>
+</record>
+<record id="sent_fill_p4" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_composite"/>
+    <field name="section">P</field>
+    <field name="text">Calcium hydroxide liner placed (deep caries — near pulp)</field>
+    <field name="sequence">40</field>
+</record>
+<record id="sent_fill_p5" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_composite"/>
+    <field name="section">P</field>
+    <field name="text">Composite resin placed in increments and light-cured</field>
+    <field name="sequence">50</field>
+</record>
+<record id="sent_fill_p6" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_composite"/>
+    <field name="section">P</field>
+    <field name="text">Occlusion checked and adjusted — patient comfortable</field>
+    <field name="sequence">60</field>
+</record>
+<record id="sent_fill_p7" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_composite"/>
+    <field name="section">P</field>
+    <field name="text">Patient advised to avoid hard/sticky foods for 24 hours</field>
+    <field name="sequence">70</field>
+</record>
+<record id="sent_fill_p8" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_composite"/>
+    <field name="section">P</field>
+    <field name="text">Return if sensitivity persists beyond 2 weeks</field>
+    <field name="sequence">80</field>
+</record>
+
+<!-- ═══════════════════════════════════════════════════
+     ROOT CANAL TREATMENT
+═══════════════════════════════════════════════════ -->
+<!-- S -->
+<record id="sent_rct_s1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">S</field>
+    <field name="text">Patient reports severe spontaneous toothache</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_rct_s2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">S</field>
+    <field name="text">Night pain disturbing sleep — not relieved by analgesics</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_rct_s3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">S</field>
+    <field name="text">Swelling present in the vicinity of the tooth</field>
+    <field name="sequence">30</field>
+</record>
+<record id="sent_rct_s4" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">S</field>
+    <field name="text">Previous antibiotic course with incomplete resolution</field>
+    <field name="sequence">40</field>
+</record>
+<record id="sent_rct_s5" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">S</field>
+    <field name="text">Medical history reviewed — patient fit for RCT</field>
+    <field name="sequence">50</field>
+</record>
+
+<!-- O -->
+<record id="sent_rct_o1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">O</field>
+    <field name="text">Tooth: tender to percussion (positive)</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_rct_o2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">O</field>
+    <field name="text">Palpation at apex: tender</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_rct_o3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">O</field>
+    <field name="text">Vitality test: negative (necrotic pulp)</field>
+    <field name="sequence">30</field>
+</record>
+<record id="sent_rct_o4" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">O</field>
+    <field name="text">Vitality test: hypersensitive (irreversible pulpitis)</field>
+    <field name="sequence">40</field>
+</record>
+<record id="sent_rct_o5" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">O</field>
+    <field name="text">Periapical radiolucency observed on radiograph</field>
+    <field name="sequence">50</field>
+</record>
+<record id="sent_rct_o6" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">O</field>
+    <field name="text">Widened periodontal ligament space on radiograph</field>
+    <field name="sequence">60</field>
+</record>
+<record id="sent_rct_o7" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">O</field>
+    <field name="text">Sinus tract present adjacent to the tooth</field>
+    <field name="sequence">70</field>
+</record>
+
+<!-- A -->
+<record id="sent_rct_a1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">A</field>
+    <field name="text">Irreversible pulpitis — root canal treatment indicated</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_rct_a2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">A</field>
+    <field name="text">Pulp necrosis with periapical abscess — multi-visit RCT planned</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_rct_a3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">A</field>
+    <field name="text">Symptomatic apical periodontitis — RCT indicated</field>
+    <field name="sequence">30</field>
+</record>
+<record id="sent_rct_a4" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">A</field>
+    <field name="text">Previously initiated RCT — completion visit</field>
+    <field name="sequence">40</field>
+</record>
+
+<!-- P -->
+<record id="sent_rct_p1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">P</field>
+    <field name="text">Informed consent obtained and signed</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_rct_p2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">P</field>
+    <field name="text">Rubber dam placed for asepsis throughout procedure</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_rct_p3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">P</field>
+    <field name="text">Access cavity prepared through existing restoration</field>
+    <field name="sequence">30</field>
+</record>
+<record id="sent_rct_p4" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">P</field>
+    <field name="text">Working length determined — apex locator confirmed by radiograph</field>
+    <field name="sequence">40</field>
+</record>
+<record id="sent_rct_p5" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">P</field>
+    <field name="text">Canals instrumented with rotary system to final size</field>
+    <field name="sequence">50</field>
+</record>
+<record id="sent_rct_p6" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">P</field>
+    <field name="text">Irrigation with sodium hypochlorite and EDTA performed</field>
+    <field name="sequence">60</field>
+</record>
+<record id="sent_rct_p7" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">P</field>
+    <field name="text">Canals obturated with gutta-percha and sealer</field>
+    <field name="sequence">70</field>
+</record>
+<record id="sent_rct_p8" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">P</field>
+    <field name="text">Calcium hydroxide dressing placed — recall in 2 weeks</field>
+    <field name="sequence">80</field>
+</record>
+<record id="sent_rct_p9" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_rct"/>
+    <field name="section">P</field>
+    <field name="text">Temporary restoration placed — crown recommended after RCT completion</field>
+    <field name="sequence">90</field>
+</record>
+
+<!-- ═══════════════════════════════════════════════════
+     CROWN PREPARATION
+═══════════════════════════════════════════════════ -->
+<!-- S -->
+<record id="sent_crown_s1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_crown"/>
+    <field name="section">S</field>
+    <field name="text">Patient presents for crown preparation — post RCT</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_crown_s2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_crown"/>
+    <field name="section">S</field>
+    <field name="text">Patient presents with heavily broken-down tooth</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_crown_s3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_crown"/>
+    <field name="section">S</field>
+    <field name="text">Patient agrees to full coverage crown restoration</field>
+    <field name="sequence">30</field>
+</record>
+
+<!-- O -->
+<record id="sent_crown_o1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_crown"/>
+    <field name="section">O</field>
+    <field name="text">Adequate ferrule height confirmed — good prognosis for crown</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_crown_o2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_crown"/>
+    <field name="section">O</field>
+    <field name="text">Periodontal health satisfactory — crown preparation feasible</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_crown_o3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_crown"/>
+    <field name="section">O</field>
+    <field name="text">Existing core/post assessed — adequate retention present</field>
+    <field name="sequence">30</field>
+</record>
+<record id="sent_crown_o4" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_crown"/>
+    <field name="section">O</field>
+    <field name="text">Gingival margins healthy — no bleeding on probing</field>
+    <field name="sequence">40</field>
+</record>
+
+<!-- A -->
+<record id="sent_crown_a1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_crown"/>
+    <field name="section">A</field>
+    <field name="text">Full coverage crown required — Zirconia selected</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_crown_a2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_crown"/>
+    <field name="section">A</field>
+    <field name="text">Full coverage crown required — PFM (porcelain fused to metal)</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_crown_a3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_crown"/>
+    <field name="section">A</field>
+    <field name="text">Full coverage crown required — E.max all-ceramic</field>
+    <field name="sequence">30</field>
+</record>
+
+<!-- P -->
+<record id="sent_crown_p1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_crown"/>
+    <field name="section">P</field>
+    <field name="text">Local anaesthesia administered</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_crown_p2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_crown"/>
+    <field name="section">P</field>
+    <field name="text">Tooth prepared with chamfer margin — equi-gingival finish</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_crown_p3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_crown"/>
+    <field name="section">P</field>
+    <field name="text">Retraction cord placed for accurate impression</field>
+    <field name="sequence">30</field>
+</record>
+<record id="sent_crown_p4" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_crown"/>
+    <field name="section">P</field>
+    <field name="text">Digital / alginate impression taken and sent to lab</field>
+    <field name="sequence">40</field>
+</record>
+<record id="sent_crown_p5" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_crown"/>
+    <field name="section">P</field>
+    <field name="text">Shade recorded and communicated to lab</field>
+    <field name="sequence">50</field>
+</record>
+<record id="sent_crown_p6" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_crown"/>
+    <field name="section">P</field>
+    <field name="text">Temporary crown fabricated and cemented with temporary cement</field>
+    <field name="sequence">60</field>
+</record>
+<record id="sent_crown_p7" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_crown"/>
+    <field name="section">P</field>
+    <field name="text">Lab prescription issued — crown delivery in approximately 2 weeks</field>
+    <field name="sequence">70</field>
+</record>
+<record id="sent_crown_p8" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_crown"/>
+    <field name="section">P</field>
+    <field name="text">Patient advised on temporary crown care (avoid sticky/hard foods)</field>
+    <field name="sequence">80</field>
+</record>
+
+<!-- ═══════════════════════════════════════════════════
+     SCALING AND POLISHING
+═══════════════════════════════════════════════════ -->
+<!-- S -->
+<record id="sent_scale_s1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_cleaning"/>
+    <field name="section">S</field>
+    <field name="text">Patient presents for routine scaling and polishing</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_scale_s2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_cleaning"/>
+    <field name="section">S</field>
+    <field name="text">Patient reports gum bleeding when brushing</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_scale_s3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_cleaning"/>
+    <field name="section">S</field>
+    <field name="text">Last professional cleaning: more than 6 months ago</field>
+    <field name="sequence">30</field>
+</record>
+<record id="sent_scale_s4" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_cleaning"/>
+    <field name="section">S</field>
+    <field name="text">Patient brushes once daily — oral hygiene counselling needed</field>
+    <field name="sequence">40</field>
+</record>
+
+<!-- O -->
+<record id="sent_scale_o1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_cleaning"/>
+    <field name="section">O</field>
+    <field name="text">Calculus: mild supragingival deposits</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_scale_o2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_cleaning"/>
+    <field name="section">O</field>
+    <field name="text">Calculus: moderate supragingival and subgingival deposits</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_scale_o3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_cleaning"/>
+    <field name="section">O</field>
+    <field name="text">Calculus: heavy deposits — full-mouth debridement required</field>
+    <field name="sequence">30</field>
+</record>
+<record id="sent_scale_o4" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_cleaning"/>
+    <field name="section">O</field>
+    <field name="text">Generalised gingival inflammation and bleeding on probing</field>
+    <field name="sequence">40</field>
+</record>
+<record id="sent_scale_o5" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_cleaning"/>
+    <field name="section">O</field>
+    <field name="text">BPE scores within acceptable range — no pocketing beyond 4 mm</field>
+    <field name="sequence">50</field>
+</record>
+
+<!-- A -->
+<record id="sent_scale_a1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_cleaning"/>
+    <field name="section">A</field>
+    <field name="text">Gingivitis — scaling and polishing indicated</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_scale_a2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_cleaning"/>
+    <field name="section">A</field>
+    <field name="text">Periodontitis Stage I/II — scaling and root planing required</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_scale_a3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_cleaning"/>
+    <field name="section">A</field>
+    <field name="text">Satisfactory periodontal health — maintenance scaling</field>
+    <field name="sequence">30</field>
+</record>
+
+<!-- P -->
+<record id="sent_scale_p1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_cleaning"/>
+    <field name="section">P</field>
+    <field name="text">Full-mouth supragingival scaling with ultrasonic scaler</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_scale_p2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_cleaning"/>
+    <field name="section">P</field>
+    <field name="text">Subgingival debridement with hand instruments where required</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_scale_p3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_cleaning"/>
+    <field name="section">P</field>
+    <field name="text">Polish with prophy paste and rotary cup</field>
+    <field name="sequence">30</field>
+</record>
+<record id="sent_scale_p4" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_cleaning"/>
+    <field name="section">P</field>
+    <field name="text">Oral hygiene instruction — Bass brushing technique demonstrated</field>
+    <field name="sequence">40</field>
+</record>
+<record id="sent_scale_p5" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_cleaning"/>
+    <field name="section">P</field>
+    <field name="text">TePe interproximal brush use demonstrated</field>
+    <field name="sequence">50</field>
+</record>
+<record id="sent_scale_p6" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_cleaning"/>
+    <field name="section">P</field>
+    <field name="text">Fluoride varnish applied</field>
+    <field name="sequence">60</field>
+</record>
+<record id="sent_scale_p7" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_cleaning"/>
+    <field name="section">P</field>
+    <field name="text">Recall appointment booked in 6 months</field>
+    <field name="sequence">70</field>
+</record>
+<record id="sent_scale_p8" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_cleaning"/>
+    <field name="section">P</field>
+    <field name="text">Periodontal assessment recommended — pocketing noted above 4 mm</field>
+    <field name="sequence">80</field>
+</record>
+
+<!-- ═══════════════════════════════════════════════════
+     NEW PATIENT CONSULTATION
+═══════════════════════════════════════════════════ -->
+<!-- S -->
+<record id="sent_consult_s1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">S</field>
+    <field name="text">New patient presenting for comprehensive oral health assessment</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_consult_s2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">S</field>
+    <field name="text">Patient seeks second opinion regarding proposed treatment</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_consult_s3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">S</field>
+    <field name="text">Medical history reviewed — no significant conditions</field>
+    <field name="sequence">30</field>
+</record>
+<record id="sent_consult_s4" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">S</field>
+    <field name="text">Current medications reviewed — no dental contraindications noted</field>
+    <field name="sequence">40</field>
+</record>
+<record id="sent_consult_s5" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">S</field>
+    <field name="text">Allergies: none reported (see allergy alert on file)</field>
+    <field name="sequence">50</field>
+</record>
+<record id="sent_consult_s6" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">S</field>
+    <field name="text">Last dental visit: more than 12 months ago</field>
+    <field name="sequence">60</field>
+</record>
+
+<!-- O -->
+<record id="sent_consult_o1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">O</field>
+    <field name="text">Extra-oral: facial symmetry normal, no lymphadenopathy</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_consult_o2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">O</field>
+    <field name="text">TMJ: within normal limits — no clicking or pain on opening</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_consult_o3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">O</field>
+    <field name="text">Soft tissues: no lesions or abnormalities detected</field>
+    <field name="sequence">30</field>
+</record>
+<record id="sent_consult_o4" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">O</field>
+    <field name="text">Periodontium: BPE recorded across all sextants</field>
+    <field name="sequence">40</field>
+</record>
+<record id="sent_consult_o5" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">O</field>
+    <field name="text">Occlusion: Angle Class I molar relationship</field>
+    <field name="sequence">50</field>
+</record>
+<record id="sent_consult_o6" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">O</field>
+    <field name="text">Radiographic findings: OPG reviewed — caries / bone loss noted</field>
+    <field name="sequence">60</field>
+</record>
+<record id="sent_consult_o7" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">O</field>
+    <field name="text">Radiographic findings: OPG reviewed — within normal limits</field>
+    <field name="sequence">70</field>
+</record>
+
+<!-- A -->
+<record id="sent_consult_a1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">A</field>
+    <field name="text">Comprehensive oral health assessment completed</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_consult_a2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">A</field>
+    <field name="text">Dental caries present — restorative treatment required</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_consult_a3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">A</field>
+    <field name="text">Periodontal disease identified — further assessment required</field>
+    <field name="sequence">30</field>
+</record>
+<record id="sent_consult_a4" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">A</field>
+    <field name="text">Overall oral health satisfactory — routine maintenance recommended</field>
+    <field name="sequence">40</field>
+</record>
+
+<!-- P -->
+<record id="sent_consult_p1" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">P</field>
+    <field name="text">Treatment plan discussed and presented to patient</field>
+    <field name="sequence">10</field>
+</record>
+<record id="sent_consult_p2" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">P</field>
+    <field name="text">Priority treatment: urgent care first — pain and infection management</field>
+    <field name="sequence">20</field>
+</record>
+<record id="sent_consult_p3" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">P</field>
+    <field name="text">Elective treatment planned: restorations, cosmetic, and preventive care</field>
+    <field name="sequence">30</field>
+</record>
+<record id="sent_consult_p4" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">P</field>
+    <field name="text">Written treatment plan provided and signed by patient</field>
+    <field name="sequence">40</field>
+</record>
+<record id="sent_consult_p5" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">P</field>
+    <field name="text">Radiographs taken and filed: OPG / Bitewing</field>
+    <field name="sequence">50</field>
+</record>
+<record id="sent_consult_p6" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">P</field>
+    <field name="text">Consent obtained for first phase of treatment</field>
+    <field name="sequence">60</field>
+</record>
+<record id="sent_consult_p7" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">P</field>
+    <field name="text">6-month recall recommended</field>
+    <field name="sequence">70</field>
+</record>
+<record id="sent_consult_p8" model="dental.soap.sentence">
+    <field name="template_id" ref="soap_tmpl_consult"/>
+    <field name="section">P</field>
+    <field name="text">12-month recall — low caries risk patient</field>
+    <field name="sequence">80</field>
+</record>
+
+</odoo>

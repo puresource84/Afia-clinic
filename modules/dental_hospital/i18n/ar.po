@@ -1,0 +1,1850 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* dental_hospital
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0-20250703\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-17 00:05+0000\n"
+"PO-Revision-Date: 2025-07-17 00:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dental_hospital
+#: model:ir.actions.report,print_report_name:dental_hospital.report_pdf_dental_prescription
+msgid "'Prescription Report - %s' % (object.sequence_no)"
+msgstr "تقرير الوصفة الطبية - %s" 
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_partner_form
+msgid "<i class=\"fa fa-times\" title=\"Remove\"/>"
+msgstr "<i class=\"fa fa-times\" title=\"إزالة\"/>"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.dental_prescription_view_form
+msgid "<span class=\"o_stat_text\">Invoice</span>"
+msgstr "<span class=\"o_stat_text\">الفاتورة</span>"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.report_prescription
+msgid "<strong>Appointment No:</strong>"
+msgstr "<strong>رقم الموعد:</strong>"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.report_prescription
+msgid ""
+"<strong>Note:</strong>\n"
+"                                Please follow the prescribed medication schedule strictly."
+msgstr ""
+"<strong>ملاحظة:</strong>\n"
+"                                يرجى اتباع جدول الأدوية الموصوف بدقة."
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.report_prescription
+msgid "<strong>Patient Name:</strong>"
+msgstr "<strong>اسم المريض:</strong>"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.report_prescription
+msgid "<strong>Patient No:</strong>"
+msgstr "<strong>رقم المريض:</strong>"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.report_prescription
+msgid "<strong>Prescribed Doctor:</strong>"
+msgstr "<strong>الطبيب الواصف:</strong>"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.report_prescription
+msgid "<strong>Prescription Date:</strong>"
+msgstr "<strong>تاريخ الوصفة الطبية:</strong>"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.report_prescription
+msgid "<strong>Prescription No:</strong>"
+msgstr "<strong>رقم الوصفة الطبية:</strong>"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.report_prescription
+msgid "<strong>Teeth:</strong>"
+msgstr "<strong>الأسنان:</strong>"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.report_prescription
+msgid "<strong>Treatment:</strong>"
+msgstr "<strong>العلاج:</strong>"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__message_needaction
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__message_needaction
+msgid "Action Needed"
+msgstr "إجراء مطلوب"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__activity_ids
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "زخرفة استثناء النشاط"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "أيقونة نوع النشاط"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_account_payment__treatment_cost
+msgid "Actual Cost"
+msgstr "التكلفة الفعلية"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_specialist__code
+msgid "Add the code for the name"
+msgstr "أضف الرمز للاسم"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_hr_employee__specialised_in_id
+msgid "Add the doctor specialised"
+msgstr "أضف الطبيب المتخصص"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription_lines__medicament_form
+msgid "Add the form of the medicine"
+msgstr "أضف شكل الدواء"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_medicine_frequency__medicament_frequency
+msgid "Add the frquency of medicine how to eat"
+msgstr "أضف تكرار الدواء وكيفية تناوله"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_prescription_lines__medicine_take__after
+msgid "After Food"
+msgstr "بعد الأكل"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription_lines__noon
+msgid "After Noon"
+msgstr "بعد الظهر"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.report_prescription
+msgid "Afternoon"
+msgstr "بعد الظهر"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__age
+#: model:ir.model.fields,field_description:dental_hospital.field_hr_employee__doctor_age
+#: model:ir.model.fields,field_description:dental_hospital.field_res_partner__patient_age
+#: model:ir.model.fields,field_description:dental_hospital.field_res_users__patient_age
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_partner_form
+msgid "Age"
+msgstr "العمر"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_hr_employee__doctor_age
+#: model:ir.model.fields,help:dental_hospital.field_res_partner__patient_age
+#: model:ir.model.fields,help:dental_hospital.field_res_users__patient_age
+msgid "Age of the patient"
+msgstr "عمر المريض"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_medical_questionnaire__question_id
+msgid "All added question"
+msgstr "جميع الأسئلة المضافة"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription__appointment_id
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription__appointment_ids
+msgid "All appointments created"
+msgstr "جميع المواعيد التي تم إنشاؤها"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_account_payment_list_payment
+msgid "Amount Paid"
+msgstr "المبلغ المدفوع"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__appointment_id
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__appointment_ids
+msgid "Appointment"
+msgstr "موعد"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_dental_appointment_form
+msgid "Appointment Detail"
+msgstr "تفاصيل الموعد"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__appointment_no
+msgid "Appointment No."
+msgstr "رقم الموعد."
+
+#. module: dental_hospital
+#: model:ir.actions.act_window,name:dental_hospital.dental_appointment_menu_action
+#: model:ir.ui.menu,name:dental_hospital.hospital_appointment_info
+msgid "Appointments"
+msgstr "المواعيد"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__message_attachment_count
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__time_shift_ids
+msgid "Available Times"
+msgstr "الأوقات المتاحة"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_partner_form
+msgid "Avatar"
+msgstr "الصورة الرمزية"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_account_payment__amount_due
+msgid "Balance"
+msgstr "الرصيد"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_prescription_lines__medicine_take__before
+msgid "Before Food"
+msgstr "قبل الأكل"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__shift_id
+msgid "Booking Time"
+msgstr "وقت الحجز"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_dental_appointment_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_appointment__state__cancelled
+msgid "Cancelled"
+msgstr "ملغى"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_prescription_lines__medicament_form__capsule
+msgid "Capsules"
+msgstr "كبسولات"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_hr_employee__employee_type
+msgid ""
+"Categorize your Employees by type. This field also has an impact on "
+"contracts. Only Employees, Students and Trainee will have contract history."
+msgstr ""
+"قم بتصنيف الموظفين حسب النوع. يؤثر هذا الحقل أيضاً على العقود. وحدهم "
+"الموظفون والطلاب والمتدربون من سيكون لديهم سجل عقود. "
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_treatment__treatment_categ_id
+msgid "Category"
+msgstr "الفئة"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_tooth__condition__cavity
+msgid "Cavity"
+msgstr "تسوس"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_appointment__shift_id
+#: model:ir.model.fields,help:dental_hospital.field_dental_appointment__time_shift_ids
+msgid "Choose the time shift"
+msgstr "اختر فترة التحول"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_specialist__code
+#: model:ir.model.fields,field_description:dental_hospital.field_medicine_frequency__code
+msgid "Code"
+msgstr "الرمز"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_res_partner__company_type
+#: model:ir.model.fields,field_description:dental_hospital.field_res_users__company_type
+msgid "Company Type"
+msgstr "نوع الشركة"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_tooth__condition
+msgid "Condition"
+msgstr "الحالة"
+
+#. module: dental_hospital
+#: model:ir.ui.menu,name:dental_hospital.dental_configure
+msgid "Configure"
+msgstr "تكوين"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_dental_appointment_form
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_dental_appointment_search
+msgid "Confirm"
+msgstr "تأكيد"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_appointment__state__confirmed
+msgid "Confirmed"
+msgstr "مؤكد"
+
+#. module: dental_hospital
+#: model:ir.model,name:dental_hospital.model_res_partner
+msgid "Contact"
+msgstr "جهة الاتصال"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_treatment__cost
+msgid "Cost"
+msgstr "التكلفة"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription_lines__price
+msgid "Cost of medicine"
+msgstr "تكلفة الدواء"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_treatment__cost
+msgid "Cost of the Treatment"
+msgstr "تكلفة العلاج"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription__cost
+msgid "Cost of treatment"
+msgstr "تكلفة العلاج"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.dental_prescription_view_form
+msgid "Create Invoice"
+msgstr "إنشاء فاتورة"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__create_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__create_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription_lines__create_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_specialist__create_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_time_shift__create_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_tooth__create_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_treatment__create_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_medical_questionnaire__create_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_medical_questions__create_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_medicine_frequency__create_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__create_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_treatment_category__create_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_xray_report__create_uid
+msgid "Created by"
+msgstr "تم الإنشاء بواسطة"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__create_date
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__create_date
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription_lines__create_date
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_specialist__create_date
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_time_shift__create_date
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_tooth__create_date
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_treatment__create_date
+#: model:ir.model.fields,field_description:dental_hospital.field_medical_questionnaire__create_date
+#: model:ir.model.fields,field_description:dental_hospital.field_medical_questions__create_date
+#: model:ir.model.fields,field_description:dental_hospital.field_medicine_frequency__create_date
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__create_date
+#: model:ir.model.fields,field_description:dental_hospital.field_treatment_category__create_date
+#: model:ir.model.fields,field_description:dental_hospital.field_xray_report__create_date
+msgid "Created on"
+msgstr "تاريخ الإنشاء"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__currency_id
+msgid "Currency"
+msgstr "العملة"
+
+#. module: dental_hospital
+#. module: dental_hospital
+#: code:addons/dental_hospital/models/dental_prescription.py:0
+msgid "Customer Invoice"
+msgstr "فاتورة العميل"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_hr_employee__dob
+#: model:ir.model.fields,help:dental_hospital.field_res_partner__dob
+#: model:ir.model.fields,help:dental_hospital.field_res_users__dob
+msgid "DOB of the patient"
+msgstr "تاريخ ميلاد المريض"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__appointment_date
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription__next_appointment_date
+msgid "Date for the next appointment"
+msgstr "تاريخ الموعد التالي"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_hr_employee__dob
+#: model:ir.model.fields,field_description:dental_hospital.field_res_partner__dob
+#: model:ir.model.fields,field_description:dental_hospital.field_res_users__dob
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_partner_form
+msgid "Date of Birth"
+msgstr "تاريخ الميلاد"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription__prescription_date
+msgid "Date of the prescription"
+msgstr "تاريخ الوصفة الطبية"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_treatment__name
+msgid "Date of the treatment"
+msgstr "تاريخ العلاج"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_appointment__appointment_date
+msgid "Date when the appointment is scheduled"
+msgstr "تاريخ تحديد الموعد"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_time_shift__shift_type__day
+msgid "Day"
+msgstr "يوم"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription_lines__days
+#: model_terms:ir.ui.view,arch_db:dental_hospital.report_prescription
+msgid "Days"
+msgstr "أيام"
+
+#. module: dental_hospital
+#: model:ir.ui.menu,name:dental_hospital.Shift_time_menu
+msgid "Denatal Shift Time"
+msgstr "وقت التحول في طب الأسنان"
+
+#. module: dental_hospital
+#: model:ir.model,name:dental_hospital.model_dental_appointment
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_dental_appointment_calendar
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_dental_appointment_form
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_dental_appointment_tree
+msgid "Dental Appointment"
+msgstr "موعد أسنان"
+
+#. module: dental_hospital
+#: model:ir.ui.menu,name:dental_hospital.dentist_menu_root
+#: model:ir.ui.menu,name:dental_hospital.hospital_root_menu
+msgid "Dental Clinic"
+msgstr "عيادة الأسنان"
+
+#. module: dental_hospital
+#: model:ir.actions.act_window,name:dental_hospital.dental_prescription_menu_action
+#: model:ir.model,name:dental_hospital.model_dental_prescription
+#: model_terms:ir.ui.view,arch_db:dental_hospital.dental_prescription_view_tree
+msgid "Dental Prescription"
+msgstr "وصفة أسنان"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.report_prescription
+msgid "Dental Prescription Report"
+msgstr "تقرير وصفة الأسنان"
+
+#. module: dental_hospital
+#: model:ir.model,name:dental_hospital.model_dental_prescription_lines
+msgid "Dental Prescriptions Lines"
+msgstr "خطوط وصفات الأسنان"
+
+#. module: dental_hospital
+#: model:ir.model,name:dental_hospital.model_dental_specialist
+msgid "Dental Specialist"
+msgstr "أخصائي أسنان"
+
+#. module: dental_hospital
+#: model:ir.actions.act_window,name:dental_hospital.dental_time_shift_menu_action
+#: model:ir.model,name:dental_hospital.model_dental_time_shift
+#: model_terms:ir.ui.view,arch_db:dental_hospital.dental_time_shift_view_form
+#: model_terms:ir.ui.view,arch_db:dental_hospital.dental_time_shift_view_tree
+msgid "Dental Time Shift"
+msgstr "فترة تحول الأسنان"
+
+#. module: dental_hospital
+#: model:ir.model,name:dental_hospital.model_dental_tooth
+msgid "Dental Tooth"
+msgstr "سن الأسنان"
+
+#. module: dental_hospital
+#: model:ir.actions.act_window,name:dental_hospital.dental_treatment_menu_action
+#: model:ir.model,name:dental_hospital.model_dental_treatment
+#: model_terms:ir.ui.view,arch_db:dental_hospital.dental_treatment_view_tree
+msgid "Dental Treatment"
+msgstr "علاج الأسنان"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__dentist_id
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_dental_appointment_search
+msgid "Dentist"
+msgstr "طبيب الأسنان"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_xray_report__description
+msgid "Description"
+msgstr "الوصف"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_hr_employee__job_position
+msgid "Designation"
+msgstr "التعيين"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__display_name
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__display_name
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription_lines__display_name
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_specialist__display_name
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_time_shift__display_name
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_tooth__display_name
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_treatment__display_name
+#: model:ir.model.fields,field_description:dental_hospital.field_medical_questionnaire__display_name
+#: model:ir.model.fields,field_description:dental_hospital.field_medical_questions__display_name
+#: model:ir.model.fields,field_description:dental_hospital.field_medicine_frequency__display_name
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__display_name
+#: model:ir.model.fields,field_description:dental_hospital.field_treatment_category__display_name
+#: model:ir.model.fields,field_description:dental_hospital.field_xray_report__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__hr_employee__employee_type__doctor
+msgid "Doctor"
+msgstr "طبيب"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription__prescribed_doctor_id
+msgid "Doctor who is prescribed"
+msgstr "الطبيب الذي وصف الدواء"
+
+#. module: dental_hospital
+#: model:ir.actions.act_window,name:dental_hospital.dental_doctor_menu_action
+msgid "Doctors"
+msgstr "الأطباء"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_appointment__state__done
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_dental_appointment_form
+msgid "Done"
+msgstr "تم"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.report_prescription
+msgid "Dosage"
+msgstr "الجرعة"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription_lines__dosage_strength
+#: model:ir.model.fields,field_description:dental_hospital.field_product_product__dosage_strength
+#: model:ir.model.fields,field_description:dental_hospital.field_product_template__dosage_strength
+msgid "Dosage Strength"
+msgstr "قوة الجرعة"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription_lines__dosage_strength
+#: model:ir.model.fields,help:dental_hospital.field_product_product__dosage_strength
+#: model:ir.model.fields,help:dental_hospital.field_product_template__dosage_strength
+msgid "Dosage strength of medicament"
+msgstr "قوة جرعة الدواء"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_appointment__state__draft
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: dental_hospital
+#: model:ir.model,name:dental_hospital.model_hr_employee
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_hr_employee__employee_type
+msgid "Employee Type"
+msgstr "نوع الموظف"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_time_shift__end_time
+msgid "End Time"
+msgstr "وقت الانتهاء"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_time_shift__end_time
+msgid "End time of time slot"
+msgstr "وقت انتهاء الفترة الزمنية"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_time_shift__shift_type__evening
+msgid "Evening"
+msgstr "مساء"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_appointment__gender__female
+#: model:ir.model.fields.selection,name:dental_hospital.selection__hr_employee__sex__female
+#: model:ir.model.fields.selection,name:dental_hospital.selection__res_partner__gender__female
+msgid "Female"
+msgstr "أنثى"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_tooth__condition__filled
+msgid "Filled"
+msgstr "مملوء"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__message_follower_ids
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__message_partner_ids
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_appointment__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "أيقونة Font awesome مثل fa-tasks"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.report_prescription
+msgid "Form"
+msgstr "النموذج"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.medicine_frequency_view_tree
+msgid "Frequency"
+msgstr "التكرار"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__gender
+msgid "Gender"
+msgstr "الجنس"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription_lines__generic_name
+#: model:ir.model.fields,field_description:dental_hospital.field_product_product__generic_name
+#: model:ir.model.fields,field_description:dental_hospital.field_product_template__generic_name
+#: model_terms:ir.ui.view,arch_db:dental_hospital.report_prescription
+msgid "Generic Name"
+msgstr "الاسم العام"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription_lines__generic_name
+#: model:ir.model.fields,help:dental_hospital.field_product_product__generic_name
+#: model:ir.model.fields,help:dental_hospital.field_product_template__generic_name
+msgid "Generic name of the medicament"
+msgstr "الاسم العام للدواء"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_dental_appointment_search
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__has_message
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__has_message
+msgid "Has Message"
+msgstr "يوجد رسالة"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_tooth__condition__healthy
+msgid "Healthy"
+msgstr "صحي"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__id
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__id
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription_lines__id
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_specialist__id
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_time_shift__id
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_tooth__id
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_treatment__id
+#: model:ir.model.fields,field_description:dental_hospital.field_medical_questionnaire__id
+#: model:ir.model.fields,field_description:dental_hospital.field_medical_questions__id
+#: model:ir.model.fields,field_description:dental_hospital.field_medicine_frequency__id
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__id
+#: model:ir.model.fields,field_description:dental_hospital.field_treatment_category__id
+#: model:ir.model.fields,field_description:dental_hospital.field_xray_report__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__activity_exception_icon
+msgid "Icon"
+msgstr "أيقونة"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_appointment__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "أيقونة للإشارة إلى نشاط استثناء."
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_appointment__message_needaction
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا تم التحديد، تتطلب الرسائل الجديدة انتباهك."
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_appointment__message_has_error
+#: model:ir.model.fields,help:dental_hospital.field_dental_appointment__message_has_sms_error
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription__message_has_error
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا تم التحديد، تحتوي بعض الرسائل على خطأ في التسليم."
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_product_product__is_medicine
+#: model:ir.model.fields,help:dental_hospital.field_product_template__is_medicine
+msgid "If the product is a Medicine"
+msgstr "إذا كان المنتج دواء"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_xray_report__image_filename
+msgid "Image Filename"
+msgstr "اسم ملف الصورة"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_appointment__state__in_progress
+msgid "In Progress"
+msgstr "قيد التقدم"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_prescription_lines__medicament_form__injection
+msgid "Injections"
+msgstr "حقن"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.dental_prescription_view_form
+msgid "Invoice"
+msgstr "فاتورة"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__invoice_data_id
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription__invoice_data_id
+msgid "Invoice Data"
+msgstr "بيانات الفاتورة"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_prescription__state__invoiced
+#: model_terms:ir.ui.view,arch_db:dental_hospital.dental_prescription_search
+msgid "Invoiced"
+msgstr "مفوتر"
+
+#. module: dental_hospital
+#: model:ir.actions.act_window,name:dental_hospital.action_patient_invoices
+#: model:ir.ui.menu,name:dental_hospital.hospital_invoice_info
+msgid "Invoices"
+msgstr "الفواتير"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__message_is_follower
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__message_is_follower
+msgid "Is Follower"
+msgstr "هل هو متابع"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_product_product__is_medicine
+#: model:ir.model.fields,field_description:dental_hospital.field_product_template__is_medicine
+msgid "Is Medicine"
+msgstr "هل هو دواء"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_hr_employee__is_dentist
+msgid "Is a Dentist"
+msgstr "هل هو طبيب أسنان"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_res_partner__is_patient
+#: model:ir.model.fields,field_description:dental_hospital.field_res_users__is_patient
+msgid "Is a Patient"
+msgstr "هل هو مريض"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_partner_form
+msgid "Is_patient"
+msgstr "مريض"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_employee_form
+msgid "Job Position"
+msgstr "المسمى الوظيفي"
+
+#. module: dental_hospital
+#: model:ir.model,name:dental_hospital.model_account_move
+msgid "Journal Entry"
+msgstr "قيد اليومية"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__write_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__write_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription_lines__write_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_specialist__write_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_time_shift__write_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_tooth__write_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_treatment__write_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_medical_questionnaire__write_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_medical_questions__write_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_medicine_frequency__write_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__write_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_treatment_category__write_uid
+#: model:ir.model.fields,field_description:dental_hospital.field_xray_report__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__write_date
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__write_date
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription_lines__write_date
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_specialist__write_date
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_time_shift__write_date
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_tooth__write_date
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_treatment__write_date
+#: model:ir.model.fields,field_description:dental_hospital.field_medical_questionnaire__write_date
+#: model:ir.model.fields,field_description:dental_hospital.field_medical_questions__write_date
+#: model:ir.model.fields,field_description:dental_hospital.field_medicine_frequency__write_date
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__write_date
+#: model:ir.model.fields,field_description:dental_hospital.field_treatment_category__write_date
+#: model:ir.model.fields,field_description:dental_hospital.field_xray_report__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_prescription_lines__medicament_form__liquid
+msgid "Liquid"
+msgstr "سائل"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_teeth_chart_form
+msgid "Lower Left"
+msgstr "أسفل اليسار"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_teeth_chart_form
+msgid "Lower Right"
+msgstr "أسفل اليمين"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_appointment__gender__male
+#: model:ir.model.fields.selection,name:dental_hospital.selection__hr_employee__sex__male
+#: model:ir.model.fields.selection,name:dental_hospital.selection__res_partner__gender__male
+msgid "Male"
+msgstr "ذكر"
+
+#. module: dental_hospital
+#: model:ir.ui.menu,name:dental_hospital.medical_question_menu
+msgid "Medical Question"
+msgstr "سؤال طبي"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_partner_form
+msgid "Medical Questionare"
+msgstr "استبيان طبي"
+
+#. module: dental_hospital
+#: model:ir.model,name:dental_hospital.model_medical_questionnaire
+#: model:ir.model.fields,field_description:dental_hospital.field_res_partner__medical_questionnaire_ids
+#: model:ir.model.fields,field_description:dental_hospital.field_res_users__medical_questionnaire_ids
+msgid "Medical Questionnaire"
+msgstr "استبيان طبي"
+
+#. module: dental_hospital
+#: model:ir.actions.act_window,name:dental_hospital.medical_questions_menu_action
+#: model:ir.model,name:dental_hospital.model_medical_questions
+#: model_terms:ir.ui.view,arch_db:dental_hospital.medical_questions_view_tree
+msgid "Medical Questions"
+msgstr "أسئلة طبية"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription_lines__medicament_id
+#: model_terms:ir.ui.view,arch_db:dental_hospital.report_prescription
+msgid "Medicament"
+msgstr "دواء"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription_lines__medicament_form
+msgid "Medicament Form"
+msgstr "شكل الدواء"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__medicine_ids
+msgid "Medicine"
+msgstr "دواء"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__res_partner__company_type__company
+msgid "Medicine Distributor"
+msgstr "موزع أدوية"
+
+#. module: dental_hospital
+#: model:ir.model,name:dental_hospital.model_medicine_frequency
+#: model:ir.model.fields,field_description:dental_hospital.field_medicine_frequency__medicament_frequency
+msgid "Medicine Frequency"
+msgstr "تكرار الدواء"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription_lines__medicine_take
+msgid "Medicine Take"
+msgstr "تناول الدواء"
+
+#. module: dental_hospital
+#: model:ir.actions.act_window,name:dental_hospital.medicines_menu_action
+#: model:ir.ui.menu,name:dental_hospital.medicines_menu
+msgid "Medicines"
+msgstr "الأدوية"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__message_has_error
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسالة"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__message_ids
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_tooth__condition__missing
+msgid "Missing"
+msgstr "مفقود"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__mobile
+msgid "Mobile"
+msgstr "الجوال"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription_lines__morning
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_time_shift__shift_type__morning
+#: model_terms:ir.ui.view,arch_db:dental_hospital.report_prescription
+msgid "Morning"
+msgstr "صباح"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "الموعد النهائي لنشاطي"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_specialist__name
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_time_shift__name
+#: model:ir.model.fields,field_description:dental_hospital.field_treatment_category__name
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_account_payment_list_payment
+msgid "Name"
+msgstr "الاسم"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_specialist__name
+msgid "Name of the dental specialist"
+msgstr "اسم أخصائي الأسنان"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription_lines__medicament_id
+msgid "Name of the medicine"
+msgstr "اسم الدواء"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_treatment_category__name
+msgid "Name of the treatment category"
+msgstr "اسم فئة العلاج"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription__treatment_id
+msgid "Name of the treatment done for patient"
+msgstr "اسم العلاج الذي تم للمريض"
+
+#. module: dental_hospital
+#. module: dental_hospital
+#: code:addons/dental_hospital/models/dental_prescription.py:0
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_appointment__patient_categ__new
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_prescription__state__new
+msgid "New"
+msgstr "جديد"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "حدث التقويم للنشاط التالي"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط التالي"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط التالي"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__next_appointment_date
+msgid "Next Appointment Date"
+msgstr "تاريخ الموعد التالي"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription_lines__night
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_time_shift__shift_type__night
+#: model_terms:ir.ui.view,arch_db:dental_hospital.report_prescription
+msgid "Night"
+msgstr "ليل"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__medical_questionnaire__yes_no__no
+msgid "No"
+msgstr "لا"
+
+#. module: dental_hospital
+#. module: dental_hospital
+#: code:addons/dental_hospital/models/dental_prescription.py:0
+msgid "No treatment selected."
+msgstr "لم يتم تحديد علاج."
+
+#. module: dental_hospital
+#. module: dental_hospital
+#: code:addons/dental_hospital/models/dental_prescription.py:0
+msgid "No valid medicines to invoice."
+msgstr "لا توجد أدوية صالحة للفاتورة."
+
+#. module: dental_hospital
+#. module: dental_hospital
+#: code:addons/dental_hospital/models/dental_prescription.py:0
+msgid "No warehouse found for the company. Please configure a warehouse."
+msgstr "لم يتم العثور على مستودع للشركة. يرجى تكوين مستودع."
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_appointment__urgency__normal
+msgid "Normal"
+msgstr "عادي"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__message_needaction_counter
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__message_has_error_counter
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_appointment__message_needaction_counter
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلب إجراءً"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_appointment__message_has_error_counter
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل التي بها خطأ في التسليم"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_appointment__patient_categ__old
+msgid "Old"
+msgstr "قديم"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__patient_id
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__patient_id
+#: model:ir.model.fields,field_description:dental_hospital.field_medical_questionnaire__patient_id
+#: model:ir.model.fields,field_description:dental_hospital.field_xray_report__patient_id
+#: model:ir.model.fields.selection,name:dental_hospital.selection__res_partner__company_type__person
+#: model:ir.ui.menu,name:dental_hospital.hospital_patient_info
+msgid "Patient"
+msgstr "مريض"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__patient_categ
+msgid "Patient Category"
+msgstr "فئة المريض"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_dental_appointment_form
+msgid "Patient Info"
+msgstr "معلومات المريض"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__name
+msgid "Patient Name"
+msgstr "اسم المريض"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__patient_no
+#: model:ir.model.fields,field_description:dental_hospital.field_res_partner__patient_no
+#: model:ir.model.fields,field_description:dental_hospital.field_res_users__patient_no
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_partner_form
+msgid "Patient No."
+msgstr "رقم المريض."
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_account_payment__patient_sign
+msgid "Patient Sign"
+msgstr "توقيع المريض"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_medical_questionnaire__patient_id
+msgid "Patient name"
+msgstr "اسم المريض"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_res_partner__company_type
+#: model:ir.model.fields,help:dental_hospital.field_res_users__company_type
+msgid "Patient type"
+msgstr "نوع المريض"
+
+#. module: dental_hospital
+#: model:ir.actions.act_window,name:dental_hospital.dental_patient_menu
+msgid "Patients"
+msgstr "المرضى"
+
+#. module: dental_hospital
+#: model:ir.ui.menu,name:dental_hospital.hospital_payment_info
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_partner_form
+msgid "Payment Log"
+msgstr "سجل الدفع"
+
+#. module: dental_hospital
+#: model:ir.actions.act_window,name:dental_hospital.action_dental_payment_log
+msgid "Payment Logs"
+msgstr "سجلات الدفع"
+
+#. module: dental_hospital
+#: model:ir.model,name:dental_hospital.model_account_payment
+msgid "Payments"
+msgstr "المدفوعات"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.dental_prescription_search
+#: model_terms:ir.ui.view,arch_db:dental_hospital.dental_prescription_view_form
+msgid "Prescribe"
+msgstr "وصف"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_prescription__state__done
+msgid "Prescribed"
+msgstr "موصوف"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__prescribed_doctor_id
+msgid "Prescribed Doctor"
+msgstr "الطبيب الواصف"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.dental_prescription_view_form
+msgid "Prescribed Medicines"
+msgstr "الأدوية الموصوفة"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription_lines__prescription_id
+#: model:ir.ui.menu,name:dental_hospital.dental_prescription_menu
+#: model_terms:ir.ui.view,arch_db:dental_hospital.dental_prescription_view_form
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_partner_form
+msgid "Prescription"
+msgstr "وصفة طبية"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__prescription_date
+msgid "Prescription Date"
+msgstr "تاريخ الوصفة الطبية"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__prescription_invoice_id
+msgid "Prescription Invoice"
+msgstr "فاتورة الوصفة الطبية"
+
+#. module: dental_hospital
+#: model:ir.actions.report,name:dental_hospital.report_pdf_dental_prescription
+msgid "Prescription Pdf"
+msgstr "ملف PDF للوصفة الطبية"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription_lines__price
+msgid "Price"
+msgstr "السعر"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.dental_prescription_view_form
+msgid "Print"
+msgstr "طباعة"
+
+#. module: dental_hospital
+#: model:ir.model,name:dental_hospital.model_product_template
+msgid "Product"
+msgstr "المنتج"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.report_prescription
+msgid "Qty"
+msgstr "الكمية"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription_lines__quantity
+msgid "Quantity"
+msgstr "الكمية"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription_lines__quantity
+msgid "Quantity of medicine"
+msgstr "كمية الدواء"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_medical_questions__question
+msgid "Question"
+msgstr "سؤال"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_medical_questionnaire__question_id
+msgid "Questions"
+msgstr "أسئلة"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__rating_ids
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__rating_ids
+msgid "Ratings"
+msgstr "التقييمات"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_medical_questionnaire__reason
+msgid "Reason"
+msgstr "السبب"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_medical_questionnaire__reason
+msgid "Reason for the question answer"
+msgstr "سبب الإجابة على السؤال"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__hr_employee__employee_type__receptionist
+msgid "Receptionist"
+msgstr "موظف استقبال"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__referred_dentist_id
+msgid "Referred Dentist"
+msgstr "طبيب الأسنان المحال إليه"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_hr_employee__reg_no
+msgid "Register No:"
+msgstr "رقم التسجيل:"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription_lines__prescription_id
+msgid "Relate the model with dental_prescription"
+msgstr "ربط النموذج بوصفة الأسنان"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_account_payment__move_id
+msgid "Related Invoice"
+msgstr "الفاتورة ذات الصلة"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_xray_report__report_date
+msgid "Report Date"
+msgstr "تاريخ التقرير"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__user_name
+msgid "Responsible"
+msgstr "المسؤول"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسؤول"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__message_has_sms_error
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "خطأ في تسليم الرسائل القصيرة"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_xray_report__scan_image
+msgid "Scan Image"
+msgstr "صورة الفحص"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_dental_appointment_search
+msgid "Search Dental Appointments"
+msgstr "البحث عن مواعيد الأسنان"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription__referred_dentist_id
+msgid "Select a different dentist if referring the patient"
+msgstr "اختر طبيب أسنان مختلف إذا كنت تحيل المريض"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__selected_teeth
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__selected_teeth
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription__selected_teeth
+msgid "Selected Teeth"
+msgstr "الأسنان المختارة"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_time_shift__shift_type
+msgid "Selection field for the shift type"
+msgstr "حقل اختيار لنوع التحول"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__sequence_no
+msgid "Sequence No"
+msgstr "الرقم التسلسلي"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription__sequence_no
+msgid "Sequence number of the dental prescription"
+msgstr "الرقم التسلسلي لوصفة الأسنان"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_hr_employee__sex
+msgid "Sex"
+msgstr "الجنس"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_hr_employee__sex
+msgid "Sex of the patient"
+msgstr "جنس المريض"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_employee_form
+msgid "Shift"
+msgstr "تحول"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_time_shift__shift_type
+msgid "Shift Type"
+msgstr "نوع التحول"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_dental_appointment_search
+msgid "Show All"
+msgstr "عرض الكل"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_hr_employee__specialised_in_id
+msgid "Specialised In"
+msgstr "متخصص في"
+
+#. module: dental_hospital
+#: model:ir.ui.menu,name:dental_hospital.dental_specialist_menu
+msgid "Specialist"
+msgstr "أخصائي"
+
+#. module: dental_hospital
+#: model:ir.actions.act_window,name:dental_hospital.dental_specialist_menu_action
+#: model_terms:ir.ui.view,arch_db:dental_hospital.dental_specialist_view_tree
+msgid "Specialized"
+msgstr "متخصص"
+
+#. module: dental_hospital
+#: model:ir.ui.menu,name:dental_hospital.dental_staff
+msgid "Staffs"
+msgstr "الموظفون"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_time_shift__start_time
+msgid "Start Time"
+msgstr "وقت البدء"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__state
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_dental_appointment_search
+msgid "Status"
+msgstr "الحالة"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_appointment__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"الحالة بناءً على الأنشطة\n"
+"متأخر: تاريخ الاستحقاق قد فات بالفعل\n"
+"اليوم: تاريخ النشاط هو اليوم\n"
+"مخطط: أنشطة مستقبلية."
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_prescription_lines__medicament_form__tablet
+msgid "Tablets"
+msgstr "أقراص"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.report_prescription
+msgid "Take"
+msgstr "خذ"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__tooth_ids
+msgid "Teeth Affected"
+msgstr "الأسنان المتأثرة"
+
+#. module: dental_hospital
+#: model:ir.actions.act_window,name:dental_hospital.teeth_chart_action
+#: model:ir.ui.menu,name:dental_hospital.teeth_chart_menu
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_partner_form
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_teeth_chart_form
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_teeth_chart_tree
+msgid "Teeth Chart"
+msgstr "مخطط الأسنان"
+
+#. module: dental_hospital
+#: model:ir.model,name:dental_hospital.model_teeth_chart
+msgid "Teeth Chart Record"
+msgstr "سجل مخطط الأسنان"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_hr_employee__time_shift_ids
+msgid "Time Shift"
+msgstr "فترة التحول"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_hr_employee__time_shift_ids
+msgid "Time shift of the doctor"
+msgstr "فترة تحول الطبيب"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription__currency_id
+msgid "To add the currency type in cost"
+msgstr "لإضافة نوع العملة في التكلفة"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_xray_report__description
+msgid "To add the description of the x-ray report"
+msgstr "لإضافة وصف تقرير الأشعة السينية"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_hr_employee__job_position
+msgid "To add the job position of the doctor"
+msgstr "لإضافة المسمى الوظيفي للطبيب"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_res_partner__report_ids
+#: model:ir.model.fields,help:dental_hospital.field_res_users__report_ids
+msgid "To add the xray reports of the patient"
+msgstr "لإضافة تقارير الأشعة السينية للمريض"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_dental_appointment_search
+msgid "Today"
+msgstr "اليوم"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.dental_prescription_search
+msgid "Today's Prescription"
+msgstr "وصفة اليوم"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_1
+msgid "Tooth 1"
+msgstr "السن 1"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_10
+msgid "Tooth 10"
+msgstr "السن 10"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_11
+msgid "Tooth 11"
+msgstr "السن 11"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_12
+msgid "Tooth 12"
+msgstr "السن 12"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_13
+msgid "Tooth 13"
+msgstr "السن 13"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_14
+msgid "Tooth 14"
+msgstr "السن 14"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_15
+msgid "Tooth 15"
+msgstr "السن 15"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_16
+msgid "Tooth 16"
+msgstr "السن 16"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_17
+msgid "Tooth 17"
+msgstr "السن 17"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_18
+msgid "Tooth 18"
+msgstr "السن 18"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_19
+msgid "Tooth 19"
+msgstr "السن 19"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_2
+msgid "Tooth 2"
+msgstr "السن 2"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_20
+msgid "Tooth 20"
+msgstr "السن 20"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_21
+msgid "Tooth 21"
+msgstr "السن 21"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_22
+msgid "Tooth 22"
+msgstr "السن 22"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_23
+msgid "Tooth 23"
+msgstr "السن 23"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_24
+msgid "Tooth 24"
+msgstr "السن 24"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_25
+msgid "Tooth 25"
+msgstr "السن 25"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_26
+msgid "Tooth 26"
+msgstr "السن 26"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_27
+msgid "Tooth 27"
+msgstr "السن 27"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_28
+msgid "Tooth 28"
+msgstr "السن 28"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_29
+msgid "Tooth 29"
+msgstr "السن 29"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_3
+msgid "Tooth 3"
+msgstr "السن 3"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_30
+msgid "Tooth 30"
+msgstr "السن 30"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_31
+msgid "Tooth 31"
+msgstr "السن 31"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_32
+msgid "Tooth 32"
+msgstr "السن 32"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_4
+msgid "Tooth 4"
+msgstr "السن 4"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_5
+msgid "Tooth 5"
+msgstr "السن 5"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_6
+msgid "Tooth 6"
+msgstr "السن 6"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_7
+msgid "Tooth 7"
+msgstr "السن 7"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_8
+msgid "Tooth 8"
+msgstr "السن 8"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_teeth_chart__tooth_9
+msgid "Tooth 9"
+msgstr "السن 9"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_tooth__name
+msgid "Tooth Number"
+msgstr "رقم السن"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__treatment_id
+msgid "Treatment"
+msgstr "العلاج"
+
+#. module: dental_hospital
+#: model:ir.ui.menu,name:dental_hospital.treatment_category_menu
+msgid "Treatment Categories"
+msgstr "فئات العلاج"
+
+#. module: dental_hospital
+#: model:ir.actions.act_window,name:dental_hospital.treatment_category_menu_action
+#: model:ir.model,name:dental_hospital.model_treatment_category
+#: model_terms:ir.ui.view,arch_db:dental_hospital.treatment_category_view_form
+msgid "Treatment Category"
+msgstr "فئة العلاج"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__cost
+msgid "Treatment Cost"
+msgstr "تكلفة العلاج"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_account_payment__treatment_name
+msgid "Treatment Done"
+msgstr "العلاج المنجز"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_account_bank_statement_line__is_treatment_invoice
+#: model:ir.model.fields,field_description:dental_hospital.field_account_move__is_treatment_invoice
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__treatment_invoice_id
+msgid "Treatment Invoice"
+msgstr "فاتورة العلاج"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_treatment__name
+msgid "Treatment Name"
+msgstr "اسم العلاج"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__urgency
+msgid "Treatment Type"
+msgstr "نوع العلاج"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__treatments
+#: model:ir.ui.menu,name:dental_hospital.dental_treatment_menu
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_dental_appointment_search
+msgid "Treatments"
+msgstr "العلاجات"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_appointment__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "نوع نشاط الاستثناء في السجل."
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_appointment__patient_no
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_dental_appointment_form
+msgid "Type or select Patient No."
+msgstr "اكتب أو حدد رقم المريض."
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_xray_report__scan_image
+msgid "Upload an image of the scanned report (e.g., X-ray, MRI)."
+msgstr "تحميل صورة للتقرير الممسوح ضوئيًا (مثل الأشعة السينية، الرنين المغناطيسي)."
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_teeth_chart_form
+msgid "Upper Left"
+msgstr "أعلى اليسار"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_teeth_chart_form
+msgid "Upper Right"
+msgstr "أعلى اليمين"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_dental_appointment_search
+msgid "Urgency"
+msgstr "عاجل"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__dental_appointment__urgency__urgent
+msgid "Urgent"
+msgstr "عاجل"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_partner_form
+msgid "View the patient's Treatment and Payment Log"
+msgstr "عرض سجل علاج ودفع المريض"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_partner_form
+msgid "View the patient's teeth chart"
+msgstr "عرض مخطط أسنان المريض"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_appointment__website_message_ids
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_appointment__website_message_ids
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription__website_message_ids
+msgid "Website communication history"
+msgstr "سجل اتصالات الموقع"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_res_partner__report_ids
+#: model:ir.model.fields,field_description:dental_hospital.field_res_users__report_ids
+msgid "X-Ray"
+msgstr "أشعة سينية"
+
+#. module: dental_hospital
+#: model:ir.model,name:dental_hospital.model_xray_report
+msgid "X-Ray Report"
+msgstr "تقرير الأشعة السينية"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_partner_form
+msgid "X-Ray Reports"
+msgstr "تقارير الأشعة السينية"
+
+#. module: dental_hospital
+#: model:ir.model.fields.selection,name:dental_hospital.selection__medical_questionnaire__yes_no__yes
+msgid "Yes"
+msgstr "نعم"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_medical_questionnaire__yes_no
+msgid "Yes or No"
+msgstr "نعم أو لا"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_dental_appointment_search
+msgid "Yesterday"
+msgstr "أمس"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.dental_prescription_search
+msgid "Yesterday's Prescription"
+msgstr "وصفة أمس"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_medicine_frequency__code
+msgid "code of medicine frequency"
+msgstr "رمز تكرار الدواء"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_res_partner__medical_questionnaire_ids
+#: model:ir.model.fields,help:dental_hospital.field_res_users__medical_questionnaire_ids
+msgid "connect model medical questionnaire in patients"
+msgstr "ربط نموذج الاستبيان الطبي بالمرضى"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_xray_report__report_date
+msgid "date of report adding"
+msgstr "تاريخ إضافة التقرير"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_res_partner__gender
+msgid "gender"
+msgstr "الجنس"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_res_partner__gender
+msgid "gender of the patient"
+msgstr "جنس المريض"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.dental_prescription_search
+msgid "group by"
+msgstr "تجميع حسب"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription__medicine_ids
+msgid "medicines"
+msgstr "الأدوية"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription__patient_id
+#: model:ir.model.fields,help:dental_hospital.field_xray_report__patient_id
+msgid "name of the patient"
+msgstr "اسم المريض"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_time_shift__name
+msgid "name of the time shifts"
+msgstr "اسم فترات التحول"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_treatment__treatment_categ_id
+msgid "name of the treatment"
+msgstr "اسم العلاج"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_partner_form
+msgid "prescription view of appointment"
+msgstr "عرض الوصفة الطبية للموعد"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_time_shift__start_time
+msgid "start time of time slot"
+msgstr "وقت بدء الفترة الزمنية"
+
+#. module: dental_hospital
+#: model:ir.model.fields,field_description:dental_hospital.field_dental_prescription__state
+msgid "state"
+msgstr "الحالة"
+
+#. module: dental_hospital
+#: model:ir.model.fields,help:dental_hospital.field_dental_prescription__state
+msgid "state of the appointment"
+msgstr "حالة الموعد"
+
+#. module: dental_hospital
+#: model_terms:ir.ui.view,arch_db:dental_hospital.view_dental_appointment_form
+msgid "view Patient"
+msgstr "عرض المريض"
+

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ─── List view ────────────────────────────────────────────────── -->
+    <record id="view_soap_sentence_list" model="ir.ui.view">
+        <field name="name">dental.soap.sentence.list</field>
+        <field name="model">dental.soap.sentence</field>
+        <field name="groups_id" eval="[(4, ref('clinic_core.group_clinic_admin'))]"/>
+        <field name="arch" type="xml">
+            <list string="SOAP Content Library"
+                  editable="bottom" create="true" delete="true"
+                  default_order="template_id,section,sequence">
+                <field name="template_id" string="Template" optional="show"/>
+                <field name="section"/>
+                <field name="sequence" widget="handle"/>
+                <field name="text" string="Content Phrase"/>
+                <field name="active" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ─── Form view ────────────────────────────────────────────────── -->
+    <record id="view_soap_sentence_form" model="ir.ui.view">
+        <field name="name">dental.soap.sentence.form</field>
+        <field name="model">dental.soap.sentence</field>
+        <field name="arch" type="xml">
+            <form string="SOAP Content Entry">
+                <sheet>
+                    <group>
+                        <field name="section"/>
+                        <field name="template_id"
+                               options="{'no_create': True}"
+                               help="The procedure template this phrase belongs to (optional)."/>
+                        <field name="sequence"/>
+                        <field name="active"/>
+                    </group>
+                    <group string="Content">
+                        <field name="text" nolabel="1"
+                               placeholder="Enter the clinical phrase or sentence…"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ─── Search view ──────────────────────────────────────────────── -->
+    <record id="view_soap_sentence_search" model="ir.ui.view">
+        <field name="name">dental.soap.sentence.search</field>
+        <field name="model">dental.soap.sentence</field>
+        <field name="arch" type="xml">
+            <search string="SOAP Content Library">
+                <field name="text" string="Phrase"/>
+                <field name="template_id"/>
+                <filter string="Subjective" name="filter_s"
+                        domain="[('section', '=', 'S')]"/>
+                <filter string="Objective"  name="filter_o"
+                        domain="[('section', '=', 'O')]"/>
+                <filter string="Assessment" name="filter_a"
+                        domain="[('section', '=', 'A')]"/>
+                <filter string="Plan"       name="filter_p"
+                        domain="[('section', '=', 'P')]"/>
+                <separator/>
+                <filter string="Archived" name="filter_inactive"
+                        domain="[('active', '=', False)]"/>
+                <separator/>
+                <group expand="1" string="Group By">
+                    <filter string="Template" name="group_template"
+                            context="{'group_by': 'template_id'}"/>
+                    <filter string="Section"  name="group_section"
+                            context="{'group_by': 'section'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ─── Window action ────────────────────────────────────────────── -->
+    <record id="action_soap_sentences" model="ir.actions.act_window">
+        <field name="name">SOAP Content Library</field>
+        <field name="res_model">dental.soap.sentence</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_group_template': 1,
+                               'search_default_group_section': 0}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No SOAP content entries yet.
+            </p>
+            <p>
+                Add clinical phrases here or type directly in the
+                <b>Clinical Note</b> form — new phrases are saved automatically.
+            </p>
+        </field>
+    </record>
+
+    <!-- ─── Settings menu item under Configure ────────────────────────── -->
+    <menuitem id="menu_soap_sentences"
+              name="SOAP Content Library"
+              parent="dental_hospital.dental_configure"
+              action="action_soap_sentences"
+              sequence="57"
+              groups="clinic_core.group_clinic_admin"/>
+
+</odoo>

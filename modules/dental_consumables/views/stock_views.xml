@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ─── Custom list view: clinic consumables stock ─────────────────── -->
+    <record id="view_clinic_stock_product_list" model="ir.ui.view">
+        <field name="name">clinic.stock.product.list</field>
+        <field name="model">product.product</field>
+        <field name="arch" type="xml">
+            <list string="Clinic Stock"
+                  decoration-danger="virtual_available &lt;= 0"
+                  decoration-warning="virtual_available &gt; 0 and virtual_available &lt;= 5"
+                  create="false" delete="false">
+                <field name="name" string="Material" readonly="1"/>
+                <field name="categ_id" string="Category" optional="show" readonly="1"/>
+                <field name="qty_available" string="On Hand" readonly="1"/>
+                <field name="virtual_available" string="Forecasted" optional="show" readonly="1"/>
+                <field name="uom_id" string="Unit" readonly="1"/>
+                <field name="standard_price" string="Unit Cost (IQD)" optional="show" readonly="1"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ─── Search view with low-stock filters ──────────────────────────── -->
+    <record id="view_clinic_stock_search" model="ir.ui.view">
+        <field name="name">clinic.stock.product.search</field>
+        <field name="model">product.product</field>
+        <field name="arch" type="xml">
+            <search string="Clinic Stock">
+                <field name="name" string="Material"/>
+                <field name="categ_id" string="Category"/>
+                <!-- virtual_available uses _search_product_quantity (iterates all
+                     products) so it correctly finds items with zero quant records -->
+                <filter string="Out of Stock"
+                        name="filter_out_of_stock"
+                        domain="[('virtual_available', '&lt;=', 0)]"/>
+                <filter string="Low Stock (≤ 5)"
+                        name="filter_low_stock"
+                        domain="[('virtual_available', '&lt;=', 5), ('virtual_available', '&gt;', 0)]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="Category" name="group_category"
+                            context="{'group_by': 'categ_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ─── Window action ──────────────────────────────────────────────── -->
+    <record id="action_clinic_stock" model="ir.actions.act_window">
+        <field name="name">Clinic Stock</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_clinic_consumable', '=', True)]</field>
+        <field name="context">{
+            'search_default_filter_out_of_stock': 0,
+            'create': False
+        }</field>
+        <field name="view_ids" eval="[
+            (5, 0, 0),
+            (0, 0, {'view_mode': 'list',
+                    'view_id': ref('view_clinic_stock_product_list')}),
+        ]"/>
+        <field name="search_view_id" ref="view_clinic_stock_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No clinic consumables configured yet.
+            </p>
+            <p>
+                Go to <b>Afia Clinic → Configure → Treatments</b> and add
+                materials under the <b>Consumed Materials</b> tab to see them
+                tracked here.
+            </p>
+        </field>
+    </record>
+
+    <!-- ─── Menu item under Dental Clinic root ─────────────────────────── -->
+    <menuitem id="menu_clinic_stock" name="Clinic Stock" parent="dental_hospital.hospital_root_menu" action="action_clinic_stock" sequence="50" groups="clinic_core.group_clinic_admin,clinic_core.group_clinic_dentist,clinic_core.group_clinic_receptionist"/>
+
+</odoo>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- SEARCH VIEW -->
+        <record id="view_dental_appointment_search" model="ir.ui.view">
+            <field name="name">dental.appointment.search</field>
+            <field name="model">dental.appointment</field>
+            <field name="arch" type="xml">
+                <search string="Search Dental Appointments">
+                    <field name="patient_id"/>
+                    <field name="dentist_id"/>
+                    <field name="appointment_date"/>
+                    <field name="urgency"/>
+                    <field name="treatments"/>
+
+                    <!-- Filter -->
+                    <filter string="Today" name="today" domain="[('appointment_date', '=', context_today())]"/>
+                    <filter string="Yesterday" name="yesterday"
+                            domain="[('appointment_date', '=', (context_today() - datetime.timedelta(days=1)))]"/>
+                    <filter string="Show All" name="show_all" domain="[]"/>
+
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_dentist" string="Dentist" domain="[]"
+                                context="{'group_by': 'dentist_id'}"/>
+                        <filter name="group_by_urgency" string="Urgency" domain="[]" context="{'group_by': 'urgency'}"/>
+                        <filter name="confirm" string="Confirm"
+                                domain="[('state', 'in', ['confirmed'])]"/>
+                        <filter name="group_by_state" string="Status" domain="[]" context="{'group_by': 'state'}"/>
+                        <filter name="group_by_treatments" string="Treatments" domain="[]"
+                                context="{'group_by': 'treatments'}"/>
+
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- FORM VIEW -->
+        <record id="view_dental_appointment_form" model="ir.ui.view">
+            <field name="name">dental.appointment.form</field>
+            <field name="model">dental.appointment</field>
+            <field name="arch" type="xml">
+
+                <form string="Dental Appointment">
+
+
+                    <!-- STATUS BAR -->
+                    <header>
+                        <button name="action_confirm" type="object" string="Confirm" class="oe_highlight"
+                                invisible="state != 'draft'"/>
+                        <button name="action_done" type="object" string="Done" class="oe_highlight"
+                                invisible="state != 'in_progress'"/>
+
+                        <button name="action_cancel" type="object" string="Cancel" class="oe_link"
+                                invisible="state not in ['draft', 'confirmed', 'in_progress']"/>
+
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,confirmed,in_progress,done,cancelled"/>
+
+                        <button name="action_open_patient_form" type="object" string="view Patient" icon="fa-user-md"
+                                class="oe_highlight"
+                                invisible="state != 'confirmed'"/>
+
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="appointment_no"/>
+                        </group>
+                        <!-- PATIENT INFO SECTION -->
+                        <group string="Patient Info">
+                            <group>
+                                <field name="patient_no" placeholder="Type or select Patient No."/>
+                                <field name="patient_id"/>
+                                <field name="gender"/>
+                            </group>
+                            <group>
+                                <field name="age"/>
+                                <field name="mobile"/>
+                                <field name="user_name"/>
+                            </group>
+                        </group>
+
+                        <!-- APPOINTMENT DETAILS SECTION -->
+                        <group string="Appointment Detail">
+                            <group>
+                                <field name="dentist_id"/>
+                                <field name="time_shift_ids" widget="many2many_tags"/>
+                                <field name="shift_id"/>
+                                <field name="urgency"/>
+                                <field name="patient_categ" widget="radio" options="{'horizontal': True}"/>
+                            </group>
+                            <group>
+                                <field name="appointment_date"/>
+                                <!--                                <field name="purpose" widget="many2many_tags"/>-->
+                                <field name="treatments" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- Calendar VIEW -->
+
+        <record id="view_dental_appointment_calendar" model="ir.ui.view">
+            <field name="name">dental.appointment.calendar</field>
+            <field name="model">dental.appointment</field>
+            <field name="arch" type="xml">
+                <calendar string="Dental Appointment" date_start="appointment_date" mode="month" color="state"
+                          quick_create="0">
+                    <field name="appointment_no"/>
+                    <field name="patient_id" filters="1" avatar_field="image"/>
+                    <field name="patient_no"/>
+                    <field name="dentist_id"/>
+                    <field name="shift_id"/>
+                    <field name="state" invisible="1" filters="1"/>
+                    <!--                    <field name="treatments" invisible="1" filters="1"/>-->
+                </calendar>
+            </field>
+        </record>
+
+        <!-- TREE VIEW -->
+        <record id="view_dental_appointment_tree" model="ir.ui.view">
+            <field name="name">dental.appointment.tree</field>
+            <field name="model">dental.appointment</field>
+            <field name="arch" type="xml">
+                <list string="Dental Appointment">
+                    <field name="appointment_no"/>
+                    <field name="patient_id"/>
+                    <field name="patient_no"/>
+                    <field name="gender"/>
+                    <field name="dentist_id"/>
+                    <field name="appointment_date"/>
+                    <field name="urgency"/>
+                    <field name="state"/>
+                </list>
+            </field>
+        </record>
+        <record id="appointment_view_kanban" model="ir.ui.view">
+            <field name="name">appointment.view.kanban</field>
+            <field name="model">dental.appointment</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile" sample="1" quick_create="false">
+                    <templates>
+                        <t t-name="card">
+                            <div class="d-flex mb-2" style="justify-content: space-between;">
+                                <field name="patient_id" class="fw-bolder fs-5"/>
+                                <field name="appointment_date" class="ms-1 text-muted fs-5"/>
+                            </div>
+                            <footer>
+                                <div class="d-flex text-muted" style="justify-content: space-between;">
+                                    <field name="appointment_no"/>
+                                </div>
+                                <div class="d-flex text-muted" style="justify-content: space-between;">
+                                    <field name="dentist_id"/>
+                                </div>
+                                <div>
+                                    <field name="state"
+                                           widget="label_selection"
+                                           options="{'classes': {'draft': 'default', 'confirmed': 'info', 'in_progress': 'warning', 'done': 'success', 'cancelled': 'danger'}}"
+                                           class="ms-auto"/>
+                                </div>
+                            </footer>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <!-- WINDOW ACTION -->
+        <record id="dental_appointment_menu_action" model="ir.actions.act_window">
+            <field name="name">Appointments</field>
+            <field name="res_model">dental.appointment</field>
+            <field name="view_mode">calendar,kanban,list,form</field>
+            <field name="domain">[]</field>
+            <!--            <field name="context">{'search_default_today':1}</field>-->
+            <!--            <field name="view_ids" eval="[(5, 0, 0),-->
+            <!--                                             (0, 0, {'view_mode': 'kanban', 'view_id': ref('appointment_view_kanban')}),-->
+            <!--                                            (0, 0, {'view_mode': 'list', 'view_id': ref('view_dental_appointment_tree')}),-->
+            <!--                                            (0, 0, {'view_mode': 'form', 'view_id': ref('view_dental_appointment_form')}),-->
+            <!--                                            (0, 0, {'view_mode': 'calendar', 'view_id': ref('view_dental_appointment_calendar')})]"-->
+            <!--            />-->
+        </record>
+
+        <!-- MENU STRUCTURE -->
+        <menuitem id="dentist_menu_root"
+                  web_icon="dental_hospital,static/src/img/icon.png"
+                  name="Dental Clinic"/>
+        <menuitem id="hospital_root_menu" name="Dental Clinic" sequence="1"
+                  web_icon="dental_hospital,static/src/img/icon.png"/>
+        <menuitem id="hospital_appointment_info" name="Appointments" parent="hospital_root_menu"
+                  action="dental_appointment_menu_action" sequence="2"/>
+    </data>
+</odoo>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- noupdate: clinic edits must survive module upgrades -->
+    <data noupdate="1">
+        <record id="tmpl_reminder" model="dental.telegram.template">
+            <field name="sequence">10</field>
+            <field name="template_key">reminder</field>
+            <field name="name">Appointment Reminder — 1 day before</field>
+            <field name="offset_value">1</field>
+            <field name="offset_unit">days</field>
+            <field name="offset_direction">before</field>
+            <field name="send_after_hour">9.0</field>
+            <field name="body">مرحباً {patient_name}، نذكّركم بموعدكم في عيادة {clinic_name} بتاريخ {date} {shift}.
+للتأكيد أرسل "تأكيد"، وللإلغاء أرسل "الغاء".
+Hello {patient_name}, reminder of your dental appointment at {clinic_name} on {date} {shift}. Reply CONFIRM or CANCEL.</field>
+        </record>
+
+        <record id="tmpl_reminder_1h" model="dental.telegram.template">
+            <field name="sequence">15</field>
+            <field name="template_key">reminder</field>
+            <field name="name">Appointment Reminder — 1 hour before</field>
+            <field name="offset_value">1</field>
+            <field name="offset_unit">hours</field>
+            <field name="offset_direction">before</field>
+            <field name="body">موعدك في عيادة {clinic_name} اليوم الساعة {time} مع {dentist}. نراك قريباً! / Your appointment at {clinic_name} is today at {time} with {dentist}. See you soon!</field>
+        </record>
+
+        <record id="tmpl_review_request" model="dental.telegram.template">
+            <field name="sequence">20</field>
+            <field name="template_key">review_request</field>
+            <field name="name">Review Request (day after)</field>
+            <field name="offset_value">1</field>
+            <field name="offset_unit">days</field>
+            <field name="offset_direction">after</field>
+            <field name="send_after_hour">10.0</field>
+            <field name="body">مرحباً {patient_name}، كيف كانت زيارتك للعيادة أمس؟ قيّمنا برقم من 1 إلى 5. / Hi {patient_name}, how was your visit yesterday? Rate us 1 to 5.</field>
+        </record>
+
+        <record id="tmpl_recall" model="dental.telegram.template">
+            <field name="sequence">30</field>
+            <field name="template_key">recall</field>
+            <field name="name">Recall / Recare Campaign</field>
+            <field name="send_after_hour">10.0</field>
+            <field name="body">مرحباً {patient_name}، حان موعد فحصك وتنظيفك الدوري في عيادة {clinic_name}! يرجى الاتصال بنا لتحديد موعد. / Hi {patient_name}, you are due for your periodic check-up at {clinic_name}. Call us to book.</field>
+        </record>
+
+        <record id="tmpl_welcome_linked" model="dental.telegram.template">
+            <field name="sequence">40</field>
+            <field name="template_key">welcome_linked</field>
+            <field name="name">Welcome — Patient Linked</field>
+            <field name="body">تم ربط حسابك بنجاح! ستصلك تذكيرات مواعيدك هنا. / Linked successfully, {patient_name}. Your appointment reminders will arrive here.</field>
+        </record>
+
+        <record id="tmpl_patient_not_found" model="dental.telegram.template">
+            <field name="sequence">50</field>
+            <field name="template_key">patient_not_found</field>
+            <field name="name">Linking Failed — Not Found</field>
+            <field name="body">لم نتمكن من العثور على رقم المريض {patient_no} — يرجى مراجعة الاستقبال. / Patient number {patient_no} not found, please contact reception.</field>
+        </record>
+
+        <record id="tmpl_no_upcoming" model="dental.telegram.template">
+            <field name="sequence">60</field>
+            <field name="template_key">no_upcoming</field>
+            <field name="name">Reply — No Upcoming Appointment</field>
+            <field name="body">لا يوجد موعد قادم مسجل. / No upcoming appointment found.</field>
+        </record>
+
+        <record id="tmpl_confirm_ack" model="dental.telegram.template">
+            <field name="sequence">70</field>
+            <field name="template_key">confirm_ack</field>
+            <field name="name">Reply — Appointment Confirmed</field>
+            <field name="body">تم تأكيد موعدك بتاريخ {date}. شكراً لك! / Your appointment on {date} is confirmed. Thank you!</field>
+        </record>
+
+        <record id="tmpl_cancel_ack" model="dental.telegram.template">
+            <field name="sequence">80</field>
+            <field name="template_key">cancel_ack</field>
+            <field name="name">Reply — Appointment Cancelled</field>
+            <field name="body">تم إلغاء موعدك بتاريخ {date}. للحجز مجدداً يرجى الاتصال بالعيادة. / Your appointment on {date} was cancelled. Call us to rebook.</field>
+        </record>
+
+        <record id="tmpl_review_thanks" model="dental.telegram.template">
+            <field name="sequence">90</field>
+            <field name="template_key">review_thanks</field>
+            <field name="name">Review Thanks (1–4)</field>
+            <field name="body">شكراً لملاحظاتك، سنعمل على التحسين. / Thank you for your feedback.</field>
+        </record>
+
+        <record id="tmpl_review_thanks_5" model="dental.telegram.template">
+            <field name="sequence">100</field>
+            <field name="template_key">review_thanks_5</field>
+            <field name="name">Review Thanks (5 ★ → link)</field>
+            <field name="body">شكراً جزيلاً! يسعدنا تقييمك على خرائط جوجل: {review_link} / Thank you! We would love a Google review: {review_link}</field>
+        </record>
+    </data>
+</odoo>

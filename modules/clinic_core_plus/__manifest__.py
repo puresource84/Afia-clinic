@@ -1,0 +1,25 @@
+{
+    'name': 'Clinic Core Plus',
+    'version': '18.0.1.0.0',
+    'author': 'ITCS (IT Corner Solutions)',
+    'website': 'https://www.itcornersolutions.net/',
+    'license': 'OPL-1',
+    'depends': [
+        'base',
+        'mail',
+        'dental_hospital',
+    ],
+    'data': [
+        'security/clinic_security.xml',
+        'security/ir.model.access.csv',
+        'views/clinic_menu.xml',
+        'data/clinic_data.xml',
+    ],
+    'installable': True,
+    'application': False,
+    'summary': 'Extended clinic configuration: multi-currency billing, consent templates and advanced access control.',
+    'category': 'Healthcare/Dental',
+    'description': 'Clinic Core Plus\n================\nOptional extension to Clinic Core adding advanced clinic-wide settings.\n\nFeatures\n--------\n- Multi-currency billing configuration\n- Default consent form templates\n- Extended access control rules per branch\n- Clinic group email and SMS sender identity\n- Audit-ready configuration snapshots\n\nRequires: clinic_core\n',
+    'price': 0,
+    'currency': 'USD',
+}

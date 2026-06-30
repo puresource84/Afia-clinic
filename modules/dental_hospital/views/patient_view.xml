@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Form view -->
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.view.form.inherit.dental.clinical.management</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_partner_invoices']" position="before">
+                <button name="action_prescription" class="oe_stat_button" icon="fa-bars" string="Prescription"
+                        type="object"
+                        help="prescription view of appointment" invisible="not is_patient"/>
+                <button name="action_teeth_chart" type="object" class="btn btn-primary" string="Teeth Chart"
+                        icon="fa-stethoscope"
+                        help="View the patient's teeth chart" invisible="not is_patient"/>
+                <button name="action_open_patient_payments" type="object" class="oe_stat_button" icon="fa-paperclip" string="Payment Log"
+                        help="View the patient's Treatment and Payment Log" invisible="not is_patient"/>
+
+            </xpath>
+            <!-- Added custom fields -->
+            <xpath expr="//field[@name='function']" position="replace">
+                <field name="is_patient" string="Is_patient"/>
+                <field name="dob" string="Date of Birth"/>
+                <field name="patient_age" string="Age"/>
+                <field name="patient_no" string="Patient No." readonly="1"/>
+                <field name="gender" widget="radio"/>
+            </xpath>
+            <!-- Added new page Medical Qestionare on patient -->
+            <xpath expr="//page[@name='internal_notes']" position="before">
+                <page name="medical_questionare" string="Medical Questionare">
+                    <field name="medical_questionnaire_ids" widget="one2many">
+                        <list string="Medical Questionare" editable="bottom">
+                            <field name="question_id"/>
+                            <field name="yes_no" widget="radio" readonly="False"/>
+                            <field name="reason"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+            <xpath expr="//page[@name='internal_notes']" position="before">
+                <page name="xray_reports" string="X-Ray Reports">
+                    <field name="report_ids" mode="kanban" class="w-100">
+                        <kanban>
+                            <field name="scan_image"/>
+                            <field name="image_filename"/>
+                            <field name="description"/>
+                            <templates>
+                                <t t-name="card">
+                                    <div class="oe_kanban_card oe_kanban_global_click">
+                                        <div class="o_kanban_card_content d-flex">
+                                            <div>
+                                                <img t-att-src="kanban_image('res.partner', 'scan_image', record.id.raw_value)"
+                                                     class="o_kanban_image o_image_64_cover" alt="Avatar"/>
+                                            </div>
+                                            <div class="oe_kanban_details d-flex flex-column ms-3">
+                                                <strong class="o_kanban_record_title oe_partner_heading">
+                                                    <field name="image_filename"/>
+                                                </strong>
+                                                <div class="d-flex align-items-baseline text-break">
+                                                    <field name="description"/>
+                                                </div>
+                                            </div>
+                                            <i class="fa fa-times" title="Remove"/>
+                                        </div>
+                                    </div>
+                                </t>
+                            </templates>
+                        </kanban>
+                    </field>
+                </page>
+            </xpath>
+
+
+            <!-- Invisible the base fields -->
+
+            <xpath expr="//field[@name='phone']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+	    <!--
+            <xpath expr="//field[@name='l10n_in_gst_treatment']" position="attributes">
+                <attribute name="invisible">company_type == 'person'</attribute>
+            </xpath>
+	    -->
+	    <!-- 
+            <xpath expr="//field[@name='l10n_in_pan']" position="attributes">
+                <attribute name="invisible">company_type == 'person'</attribute>
+            </xpath>
+	     -->
+            <xpath expr="//field[@name='website']" position="attributes">
+                <attribute name="invisible">company_type == 'person'</attribute>
+            </xpath>
+            <xpath expr="//field[@name='title']" position="attributes">
+                <attribute name="invisible">company_type == 'person'</attribute>
+            </xpath>
+            <xpath expr="//field[@name='category_id']" position="attributes">
+                <attribute name="invisible">company_type == 'person'</attribute>
+            </xpath>
+            <!-- Invisible the smart button Purchase on patient -->
+            <!--
+	    <xpath expr="//button[@name='%(purchase.act_res_partner_2_purchase_order)d']" position="attributes">
+                <attribute name="invisible">company_type == 'person'</attribute>
+            </xpath>
+	    -->
+            <!-- Invisible the smart button Vendor Bill on patient -->
+            <!--
+	    <xpath expr="//button[@name='%(purchase.act_res_partner_2_supplier_invoices)d']" position="attributes">
+                <attribute name="invisible">company_type == 'person'</attribute>
+            </xpath>
+	    --> 
+            <!-- Invisible the smart button On-Time Rate on patient -->
+            <xpath expr="//button[@icon='fa-truck']" position="attributes">
+                <attribute name="invisible">company_type == 'person'</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_view_stock_lots']" position="attributes">
+                <attribute name="invisible">company_type == 'person'</attribute>
+            </xpath>
+            <!--            <xpath expr="//button[@name='schedule_meeting']" position="attributes">-->
+            <!--                <attribute name="invisible">company_type == 'person'</attribute>-->
+            <!--            </xpath>-->
+	    <!--
+            <xpath expr="//button[@name='action_see_documents']" position="attributes">
+                <attribute name="invisible">company_type == 'person'</attribute>
+            </xpath>
+	    -->
+            <!--                        <xpath expr="//button[@name='open_partner_ledger']" position="attributes">-->
+            <!--                            <attribute name="invisible">company_type == 'person'</attribute>-->
+            <!--                        </xpath>-->
+            <xpath expr="//button[@name='action_view_sale_order']" position="attributes">
+                <attribute name="invisible">company_type == 'person'</attribute>
+            </xpath>
+
+            <!-- Invisible the page Sales Purchases on patient -->
+            <xpath expr="//page[@name='sales_purchases']" position="attributes">
+                <attribute name="invisible">company_type == 'person'</attribute>
+            </xpath>
+            <!-- Invisible the page Accounting on patient -->
+            <xpath expr="//page[@name='accounting']" position="attributes">
+                <attribute name="invisible">company_type == 'person'</attribute>
+            </xpath>
+        </field>
+    </record>
+    <!-- Window Action for Patients -->
+    <record id="dental_patient_menu" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="res_model">res.partner</field>
+        <field name="domain">[('is_patient','=',True)]</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="action_patient_invoices" model="ir.actions.act_window">
+        <field name="name">Invoices</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('move_type', '=', 'out_invoice')]</field>
+    </record>
+
+
+    <!-- Main Dental Clinic Menu (Root) -->
+    <menuitem
+            id="hospital_root_menu"
+            name="Dental Clinic"
+            sequence="1"
+    />
+    <menuitem
+            id="hospital_patient_info"
+            name="Patient"
+            parent="hospital_root_menu"
+            action="dental_patient_menu"
+            sequence="3"
+
+    />
+
+    <!-- Submenu: Invoices (next to Patients) -->
+    <menuitem
+            id="hospital_invoice_info"
+            name="Invoices"
+            parent="hospital_root_menu"
+            action="action_patient_invoices"
+            sequence="4"
+    />
+
+</odoo>

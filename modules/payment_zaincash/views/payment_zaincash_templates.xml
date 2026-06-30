@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        ZainCash redirect template.
+
+        Odoo's payment module renders this template, then immediately
+        redirects the browser to redirect_url via the meta-refresh and the
+        JS fallback.  No sensitive data is exposed in the page.
+    -->
+    <template id="redirect_form" name="ZainCash Redirect Form">
+        <t t-call="payment.redirect_form">
+            <t t-set="action" t-value="redirect_url"/>
+            <t t-set="method">GET</t>
+        </t>
+    </template>
+
+</odoo>

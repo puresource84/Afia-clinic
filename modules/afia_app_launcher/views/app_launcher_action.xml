@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main launcher client action -->
+    <record id="action_afia_app_launcher" model="ir.actions.client">
+        <field name="name">App Launcher</field>
+        <field name="tag">afia_app_launcher</field>
+    </record>
+
+    <!-- Server action: re-apply launcher as home for all current internal users.
+         Admins can run this after adding new staff. -->
+    <record id="action_reapply_launcher_home" model="ir.actions.server">
+        <field name="name">Re-apply App Launcher as Home</field>
+        <field name="model_id" ref="base.model_res_users"/>
+        <field name="state">code</field>
+        <field name="code">
+# Scope to clinic staff only — avoids contaminating Purchase / Accounting routing.
+launcher = env['ir.actions.client'].search([('tag', '=', 'afia_app_launcher')], limit=1)
+count = 0
+if launcher:
+    group_ids = []
+    for ref in ['clinic_core.group_clinic_admin',
+                'clinic_core.group_clinic_dentist',
+                'clinic_core.group_clinic_receptionist',
+                'clinic_core.group_clinic_assistant']:
+        try:
+            group_ids.append(env.ref(ref).id)
+        except Exception:
+            pass
+    domain = [('share', '=', False), ('active', '=', True)]
+    if group_ids:
+        domain.append(('groups_id', 'in', group_ids))
+    users = env['res.users'].search(domain)
+    users.write({'action_id': launcher.id})
+    count = len(users)
+action = {
+    'type': 'ir.actions.client',
+    'tag': 'display_notification',
+    'params': {
+        'title': 'App Launcher Applied',
+        'message': '✓ Home action set for %d internal users.' % count,
+        'type': 'success',
+        'sticky': False,
+        'next': {'type': 'ir.actions.act_window_close'},
+    },
+}
+        </field>
+    </record>
+
+    <record id="menu_reapply_launcher_home" model="ir.ui.menu">
+        <field name="name">Re-apply App Launcher as Home</field>
+        <field name="parent_id" ref="dental_hospital.dental_configure"/>
+        <field name="action" ref="action_reapply_launcher_home"/>
+        <field name="sequence">95</field>
+        <field name="groups_id" eval="[(4, ref('base.group_system'))]"/>
+    </record>
+</odoo>

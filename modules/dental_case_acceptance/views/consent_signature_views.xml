@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- B3: replace the static image with a live signature pad -->
+    <record id="view_consent_form_form_signature" model="ir.ui.view">
+        <field name="name">dental.consent.form.form.signature</field>
+        <field name="model">dental.consent.form</field>
+        <field name="inherit_id" ref="dental_consent.view_consent_form_form"/>
+        <field name="arch" type="xml">
+            <field name="patient_signature" position="attributes">
+                <attribute name="widget">signature</attribute>
+                <attribute name="options">{}</attribute>
+                <attribute name="readonly">state != 'pending'</attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>

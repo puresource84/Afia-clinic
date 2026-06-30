@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_dental_tooth_record_user,dental.tooth.record.user.readonly,model_dental_tooth_record,base.group_user,1,0,0,0
+access_dental_tooth_record_clinician,dental.tooth.record.clinician,model_dental_tooth_record,group_dental_clinician,1,1,1,0
+access_dental_tooth_record_manager,dental.tooth.record.manager,model_dental_tooth_record,base.group_system,1,1,1,1

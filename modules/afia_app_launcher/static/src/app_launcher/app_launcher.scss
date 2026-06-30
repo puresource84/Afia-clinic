@@ -1,0 +1,342 @@
+// ============================================================
+// Afia App Launcher — Home page styles
+// Odoo 18 / Bootstrap 5 compatible
+// ============================================================
+
+$launcher-bg:       #f0f2f7;
+$tile-bg:           #ffffff;
+$tile-radius:       20px;
+$tile-shadow:       0 2px 8px rgba(0, 0, 0, 0.08);
+$tile-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.14);
+$tile-min-w:        130px;
+$accent:            #6366f1;
+$text-dark:         #1f2937;
+$text-muted:        #9ca3af;
+$dropdown-radius:   16px;
+
+// ─── Outer container ───────────────────────────────────────────────────────
+
+.afia-launcher {
+    position: relative;             // anchor for the ::before pseudo-element
+    min-height: calc(100vh - 46px);
+    background: $launcher-bg;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 24px 80px;
+    box-sizing: border-box;
+
+    // ── Branding background image (white-label feature) ────────────────────
+    // Rendered as a pseudo-element so we can control opacity without
+    // affecting the tile content above it.  JS sets --afia-bg-image and
+    // --afia-bg-opacity on this element when a logo is uploaded in Settings.
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: var(--afia-bg-image, none);
+        background-size: contain;       // show the full logo, not cropped
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: var(--afia-bg-opacity, 0);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    // All direct children float above the background image
+    > * {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+// ─── Search wrap — hidden until user types ─────────────────────────────────
+
+.afia-launcher__search-wrap {
+    position: relative;          // dropdown anchors here
+    width: 100%;
+    max-width: 560px;
+    max-height: 0;
+    overflow: visible;           // dropdown must overflow the clip
+    opacity: 0;
+    pointer-events: none;
+    margin-bottom: 0;
+    // clip only vertically so dropdown is not cropped
+    clip-path: inset(0 0 100% 0);
+    transition:
+        clip-path 0.22s ease,
+        opacity   0.22s ease,
+        margin-bottom 0.22s ease;
+
+    &--active {
+        max-height: none;
+        opacity: 1;
+        pointer-events: all;
+        clip-path: inset(0 0 -200px 0); // allow dropdown to overflow below
+        margin-bottom: 36px;
+    }
+}
+
+// ─── Search inner (the pill input) ────────────────────────────────────────
+
+.afia-launcher__search-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: $tile-bg;
+    border-radius: 28px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+    padding: 0 16px;
+    height: 52px;
+    z-index: 1051; // above the dropdown
+}
+
+.afia-launcher__search-icon {
+    color: $text-muted;
+    margin-inline-end: 10px;
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+.afia-launcher__search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 15px;
+    color: $text-dark;
+    direction: rtl;
+    text-align: right;
+
+    &::placeholder { color: $text-muted; }
+}
+
+.afia-launcher__search-clear {
+    border: none;
+    background: transparent;
+    color: $text-muted;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    transition: color 0.15s, background 0.15s;
+
+    &:hover { color: $text-dark; background: rgba(0, 0, 0, 0.06); }
+}
+
+// ─── Results dropdown ──────────────────────────────────────────────────────
+
+.afia-launcher__dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: $tile-bg;
+    border-radius: $dropdown-radius;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.16);
+    max-height: 360px;
+    overflow-y: auto;
+    z-index: 1050;
+    padding: 6px 0;
+
+    // Scrollbar styling
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db transparent;
+
+    &::-webkit-scrollbar       { width: 6px; }
+    &::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+}
+
+// ─── Result row ────────────────────────────────────────────────────────────
+
+.afia-launcher__result {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: background 0.1s;
+    direction: rtl;
+    text-align: right;
+
+    &:hover,
+    &--active {
+        background: #f3f4f6;
+    }
+
+    &--empty {
+        color: $text-muted;
+        cursor: default;
+        justify-content: center;
+        padding: 20px;
+        &:hover { background: transparent; }
+    }
+}
+
+.afia-launcher__result-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #ffffff;
+    // background set inline
+}
+
+.afia-launcher__result-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.afia-launcher__result-name {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: $text-dark;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.afia-launcher__result-path {
+    font-size: 11px;
+    color: $text-muted;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.afia-launcher__result-enter {
+    color: $text-muted;
+    font-size: 11px;
+    opacity: 0;
+    transition: opacity 0.1s;
+
+    .afia-launcher__result--active & { opacity: 1; }
+}
+
+// ─── Tile grid ─────────────────────────────────────────────────────────────
+
+.afia-launcher__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax($tile-min-w, 148px));
+    gap: 20px;
+    width: 100%;
+    max-width: 1080px;
+    justify-content: center;
+}
+
+// ─── Tile ──────────────────────────────────────────────────────────────────
+
+.afia-launcher__tile {
+    background: $tile-bg;
+    border-radius: $tile-radius;
+    box-shadow: $tile-shadow;
+    padding: 24px 12px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    position: relative;
+    border: 2px solid transparent;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    user-select: none;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: $tile-shadow-hover;
+        .afia-launcher__drag-handle { opacity: 1; }
+    }
+
+    &:active {
+        transform: translateY(-1px);
+        box-shadow: $tile-shadow;
+    }
+
+    &--dragging  { opacity: 0.35; box-shadow: none; }
+    &--drag-over { border-color: $accent; background: lighten($accent, 38%); transform: scale(1.04); }
+}
+
+.afia-launcher__tile-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.afia-launcher__tile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.afia-launcher__tile-initials {
+    font-size: 26px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+
+.afia-launcher__tile-name {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: $text-dark;
+    text-align: center;
+    line-height: 1.35;
+    max-width: 110px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.afia-launcher__drag-handle {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: $text-muted;
+    font-size: 11px;
+    opacity: 0;
+    transition: opacity 0.15s;
+    cursor: grab;
+    &:active { cursor: grabbing; }
+}
+
+// ─── RTL overrides ─────────────────────────────────────────────────────────
+
+[dir="rtl"] {
+    .afia-launcher__drag-handle { right: auto; left: 8px; }
+}
+
+// ─── Responsive ────────────────────────────────────────────────────────────
+
+@media (max-width: 480px) {
+    .afia-launcher { padding: 24px 12px 60px; }
+
+    .afia-launcher__grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+
+    .afia-launcher__tile { padding: 16px 8px 10px; }
+
+    .afia-launcher__tile-icon {
+        width: 54px;
+        height: 54px;
+        border-radius: 12px;
+    }
+
+    .afia-launcher__tile-initials { font-size: 20px; }
+    .afia-launcher__tile-name     { font-size: 11px; }
+}

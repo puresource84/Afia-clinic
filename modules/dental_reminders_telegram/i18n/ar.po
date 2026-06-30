@@ -1,0 +1,79 @@
+# Translation for dental_reminders_telegram - Arabic
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 18.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: dental_reminders_telegram
+#: model:ir.model.fields,field_description:dental_reminders_telegram.field_res_config_settings__dental_tg_enabled
+msgid "Enable Telegram"
+msgstr "تفعيل تيليغرام"
+
+#. module: dental_reminders_telegram
+#: model:ir.model.fields,field_description:dental_reminders_telegram.field_res_config_settings__dental_tg_bot_token
+msgid "Telegram Bot Token"
+msgstr "رمز بوت تيليغرام"
+
+#. module: dental_reminders_telegram
+#: model:ir.model.fields,field_description:dental_reminders_telegram.field_res_config_settings__dental_tg_bot_username
+msgid "Bot Username"
+msgstr "اسم مستخدم البوت"
+
+#. module: dental_reminders_telegram
+#: model:ir.model.fields,field_description:dental_reminders_telegram.field_res_config_settings__dental_tg_recall_months
+msgid "Recall After (months)"
+msgstr "الاستدعاء بعد (أشهر)"
+
+#. module: dental_reminders_telegram
+#: model:ir.model.fields,field_description:dental_reminders_telegram.field_res_config_settings__dental_tg_review_link
+msgid "Review Link (Google Maps)"
+msgstr "رابط التقييم (خرائط جوجل)"
+
+#. module: dental_reminders_telegram
+#: model:ir.model.fields,field_description:dental_reminders_telegram.field_res_config_settings__dental_tg_clinic_tz
+msgid "Clinic Timezone"
+msgstr "المنطقة الزمنية للعيادة"
+
+#. module: dental_reminders_telegram
+#: model:ir.model.fields,field_description:dental_reminders_telegram.field_res_partner__telegram_chat_id
+msgid "Telegram Chat ID"
+msgstr "معرف محادثة تيليغرام"
+
+#. module: dental_reminders_telegram
+#: model:ir.model.fields,field_description:dental_reminders_telegram.field_dental_appointment__tg_reminder_sent
+msgid "Telegram Reminder Sent"
+msgstr "تم إرسال التذكير عبر تيليغرام"
+
+#. module: dental_reminders_telegram
+#: model:ir.model.fields,field_description:dental_reminders_telegram.field_dental_appointment__tg_recall_sent
+msgid "Telegram Recall Sent"
+msgstr "تم إرسال الاستدعاء عبر تيليغرام"
+
+#. module: dental_reminders_telegram
+#: model:ir.model.fields,field_description:dental_reminders_telegram.field_dental_appointment__review_sent
+msgid "Review Request Sent"
+msgstr "تم إرسال طلب التقييم"
+
+#. module: dental_reminders_telegram
+#: model:ir.model.fields,field_description:dental_reminders_telegram.field_dental_appointment__review_score
+msgid "Review Score"
+msgstr "درجة التقييم"
+
+#. module: dental_reminders_telegram
+#: model_terms:ir.ui.view,arch_db:dental_reminders_telegram.res_config_settings_view_form_tg
+msgid "Telegram"
+msgstr "تيليغرام"
+
+#. module: dental_reminders_telegram
+#: model_terms:ir.ui.view,arch_db:dental_reminders_telegram.res_config_settings_view_form_tg
+msgid "Automated appointment reminders and patient self-linking through the clinic's Telegram bot"
+msgstr "تذكيرات المواعيد الآلية وربط المريض تلقائياً عبر بوت عيادة تيليغرام"
+
+#. module: dental_reminders_telegram
+#: model_terms:ir.ui.view,arch_db:dental_reminders_telegram.res_config_settings_view_form_tg
+msgid "From @BotFather (e.g. 123456:ABC-DEF...)"
+msgstr "من @BotFather (مثال: 123456:ABC-DEF...)"

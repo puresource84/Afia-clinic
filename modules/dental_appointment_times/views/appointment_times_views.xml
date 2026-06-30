@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        ── Form view ────────────────────────────────────────────────────────────
+        Changes vs the base dental_hospital appointment form:
+
+          1. appointment_date  → defaults to today (Python), min=today (picker option).
+          2. time_shift_ids    → hidden (Available Times).
+          3. shift_id          → hidden (Booking Time Many2one replaced by HH:MM fields).
+          4. apt_start_time    → "Start Time" shown as HH:MM via float_time_dropdown widget.
+          5. apt_end_time      → "End Time"   shown as HH:MM via float_time_dropdown widget.
+          6. apt_duration      → "Duration"   shown as HH:MM, read-only, auto-calculated.
+    -->
+    <record id="view_appointment_form_times" model="ir.ui.view">
+        <field name="name">dental.appointment.form.times</field>
+        <field name="model">dental.appointment</field>
+        <field name="inherit_id" ref="dental_hospital.view_dental_appointment_form"/>
+        <field name="priority">15</field>
+        <field name="arch" type="xml">
+
+            <!-- 1. appointment_date: restrict picker to today or future -->
+            <field name="appointment_date" position="attributes">
+                <attribute name="options">{"datepicker": {"minDate": 0}}</attribute>
+            </field>
+
+            <!-- 2. Hide "Available Times" -->
+            <field name="time_shift_ids" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+
+            <!-- 3. Hide "Booking Time" (no longer required) -->
+            <field name="shift_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+                <attribute name="required">0</attribute>
+            </field>
+
+            <!-- 4-6. Add Start Time / End Time / Duration after shift_id -->
+            <field name="shift_id" position="after">
+                <field name="apt_start_time" widget="float_time_dropdown" required="1"/>
+                <field name="apt_end_time"   widget="float_time_dropdown" required="1"/>
+                <field name="apt_duration"   widget="float_time"          readonly="1"
+                       string="Duration"/>
+            </field>
+
+        </field>
+    </record>
+
+    <!--
+        ── Calendar view upgrade ────────────────────────────────────────────────
+        • date_start / date_stop → apt_start / apt_end (Datetime → hourly blocks).
+        • week mode, colour by dentist.
+        • quick_create="1" → mini dialog on empty-slot click.
+        NOTE: quick_create_fields is NOT a valid Odoo 18 calendar attribute (RNG
+        validation error). Mini dialog content is controlled via quick_create_view_id
+        injected by dental_ux_fixes (menu_quick_actions.xml).
+    -->
+    <record id="view_appointment_calendar_times" model="ir.ui.view">
+        <field name="name">dental.appointment.calendar.times</field>
+        <field name="model">dental.appointment</field>
+        <field name="inherit_id" ref="dental_hospital.view_dental_appointment_calendar"/>
+        <field name="priority">15</field>
+        <field name="arch" type="xml">
+            <calendar position="attributes">
+                <attribute name="date_start">apt_start</attribute>
+                <attribute name="date_stop">apt_end</attribute>
+                <attribute name="mode">week</attribute>
+                <attribute name="color">dentist_id</attribute>
+                <attribute name="quick_create">1</attribute>
+            </calendar>
+            <!-- Replace shift_id in the calendar event pop-up with time + duration -->
+            <field name="shift_id" position="replace">
+                <field name="apt_start_time" string="Start"    widget="float_time"/>
+                <field name="apt_end_time"   string="End"      widget="float_time"/>
+                <field name="apt_duration"   string="Duration" widget="float_time"/>
+            </field>
+        </field>
+    </record>
+
+    <!--
+        ── Treatment list: add "Default Duration" column ────────────────────────
+        Staff configure per-treatment durations here (Configuration → Treatments).
+        The onchange on the appointment form sums these to auto-fill apt_duration.
+    -->
+    <record id="view_dental_treatment_list_duration" model="ir.ui.view">
+        <field name="name">dental.treatment.list.duration</field>
+        <field name="model">dental.treatment</field>
+        <field name="inherit_id" ref="dental_hospital.dental_treatment_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="cost" position="after">
+                <field name="default_duration" widget="float_time"
+                       optional="show"
+                       string="Default Duration"/>
+            </field>
+        </field>
+    </record>
+
+    <!--
+        ── Patient Flow Kanban: show HH:MM time range instead of shift_id ───────
+    -->
+    <record id="view_patient_flow_kanban_times" model="ir.ui.view">
+        <field name="name">dental.appointment.flow.kanban.times</field>
+        <field name="model">dental.appointment</field>
+        <field name="inherit_id" ref="dental_patient_flow.view_patient_flow_kanban"/>
+        <field name="arch" type="xml">
+            <field name="shift_id" position="after">
+                <field name="apt_start"/>
+                <field name="apt_end"/>
+            </field>
+            <xpath expr="//div[hasclass('text-muted')][i[hasclass('fa-clock-o')]]"
+                   position="replace">
+                <div class="text-muted small mb-1">
+                    <i class="fa fa-clock-o me-1"/>
+                    <t t-if="record.apt_start.raw_value">
+                        <t t-esc="record.apt_start.value"/>
+                        <t t-if="record.apt_end.raw_value">
+                            → <t t-esc="record.apt_end.value"/>
+                        </t>
+                    </t>
+                    <t t-elif="record.shift_id.value">
+                        <t t-esc="record.shift_id.value"/>
+                    </t>
+                    <t t-else="">
+                        <t t-esc="record.appointment_date.value"/>
+                    </t>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

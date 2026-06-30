@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+dental_consent.access_consent_tmpl,dental.consent.template,model_dental_consent_template,base.group_user,1,1,1,1
+dental_consent.access_consent_form,dental.consent.form,model_dental_consent_form,base.group_user,1,1,1,1

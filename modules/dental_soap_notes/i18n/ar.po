@@ -1,0 +1,352 @@
+# Translation for dental_soap_notes - Arabic
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 18.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: dental_soap_notes
+#: model:ir.model,name:dental_soap_notes.model_dental_soap_note
+msgid "SOAP Clinical Note"
+msgstr "ملاحظة سريرية SOAP"
+
+#. module: dental_soap_notes
+#: model:ir.model,name:dental_soap_notes.model_dental_soap_sentence
+msgid "SOAP Content Library Entry"
+msgstr "إدخال مكتبة محتوى SOAP"
+
+#. module: dental_soap_notes
+#: model:ir.model,name:dental_soap_notes.model_dental_soap_template
+msgid "SOAP Note Template"
+msgstr "قالب ملاحظة SOAP"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_note__display_name
+msgid "Reference"
+msgstr "مرجع"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_note__appointment_id
+msgid "Appointment"
+msgstr "الموعد"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_note__patient_id
+msgid "Patient"
+msgstr "المريض"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_note__dentist_id
+msgid "Dentist"
+msgstr "طبيب الأسنان"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_note__note_date
+msgid "Visit Date"
+msgstr "تاريخ الزيارة"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_note__template_id
+msgid "Apply Template"
+msgstr "تطبيق قالب"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_note__chief_complaint
+msgid "Chief Complaint"
+msgstr "الشكوى الرئيسية"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_note__s_ids
+msgid "Subjective"
+msgstr "ذاتي (شكوى المريض)"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_note__tooth_ids
+msgid "Teeth Involved"
+msgstr "الأسنان المتضررة"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_note__vital_signs
+msgid "Vital Signs"
+msgstr "العلامات الحيوية"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_note__o_ids
+msgid "Objective"
+msgstr "موضوعي (نتائج سريرية)"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_note__cdt_codes
+msgid "CDT / Procedure Codes"
+msgstr "رموز الإجراءات / CDT"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_note__a_ids
+msgid "Assessment"
+msgstr "التقييم (التشخيص)"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_note__p_ids
+msgid "Plan"
+msgstr "خطة العلاج"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_note__state
+msgid "Status"
+msgstr "الحالة"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields.selection,name:dental_soap_notes.selection__dental_soap_note__state__draft
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields.selection,name:dental_soap_notes.selection__dental_soap_note__state__signed
+msgid "Signed"
+msgstr "موقّع"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_note__signed_by
+msgid "Signed By"
+msgstr "موقّع من"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_note__signed_date
+msgid "Signed On"
+msgstr "تاريخ التوقيع"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_note__is_locked
+msgid "Locked"
+msgstr "مقفل"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_appointment__soap_note_ids
+msgid "Clinical Notes"
+msgstr "الملاحظات السريرية"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_appointment__soap_note_count
+msgid "Notes"
+msgstr "الملاحظات"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_sentence__section
+msgid "SOAP Section"
+msgstr "قسم SOAP"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields.selection,name:dental_soap_notes.selection__dental_soap_sentence__section__S
+msgid "Subjective"
+msgstr "ذاتي"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields.selection,name:dental_soap_notes.selection__dental_soap_sentence__section__O
+msgid "Objective"
+msgstr "موضوعي"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields.selection,name:dental_soap_notes.selection__dental_soap_sentence__section__A
+msgid "Assessment"
+msgstr "التقييم"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields.selection,name:dental_soap_notes.selection__dental_soap_sentence__section__P
+msgid "Plan"
+msgstr "الخطة"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_sentence__template_id
+msgid "Template Category"
+msgstr "فئة القالب"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_sentence__text
+msgid "Content"
+msgstr "المحتوى"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_template__name
+msgid "Procedure / Template Name"
+msgstr "اسم الإجراء / القالب"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_template__category_id
+msgid "Treatment Category"
+msgstr "فئة العلاج"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_template__chief_complaint
+msgid "Chief Complaint (default)"
+msgstr "الشكوى الرئيسية (افتراضية)"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_template__cdt_codes
+msgid "Default CDT / Procedure Codes"
+msgstr "رموز الإجراءات الافتراضية"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_template__s_sentence_ids
+msgid "Subjective Entries"
+msgstr "إدخالات ذاتية"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_template__o_sentence_ids
+msgid "Objective Entries"
+msgstr "إدخالات موضوعية"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_template__a_sentence_ids
+msgid "Assessment Entries"
+msgstr "إدخالات التقييم"
+
+#. module: dental_soap_notes
+#: model:ir.model.fields,field_description:dental_soap_notes.field_dental_soap_template__p_sentence_ids
+msgid "Plan Entries"
+msgstr "إدخالات الخطة"
+
+#. module: dental_soap_notes
+#: model:ir.actions.act_window,name:dental_soap_notes.action_soap_notes
+#: model:ir.ui.menu,name:dental_soap_notes.menu_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_list
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_search
+msgid "Clinical Notes"
+msgstr "الملاحظات السريرية"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_form
+msgid "Clinical Note"
+msgstr "ملاحظة سريرية"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_form
+msgid "Sign Note"
+msgstr "توقيع الملاحظة"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_form
+msgid "Reset to Draft"
+msgstr "إعادة إلى المسودة"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_form
+msgid "Visit Details"
+msgstr "تفاصيل الزيارة"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_form
+msgid "Procedure"
+msgstr "الإجراء"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_form
+msgid "S — Subjective (Patient's own words)"
+msgstr "ذ — ذاتي (بكلمات المريض)"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_form
+msgid "O — Objective (Clinical findings)"
+msgstr "م — موضوعي (النتائج السريرية)"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_form
+msgid "A — Assessment (Diagnosis)"
+msgstr "ت — التقييم (التشخيص)"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_form
+msgid "P — Plan (Treatment &amp; Next Steps)"
+msgstr "خ — الخطة (العلاج والخطوات التالية)"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_form
+msgid "Signature"
+msgstr "التوقيع"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_form
+msgid "🔒 Locked"
+msgstr "🔒 مقفل"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_form
+msgid "✍ Signed"
+msgstr "✍ موقّع"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_form
+msgid "This note was signed more than 24 hours ago and is read-only. Contact your system administrator to make corrections."
+msgstr "تم توقيع هذه الملاحظة منذ أكثر من 24 ساعة وأصبحت للقراءة فقط. تواصل مع مسؤول النظام لإجراء تصحيحات."
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_form
+msgid "This note will lock automatically 24 hours after signing."
+msgstr "سيتم قفل هذه الملاحظة تلقائياً بعد 24 ساعة من التوقيع."
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_search
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_search
+msgid "Signed"
+msgstr "موقّع"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_search
+msgid "My Notes"
+msgstr "ملاحظاتي"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_search
+msgid "Patient"
+msgstr "المريض"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_search
+msgid "Dentist"
+msgstr "طبيب الأسنان"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_search
+msgid "Status"
+msgstr "الحالة"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_search
+msgid "Visit Date"
+msgstr "تاريخ الزيارة"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_search
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.action_soap_notes
+msgid "No clinical notes yet."
+msgstr "لا توجد ملاحظات سريرية بعد."
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.action_soap_notes
+msgid "Open an appointment and click the"
+msgstr "افتح موعداً وانقر على"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.action_soap_notes
+msgid "Clinical Notes"
+msgstr "الملاحظات السريرية"
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.action_soap_notes
+msgid "smart button to write a SOAP note."
+msgstr "الزر الذكي لكتابة ملاحظة SOAP."
+
+#. module: dental_soap_notes
+#: model_terms:ir.ui.view,arch_db:dental_soap_notes.view_soap_note_form
+msgid "Template Applied"
+msgstr "تم تطبيق القالب"

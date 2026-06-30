@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_dental_lab" name="Lab Orders"
+        parent="dental_hospital.menu_dental_root"
+        action="action_lab_order" sequence="50"/>
+</odoo>

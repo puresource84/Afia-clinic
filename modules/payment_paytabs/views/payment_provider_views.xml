@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Add PayTabs credential tab to the provider form -->
+    <record id="payment_provider_form_paytabs" model="ir.ui.view">
+        <field name="name">payment.provider.form.paytabs</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="PayTabs Credentials"
+                      invisible="code != 'paytabs'">
+                    <group string="API Credentials">
+                        <field name="paytabs_profile_id"
+                               required="code == 'paytabs'"/>
+                        <field name="paytabs_server_key"
+                               required="code == 'paytabs'"
+                               password="True"/>
+                        <field name="paytabs_region"
+                               required="code == 'paytabs'"/>
+                    </group>
+                    <div class="alert alert-info" role="alert">
+                        <strong>Notes:</strong>
+                        Iraq merchants: use MENA endpoint. Currencies: IQD, USD, EUR.
+                        Get credentials at merchant.paytabs.com → Developers → Key.
+                        Webhook: <code>/payment/paytabs/webhook</code> |
+                        Return: <code>/payment/paytabs/return</code>
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

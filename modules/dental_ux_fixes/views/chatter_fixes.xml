@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Systemic QA fix: the deprecated <div class="oe_chatter"> pattern breaks
+         form rendering in Odoo 18 (raw follower/activity/message tables, no
+         sheet). Found in 6 modules; dental_insurance fixed separately in
+         dental_claim_form_fix.xml. easy_clinic excluded (deprecated module). -->
+
+    <record id="view_treatment_plan_form_chatter_fix" model="ir.ui.view">
+        <field name="name">dental.treatment.plan.form.chatter.fix</field>
+        <field name="model">dental.treatment.plan</field>
+        <field name="inherit_id" ref="dental_treatment_plan.view_treatment_plan_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_chatter')]" position="replace">
+                <chatter/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_consent_form_chatter_fix" model="ir.ui.view">
+        <field name="name">dental.consent.form.form.chatter.fix</field>
+        <field name="model">dental.consent.form</field>
+        <field name="inherit_id" ref="dental_consent.view_consent_form_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_chatter')]" position="replace">
+                <chatter/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_lab_order_form_chatter_fix" model="ir.ui.view">
+        <field name="name">dental.lab.order.form.chatter.fix</field>
+        <field name="model">dental.lab.order</field>
+        <field name="inherit_id" ref="dental_lab.view_lab_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_chatter')]" position="replace">
+                <chatter/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_steril_form_chatter_fix" model="ir.ui.view">
+        <field name="name">dental.sterilization.log.form.chatter.fix</field>
+        <field name="model">dental.sterilization.log</field>
+        <field name="inherit_id" ref="dental_sterilization.view_steril_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_chatter')]" position="replace">
+                <chatter/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

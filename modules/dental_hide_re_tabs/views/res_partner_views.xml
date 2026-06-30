@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Alpha RE is a separate project; its tabs must not appear on
+         dental patient records when both share a database. -->
+    <record id="view_partner_form_hide_re_tabs" model="ir.ui.view">
+        <field name="name">res.partner.form.hide.re.tabs.for.patients</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='real_estate_commissions']" position="attributes">
+                <attribute name="invisible">is_patient</attribute>
+            </xpath>
+            <xpath expr="//page[@name='real_estate_contracts']" position="attributes">
+                <attribute name="invisible">is_patient</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

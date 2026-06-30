@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_dental_analytics" name="Analytics"
+        parent="dental_hospital.hospital_root_menu"
+        action="action_dental_kpi" sequence="80"/>
+</odoo>

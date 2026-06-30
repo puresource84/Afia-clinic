@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        PayTabs redirect template.
+        Odoo renders this and immediately sends the customer to redirect_url.
+    -->
+    <template id="redirect_form" name="PayTabs Redirect Form">
+        <t t-call="payment.redirect_form">
+            <t t-set="action" t-value="redirect_url"/>
+            <t t-set="method">GET</t>
+        </t>
+    </template>
+
+</odoo>

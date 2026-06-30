@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="cron_whatsapp_appointment_reminders" model="ir.cron">
+            <field name="name">Dental: WhatsApp Appointment Reminders</field>
+            <field name="model_id" ref="dental_hospital.model_dental_appointment"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_send_whatsapp_reminders()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="active" eval="True"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+dental_sterilization.access_steril_log,dental.sterilization.log,model_dental_sterilization_log,base.group_user,1,1,1,0
+dental_sterilization.access_steril_log_manager,dental.sterilization.log.mgr,model_dental_sterilization_log,base.group_system,1,1,1,1

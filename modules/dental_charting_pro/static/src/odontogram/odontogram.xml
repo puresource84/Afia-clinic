@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="dental_charting_pro.Odontogram">
+        <div class="o_odontogram p-2">
+            <div class="mb-2">
+                <button class="btn btn-sm"
+                        t-att-class="ui.pediatric ? 'btn-primary' : 'btn-outline-secondary'"
+                        t-on-click="togglePediatric">
+                    <t t-if="ui.pediatric">🧒 Pediatric (51–85) — switch to Adult</t>
+                    <t t-else="">🧑 Adult (11–48) — switch to Pediatric</t>
+                </button>
+            </div>
+            <svg t-att-width="svgWidth" height="170" xmlns="http://www.w3.org/2000/svg">
+                <t t-foreach="upper" t-as="fdi" t-key="fdi">
+                    <g style="cursor: pointer;" t-on-click="() => this.openTooth(fdi)">
+                        <title t-esc="toothTitle(fdi)"/>
+                        <t t-foreach="toothRegions(fdi, 4 + fdi_index * toothWidth, 8, toothWidth - 6, 48, 'upper')"
+                           t-as="region" t-key="region.key">
+                            <polygon t-att-points="region.points" t-att-fill="region.fill"
+                                     stroke="#9e9e9e" stroke-width="0.6"/>
+                        </t>
+                        <rect t-att-x="4 + fdi_index * toothWidth" y="8" t-att-width="toothWidth - 6" height="48" rx="2"
+                              fill="none" stroke="#616161" stroke-width="1.2"/>
+                        <text t-att-x="4 + fdi_index * toothWidth + (toothWidth - 6) / 2" y="68" text-anchor="middle"
+                              font-size="11" font-family="sans-serif" fill="#212121"
+                              style="pointer-events: none;" t-esc="fdi"/>
+                    </g>
+                </t>
+                <line x1="4" y1="82" t-att-x2="svgWidth - 4" y2="82"
+                      stroke="#9e9e9e" stroke-dasharray="4 3"/>
+                <t t-foreach="lower" t-as="fdi" t-key="fdi">
+                    <g style="cursor: pointer;" t-on-click="() => this.openTooth(fdi)">
+                        <title t-esc="toothTitle(fdi)"/>
+                        <text t-att-x="4 + fdi_index * toothWidth + (toothWidth - 6) / 2" y="100" text-anchor="middle"
+                              font-size="11" font-family="sans-serif" fill="#212121"
+                              style="pointer-events: none;" t-esc="fdi"/>
+                        <t t-foreach="toothRegions(fdi, 4 + fdi_index * toothWidth, 108, toothWidth - 6, 48, 'lower')"
+                           t-as="region" t-key="region.key">
+                            <polygon t-att-points="region.points" t-att-fill="region.fill"
+                                     stroke="#9e9e9e" stroke-width="0.6"/>
+                        </t>
+                        <rect t-att-x="4 + fdi_index * toothWidth" y="108" t-att-width="toothWidth - 6" height="48" rx="2"
+                              fill="none" stroke="#616161" stroke-width="1.2"/>
+                    </g>
+                </t>
+            </svg>
+            <div class="text-muted small">
+                Click a tooth to view or add clinical records (FDI notation).
+                Surfaces colored individually: M/D toward/away from midline, B outer, L inner, O center.
+            </div>
+        </div>
+    </t>
+
+</templates>

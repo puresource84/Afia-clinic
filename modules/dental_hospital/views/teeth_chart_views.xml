@@ -1,0 +1,86 @@
+<odoo>
+    <record id="view_teeth_chart_form" model="ir.ui.view">
+        <field name="name">teeth.chart.form</field>
+        <field name="model">teeth.chart</field>
+        <field name="arch" type="xml">
+            <form string="Teeth Chart">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <!--                    <field name="patient_id"/>-->
+                        <field name="selected_teeth"/>
+                    </group>
+                    <group>
+                        <div>
+                            <img src="/dental_hospital/static/src/img/teeth_chart.png" width="600px" alt="Teeth Chart"
+                                 class="teeth-chart"/>
+                        </div>
+                    </group>
+                    <group>
+                        <group string="Upper Right">
+                            <field name="tooth_1"/>
+                            <field name="tooth_2"/>
+                            <field name="tooth_3"/>
+                            <field name="tooth_4"/>
+                            <field name="tooth_5"/>
+                            <field name="tooth_6"/>
+                            <field name="tooth_7"/>
+                            <field name="tooth_8"/>
+                        </group>
+                        <group string="Upper Left">
+                            <field name="tooth_9"/>
+                            <field name="tooth_10"/>
+                            <field name="tooth_11"/>
+                            <field name="tooth_12"/>
+                            <field name="tooth_13"/>
+                            <field name="tooth_14"/>
+                            <field name="tooth_15"/>
+                            <field name="tooth_16"/>
+                        </group>
+                        <group string="Lower Left">
+                            <field name="tooth_17"/>
+                            <field name="tooth_18"/>
+                            <field name="tooth_19"/>
+                            <field name="tooth_20"/>
+                            <field name="tooth_21"/>
+                            <field name="tooth_22"/>
+                            <field name="tooth_23"/>
+                            <field name="tooth_24"/>
+                        </group>
+                        <group string="Lower Right">
+                            <field name="tooth_25"/>
+                            <field name="tooth_26"/>
+                            <field name="tooth_27"/>
+                            <field name="tooth_28"/>
+                            <field name="tooth_29"/>
+                            <field name="tooth_30"/>
+                            <field name="tooth_31"/>
+                            <field name="tooth_32"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_teeth_chart_tree" model="ir.ui.view">
+        <field name="name">teeth.chart.tree</field>
+        <field name="model">teeth.chart</field>
+        <field name="arch" type="xml">
+            <list string="Teeth Chart">
+                <field name="name"/>
+                <!--                    <field name="patient_id"/>-->
+                <field name="selected_teeth"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="teeth_chart_action" model="ir.actions.act_window">
+        <field name="name">Teeth Chart</field>
+        <field name="res_model">teeth.chart</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <menuitem id="hospital_root_menu" name="Dental Clinic" sequence="1"/>
+    <menuitem id="dental_configure" name="Configure" parent="hospital_root_menu" sequence="6"/>
+        <menuitem id="teeth_chart_menu" name="Teeth Chart" parent="dental_configure" action="teeth_chart_action" sequence="1"/>
+
+</odoo>

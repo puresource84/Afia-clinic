@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="substance_penicillin" model="dental.allergy.substance">
+            <field name="name">Penicillin</field>
+            <field name="keywords">penicillin,amoxicillin,amoxil,augmentin,co-amoxiclav,ampicillin,flucloxacillin,بنسلين,أموكسيسيلين,اموكسيسيلين,أوجمنتين,اوجمنتين</field>
+            <field name="note">Cross-reactivity: all beta-lactam penicillins. Consider macrolide alternative.</field>
+        </record>
+        <record id="substance_nsaid" model="dental.allergy.substance">
+            <field name="name">NSAIDs / Aspirin</field>
+            <field name="keywords">aspirin,ibuprofen,brufen,diclofenac,voltaren,naproxen,ketoprofen,mefenamic,piroxicam,أسبرين,اسبرين,إيبوبروفين,ايبوبروفين,بروفين,ديكلوفيناك,فولتارين</field>
+            <field name="note">Use paracetamol-based analgesia.</field>
+        </record>
+        <record id="substance_sulfa" model="dental.allergy.substance">
+            <field name="name">Sulfa drugs</field>
+            <field name="keywords">sulfa,sulfamethoxazole,trimethoprim,septrin,bactrim,sulfadiazine,سلفا,سبترين,باكتريم</field>
+        </record>
+        <record id="substance_codeine" model="dental.allergy.substance">
+            <field name="name">Codeine / Opioids</field>
+            <field name="keywords">codeine,tramadol,morphine,oxycodone,كودين,ترامادول,مورفين</field>
+        </record>
+        <record id="substance_local_anesthetic" model="dental.allergy.substance">
+            <field name="name">Local anesthetics</field>
+            <field name="keywords">lidocaine,lignocaine,xylocaine,articaine,septanest,mepivacaine,scandonest,prilocaine,benzocaine,ليدوكائين,ليدوكايين,زايلوكائين,ارتيكائين,أرتيكائين</field>
+            <field name="note">Confirm amide vs ester class with allergist before any LA.</field>
+        </record>
+        <record id="substance_latex" model="dental.allergy.substance">
+            <field name="name">Latex</field>
+            <field name="keywords">latex,rubber dam,لاتكس,مطاط</field>
+            <field name="note">Use nitrile gloves and latex-free dam.</field>
+        </record>
+        <record id="substance_chlorhexidine" model="dental.allergy.substance">
+            <field name="name">Chlorhexidine</field>
+            <field name="keywords">chlorhexidine,corsodyl,hexitol,كلورهيكسيدين,كورسوديل</field>
+        </record>
+        <record id="substance_metronidazole" model="dental.allergy.substance">
+            <field name="name">Metronidazole</field>
+            <field name="keywords">metronidazole,flagyl,ميترونيدازول,فلاجيل</field>
+        </record>
+        <record id="substance_clindamycin" model="dental.allergy.substance">
+            <field name="name">Clindamycin</field>
+            <field name="keywords">clindamycin,dalacin,كليندامايسين,دالاسين</field>
+        </record>
+        <record id="substance_iodine" model="dental.allergy.substance">
+            <field name="name">Iodine / Povidone</field>
+            <field name="keywords">iodine,povidone,betadine,يود,بيتادين</field>
+        </record>
+    </data>
+</odoo>
