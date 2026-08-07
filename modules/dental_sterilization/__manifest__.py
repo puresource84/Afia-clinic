@@ -6,6 +6,7 @@
     'author': 'ITCS (IT Corner Solutions)',
     'website': 'https://www.itcornersolutions.net/',
     'license': 'OPL-1',
+    'images': ['static/description/icon.png'],
     'depends': [
         'afia_dental_core',
     ],
