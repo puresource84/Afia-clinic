@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="freq_od" model="medicine.frequency">
+        <field name="code">OD</field>
+        <field name="medicament_frequency">Once a day</field>
+    </record>
+    <record id="freq_bid" model="medicine.frequency">
+        <field name="code">BID</field>
+        <field name="medicament_frequency">Twice a day</field>
+    </record>
+    <record id="freq_tid" model="medicine.frequency">
+        <field name="code">TID</field>
+        <field name="medicament_frequency">Three times a day</field>
+    </record>
+    <record id="freq_qid" model="medicine.frequency">
+        <field name="code">QID</field>
+        <field name="medicament_frequency">Four times a day</field>
+    </record>
+    <record id="freq_sos" model="medicine.frequency">
+        <field name="code">SOS</field>
+        <field name="medicament_frequency">As needed</field>
+    </record>
+</odoo>

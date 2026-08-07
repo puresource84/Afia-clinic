@@ -44,4 +44,19 @@ class AppointmentCancelWizard(models.TransientModel):
     )
 
     @api.constrains('reason')
-    def _check_reason_not_empty(self)
+    def _check_reason_not_empty(self):
+        for wizard in self:
+            if not wizard.reason or not wizard.reason.strip():
+                raise ValidationError(_('Cancellation reason cannot be blank.'))
+
+    def action_confirm_cancel(self):
+        """Apply cancellation and close the wizard."""
+        self.ensure_one()
+        apt = self.appointment_id
+        apt.write({
+            'state': 'cancelled',
+            'flow_state': 'cancelled',
+            'cancellation_reason': self.reason.strip(),
+            'flow_state_changed_at': fields.Datetime.now(),
+        })
+        return {'type': 'ir.actions.act_window_close'}

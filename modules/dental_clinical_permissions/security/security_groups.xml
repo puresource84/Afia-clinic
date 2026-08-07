@@ -8,20 +8,53 @@
         <field name="name">Clinic Hygienist</field>
         <field name="category_id" ref="clinic_core.clinic_category"/>
         <field name="comment">May edit charting and questionnaires; cannot prescribe or edit treatment plans.</field>
-        <field name="implied_ids" eval="[(4, ref('dental_charting_pro.group_dental_clinician'))]"/>
+        <field name="implied_ids" eval="[
+            (4, ref('dental_charting_pro.group_dental_clinician')),
+            (4, ref('base.group_user')),
+        ]"/>
     </record>
 
-    <!-- Dentists are clinicians (tooth-record gate from dental_charting_pro). -->
+    <!-- Dentists are clinicians (tooth-record gate from dental_charting_pro).
+         Also need base internal-user access plus Stock (Clinic Stock menu reads
+         stock.move/stock.quant for consumable usage) — previously missing, which
+         caused "not allowed to access Stock Move" errors for any non-admin role
+         that opens Clinic Stock. -->
     <record id="clinic_core.group_clinic_dentist" model="res.groups">
-        <field name="implied_ids" eval="[(4, ref('dental_charting_pro.group_dental_clinician'))]"/>
+        <field name="implied_ids" eval="[
+            (4, ref('dental_charting_pro.group_dental_clinician')),
+            (4, ref('base.group_user')),
+            (4, ref('stock.group_stock_user')),
+        ]"/>
     </record>
 
-    <!-- Clinic Administrator gets every clinic role. -->
+    <!-- Receptionist also touches Clinic Stock (dispensing/consumable lookups)
+         and needs base internal-user access to use the system at all. -->
+    <record id="clinic_core.group_clinic_receptionist" model="res.groups">
+        <field name="implied_ids" eval="[
+            (4, ref('base.group_user')),
+            (4, ref('stock.group_stock_user')),
+        ]"/>
+    </record>
+
+    <!-- Clinic Administrator gets every clinic role, plus the base Odoo groups
+         those roles were silently missing. Root cause of the two reported
+         Access Errors: no clinic group implied base.group_user or any
+         hr/stock/account group, so a user with ONLY the clinic group (e.g.
+         added via Settings > Users rather than the clinic wizard) hit
+         AccessError the moment a view touched hr.employee.public or
+         stock.move. Admin additionally gets full HR access (needed for the
+         commission report / employee dashboards on the Afia Clinic home
+         screen) and base Invoicing access (Billing & Insurance menu is
+         admin-only today). -->
     <record id="clinic_core.group_clinic_admin" model="res.groups">
         <field name="implied_ids" eval="[
             (4, ref('clinic_core.group_clinic_dentist')),
             (4, ref('clinic_core.group_clinic_receptionist')),
             (4, ref('group_clinic_hygienist')),
+            (4, ref('base.group_user')),
+            (4, ref('stock.group_stock_user')),
+            (4, ref('hr.group_hr_user')),
+            (4, ref('account.group_account_invoice')),
         ]"/>
     </record>
 

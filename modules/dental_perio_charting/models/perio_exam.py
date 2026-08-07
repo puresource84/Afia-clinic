@@ -5,6 +5,8 @@ Standard perio chart: 6-point probing (MB, B, DB buccal + ML, L, DL lingual)
 per tooth for pocket depth (PD), recession (REC), and bleeding on probing (BOP).
 28 tooth readings are auto-created when an exam record is first saved.
 """
+from collections import defaultdict
+
 from odoo import api, fields, models
 
 # FDI tooth numbers for default perio chart (no wisdom teeth)
@@ -18,6 +20,13 @@ _ALL_TEETH = _UPPER_TEETH + _LOWER_TEETH
 class DentalPerioExam(models.Model):
     _name = 'dental.perio.exam'
     _description = 'Periodontal Examination'
+    # 2026-08: added mail.thread — several fields below declare
+    # tracking=True (patient, appointment, dentist, exam date, status), but
+    # tracking is inert without this mixin (Odoo logged "unknown parameter
+    # 'tracking'" on every field on install). The audit trail this was
+    # clearly meant to provide is genuinely useful for a clinical record,
+    # so wiring it up rather than stripping the parameter.
+    _inherit = ['mail.thread']
     _order = 'exam_date desc, id desc'
     _rec_name = 'display_name'
 
@@ -147,12 +156,27 @@ class DentalPerioExam(models.Model):
 
     @api.depends('patient_id', 'exam_date')
     def _compute_prev_exam(self):
+        # Batched: one search across every patient in the recordset instead
+        # of a search per exam (N+1 on list views / bulk recompute).
+        if not self:
+            return
+        patient_ids = self.mapped('patient_id').ids
+        all_exams = self.search([
+            ('patient_id', 'in', patient_ids),
+        ], order='exam_date desc, id desc')
+        by_patient = defaultdict(list)
+        for e in all_exams:
+            by_patient[e.patient_id.id].append(e)
+
         for exam in self:
-            prev = self.search([
-                ('patient_id', '=', exam.patient_id.id),
-                ('exam_date', '<', exam.exam_date or fields.Date.today()),
-                ('id', '!=', exam.id),
-            ], order='exam_date desc', limit=1)
+            exam_date = exam.exam_date or fields.Date.today()
+            prev = False
+            for candidate in by_patient.get(exam.patient_id.id, []):
+                if candidate.id == exam.id:
+                    continue
+                if (candidate.exam_date or fields.Date.today()) < exam_date:
+                    prev = candidate
+                    break
             exam.prev_exam_id = prev
 
     # ── ORM ───────────────────────────────────────────────────────────────────

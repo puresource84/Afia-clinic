@@ -36,7 +36,7 @@
     </record>
     <menuitem id="menu_allergy_substances"
               name="Allergy Substances"
-              parent="dental_hospital.dental_configure"
+              parent="afia_dental_core.dental_configure"
               action="action_allergy_substances"
               sequence="60"/>
 
@@ -64,7 +64,7 @@
     <record id="dental_prescription_form_allergy_guard" model="ir.ui.view">
         <field name="name">dental.prescription.form.allergy.guard</field>
         <field name="model">dental.prescription</field>
-        <field name="inherit_id" ref="dental_hospital.dental_prescription_view_form"/>
+        <field name="inherit_id" ref="afia_dental_core.dental_prescription_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//sheet" position="before">
                 <div class="alert alert-danger" role="alert"

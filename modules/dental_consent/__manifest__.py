@@ -1,13 +1,13 @@
 {
     'name': 'Dental Consent Forms',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.0.2',
     'category': 'Dental',
     'summary': 'Digital consent form library with patient-specific consent tracking, status and PDF archive.',
     'author': 'ITCS (IT Corner Solutions)',
     'website': 'https://www.itcornersolutions.net/',
     'license': 'OPL-1',
     'depends': [
-        'dental_hospital',
+        'afia_dental_core',
     ],
     'data': [
         'security/ir.model.access.csv',

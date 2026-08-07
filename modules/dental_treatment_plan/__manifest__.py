@@ -1,13 +1,13 @@
 {
     'name': 'Dental Treatment Plans',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.0.2',
     'category': 'Dental',
     'summary': 'Multi-session dental treatment plans with phased scheduling, progress tracking and cost estimation.',
     'author': 'ITCS (IT Corner Solutions)',
     'website': 'https://www.itcornersolutions.net/',
     'license': 'OPL-1',
     'depends': [
-        'dental_hospital',
+        'afia_dental_core',
     ],
     'data': [
         'security/ir.model.access.csv',

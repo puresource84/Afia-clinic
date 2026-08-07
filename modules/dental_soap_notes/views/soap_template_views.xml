@@ -106,7 +106,7 @@
 
     <menuitem id="menu_soap_templates"
               name="SOAP Note Templates"
-              parent="dental_hospital.dental_configure"
+              parent="afia_dental_core.dental_configure"
               action="action_soap_templates"
               sequence="55"
               groups="clinic_core.group_clinic_admin"/>

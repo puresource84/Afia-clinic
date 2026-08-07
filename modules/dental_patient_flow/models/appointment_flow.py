@@ -68,7 +68,18 @@ class DentalAppointmentFlow(models.Model):
         result = super().write(vals)
         if 'state' in vals:
             flow = _STATE_TO_FLOW.get(vals['state'])
-            if flow and flow != 'cancelled':
+            if flow == 'cancelled':
+                # Any path that cancels the appointment (core's own Cancel
+                # button, the Patient Flow wizard, or an automation like the
+                # Telegram bot) must also move flow_state to 'cancelled' —
+                # the front-desk board groups/filters by flow_state, so
+                # leaving it stuck at the prior stage hides a cancelled
+                # appointment from the Cancelled column and keeps it
+                # visible (and actionable) in its old one.
+                for apt in self:
+                    if apt.flow_state != 'cancelled':
+                        apt._set_flow_state('cancelled')
+            elif flow:
                 _order = ['expected', 'arrived', 'in_chair', 'done', 'paid']
                 for apt in self:
                     current_idx = _order.index(apt.flow_state) if apt.flow_state in _order else -1

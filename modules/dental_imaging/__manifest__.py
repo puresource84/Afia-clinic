@@ -1,14 +1,15 @@
 {
     'name': 'Dental Imaging',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.2.0',
     'category': 'Healthcare/Dental',
     'summary': 'Per-tooth and per-visit photo and X-ray gallery with attachment-based storage and clinical annotations.',
     'author': 'ITCS (IT Corner Solutions)',
     'website': 'https://www.itcornersolutions.net/',
     'license': 'OPL-1',
     'depends': [
-        'dental_hospital',
+        'afia_dental_core',
         'dental_charting_pro',
+        'dental_ux_fixes',
     ],
     'data': [
         'views/imaging_tooth_views.xml',

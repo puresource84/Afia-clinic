@@ -1,0 +1,89 @@
+# Translation for dental_communication - Arabic
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 18.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: dental_communication
+#: model:ir.model.fields,field_description:dental_communication.field_dental_appointment__reminder_sent
+msgid "Reminder Sent"
+msgstr "تم إرسال التذكير"
+
+#. module: dental_communication
+#: model:ir.model.fields,field_description:dental_communication.field_dental_appointment__recall_due_date
+msgid "Recall Due Date"
+msgstr "تاريخ استحقاق المتابعة"
+
+#. module: dental_communication
+#: model:ir.cron,name:dental_communication.cron_appointment_reminders
+msgid "Dental: Send Appointment Reminders"
+msgstr "طب الأسنان: إرسال تذكيرات المواعيد"
+
+#. module: dental_communication
+#: model:ir.cron,name:dental_communication.cron_patient_recall
+msgid "Dental: Patient Recall Notices"
+msgstr "طب الأسنان: إشعارات متابعة المرضى"
+
+#. module: dental_communication
+#: model:mail.template,name:dental_communication.email_template_appointment_reminder
+msgid "Dental: Appointment Reminder"
+msgstr "طب الأسنان: تذكير بالموعد"
+
+#. module: dental_communication
+#: model:mail.template,subject:dental_communication.email_template_appointment_reminder
+msgid "Reminder: Your Dental Appointment Tomorrow"
+msgstr "تذكير: موعد طب الأسنان الخاص بك غداً"
+
+#. module: dental_communication
+#: model:mail.template,body_html:dental_communication.email_template_appointment_reminder
+msgid ""
+"\n"
+"<p>Dear {{ object.patient_id.name }},</p>\n"
+"<p>This is a friendly reminder that you have a dental appointment scheduled for\n"
+"<strong>{{ object.appointment_date }}</strong>\n"
+"with <strong>{{ object.dentist_id.name }}</strong>.</p>\n"
+"<p>Please arrive 10 minutes early. If you need to reschedule, contact us as soon as possible.</p>\n"
+"<p>Thank you,<br/>{{ object.company_id.name }}</p>\n"
+"        "
+msgstr ""
+"\n"
+"<p>عزيزي/عزيزتي {{ object.patient_id.name }}،</p>\n"
+"<p>هذا تذكير ودي بأن لديك موعداً لطب الأسنان محدداً بتاريخ\n"
+"<strong>{{ object.appointment_date }}</strong>\n"
+"مع <strong>{{ object.dentist_id.name }}</strong>.</p>\n"
+"<p>يرجى الحضور قبل 10 دقائق من الموعد. إذا كنت بحاجة لإعادة الجدولة، يرجى التواصل معنا في أقرب وقت ممكن.</p>\n"
+"<p>شكراً لك،<br/>{{ object.company_id.name }}</p>\n"
+"        "
+
+#. module: dental_communication
+#: model:mail.template,name:dental_communication.email_template_patient_recall
+msgid "Dental: Patient Recall"
+msgstr "طب الأسنان: متابعة المريض"
+
+#. module: dental_communication
+#: model:mail.template,subject:dental_communication.email_template_patient_recall
+msgid "Time for Your Regular Dental Check-up!"
+msgstr "حان وقت فحصك الدوري لطب الأسنان!"
+
+#. module: dental_communication
+#: model:mail.template,body_html:dental_communication.email_template_patient_recall
+msgid ""
+"\n"
+"<p>Dear {{ object.patient_id.name }},</p>\n"
+"<p>It has been about 6 months since your last visit. Regular dental check-ups help keep your\n"
+"smile healthy!</p>\n"
+"<p>Please call us or visit our website to book your next appointment.</p>\n"
+"<p>Thank you,<br/>{{ object.company_id.name }}</p>\n"
+"        "
+msgstr ""
+"\n"
+"<p>عزيزي/عزيزتي {{ object.patient_id.name }}،</p>\n"
+"<p>لقد مرّ حوالي 6 أشهر منذ زيارتك الأخيرة. الفحوصات الدورية لطب الأسنان تساعد في الحفاظ على\n"
+"ابتسامتك صحية!</p>\n"
+"<p>يرجى الاتصال بنا أو زيارة موقعنا الإلكتروني لحجز موعدك القادم.</p>\n"
+"<p>شكراً لك،<br/>{{ object.company_id.name }}</p>\n"
+"        "

@@ -1,7 +1,45 @@
 # -*- coding: utf-8 -*-
+import base64
 import logging
+import os
 
 _logger = logging.getLogger(__name__)
+
+# Bundled default background — every fresh Afia Clinic install gets this
+# out of the box so the launcher never looks "bare". Config-parameter based
+# (ir.config_parameter is DB-wide, not per-user), so it applies to every
+# user and group automatically, with no per-user setup step. Clinic admins
+# can still replace it any time via Afia Clinic > Configuration > Launcher
+# Branding — action_save() there simply overwrites the same two keys.
+_DEFAULT_BG_RELPATH = os.path.join(
+    'static', 'src', 'img', 'default_launcher_bg.jpg'
+)
+_DEFAULT_BG_OPACITY = '0.6'
+
+
+def _seed_default_background(env):
+    """Populate afia_launcher.bg_image with the bundled default, but only
+    if no image is configured yet — never clobber an admin's own upload
+    on a module upgrade/reinstall."""
+    ICP = env['ir.config_parameter'].sudo()
+    if ICP.get_param('afia_launcher.bg_image'):
+        return  # already configured (either by us before, or by an admin)
+
+    module_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    image_path = os.path.join(module_path, _DEFAULT_BG_RELPATH)
+    try:
+        with open(image_path, 'rb') as f:
+            b64 = base64.b64encode(f.read()).decode('ascii')
+    except OSError:
+        _logger.warning(
+            'afia_app_launcher: bundled default background not found at %s, '
+            'skipping.', image_path,
+        )
+        return
+
+    ICP.set_param('afia_launcher.bg_image', b64)
+    ICP.set_param('afia_launcher.bg_opacity', _DEFAULT_BG_OPACITY)
+    _logger.info('afia_app_launcher: seeded default launcher background.')
 
 
 def post_init_hook(env):
@@ -12,6 +50,8 @@ def post_init_hook(env):
     back-office users keep their standard Odoo home so that Purchase,
     Accounting, and Inventory URL routing is not contaminated.
     """
+    _seed_default_background(env)
+
     launcher = env['ir.actions.client'].search(
         [('tag', '=', 'afia_app_launcher')], limit=1
     )

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <menuitem id="menu_insurance_root" name="Insurance"
-        parent="dental_hospital.hospital_root_menu" sequence="60"/>
+        parent="afia_dental_core.hospital_root_menu" sequence="60"/>
     <menuitem id="menu_insurers" name="Insurers"
         parent="menu_insurance_root" action="action_insurer" sequence="10"/>
     <menuitem id="menu_policies" name="Policies"

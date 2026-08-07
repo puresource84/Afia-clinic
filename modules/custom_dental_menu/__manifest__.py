@@ -1,5 +1,5 @@
 {
-    'name': 'Dental Clinic Menu Restructure',
+    'name': 'Dental Clinic Menu',
     'version': '18.0.1.0.0',
     'category': 'Dental',
     'summary': 'Reorganises the dental clinic menu into intuitive Patient and Billing groups for faster navigation.',
@@ -7,7 +7,7 @@
     'website': 'https://www.itcornersolutions.net/',
     'license': 'OPL-1',
     'depends': [
-        'dental_hospital',
+        'afia_dental_core',
         'dental_treatment_plan',
         'dental_lab',
         'dental_consent',

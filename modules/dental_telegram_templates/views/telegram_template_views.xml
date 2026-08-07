@@ -100,7 +100,7 @@
 
     <menuitem id="menu_telegram_templates"
               name="Telegram Messages"
-              parent="dental_hospital.dental_configure"
+              parent="afia_dental_core.dental_configure"
               action="action_telegram_templates"
               sequence="101"/>
 
@@ -157,7 +157,7 @@
 
     <menuitem id="menu_telegram_log"
               name="Telegram Sent Log"
-              parent="dental_hospital.dental_configure"
+              parent="afia_dental_core.dental_configure"
               action="action_telegram_log"
               sequence="102"/>
 </odoo>

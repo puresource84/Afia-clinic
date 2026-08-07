@@ -1,72 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
 
-    <!-- 6 procedure templates seeded at install; noupdate=1 so clinics can edit them -->
+    <!-- 6 procedure templates seeded at install; noupdate=1 so clinics can edit them.
+
+         NOTE (2026-08-04): this file originally wrote flat Char/Text fields
+         (history, examination, diagnosis, treatment_plan, notes) that don't
+         exist on dental.soap.template — the model was refactored to a
+         sentence-library design (s_sentence_ids/o_sentence_ids/a_sentence_ids/
+         p_sentence_ids, each a dental.soap.sentence) but this seed data was
+         never updated to match, so install failed with "Invalid field
+         'history'". Converted below to the current schema, preserving the
+         original seed text: history/examination/diagnosis map to their
+         matching SOAP section (S/O/A), treatment_plan and notes both become
+         Plan (P) entries. -->
 
     <record id="soap_tmpl_extraction" model="dental.soap.template">
         <field name="name">Extraction (Simple)</field>
         <field name="chief_complaint">Tooth pain / request for removal</field>
-        <field name="history">Patient reports pain for [duration]. Previous treatments: [none/filling/RCT]. Medical history reviewed.</field>
-        <field name="examination">Extra-oral: No swelling / lymphadenopathy. Intra-oral: Tooth [#] — [caries/fracture/mobility grade]. Periapical radiograph reviewed.</field>
-        <field name="diagnosis">Unrestorable tooth / periapical pathology requiring extraction.</field>
         <field name="cdt_codes">D7140</field>
-        <field name="treatment_plan">Informed consent obtained. Local anaesthesia administered ([agent] [dose]). Tooth extracted atraumatically. Socket irrigated and compressed. Haemostasis achieved. Post-op instructions given.</field>
-        <field name="notes">Next visit in [1 week] for socket review if needed. Prescribed: [analgesics/antibiotics as indicated].</field>
+        <field name="s_sentence_ids" eval="[(0, 0, {'section': 'S', 'text': 'Patient reports pain for [duration]. Previous treatments: [none/filling/RCT]. Medical history reviewed.'})]"/>
+        <field name="o_sentence_ids" eval="[(0, 0, {'section': 'O', 'text': 'Extra-oral: No swelling / lymphadenopathy. Intra-oral: Tooth [#] — [caries/fracture/mobility grade]. Periapical radiograph reviewed.'})]"/>
+        <field name="a_sentence_ids" eval="[(0, 0, {'section': 'A', 'text': 'Unrestorable tooth / periapical pathology requiring extraction.'})]"/>
+        <field name="p_sentence_ids" eval="[(0, 0, {'section': 'P', 'text': 'Informed consent obtained. Local anaesthesia administered ([agent] [dose]). Tooth extracted atraumatically. Socket irrigated and compressed. Haemostasis achieved. Post-op instructions given.'}),
+                                             (0, 0, {'section': 'P', 'text': 'Next visit in [1 week] for socket review if needed. Prescribed: [analgesics/antibiotics as indicated].'})]"/>
     </record>
 
     <record id="soap_tmpl_composite" model="dental.soap.template">
         <field name="name">Composite Filling</field>
         <field name="chief_complaint">Cavity / tooth sensitivity / chipped tooth</field>
-        <field name="history">Patient reports sensitivity to [cold/sweet/biting] for [duration]. No spontaneous pain.</field>
-        <field name="examination">Tooth [#] surface [M/O/D/B/L]: caries [depth: enamel/dentine/near pulp]. Vitality test: [positive/negative]. Radiograph: no periapical pathology.</field>
-        <field name="diagnosis">Dentinal caries tooth [#] — composite restoration indicated.</field>
         <field name="cdt_codes">D2391</field>
-        <field name="treatment_plan">LA administered. Rubber dam placed. Caries excavated. Liner placed [if deep]. Composite resin [shade] placed in increments. Light-cured. Occlusion adjusted. Polish completed.</field>
-        <field name="notes">Patient advised to avoid hard foods for 24 h. Return if sensitivity persists beyond 2 weeks.</field>
+        <field name="s_sentence_ids" eval="[(0, 0, {'section': 'S', 'text': 'Patient reports sensitivity to [cold/sweet/biting] for [duration]. No spontaneous pain.'})]"/>
+        <field name="o_sentence_ids" eval="[(0, 0, {'section': 'O', 'text': 'Tooth [#] surface [M/O/D/B/L]: caries [depth: enamel/dentine/near pulp]. Vitality test: [positive/negative]. Radiograph: no periapical pathology.'})]"/>
+        <field name="a_sentence_ids" eval="[(0, 0, {'section': 'A', 'text': 'Dentinal caries tooth [#] — composite restoration indicated.'})]"/>
+        <field name="p_sentence_ids" eval="[(0, 0, {'section': 'P', 'text': 'LA administered. Rubber dam placed. Caries excavated. Liner placed [if deep]. Composite resin [shade] placed in increments. Light-cured. Occlusion adjusted. Polish completed.'}),
+                                             (0, 0, {'section': 'P', 'text': 'Patient advised to avoid hard foods for 24 h. Return if sensitivity persists beyond 2 weeks.'})]"/>
     </record>
 
     <record id="soap_tmpl_rct" model="dental.soap.template">
         <field name="name">Root Canal Treatment (RCT)</field>
         <field name="chief_complaint">Severe / spontaneous toothache or abscess</field>
-        <field name="history">Patient reports [spontaneous / night / severe] pain for [duration]. Previous: [analgesics / antibiotics]. Swelling: [present/absent].</field>
-        <field name="examination">Tooth [#]: tender to percussion [yes/no], palpation [yes/no]. Vitality: [absent/necrotic]. Radiograph: widened PDL / periapical radiolucency [size].</field>
-        <field name="diagnosis">Pulp necrosis / irreversible pulpitis / periapical abscess — RCT indicated.</field>
         <field name="cdt_codes">D3310</field>
-        <field name="treatment_plan">Informed consent. LA administered. Rubber dam. Access cavity prepared. Working length determined (apex locator + radiograph: [mm]). Canals [n] instrumented to [size] with [rotary system]. Irrigation [NaOCl / EDTA / CHX]. Canals dried and [obturated with GP/Ca(OH)₂ dressing placed]. Temporary restoration placed.</field>
-        <field name="notes">Review in [1 week]. Crown placement recommended after RCT completion.</field>
+        <field name="s_sentence_ids" eval="[(0, 0, {'section': 'S', 'text': 'Patient reports [spontaneous / night / severe] pain for [duration]. Previous: [analgesics / antibiotics]. Swelling: [present/absent].'})]"/>
+        <field name="o_sentence_ids" eval="[(0, 0, {'section': 'O', 'text': 'Tooth [#]: tender to percussion [yes/no], palpation [yes/no]. Vitality: [absent/necrotic]. Radiograph: widened PDL / periapical radiolucency [size].'})]"/>
+        <field name="a_sentence_ids" eval="[(0, 0, {'section': 'A', 'text': 'Pulp necrosis / irreversible pulpitis / periapical abscess — RCT indicated.'})]"/>
+        <field name="p_sentence_ids" eval="[(0, 0, {'section': 'P', 'text': 'Informed consent. LA administered. Rubber dam. Access cavity prepared. Working length determined (apex locator + radiograph: [mm]). Canals [n] instrumented to [size] with [rotary system]. Irrigation [NaOCl / EDTA / CHX]. Canals dried and [obturated with GP/Ca(OH)₂ dressing placed]. Temporary restoration placed.'}),
+                                             (0, 0, {'section': 'P', 'text': 'Review in [1 week]. Crown placement recommended after RCT completion.'})]"/>
     </record>
 
     <record id="soap_tmpl_crown" model="dental.soap.template">
         <field name="name">Crown Preparation</field>
         <field name="chief_complaint">Broken / heavily restored tooth requiring full coverage</field>
-        <field name="history">Tooth [#] — [post-RCT / large existing restoration / fracture]. Patient agrees to crown.</field>
-        <field name="examination">Tooth [#]: [adequate ferrule / bone levels adequate]. Existing restoration [type]. Gingival health [satisfactory].</field>
-        <field name="diagnosis">Tooth requires full-coverage crown — [PFM / Zirconia / E.max].</field>
         <field name="cdt_codes">D2712</field>
-        <field name="treatment_plan">LA administered. Tooth prepared: [chamfer / shoulder] margin [supra/equi/sub-gingival]. Retraction cord placed. Digital or alginate impression taken. Temporary crown placed with [temp cement]. Shade [shade] recorded. Lab Rx sent.</field>
-        <field name="notes">Crown delivery appointment scheduled in [2 weeks]. Patient advised on temp crown care.</field>
+        <field name="s_sentence_ids" eval="[(0, 0, {'section': 'S', 'text': 'Tooth [#] — [post-RCT / large existing restoration / fracture]. Patient agrees to crown.'})]"/>
+        <field name="o_sentence_ids" eval="[(0, 0, {'section': 'O', 'text': 'Tooth [#]: [adequate ferrule / bone levels adequate]. Existing restoration [type]. Gingival health [satisfactory].'})]"/>
+        <field name="a_sentence_ids" eval="[(0, 0, {'section': 'A', 'text': 'Tooth requires full-coverage crown — [PFM / Zirconia / E.max].'})]"/>
+        <field name="p_sentence_ids" eval="[(0, 0, {'section': 'P', 'text': 'LA administered. Tooth prepared: [chamfer / shoulder] margin [supra/equi/sub-gingival]. Retraction cord placed. Digital or alginate impression taken. Temporary crown placed with [temp cement]. Shade [shade] recorded. Lab Rx sent.'}),
+                                             (0, 0, {'section': 'P', 'text': 'Crown delivery appointment scheduled in [2 weeks]. Patient advised on temp crown care.'})]"/>
     </record>
 
     <record id="soap_tmpl_cleaning" model="dental.soap.template">
         <field name="name">Scaling &amp; Polishing</field>
         <field name="chief_complaint">Routine cleaning / calculus / gingival bleeding</field>
-        <field name="history">Last professional cleaning: [date / unknown]. Brushing [frequency]. Bleeding on brushing: [yes/no].</field>
-        <field name="examination">Plaque score: [%]. Calculus: supra [mild/mod/heavy], sub [present/absent]. BPE score: [codes per sextant]. Gingival condition: [inflamed/healthy].</field>
-        <field name="diagnosis">Gingivitis / periodontitis stage [I/II/III/IV] — scaling and polishing indicated.</field>
         <field name="cdt_codes">D1110</field>
-        <field name="treatment_plan">Full-mouth supragingival scaling with ultrasonic and hand instruments. Subgingival debridement [sextants]. Polish with prophy paste. Oral hygiene instruction: [Bass technique / TePe / floss]. Fluoride varnish applied [if indicated].</field>
-        <field name="notes">Recall in [6 months]. Review [if perio pocket >4 mm: book perio assessment].</field>
+        <field name="s_sentence_ids" eval="[(0, 0, {'section': 'S', 'text': 'Last professional cleaning: [date / unknown]. Brushing [frequency]. Bleeding on brushing: [yes/no].'})]"/>
+        <field name="o_sentence_ids" eval="[(0, 0, {'section': 'O', 'text': 'Plaque score: [%]. Calculus: supra [mild/mod/heavy], sub [present/absent]. BPE score: [codes per sextant]. Gingival condition: [inflamed/healthy].'})]"/>
+        <field name="a_sentence_ids" eval="[(0, 0, {'section': 'A', 'text': 'Gingivitis / periodontitis stage [I/II/III/IV] — scaling and polishing indicated.'})]"/>
+        <field name="p_sentence_ids" eval="[(0, 0, {'section': 'P', 'text': 'Full-mouth supragingival scaling with ultrasonic and hand instruments. Subgingival debridement [sextants]. Polish with prophy paste. Oral hygiene instruction: [Bass technique / TePe / floss]. Fluoride varnish applied [if indicated].'}),
+                                             (0, 0, {'section': 'P', 'text': 'Recall in [6 months]. Review [if perio pocket &gt;4 mm: book perio assessment].'})]"/>
     </record>
 
     <record id="soap_tmpl_consult" model="dental.soap.template">
         <field name="name">New Patient Consultation</field>
         <field name="chief_complaint">New patient examination / second opinion / pain assessment</field>
-        <field name="history">Medical history reviewed — [conditions / medications / allergies]. Dental history: last visit [date]. Current complaint: [chief complaint].</field>
-        <field name="examination">Extra-oral: [TMJ / lymph nodes / facial symmetry]. Intra-oral: soft tissues [normal / lesion]. Dentition: [n] teeth present. Periodontium: [BPE]. Occlusion: [Angle class]. Radiographs: [BW / OPG / PA] — findings: [normal / caries / bone loss].</field>
-        <field name="diagnosis">Comprehensive oral health assessment completed. Findings: [summary].</field>
         <field name="cdt_codes">D0150</field>
-        <field name="treatment_plan">Treatment plan presented and discussed with patient: [item list]. Priorities: [urgent / elective]. Written plan provided. Consent obtained for first phase.</field>
-        <field name="notes">Next appointment: [procedure]. Recall: [6/12 months] depending on risk.</field>
+        <field name="s_sentence_ids" eval="[(0, 0, {'section': 'S', 'text': 'Medical history reviewed — [conditions / medications / allergies]. Dental history: last visit [date]. Current complaint: [chief complaint].'})]"/>
+        <field name="o_sentence_ids" eval="[(0, 0, {'section': 'O', 'text': 'Extra-oral: [TMJ / lymph nodes / facial symmetry]. Intra-oral: soft tissues [normal / lesion]. Dentition: [n] teeth present. Periodontium: [BPE]. Occlusion: [Angle class]. Radiographs: [BW / OPG / PA] — findings: [normal / caries / bone loss].'})]"/>
+        <field name="a_sentence_ids" eval="[(0, 0, {'section': 'A', 'text': 'Comprehensive oral health assessment completed. Findings: [summary].'})]"/>
+        <field name="p_sentence_ids" eval="[(0, 0, {'section': 'P', 'text': 'Treatment plan presented and discussed with patient: [item list]. Priorities: [urgent / elective]. Written plan provided. Consent obtained for first phase.'}),
+                                             (0, 0, {'section': 'P', 'text': 'Next appointment: [procedure]. Recall: [6/12 months] depending on risk.'})]"/>
     </record>
 
 </odoo>

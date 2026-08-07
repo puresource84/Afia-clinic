@@ -35,7 +35,27 @@ class DentalAppointmentTimes(models.Model):
     _inherit = 'dental.appointment'
 
     # -- Primary Datetime fields (calendar date_start / date_stop) --
-
+    #
+    # 2026-08: afia_dental_core's clean-room rewrite made start_datetime
+    # (backed by a real calendar.event) the single source of truth for
+    # scheduling. apt_start/apt_end used to be their own independently
+    # stored fields here, which meant an appointment booked through the
+    # core calendar view never touched them (no shift/double-booking
+    # checks ran, and the HH:MM fields showed nothing), while one booked
+    # through this module's HH:MM UI never updated start_datetime (wrong
+    # slot on the real Odoo Calendar, calendar.event never synced) — two
+    # disconnected clocks on the same record.
+    #
+    # First attempt: turn apt_start/apt_end into a compute+inverse alias
+    # over start_datetime/stop_datetime. Reverted — on this Odoo build,
+    # stored fields combining compute+inverse silently never re-run on
+    # dependency changes (verified: a plain store=True compute-only
+    # sibling field, e.g. apt_duration below, recomputes correctly on the
+    # exact same kind of write; fields_get() even reports an empty
+    # `depends` list for the compute+inverse ones). Root cause not tracked
+    # down further. Fixed instead with explicit two-way sync in create()/
+    # write() below — plain writable fields, no framework magic, so it
+    # can't silently stop working the same way.
     apt_start = fields.Datetime(string='Start Datetime', copy=False)
     apt_end = fields.Datetime(string='End Datetime', copy=False)
 
@@ -65,13 +85,21 @@ class DentalAppointmentTimes(models.Model):
     )
 
     # -- Defaults --
-
-    @api.model
-    def default_get(self, fields_list):
-        res = super().default_get(fields_list)
-        if not res.get('appointment_date'):
-            res['appointment_date'] = fields.Date.context_today(self)
-        return res
+    #
+    # 2026-08: this used to force appointment_date to today on every new
+    # record. That was correct for the old architecture where
+    # appointment_date was a plain required field, but in the clean-room
+    # core it's a compute-only field derived from start_datetime (which
+    # itself already defaults to now via afia_dental_core). Forcing a
+    # stale "today" value here caused a serious bug: Odoo's create() flow
+    # persists an explicitly-provided stored-computed field (appointment_date)
+    # via a follow-up write({'appointment_date': ...}) call *without*
+    # start_datetime in that vals dict — which is exactly the signature
+    # core's write() uses to detect "the date picker was edited directly"
+    # and re-anchor start_datetime to match. Net effect: creating an
+    # appointment for a future date silently collapsed start_datetime back
+    # to today (keeping only the time-of-day). Removed — the core already
+    # defaults start_datetime sensibly and derives appointment_date from it.
 
     # -- Compute HH:MM from stored Datetime --
 
@@ -193,15 +221,54 @@ class DentalAppointmentTimes(models.Model):
                     "Please select today or a future date."
                 )
 
-    # -- create() / write(): shift check + appointment_date sync --
+    # -- create() / write(): two-way scheduling sync + shift check --
 
     _SHIFT_TRIGGER_FIELDS = frozenset(
         {'apt_start', 'apt_end', 'apt_start_time', 'apt_end_time', 'dentist_id'}
     )
 
+    def _sync_scheduling_fields(self, touched_apt=False, touched_core=False):
+        """Keep apt_start/apt_end (this module's HH:MM UI + calendar) and
+        start_datetime/duration/stop_datetime (core's calendar, the real
+        source of truth) mirroring each other.
+
+        Explicit two-way sync instead of a field compute/inverse — see the
+        long note on apt_start's definition above for why. touched_apt/
+        touched_core tell us which side the caller actually wrote to, so a
+        plain unrelated write (e.g. state) doesn't do pointless work and,
+        more importantly, so we don't ping-pong the two sides against each
+        other. appointment_date (core, compute-only) doesn't need handling
+        here — it derives from start_datetime on its own once that's set.
+        """
+        for apt in self:
+            if touched_apt and not touched_core:
+                vals = {}
+                if apt.apt_start and apt.apt_start != apt.start_datetime:
+                    vals['start_datetime'] = apt.apt_start
+                if apt.apt_start and apt.apt_end and apt.apt_end > apt.apt_start:
+                    new_duration = max(
+                        (apt.apt_end - apt.apt_start).total_seconds() / 3600.0, 0.01)
+                    if abs((apt.duration or 0.0) - new_duration) > 1e-6:
+                        vals['duration'] = new_duration
+                if vals:
+                    super(DentalAppointmentTimes, apt).write(vals)
+            else:
+                vals = {}
+                if apt.apt_start != apt.start_datetime:
+                    vals['apt_start'] = apt.start_datetime
+                if apt.apt_end != apt.stop_datetime:
+                    vals['apt_end'] = apt.stop_datetime
+                if vals:
+                    super(DentalAppointmentTimes, apt).write(vals)
+
     @api.model_create_multi
     def create(self, vals_list):
         records = super().create(vals_list)
+        for apt, vals in zip(records, vals_list):
+            apt._sync_scheduling_fields(
+                touched_apt='apt_start' in vals or 'apt_end' in vals,
+                touched_core='start_datetime' in vals or 'duration' in vals,
+            )
         for apt in records:
             msg = apt._shift_violation_message()
             if msg:
@@ -215,12 +282,11 @@ class DentalAppointmentTimes(models.Model):
 
     def write(self, vals):
         result = super().write(vals)
-        # Sync appointment_date after calendar drag
-        if vals.get('apt_start'):
-            for apt in self:
-                new_date = apt._to_local(apt.apt_start).date()
-                if apt.appointment_date != new_date:
-                    apt.appointment_date = new_date
+        touched_apt = 'apt_start' in vals or 'apt_end' in vals
+        touched_core = 'start_datetime' in vals or 'duration' in vals
+        if touched_apt or touched_core:
+            self._sync_scheduling_fields(
+                touched_apt=touched_apt, touched_core=touched_core)
         # Soft warnings — no hard block; onchange already alerted the user
         if self._SHIFT_TRIGGER_FIELDS & set(vals):
             for apt in self:

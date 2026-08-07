@@ -8,7 +8,7 @@
     'website': 'https://www.itcornersolutions.net/',
     'license': 'OPL-1',
     'depends': [
-        'dental_hospital',
+        'afia_dental_core',
         'clinic_core',
     ],
     'data': [

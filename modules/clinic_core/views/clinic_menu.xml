@@ -10,7 +10,7 @@
 
     <menuitem id="menu_clinic_core_settings" 
               name="Core Settings" 
-              parent="dental_hospital.dental_configure"
+              parent="afia_dental_core.dental_configure"
               groups="clinic_core.group_clinic_admin"
               action="action_clinic_core_settings_window" sequence="99"/>
 </data>

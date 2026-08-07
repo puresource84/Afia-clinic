@@ -243,7 +243,7 @@
     <!-- ─── Menu item under Dental Clinic ───────────────────────────────── -->
     <menuitem id="menu_perio_exams"
               name="Perio Exams"
-              parent="dental_hospital.hospital_root_menu"
+              parent="afia_dental_core.hospital_root_menu"
               action="action_perio_exams"
               sequence="16"
               groups="clinic_core.group_clinic_admin,clinic_core.group_clinic_dentist"/>

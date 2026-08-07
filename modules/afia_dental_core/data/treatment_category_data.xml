@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="treatment_categ_preventive" model="treatment.category">
+        <field name="name">Preventive</field>
+    </record>
+    <record id="treatment_categ_restorative" model="treatment.category">
+        <field name="name">Restorative</field>
+    </record>
+    <record id="treatment_categ_endodontic" model="treatment.category">
+        <field name="name">Endodontic</field>
+    </record>
+    <record id="treatment_categ_surgical" model="treatment.category">
+        <field name="name">Surgical</field>
+    </record>
+    <record id="treatment_categ_cosmetic" model="treatment.category">
+        <field name="name">Cosmetic</field>
+    </record>
+    <record id="treatment_categ_orthodontic" model="treatment.category">
+        <field name="name">Orthodontic</field>
+    </record>
+</odoo>

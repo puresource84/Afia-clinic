@@ -1,13 +1,13 @@
 {
-    'name': 'Dental SOAP Clinical Notes',
-    'version': '18.0.1.2.0',
+    'name': 'Dental SOAP Notes',
+    'version': '18.0.1.3.0',
     'category': 'Healthcare/Dental',
     'summary': 'Structured S/O/A/P clinical notes with content library, procedure templates and multi-visit history.',
     'author': 'ITCS (IT Corner Solutions)',
     'website': 'https://www.itcornersolutions.net/',
     'license': 'OPL-1',
     'depends': [
-        'dental_hospital',
+        'afia_dental_core',
         'clinic_core',
         'dental_clinical_permissions',
     ],

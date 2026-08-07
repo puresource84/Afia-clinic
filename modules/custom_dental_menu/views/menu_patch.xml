@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_patient_group" name="Patient" parent="dental_hospital.hospital_root_menu" sequence="20"/>
-    <menuitem id="menu_billing_group" name="Billing" parent="dental_hospital.hospital_root_menu" sequence="40"/>
+    <menuitem id="menu_patient_group" name="Patient" parent="afia_dental_core.hospital_root_menu" sequence="20"/>
+    <menuitem id="menu_billing_group" name="Billing" parent="afia_dental_core.hospital_root_menu" sequence="40"/>
 
-    <record id="dental_hospital.hospital_patient_info" model="ir.ui.menu">
+    <record id="afia_dental_core.hospital_patient_info" model="ir.ui.menu">
         <field name="parent_id" ref="custom_dental_menu.menu_patient_group"/>
         <field name="sequence">10</field>
     </record>
-    <record id="dental_hospital.dental_prescription_menu" model="ir.ui.menu">
+    <record id="afia_dental_core.dental_prescription_menu" model="ir.ui.menu">
         <field name="parent_id" ref="custom_dental_menu.menu_patient_group"/>
         <field name="sequence">20</field>
         <field name="name">Prescriptions</field>
@@ -29,37 +29,37 @@
         <field name="sequence">60</field>
     </record>
 
-    <record id="dental_hospital.hospital_invoice_info" model="ir.ui.menu">
+    <record id="afia_dental_core.hospital_invoice_info" model="ir.ui.menu">
         <field name="parent_id" ref="custom_dental_menu.menu_billing_group"/>
         <field name="sequence">10</field>
     </record>
-    <record id="dental_hospital.hospital_payment_info" model="ir.ui.menu">
+    <record id="afia_dental_core.hospital_payment_info" model="ir.ui.menu">
         <field name="parent_id" ref="custom_dental_menu.menu_billing_group"/>
         <field name="sequence">20</field>
     </record>
 
-    <record id="dental_hospital.hospital_appointment_info" model="ir.ui.menu">
-        <field name="parent_id" ref="dental_hospital.hospital_root_menu"/>
+    <record id="afia_dental_core.hospital_appointment_info" model="ir.ui.menu">
+        <field name="parent_id" ref="afia_dental_core.hospital_root_menu"/>
         <field name="sequence">10</field>
     </record>
-    <record id="dental_hospital.dental_staff" model="ir.ui.menu">
-        <field name="parent_id" ref="dental_hospital.hospital_root_menu"/>
+    <record id="afia_dental_core.dental_staff" model="ir.ui.menu">
+        <field name="parent_id" ref="afia_dental_core.hospital_root_menu"/>
         <field name="sequence">30</field>
     </record>
     <record id="dental_insurance.menu_insurance_root" model="ir.ui.menu">
-        <field name="parent_id" ref="dental_hospital.hospital_root_menu"/>
+        <field name="parent_id" ref="afia_dental_core.hospital_root_menu"/>
         <field name="sequence">50</field>
     </record>
     <record id="dental_analytics.menu_dental_analytics" model="ir.ui.menu">
-        <field name="parent_id" ref="dental_hospital.hospital_root_menu"/>
+        <field name="parent_id" ref="afia_dental_core.hospital_root_menu"/>
         <field name="sequence">80</field>
     </record>
     <record id="dental_portal_booking.menu_dental_book_link" model="ir.ui.menu">
-        <field name="parent_id" ref="dental_hospital.hospital_root_menu"/>
+        <field name="parent_id" ref="afia_dental_core.hospital_root_menu"/>
         <field name="sequence">99</field>
     </record>
-    <record id="dental_hospital.dental_configure" model="ir.ui.menu">
-        <field name="parent_id" ref="dental_hospital.hospital_root_menu"/>
+    <record id="afia_dental_core.dental_configure" model="ir.ui.menu">
+        <field name="parent_id" ref="afia_dental_core.hospital_root_menu"/>
         <field name="sequence">100</field>
     </record>
 
@@ -70,9 +70,9 @@
          Model: res.partner (filtered to is_patient=True by action domain)
          Fields confirmed present on res.partner / DentalPatients:
            avatar_128   — base Odoo 18 image thumbnail
-           patient_no   — custom Char (dental_hospital)
-           gender       — custom Selection male/female (dental_hospital)
-           patient_age  — custom Integer computed from dob (dental_hospital)
+           patient_no   — custom Char (afia_dental_core)
+           gender       — custom Selection male/female (afia_dental_core)
+           patient_age  — custom Integer computed from dob (afia_dental_core)
            mobile       — base res.partner
            phone        — base res.partner
            city         — base res.partner
@@ -144,11 +144,11 @@
         <field name="sequence">0</field>
         <field name="view_mode">kanban</field>
         <field name="view_id" ref="view_partner_kanban_dental_patient"/>
-        <field name="act_window_id" ref="dental_hospital.dental_patient_menu"/>
+        <field name="act_window_id" ref="afia_dental_core.dental_patient_menu"/>
     </record>
 
     <!-- Update Patients action: add kanban as default (first) view mode -->
-    <record id="dental_hospital.dental_patient_menu" model="ir.actions.act_window">
+    <record id="afia_dental_core.dental_patient_menu" model="ir.actions.act_window">
         <field name="view_mode">kanban,list,form</field>
     </record>
 

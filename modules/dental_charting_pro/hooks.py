@@ -27,6 +27,15 @@ def post_init_hook(env):
     ToothRecord = env['dental.tooth.record']
     Partner = env['res.partner']
     migrated = skipped = 0
+
+    # Pre-load every existing (patient_id, tooth_fdi) pair once instead of
+    # issuing a search_count() per tooth per chart (32 teeth x N charts).
+    existing_pairs = {
+        (r['patient_id'][0], r['tooth_fdi'])
+        for r in ToothRecord.search_read([], ['patient_id', 'tooth_fdi'])
+        if r['patient_id']
+    }
+
     for chart in env['teeth.chart'].search([]):
         patient = Partner.search(
             [('is_patient', '=', True), ('name', '=', chart.name)], limit=2)
@@ -39,9 +48,8 @@ def post_init_hook(env):
         for universal, fdi in UNIVERSAL_TO_FDI.items():
             if not getattr(chart, 'tooth_%d' % universal, False):
                 continue
-            exists = ToothRecord.search_count([
-                ('patient_id', '=', patient.id), ('tooth_fdi', '=', fdi)])
-            if exists:
+            pair = (patient.id, fdi)
+            if pair in existing_pairs:
                 continue
             ToothRecord.create({
                 'patient_id': patient.id,
@@ -50,6 +58,7 @@ def post_init_hook(env):
                 'notes': 'Migrated from legacy teeth chart #%d '
                          '(universal tooth %d). Verify condition.' % (chart.id, universal),
             })
+            existing_pairs.add(pair)
         migrated += 1
     _logger.info('Legacy teeth chart migration: %d charts migrated, %d skipped.',
                  migrated, skipped)

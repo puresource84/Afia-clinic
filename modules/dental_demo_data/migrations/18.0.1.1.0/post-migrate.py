@@ -63,9 +63,11 @@ def migrate(cr, version):
     # ── 3. Blank shift artifact ──────────────────────────────────────────
     # dental.time.shift.create() fires before start/end are populated,
     # leaving a record where both fields = 0.0 (shown as "00:00 – 00:00").
+    # 2026-08: field names updated to match the clean-room core
+    # (start_time/end_time), which renamed them from shift_start/shift_end.
     blank_shifts = env['dental.time.shift'].search([
-        ('shift_start', '=', 0.0),
-        ('shift_end', '=', 0.0),
+        ('start_time', '=', 0.0),
+        ('end_time', '=', 0.0),
     ])
     if blank_shifts:
         count = len(blank_shifts)

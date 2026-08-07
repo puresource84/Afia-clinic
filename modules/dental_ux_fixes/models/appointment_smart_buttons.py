@@ -66,15 +66,25 @@ class DentalAppointmentSmartButtons(models.Model):
 
     def action_view_dental_chart(self):
         self.ensure_one()
+        view = self.env.ref('dental_charting_pro.view_partner_form_dental_chart')
         return {
             'type': 'ir.actions.act_window',
             'name': 'Dental Chart',
-            'res_model': 'dental.tooth.record',
-            'view_mode': 'list,form',
-            'domain': [('patient_id', '=', self.patient_id.id)],
+            'res_model': 'res.partner',
+            'res_id': self.patient_id.id,
+            'view_mode': 'form',
+            'views': [(view.id, 'form')],
+            'target': 'current',
+            # Picked up by the odontogram widget's saveBatch() so records
+            # created from inside an appointment auto-fill the treating
+            # doctor / appointment link, and the treatment when the
+            # appointment has exactly one (ambiguous with several, so left
+            # blank for the dentist to choose manually in that case).
             'context': {
-                'default_patient_id': self.patient_id.id,
-                'create': True,
+                'default_appointment_id': self.id,
+                'default_doctor_id': self.dentist_id.id,
+                'default_treatment_id': (
+                    self.treatments[0].id if len(self.treatments) == 1 else False),
             },
         }
 

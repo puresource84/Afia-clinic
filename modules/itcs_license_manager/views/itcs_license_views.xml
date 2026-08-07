@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_itcs_license_form" model="ir.ui.view">
+        <field name="name">itcs.license.form</field>
+        <field name="model">itcs.license</field>
+        <field name="arch" type="xml">
+            <form string="ITCS License">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="active,grace,read_only" readonly="1"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Instance">
+                            <field name="clinic_name"/>
+                            <field name="clinic_code"/>
+                            <field name="expiry_date"/>
+                            <field name="grace_days"/>
+                            <field name="days_to_expiry" readonly="1"/>
+                        </group>
+                        <group string="Telegram alerts to ITCS">
+                            <field name="telegram_bot_token" password="True"/>
+                            <field name="telegram_chat_id"/>
+                            <field name="last_alert_sent" readonly="1"/>
+                        </group>
+                    </group>
+                    <div class="mt-2 mb-2">
+                        <button name="action_open_apply_code_wizard" type="object"
+                                string="Apply Renewal Code" class="btn-primary"/>
+                    </div>
+                    <notebook>
+                        <page string="Renewal History">
+                            <field name="renewal_ids" readonly="1">
+                                <list>
+                                    <field name="applied_on"/>
+                                    <field name="previous_expiry"/>
+                                    <field name="new_expiry"/>
+                                    <field name="code"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_itcs_license_list" model="ir.ui.view">
+        <field name="name">itcs.license.list</field>
+        <field name="model">itcs.license</field>
+        <field name="arch" type="xml">
+            <list string="ITCS Licenses">
+                <field name="clinic_name"/>
+                <field name="clinic_code"/>
+                <field name="expiry_date"/>
+                <field name="state"/>
+                <field name="days_to_expiry"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_itcs_license" model="ir.actions.act_window">
+        <field name="name">ITCS License</field>
+        <field name="res_model">itcs.license</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Top-level menu, visible ONLY to group_itcs_license_admin. No parent
+         menu shared with any clinic-facing app, so it never appears under
+         Settings or any Afia Clinic menu that clinic staff can browse into. -->
+    <menuitem id="menu_itcs_license_root"
+              name="ITCS License"
+              groups="itcs_license_manager.group_itcs_license_admin"
+              sequence="999"/>
+    <menuitem id="menu_itcs_license"
+              name="License"
+              parent="menu_itcs_license_root"
+              action="action_itcs_license"
+              groups="itcs_license_manager.group_itcs_license_admin"/>
+</odoo>

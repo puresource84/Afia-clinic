@@ -2,7 +2,7 @@
 <odoo>
     <record id="email_template_appointment_reminder" model="mail.template">
         <field name="name">Dental: Appointment Reminder</field>
-        <field name="model_id" ref="dental_hospital.model_dental_appointment"/>
+        <field name="model_id" ref="afia_dental_core.model_dental_appointment"/>
         <field name="subject">Reminder: Your Dental Appointment Tomorrow</field>
         <field name="email_to">{{ object.patient_id.email }}</field>
         <field name="body_html"><![CDATA[
@@ -18,7 +18,7 @@ with <strong>{{ object.dentist_id.name }}</strong>.</p>
 
     <record id="email_template_patient_recall" model="mail.template">
         <field name="name">Dental: Patient Recall</field>
-        <field name="model_id" ref="dental_hospital.model_dental_appointment"/>
+        <field name="model_id" ref="afia_dental_core.model_dental_appointment"/>
         <field name="subject">Time for Your Regular Dental Check-up!</field>
         <field name="email_to">{{ object.patient_id.email }}</field>
         <field name="body_html"><![CDATA[

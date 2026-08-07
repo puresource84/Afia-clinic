@@ -9,7 +9,7 @@
     'depends': [
         'base',
         'mail',
-        'dental_hospital',
+        'afia_dental_core',
     ],
     'data': [
         'security/clinic_security.xml',

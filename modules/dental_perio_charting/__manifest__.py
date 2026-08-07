@@ -1,13 +1,13 @@
 {
     'name': 'Dental Perio Charting',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.2.0',
     'category': 'Healthcare/Dental',
     'summary': 'Full periodontal examination chart with 6-point pocket depth, bleeding index, recession and mobility per tooth.',
     'author': 'ITCS (IT Corner Solutions)',
     'website': 'https://www.itcornersolutions.net/',
     'license': 'OPL-1',
     'depends': [
-        'dental_hospital',
+        'afia_dental_core',
         'clinic_core',
         'dental_soap_notes',
     ],

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <menuitem id="menu_dental_sterilization" name="Sterilization"
-        parent="dental_hospital.hospital_root_menu"
+        parent="afia_dental_core.hospital_root_menu"
         action="action_steril_log" sequence="70"/>
 </odoo>

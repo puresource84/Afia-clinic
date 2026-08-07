@@ -54,7 +54,7 @@
 
     <menuitem id="menu_telegram_settings"
               name="Telegram Settings"
-              parent="dental_hospital.dental_configure"
+              parent="afia_dental_core.dental_configure"
               action="action_telegram_settings"
               sequence="100"/>
 </odoo>

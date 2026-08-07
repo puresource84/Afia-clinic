@@ -1,9 +1,0 @@
-<odoo>
-    <menuitem id="menu_dental_report_builder_root" name="Dental Reports"/>
-
-    <menuitem id="menu_dental_report_models" name="Report Models"
-              parent="menu_dental_report_builder_root"/>
-
-    <menuitem id="menu_dental_report_instances" name="Generated Reports"
-              parent="menu_dental_report_builder_root"/>
-</odoo>

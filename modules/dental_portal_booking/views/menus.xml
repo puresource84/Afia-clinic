@@ -6,6 +6,6 @@
         <field name="target">new</field>
     </record>
     <menuitem id="menu_dental_book_link" name="Online Booking Page"
-        parent="dental_hospital.hospital_root_menu"
+        parent="afia_dental_core.hospital_root_menu"
         action="action_book_appointment_page" sequence="99"/>
 </odoo>

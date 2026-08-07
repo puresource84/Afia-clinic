@@ -1,5 +1,5 @@
 {
-    'name': 'Dental Insurance v2 — Pre-Auth & Claim Templates',
+    'name': 'Dental Insurance v2',
     'version': '18.0.1.0.0',
     'category': 'Healthcare/Dental',
     'summary': 'Extends dental insurance with pre-auth document attachments, payer-specific claim templates and batch submission.',

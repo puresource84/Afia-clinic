@@ -1,5 +1,5 @@
 {
-    'name': 'Dental Clinical Audit Trail',
+    'name': 'Dental Audit Trail',
     'version': '18.0.1.2.0',
     'category': 'Healthcare/Dental',
     'summary': 'Field-level audit trail on all clinical records — every change is logged with user, timestamp and old value.',
@@ -7,11 +7,12 @@
     'website': 'https://www.itcornersolutions.net/',
     'license': 'OPL-1',
     'depends': [
-        'dental_hospital',
+        'afia_dental_core',
         'dental_treatment_plan',
         'dental_consent',
         'dental_charting_pro',
         'dental_allergy_guard',
+        'dental_ux_fixes',
     ],
     'data': [
         'views/audit_views.xml',

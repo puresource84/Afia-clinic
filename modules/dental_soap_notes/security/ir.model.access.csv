@@ -2,12 +2,15 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_soap_note_admin,dental.soap.note admin,model_dental_soap_note,clinic_core.group_clinic_admin,1,1,1,1
 access_soap_note_dentist,dental.soap.note dentist,model_dental_soap_note,clinic_core.group_clinic_dentist,1,1,1,0
 access_soap_note_receptionist,dental.soap.note receptionist,model_dental_soap_note,clinic_core.group_clinic_receptionist,1,0,0,0
+access_soap_note_hygienist,dental.soap.note hygienist,model_dental_soap_note,dental_clinical_permissions.group_clinic_hygienist,1,1,1,0
 access_soap_template_admin,dental.soap.template admin,model_dental_soap_template,clinic_core.group_clinic_admin,1,1,1,1
 access_soap_template_dentist,dental.soap.template dentist,model_dental_soap_template,clinic_core.group_clinic_dentist,1,0,0,0
 access_soap_template_receptionist,dental.soap.template receptionist,model_dental_soap_template,clinic_core.group_clinic_receptionist,1,0,0,0
+access_soap_template_hygienist,dental.soap.template hygienist,model_dental_soap_template,dental_clinical_permissions.group_clinic_hygienist,1,0,0,0
 access_soap_sentence_admin,dental.soap.sentence admin,model_dental_soap_sentence,clinic_core.group_clinic_admin,1,1,1,1
 access_soap_sentence_dentist,dental.soap.sentence dentist,model_dental_soap_sentence,clinic_core.group_clinic_dentist,1,1,1,0
 access_soap_sentence_receptionist,dental.soap.sentence receptionist,model_dental_soap_sentence,clinic_core.group_clinic_receptionist,1,0,0,0
+access_soap_sentence_hygienist,dental.soap.sentence hygienist,model_dental_soap_sentence,dental_clinical_permissions.group_clinic_hygienist,1,1,1,0
 access_treatment_category_admin,dental.treatment.category admin,model_dental_treatment_category,clinic_core.group_clinic_admin,1,1,1,1
 access_treatment_category_dentist,dental.treatment.category dentist,model_dental_treatment_category,clinic_core.group_clinic_dentist,1,0,0,0
 access_treatment_category_receptionist,dental.treatment.category receptionist,model_dental_treatment_category,clinic_core.group_clinic_receptionist,1,0,0,0

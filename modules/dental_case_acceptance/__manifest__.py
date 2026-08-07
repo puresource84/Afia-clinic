@@ -1,5 +1,5 @@
 {
-    'name': 'Dental Case Acceptance & E-Signature',
+    'name': 'Dental Case Acceptance',
     'version': '18.0.1.0.0',
     'category': 'Healthcare/Dental',
     'summary': 'Present treatment plans to patients on a tablet and capture e-signatures — improves case acceptance rates.',

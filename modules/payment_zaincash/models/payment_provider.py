@@ -170,12 +170,20 @@ class PaymentProviderZainCash(models.Model):
     def _zaincash_verify_callback(self, post_data):
         """Return True if the callback POST data is genuinely from ZainCash.
 
-        ZainCash signs callbacks with the merchant secret.  Implement the
-        exact verification method documented in your merchant agreement.
-        This is a placeholder — fill in once you receive the spec from ZainCash.
+        ZainCash signs callbacks with the merchant secret. This provider is
+        currently kept disabled/dormant for future enhancements — real
+        signature verification per the ZainCash merchant documentation has
+        not been implemented yet. Until it is, callbacks are rejected by
+        default (fail-closed) rather than blindly accepted, so this
+        provider cannot be used to fake a payment confirmation even if it
+        were ever accidentally enabled.
+
+        # TODO: implement per ZainCash merchant documentation before
+        # actually enabling this provider for live payments.
         """
-        # TODO: implement per ZainCash merchant documentation
         _logger.warning(
-            "ZainCash callback signature verification not yet implemented. "
-            "Accepting callback — MUST be secured before going live.")
-        return True
+            "ZainCash callback signature verification is not yet implemented. "
+            "Rejecting callback by default (fail-closed) — this provider is "
+            "dormant/for future enhancements. Do not enable it for live "
+            "payments until real verification is implemented.")
+        return False

@@ -3,7 +3,7 @@
     <data noupdate="1">
         <record id="cron_appointment_reminders" model="ir.cron">
             <field name="name">Dental: Send Appointment Reminders</field>
-            <field name="model_id" ref="dental_hospital.model_dental_appointment"/>
+            <field name="model_id" ref="afia_dental_core.model_dental_appointment"/>
             <field name="state">code</field>
             <field name="code">model._cron_send_appointment_reminders()</field>
             <field name="interval_number">1</field>
@@ -12,7 +12,7 @@
         </record>
         <record id="cron_patient_recall" model="ir.cron">
             <field name="name">Dental: Patient Recall Notices</field>
-            <field name="model_id" ref="dental_hospital.model_dental_appointment"/>
+            <field name="model_id" ref="afia_dental_core.model_dental_appointment"/>
             <field name="state">code</field>
             <field name="code">model._cron_send_recall_notices()</field>
             <field name="interval_number">1</field>

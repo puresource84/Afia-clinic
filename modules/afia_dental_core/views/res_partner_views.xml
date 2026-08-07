@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_dental" model="ir.ui.view">
+        <field name="name">res.partner.form.dental</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_title')]" position="before">
+                <div class="oe_button_box" name="dental_button_box" invisible="not is_patient">
+                    <button name="action_view_appointments" type="object"
+                            class="oe_stat_button" icon="fa-calendar">
+                        <field name="appointment_count" widget="statinfo" string="Appointments"/>
+                    </button>
+                    <button name="action_prescription" type="object"
+                            class="oe_stat_button" icon="fa-file-text-o" string="Prescription"/>
+                    <button name="action_open_patient_payments" type="object"
+                            class="oe_stat_button" icon="fa-money" string="Payments"/>
+                </div>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <group string="Patient Details" invisible="not is_patient">
+                    <group>
+                        <field name="is_patient"/>
+                        <field name="patient_no" readonly="1"/>
+                        <field name="dob"/>
+                        <field name="patient_age" readonly="1"/>
+                        <field name="gender"/>
+                    </group>
+                </group>
+                <notebook invisible="not is_patient">
+                    <page string="Medical Questionnaire" name="medical_questionnaire">
+                        <field name="medical_questionnaire_ids">
+                            <list editable="bottom">
+                                <field name="question_id" readonly="1"/>
+                                <field name="yes_no"/>
+                                <field name="reason"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="X-Ray Reports" name="xray_reports">
+                        <field name="report_ids">
+                            <kanban>
+                                <field name="report_date"/>
+                                <field name="description"/>
+                                <templates>
+                                    <t t-name="card">
+                                        <div class="d-flex justify-content-between">
+                                            <field name="report_date"/>
+                                            <field name="description"/>
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="dental_patient_menu" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_patient', '=', True)]</field>
+        <field name="context">{'default_is_patient': True, 'default_company_type': 'person'}</field>
+    </record>
+</odoo>

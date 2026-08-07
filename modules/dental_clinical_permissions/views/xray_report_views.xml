@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- afia_dental_core ships wizard/xray_report_views.xml with a form view
+         (id="xray_report_view_form"), but that file is NOT listed in
+         afia_dental_core's __manifest__.py 'data' — it never actually loads,
+         so there is no live view record to inherit from (confirmed via
+         "External ID not found: afia_dental_core.xray_report_view_form" on
+         upgrade). In practice xray.report records are opened from an inline
+         kanban on the Patient form's "X-Ray Reports" page
+         (afia_dental_core/views/patient_view.xml, field="report_ids"), which
+         falls back to Odoo's auto-generated default form when a card is
+         clicked, since no real form view is registered anywhere.
+
+         Fix: define our OWN standalone form view here (not inherited) so
+         there is finally a real, explicit view — including the chatter for
+         the archive audit trail. Since this is the only form view registered
+         for xray.report, Odoo uses it by default. -->
+    <record id="xray_report_view_form" model="ir.ui.view">
+        <field name="name">xray.report.view.form</field>
+        <field name="model">xray.report</field>
+        <field name="arch" type="xml">
+            <form string="X-Ray Report">
+                <sheet>
+                    <group>
+                        <field name="patient_id" invisible="1"/>
+                        <field name="report_date"/>
+                        <field name="description"/>
+                        <group>
+                            <field name="scan_image" widget="image" class="oe_avatar"/>
+                            <field name="image_filename" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+</odoo>

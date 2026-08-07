@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        Odoo 18's built-in "last connected user" login switcher component
+        (public component "web.user_switch") crashes on mount on this
+        server build with: OwlError: Missing template: "web.login_user_switch".
+        The crash happens inside Owl's component construction step, before
+        that same component's setup() would otherwise remove the "d-none"
+        class the server always bakes onto the login form. Net effect: the
+        entire login form (Email/Password fields) never becomes visible on
+        ANY /web/login page load, for any user or role.
+
+        This is a stock Odoo `web` module issue, not something introduced by
+        any Afia Clinic customization (verified: no custom module touches
+        web.login, the UserSwitch component, or the frontend asset bundle).
+        A JS-bundle-based fix is unreliable here because it depends on
+        Odoo's own module-loader execution order relative to the crashing
+        component. This inline <script>, injected directly into the
+        server-rendered page via view inheritance, runs synchronously as
+        the browser parses the HTML — independent of the JS asset bundle
+        and its loader — so it reliably un-hides the form regardless of
+        what happens elsewhere on the page afterwards.
+    -->
+    <template id="web_login_force_show_form" inherit_id="web.login">
+        <xpath expr="//form[@role='form']" position="after">
+            <script type="text/javascript">
+                (function () {
+                    function forceShowLoginForm() {
+                        var form = document.querySelector('form.oe_login_form');
+                        if (form &amp;&amp; form.classList.contains('d-none')) {
+                            form.classList.remove('d-none');
+                        }
+                    }
+                    forceShowLoginForm();
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', forceShowLoginForm);
+                    }
+                    if (window.MutationObserver &amp;&amp; document.body) {
+                        var observer = new MutationObserver(forceShowLoginForm);
+                        observer.observe(document.body, {
+                            attributes: true,
+                            attributeFilter: ['class'],
+                            subtree: true
+                        });
+                    }
+                })();
+            </script>
+        </xpath>
+    </template>
+</odoo>

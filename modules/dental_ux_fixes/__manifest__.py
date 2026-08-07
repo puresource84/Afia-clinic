@@ -1,20 +1,24 @@
 {
-    'name': 'Afia Clinic — UX & Branding',
-    'version': '18.0.2.0.0',
+    'name': 'Clinic UX & Branding',
+    'version': '18.0.2.1.3',
     'category': 'Healthcare/Dental',
     'summary': 'Afia Clinic branding, UI polish and UX improvements — refined menus, colour theme and booking-time validation.',
     'author': 'ITCS (IT Corner Solutions)',
     'website': 'https://www.itcornersolutions.net/',
     'license': 'OPL-1',
     'depends': [
-        'dental_hospital',
+        'afia_dental_core',
         'dental_insurance',
         'dental_treatment_plan',
         'dental_consent',
         'dental_lab',
         'dental_sterilization',
         'clinic_core',
-        'clinic_core_plus',
+        # clinic_core_plus dependency removed 2026-07-15: that module was an
+        # abandoned duplicate of clinic_core (same 4 settings fields, never
+        # truly extended anything) and is being retired. See menu_dedupe.xml
+        # and menu_configure_groups.xml in this module for the corresponding
+        # cleanup of its now-removed menu entry.
         'stock',
         'dental_portal_booking',
         'dental_reminders_telegram',
@@ -25,6 +29,13 @@
         'dental_soap_notes',
         'dental_perio_charting',
         'custom_dental_menu',
+        # 2026-08: added — clinic_stock_menu.xml references
+        # dental_consumables.menu_clinic_stock by external ID, but this
+        # module was missing from depends. Worked by coincidence in prior
+        # test databases where dental_consumables was already installed
+        # from an earlier session; a genuine from-scratch install exposes
+        # the missing dependency as a ParseError (uninstalled module).
+        'dental_consumables',
     ],
     'data': [
         'security/ir.model.access.csv',

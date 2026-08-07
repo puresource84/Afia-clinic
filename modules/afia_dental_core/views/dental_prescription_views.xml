@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_dental_prescription_list" model="ir.ui.view">
+        <field name="name">dental.prescription.list</field>
+        <field name="model">dental.prescription</field>
+        <field name="arch" type="xml">
+            <list decoration-success="state == 'invoiced'">
+                <field name="sequence_no"/>
+                <field name="patient_id"/>
+                <field name="prescribed_doctor_id"/>
+                <field name="prescription_date"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="dental_prescription_view_form" model="ir.ui.view">
+        <field name="name">dental.prescription.form</field>
+        <field name="model">dental.prescription</field>
+        <field name="arch" type="xml">
+            <form string="Prescription">
+                <header>
+                    <button name="action_prescribed" string="Mark Prescribed" type="object"
+                            invisible="state != 'new'" class="oe_highlight"/>
+                    <button name="action_create_invoice" string="Create Invoice(s)" type="object"
+                            invisible="state != 'done'" class="oe_highlight"/>
+                    <button name="action_print_prescription" string="Print" type="object"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="sequence_no" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="appointment_id"/>
+                            <field name="patient_id" readonly="1"/>
+                            <field name="prescribed_doctor_id" readonly="1"/>
+                            <field name="referred_dentist_id"/>
+                        </group>
+                        <group>
+                            <field name="prescription_date"/>
+                            <field name="next_appointment_date"/>
+                            <field name="treatment_id"/>
+                            <field name="cost" widget="monetary"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="selected_teeth"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Medicines">
+                            <field name="medicine_ids">
+                                <list editable="bottom">
+                                    <field name="medicament_id"/>
+                                    <field name="medicament_form"/>
+                                    <field name="frequency_id"/>
+                                    <field name="quantity"/>
+                                    <field name="morning"/>
+                                    <field name="noon"/>
+                                    <field name="night"/>
+                                    <field name="medicine_take"/>
+                                    <field name="days"/>
+                                    <field name="price" widget="monetary"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_dental_prescription" model="ir.actions.act_window">
+        <field name="name">Prescriptions</field>
+        <field name="res_model">dental.prescription</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

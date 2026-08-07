@@ -139,7 +139,7 @@ msgid "Reporting"
 msgstr "التقارير"
 
 #. module: dental_ux_fixes
-#: model:ir.ui.menu,name:dental_hospital.dental_configure
+#: model:ir.ui.menu,name:afia_dental_core.dental_configure
 msgid "Configuration"
 msgstr "الإعدادات"
 
@@ -154,7 +154,7 @@ msgid "System"
 msgstr "النظام"
 
 #. module: dental_ux_fixes
-#: model:ir.ui.menu,name:dental_hospital.Shift_time_menu
+#: model:ir.ui.menu,name:afia_dental_core.Shift_time_menu
 msgid "Shift Times"
 msgstr "أوقات الوردية"
 
@@ -234,3 +234,123 @@ msgstr "لا توجد علاجات مرتبطة بهذا الموعد."
 #: model:product.template,name:dental_ux_fixes.product_dental_service
 msgid "Dental Service"
 msgstr "خدمة طبية"
+
+#. module: dental_ux_fixes
+#: model:ir.ui.menu,name:dental_ux_fixes.menu_add_staff_user
+#: model:ir.actions.act_window,name:dental_ux_fixes.action_clinic_user_wizard
+#: model_terms:ir.ui.view,arch_db:dental_ux_fixes.view_clinic_user_wizard_form
+msgid "Add Staff User"
+msgstr "إضافة موظف"
+
+#. module: dental_ux_fixes
+#: model_terms:ir.ui.view,arch_db:dental_ux_fixes.view_clinic_user_wizard_form
+msgid "Create a login for a new clinic staff member. Only the four clinic roles used by this system are offered below."
+msgstr "إنشاء حساب دخول لموظف جديد في العيادة. تتوفر أدناه الأدوار الأربعة المستخدمة في هذا النظام فقط."
+
+#. module: dental_ux_fixes
+#: model:ir.model.fields,field_description:dental_ux_fixes.field_clinic_user_wizard__name
+msgid "Full Name"
+msgstr "الاسم الكامل"
+
+#. module: dental_ux_fixes
+#: model:ir.model.fields,field_description:dental_ux_fixes.field_clinic_user_wizard__login
+msgid "Email / Username"
+msgstr "البريد الإلكتروني / اسم المستخدم"
+
+#. module: dental_ux_fixes
+#: model:ir.model.fields,help:dental_ux_fixes.field_clinic_user_wizard__login
+msgid "Used as the login and, if an invitation is sent, the address it is sent to."
+msgstr "يُستخدم كاسم دخول، وإذا تم إرسال دعوة، فسيتم إرسالها إلى هذا العنوان."
+
+#. module: dental_ux_fixes
+#: model:ir.model.fields,field_description:dental_ux_fixes.field_clinic_user_wizard__role
+msgid "Role"
+msgstr "الدور"
+
+#. module: dental_ux_fixes
+msgid "Clinic Administrator"
+msgstr "مدير العيادة"
+
+#. module: dental_ux_fixes
+msgid "Clinic Dentist"
+msgstr "طبيب أسنان العيادة"
+
+#. module: dental_ux_fixes
+msgid "Clinic Hygienist"
+msgstr "أخصائي صحة الأسنان بالعيادة"
+
+#. module: dental_ux_fixes
+msgid "Clinic Receptionist"
+msgstr "موظف استقبال العيادة"
+
+#. module: dental_ux_fixes
+#: model:ir.model.fields,field_description:dental_ux_fixes.field_clinic_user_wizard__employee_id
+msgid "Link to Employee Record"
+msgstr "الربط بسجل الموظف"
+
+#. module: dental_ux_fixes
+#: model:ir.model.fields,help:dental_ux_fixes.field_clinic_user_wizard__employee_id
+msgid "Optional: attach this login to an existing employee/dentist record."
+msgstr "اختياري: اربط حساب الدخول هذا بسجل موظف/طبيب أسنان موجود."
+
+#. module: dental_ux_fixes
+#: model:ir.model.fields,field_description:dental_ux_fixes.field_clinic_user_wizard__send_invite
+msgid "Send invitation email"
+msgstr "إرسال بريد الدعوة"
+
+#. module: dental_ux_fixes
+#: model:ir.model.fields,help:dental_ux_fixes.field_clinic_user_wizard__send_invite
+msgid "If enabled, the new staff member receives an email to set their own password. If disabled, you will need to set a password for them manually afterwards."
+msgstr "إذا تم التفعيل، سيتلقى الموظف الجديد بريدًا إلكترونيًا لتعيين كلمة المرور الخاصة به. أما إذا تم التعطيل، فستحتاج إلى تعيين كلمة مرور له يدويًا لاحقًا."
+
+#. module: dental_ux_fixes
+#: model_terms:ir.ui.view,arch_db:dental_ux_fixes.view_clinic_user_wizard_form
+msgid "Create User"
+msgstr "إنشاء المستخدم"
+
+#. module: dental_ux_fixes
+#: model_terms:ir.ui.view,arch_db:dental_ux_fixes.view_clinic_user_wizard_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: dental_ux_fixes
+#: code:addons/dental_ux_fixes/wizards/clinic_user_wizard.py:0
+#, python-format
+msgid "Please enter a valid email address for the login."
+msgstr "الرجاء إدخال عنوان بريد إلكتروني صالح لتسجيل الدخول."
+
+#. module: dental_ux_fixes
+#: code:addons/dental_ux_fixes/wizards/clinic_user_wizard.py:0
+#, python-format
+msgid "A user with the login \"%s\" already exists."
+msgstr "يوجد بالفعل مستخدم باسم الدخول \"%s\"."
+
+#. module: dental_ux_fixes
+#: code:addons/dental_ux_fixes/wizards/clinic_user_wizard.py:0
+#, python-format
+msgid "Could not find the security group for role \"%s\" (%s). Please check with your administrator before continuing."
+msgstr "تعذر العثور على مجموعة الصلاحيات للدور \"%s\" (%s). يرجى التحقق مع المسؤول قبل المتابعة."
+
+#. module: dental_ux_fixes
+#: code:addons/dental_ux_fixes/wizards/clinic_user_wizard.py:0
+#, python-format
+msgid "Staff account created for %s."
+msgstr "تم إنشاء حساب موظف باسم %s."
+
+#. module: dental_ux_fixes
+#: code:addons/dental_ux_fixes/wizards/clinic_user_wizard.py:0
+#, python-format
+msgid " An invitation email has been sent to %s."
+msgstr " تم إرسال بريد دعوة إلى %s."
+
+#. module: dental_ux_fixes
+#: code:addons/dental_ux_fixes/wizards/clinic_user_wizard.py:0
+#, python-format
+msgid " No invitation was sent — set a password for them manually."
+msgstr " لم يتم إرسال أي دعوة — يرجى تعيين كلمة مرور له يدويًا."
+
+#. module: dental_ux_fixes
+#: code:addons/dental_ux_fixes/wizards/clinic_user_wizard.py:0
+#, python-format
+msgid "User Created"
+msgstr "تم إنشاء المستخدم"

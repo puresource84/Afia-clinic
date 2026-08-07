@@ -7,4 +7,9 @@ from . import clinical_safety
 from . import commission_report
 from . import soft_delete
 
-from . import appointment_invoicing
+# appointment_invoicing.py (action_view_invoices / action_create_invoice /
+# invoice_ids / invoice_count on dental.appointment, referenced by this
+# module's own dental_appointment_view_fix.xml) lives in dental_patient_flow
+# now — see that module's models/__init__.py. Not imported here; this
+# module's own copy of the file is a stale leftover from before the move
+# and is intentionally left out of models/__init__.py. 

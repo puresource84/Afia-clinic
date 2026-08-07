@@ -1,5 +1,5 @@
 {
-    'name': 'Dental Telegram Message Templates',
+    'name': 'Dental Telegram Templates',
     'version': '18.0.1.2.0',
     'category': 'Healthcare/Dental',
     'summary': 'Editable Telegram message templates for every patient notification — bilingual, with merge fields.',

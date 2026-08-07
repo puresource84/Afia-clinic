@@ -1,4 +1,5 @@
 from odoo import api, fields, models
+from odoo.osv import expression
 
 # FDI two-digit notation: permanent (11-48) + deciduous/pediatric (51-85)
 FDI_TEETH = [
@@ -84,14 +85,20 @@ class DentalToothRecord(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         records = super().create(vals_list)
-        # New record becomes the current status; demote previous ones
-        for rec in records.filtered('is_current'):
-            self.search([
-                ('patient_id', '=', rec.patient_id.id),
-                ('tooth_fdi', '=', rec.tooth_fdi),
-                ('id', '!=', rec.id),
-                ('is_current', '=', True),
-            ]).write({'is_current': False})
+        # New record becomes the current status; demote previous ones.
+        # Batched into a single OR'd search instead of one query per new
+        # record, to avoid N+1 lookups when creating/importing many teeth
+        # at once (e.g. bulk odontogram entry, migration hooks).
+        new_current = records.filtered('is_current')
+        if new_current:
+            domain = expression.OR([
+                [('patient_id', '=', rec.patient_id.id),
+                 ('tooth_fdi', '=', rec.tooth_fdi),
+                 ('id', '!=', rec.id),
+                 ('is_current', '=', True)]
+                for rec in new_current
+            ])
+            self.search(domain).write({'is_current': False})
         return records
 
 

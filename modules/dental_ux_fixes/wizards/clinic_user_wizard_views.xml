@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_clinic_user_wizard_form" model="ir.ui.view">
+        <field name="name">clinic.user.wizard.form</field>
+        <field name="model">clinic.user.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Add Staff User">
+                <p class="text-muted">
+                    Create a login for a new clinic staff member. Only the four
+                    clinic roles used by this system are offered below.
+                </p>
+                <group>
+                    <field name="name" placeholder="e.g. Sara Kareem"/>
+                    <field name="login" placeholder="e.g. sara@yourclinic.com"/>
+                    <field name="role" widget="radio"/>
+                    <field name="employee_id"/>
+                    <field name="send_invite"/>
+                </group>
+                <footer>
+                    <button name="action_create_user" type="object"
+                            string="Create User" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_clinic_user_wizard" model="ir.actions.act_window">
+        <field name="name">Add Staff User</field>
+        <field name="res_model">clinic.user.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Placed just above the existing "Staffs" (employee records) menu,
+         under Configure > System, restricted to Clinic Administrators. -->
+    <menuitem id="menu_add_staff_user"
+              name="Add Staff User"
+              parent="menu_configure_system"
+              action="action_clinic_user_wizard"
+              sequence="15"
+              groups="clinic_core.group_clinic_admin,base.group_system"/>
+</odoo>

@@ -15,7 +15,7 @@
          correct dental form view is used when the record is opened from the
          Patients list.
     ──────────────────────────────────────────────────────────────────────── -->
-    <record id="dental_hospital.dental_patient_menu" model="ir.actions.act_window">
+    <record id="afia_dental_core.dental_patient_menu" model="ir.actions.act_window">
         <field name="path">patients</field>
     </record>
 </odoo>

@@ -10,48 +10,48 @@
 
     <menuitem id="menu_configure_clinical_setup"
               name="Clinical Setup"
-              parent="dental_hospital.dental_configure"
+              parent="afia_dental_core.dental_configure"
               sequence="10"/>
 
     <menuitem id="menu_configure_system"
               name="System"
-              parent="dental_hospital.dental_configure"
+              parent="afia_dental_core.dental_configure"
               sequence="50"/>
 
     <!-- ════════════════ Clinical Setup items ════════════════ -->
 
     <!-- Teeth numbering chart / charting legend -->
-    <record id="dental_hospital.teeth_chart_menu" model="ir.ui.menu">
+    <record id="afia_dental_core.teeth_chart_menu" model="ir.ui.menu">
         <field name="parent_id" ref="menu_configure_clinical_setup"/>
         <field name="sequence">10</field>
     </record>
 
     <!-- Intake questionnaire questions -->
-    <record id="dental_hospital.medical_question_menu" model="ir.ui.menu">
+    <record id="afia_dental_core.medical_question_menu" model="ir.ui.menu">
         <field name="parent_id" ref="menu_configure_clinical_setup"/>
         <field name="sequence">20</field>
     </record>
 
     <!-- Treatment categories / service families -->
-    <record id="dental_hospital.treatment_category_menu" model="ir.ui.menu">
+    <record id="afia_dental_core.treatment_category_menu" model="ir.ui.menu">
         <field name="parent_id" ref="menu_configure_clinical_setup"/>
         <field name="sequence">30</field>
     </record>
 
     <!-- Individual treatment / procedure catalogue -->
-    <record id="dental_hospital.dental_treatment_menu" model="ir.ui.menu">
+    <record id="afia_dental_core.dental_treatment_menu" model="ir.ui.menu">
         <field name="parent_id" ref="menu_configure_clinical_setup"/>
         <field name="sequence">40</field>
     </record>
 
     <!-- Dentist specialties -->
-    <record id="dental_hospital.dental_specialist_menu" model="ir.ui.menu">
+    <record id="afia_dental_core.dental_specialist_menu" model="ir.ui.menu">
         <field name="parent_id" ref="menu_configure_clinical_setup"/>
         <field name="sequence">50</field>
     </record>
 
     <!-- Medicines / prescriptions list -->
-    <record id="dental_hospital.medicines_menu" model="ir.ui.menu">
+    <record id="afia_dental_core.medicines_menu" model="ir.ui.menu">
         <field name="parent_id" ref="menu_configure_clinical_setup"/>
         <field name="sequence">60</field>
     </record>
@@ -63,14 +63,14 @@
     <!-- ════════════════ System items ════════════════ -->
 
     <!-- Clinic working-hour shifts — also fix the "Denatal" typo -->
-    <record id="dental_hospital.Shift_time_menu" model="ir.ui.menu">
+    <record id="afia_dental_core.Shift_time_menu" model="ir.ui.menu">
         <field name="name">Shift Times</field>
         <field name="parent_id" ref="menu_configure_system"/>
         <field name="sequence">10</field>
     </record>
 
     <!-- Staff / user accounts -->
-    <record id="dental_hospital.dental_staff" model="ir.ui.menu">
+    <record id="afia_dental_core.dental_staff" model="ir.ui.menu">
         <field name="parent_id" ref="menu_configure_system"/>
         <field name="sequence">20</field>
     </record>
@@ -87,11 +87,8 @@
         <field name="sequence">40</field>
     </record>
 
-    <!-- Clinic Core Plus Settings (clinic_core_plus) — sibling entry, seq 41 -->
-    <record id="clinic_core_plus.clinic_core_plus_res_config_settings_menu" model="ir.ui.menu">
-        <field name="parent_id" ref="menu_configure_system"/>
-        <field name="sequence">41</field>
-    </record>
+    <!-- Clinic Core Plus Settings entry removed 2026-07-15: clinic_core_plus
+         module retired (abandoned duplicate of clinic_core). -->
 
     <!-- Telegram bot settings (dental_reminders_telegram) -->
     <record id="dental_reminders_telegram.menu_telegram_settings" model="ir.ui.menu">

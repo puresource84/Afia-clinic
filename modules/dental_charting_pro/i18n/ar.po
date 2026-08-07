@@ -145,6 +145,7 @@ msgstr "الأسطح"
 
 #. module: dental_charting_pro
 #: model:ir.model.fields,field_description:dental_charting_pro.field_res_partner__tooth_record_ids
+#: model:ir.actions.act_window,name:dental_charting_pro.action_dental_tooth_record
 msgid "Tooth Records"
 msgstr "سجلات الأسنان"
 
@@ -154,7 +155,7 @@ msgid "Odontogram"
 msgstr "مخطط الأسنان"
 
 #. module: dental_charting_pro
-#: model:ir.actions.act_window,name:dental_charting_pro.action_dental_tooth_record
-#: model:ir.ui.menu,name:dental_charting_pro.menu_dental_tooth_record
+#: model:ir.actions.act_window,name:dental_charting_pro.action_dental_charting_patient
+#: model:ir.ui.menu,name:dental_charting_pro.menu_dental_charting_patient
 msgid "Dental Charting"
 msgstr "تخطيط الأسنان"

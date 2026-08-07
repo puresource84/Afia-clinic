@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- External IDs on every menu/action below are load-bearing: 33
+         companion modules reference them directly (verified 2026-08-04
+         against the full addons_v2 tree). Renaming any of these without
+         updating every dependent module will break menu re-parenting on
+         install. -->
+
+    <menuitem id="hospital_root_menu" name="Afia Dental Clinic" sequence="10"
+              web_icon="afia_dental_core,static/description/icon.png"/>
+
+    <menuitem id="hospital_appointment_info" name="Appointments" parent="hospital_root_menu"
+              action="dental_appointment_menu_action" sequence="10"/>
+    <menuitem id="hospital_patient_info" name="Patients" parent="hospital_root_menu"
+              action="dental_patient_menu" sequence="20"/>
+    <menuitem id="dental_staff" name="Dentists" parent="hospital_root_menu"
+              action="view_employee_list_dentists" sequence="30"/>
+    <menuitem id="dental_prescription_menu" name="Prescriptions" parent="hospital_root_menu"
+              action="action_dental_prescription" sequence="40"/>
+    <menuitem id="hospital_invoice_info" name="Invoices" parent="hospital_root_menu"
+              action="action_dental_invoices" sequence="50"/>
+    <menuitem id="hospital_payment_info" name="Payments" parent="hospital_root_menu"
+              action="action_dental_payments" sequence="60"/>
+
+    <!-- No blanket "groups" restriction here: several companion modules
+         (clinic_core, dental_clinical_permissions, ...) hang their own
+         config sub-items off this menu with their own group scoping, and
+         a group restriction on the parent would hide the whole subtree
+         from anyone not also in group_dental_manager. -->
+    <menuitem id="dental_configure" name="Configuration" parent="hospital_root_menu"
+              sequence="90"/>
+    <menuitem id="dental_treatment_menu" name="Treatments" parent="dental_configure"
+              action="dental_treatment_menu_action" sequence="10"/>
+    <menuitem id="treatment_category_menu" name="Treatment Categories"
+              parent="dental_configure" action="action_treatment_category" sequence="20"/>
+    <menuitem id="dental_specialist_menu" name="Specialties" parent="dental_configure"
+              action="action_dental_specialist" sequence="30"/>
+    <menuitem id="Shift_time_menu" name="Time Shifts" parent="dental_configure"
+              action="action_dental_time_shift" sequence="40"/>
+    <menuitem id="medicines_menu" name="Medicines" parent="dental_configure"
+              action="action_dental_medicine" sequence="50"/>
+    <menuitem id="medical_question_menu" name="Medical Questions"
+              parent="dental_configure" action="action_medical_questions" sequence="60"/>
+    <menuitem id="teeth_chart_menu" name="Teeth Chart (legacy)"
+              parent="dental_configure" action="action_teeth_chart" sequence="70"/>
+</odoo>

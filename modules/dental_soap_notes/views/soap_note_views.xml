@@ -200,7 +200,7 @@
 
     <!-- ─── Menu under Dental Clinic ─────────────────────────────────── -->
     <menuitem id="menu_soap_notes" name="Clinical Notes"
-              parent="dental_hospital.hospital_root_menu"
+              parent="afia_dental_core.hospital_root_menu"
               action="action_soap_notes" sequence="15"
               groups="clinic_core.group_clinic_admin,clinic_core.group_clinic_dentist"/>
 

@@ -1,13 +1,13 @@
 {
-    'name': 'Dental Communication & Reminders',
-    'version': '18.0.1.0.0',
+    'name': 'Dental Communication',
+    'version': '18.0.1.0.1',
     'category': 'Dental',
     'summary': 'Automated appointment reminders, recall campaigns and patient communication log via email and SMS.',
     'author': 'ITCS (IT Corner Solutions)',
     'website': 'https://www.itcornersolutions.net/',
     'license': 'OPL-1',
     'depends': [
-        'dental_hospital',
+        'afia_dental_core',
         'mail',
     ],
     'data': [

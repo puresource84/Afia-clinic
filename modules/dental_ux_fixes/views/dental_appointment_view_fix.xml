@@ -3,7 +3,7 @@
     <record id="view_dental_appointment_form_workflow_fix" model="ir.ui.view">
         <field name="name">dental.appointment.form.workflow.fix</field>
         <field name="model">dental.appointment</field>
-        <field name="inherit_id" ref="dental_hospital.view_dental_appointment_form"/>
+        <field name="inherit_id" ref="afia_dental_core.view_dental_appointment_form"/>
         <field name="arch" type="xml">
             <xpath expr="//button[@name='action_done']" position="before">
                 <button name="action_start_treatment" type="object"
@@ -87,7 +87,7 @@
     <record id="view_appointment_calendar_label_fix" model="ir.ui.view">
         <field name="name">dental.appointment.calendar.label.fix</field>
         <field name="model">dental.appointment</field>
-        <field name="inherit_id" ref="dental_hospital.view_dental_appointment_calendar"/>
+        <field name="inherit_id" ref="afia_dental_core.view_dental_appointment_calendar"/>
         <field name="priority">20</field>
         <field name="arch" type="xml">
             <!-- Drop appointment_no so patient_id becomes the bold title -->
@@ -101,7 +101,7 @@
     <record id="view_dental_appointment_search_archive" model="ir.ui.view">
         <field name="name">dental.appointment.search.archive</field>
         <field name="model">dental.appointment</field>
-        <field name="inherit_id" ref="dental_hospital.view_dental_appointment_search"/>
+        <field name="inherit_id" ref="afia_dental_core.view_dental_appointment_search"/>
         <field name="arch" type="xml">
             <filter name="show_all" position="after">
                 <separator/>

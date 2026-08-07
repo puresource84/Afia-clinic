@@ -19,7 +19,7 @@
     ],
     'installable': True,
     'application': False,
-    'description': 'Dental Portal v2\n================\nExtends the base Dental Patient Portal with interactive treatment plan management.\n\nAdded Features\n--------------\n- Treatment plan review page — patient can view proposed treatments with costs\n- Online acceptance / rejection of individual treatment plan lines\n- E-signature on treatment plan acceptance (touch-compatible)\n- Complete dental invoice history with PDF download\n- Consent form document library (download signed copies)\n- Secure document share link (shareable without portal login, time-limited)\n- Portal notification badge for new documents\n\nRequires: dental_patient_portal\n',
+    'description': 'Dental Portal v2\n================\nExtends the base Dental Patient Portal with interactive treatment plan management.\n\nAdded Features\n--------------\n- Treatment plan review page — patient can view proposed treatments with costs\n- Online acceptance / rejection of individual treatment plan lines\n- E-signature on treatment plan acceptance (touch-compatible)\n- Complete dental invoice history with PDF download\n- Consent form document library (download signed copies)\n- Portal notification badge for new documents\n\nRequires: dental_patient_portal\n\nNote: a secure, shareable (no-login) document link is planned but not yet implemented in this version.\n',
     'price': 0,
     'currency': 'USD',
 }

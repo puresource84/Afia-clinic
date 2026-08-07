@@ -94,7 +94,7 @@
     <!-- ─── Settings menu item under Configure ────────────────────────── -->
     <menuitem id="menu_soap_sentences"
               name="SOAP Content Library"
-              parent="dental_hospital.dental_configure"
+              parent="afia_dental_core.dental_configure"
               action="action_soap_sentences"
               sequence="57"
               groups="clinic_core.group_clinic_admin"/>

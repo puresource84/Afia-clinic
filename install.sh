@@ -26,8 +26,8 @@ if command -v docker &>/dev/null && docker info &>/dev/null 2>&1; then
     echo "  Done! Open your browser:"
     echo "  http://localhost:8069"
     echo ""
-    echo "  Create a new database, go to Apps and install 'Dental Hospital'."
-    echo "  All 38 Afia Clinic modules will be available."
+    echo "  Create a new database, go to Apps and install 'Afia Dental Clinic'."
+    echo "  All 35 Afia Clinic modules will be available."
 
 # ── Detect Native Odoo (Linux) ────────────────────────────────────────────────
 elif [ -d "/usr/lib/python3/dist-packages/odoo" ] || [ -d "/opt/odoo" ]; then
@@ -57,7 +57,7 @@ elif [ -d "/usr/lib/python3/dist-packages/odoo" ] || [ -d "/opt/odoo" ]; then
     echo "  Done! Open your browser:"
     echo "  http://localhost:8069"
     echo ""
-    echo "  Go to Apps > Update Apps List, then install 'Dental Hospital'."
+    echo "  Go to Apps > Update Apps List, then install 'Afia Dental Clinic'."
 
 else
     echo "  [NOT FOUND] Neither Docker nor Odoo 18 detected."

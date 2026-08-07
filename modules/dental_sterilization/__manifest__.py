@@ -1,13 +1,13 @@
 {
     'name': 'Dental Sterilization Log',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.0.2',
     'category': 'Dental',
     'summary': 'Instrument sterilization cycle log with batch tracking, expiry dates and compliance reporting.',
     'author': 'ITCS (IT Corner Solutions)',
     'website': 'https://www.itcornersolutions.net/',
     'license': 'OPL-1',
     'depends': [
-        'dental_hospital',
+        'afia_dental_core',
     ],
     'data': [
         'security/ir.model.access.csv',

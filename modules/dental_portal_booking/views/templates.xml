@@ -16,6 +16,15 @@
                         <form action="/dental/book/submit" method="post" class="row g-3">
                             <input type="hidden" name="csrf_token"
                                 t-att-value="request.csrf_token()"/>
+                            <!-- Honeypot anti-spam field: hidden off-screen (not display:none,
+                                 which some bots detect and skip). Real visitors never see or
+                                 fill this. Any bot that auto-fills every input on the page will,
+                                 and the submission is silently discarded server-side. -->
+                            <div style="position:absolute;left:-9999px;top:-9999px" aria-hidden="true">
+                                <label for="booking_website_field">Leave this field empty</label>
+                                <input type="text" id="booking_website_field" name="website"
+                                    tabindex="-1" autocomplete="off"/>
+                            </div>
                             <div class="col-md-6">
                                 <label class="form-label fw-bold">Full Name *</label>
                                 <input type="text" name="patient_name"

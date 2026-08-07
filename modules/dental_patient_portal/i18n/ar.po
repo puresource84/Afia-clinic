@@ -1,0 +1,58 @@
+# Translation for dental_patient_portal - Arabic
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 18.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: dental_patient_portal
+#: model:ir.ui.view,arch_db:dental_patient_portal.portal_my_home_dental
+#: model:ir.ui.view,arch_db:dental_patient_portal.portal_my_appointments
+msgid "My Appointments"
+msgstr "مواعيدي"
+
+#. module: dental_patient_portal
+#: model:ir.ui.view,arch_db:dental_patient_portal.portal_my_home_dental
+#: model:ir.ui.view,arch_db:dental_patient_portal.portal_my_prescriptions
+msgid "My Prescriptions"
+msgstr "وصفاتي الطبية"
+
+#. module: dental_patient_portal
+#: model:ir.ui.view,arch_db:dental_patient_portal.portal_my_appointments
+msgid "No appointments found."
+msgstr "لا توجد مواعيد."
+
+#. module: dental_patient_portal
+#: model:ir.ui.view,arch_db:dental_patient_portal.portal_my_appointments
+msgid "Ref"
+msgstr "المرجع"
+
+#. module: dental_patient_portal
+#: model:ir.ui.view,arch_db:dental_patient_portal.portal_my_appointments
+#: model:ir.ui.view,arch_db:dental_patient_portal.portal_my_prescriptions
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: dental_patient_portal
+#: model:ir.ui.view,arch_db:dental_patient_portal.portal_my_appointments
+#: model:ir.ui.view,arch_db:dental_patient_portal.portal_my_prescriptions
+msgid "Dentist"
+msgstr "طبيب الأسنان"
+
+#. module: dental_patient_portal
+#: model:ir.ui.view,arch_db:dental_patient_portal.portal_my_appointments
+msgid "Status"
+msgstr "الحالة"
+
+#. module: dental_patient_portal
+#: model:ir.ui.view,arch_db:dental_patient_portal.portal_my_prescriptions
+msgid "No prescriptions found."
+msgstr "لا توجد وصفات طبية."
+
+#. module: dental_patient_portal
+#: model:ir.ui.view,arch_db:dental_patient_portal.portal_my_prescriptions
+msgid "Diagnosis"
+msgstr "التشخيص"

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_prescription">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Prescription <span t-field="o.sequence_no"/></h2>
+                        <div class="row mt-3 mb-3">
+                            <div class="col-6">
+                                <strong>Patient:</strong> <span t-field="o.patient_id.name"/><br/>
+                                <strong>Date:</strong> <span t-field="o.prescription_date"/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Doctor:</strong> <span t-field="o.prescribed_doctor_id.name"/><br/>
+                                <t t-if="o.referred_dentist_id">
+                                    <strong>Referred to:</strong>
+                                    <span t-field="o.referred_dentist_id.name"/>
+                                </t>
+                            </div>
+                        </div>
+
+                        <t t-if="o.treatment_id">
+                            <p><strong>Treatment:</strong> <span t-field="o.treatment_id.name"/></p>
+                        </t>
+                        <t t-if="o.selected_teeth">
+                            <p><strong>Teeth:</strong> <span t-field="o.selected_teeth"/></p>
+                        </t>
+
+                        <table class="table table-sm o_table mt-3" t-if="o.medicine_ids">
+                            <thead>
+                                <tr>
+                                    <th>Medicine</th>
+                                    <th>Form</th>
+                                    <th>Frequency</th>
+                                    <th>Qty</th>
+                                    <th>Timing</th>
+                                    <th>Take</th>
+                                    <th>Days</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.medicine_ids" t-as="line">
+                                    <td><span t-field="line.medicament_id.name"/></td>
+                                    <td><span t-field="line.medicament_form"/></td>
+                                    <td><span t-field="line.frequency_id.name"/></td>
+                                    <td><span t-field="line.quantity"/></td>
+                                    <td>
+                                        <t t-if="line.morning">Morning </t>
+                                        <t t-if="line.noon">Afternoon </t>
+                                        <t t-if="line.night">Night</t>
+                                    </td>
+                                    <td><span t-field="line.medicine_take"/></td>
+                                    <td><span t-field="line.days"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <t t-if="o.next_appointment_date">
+                            <p class="mt-3">
+                                <strong>Next Appointment:</strong>
+                                <span t-field="o.next_appointment_date"/>
+                            </p>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

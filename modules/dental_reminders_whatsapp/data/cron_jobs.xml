@@ -3,7 +3,7 @@
     <data noupdate="1">
         <record id="cron_whatsapp_appointment_reminders" model="ir.cron">
             <field name="name">Dental: WhatsApp Appointment Reminders</field>
-            <field name="model_id" ref="dental_hospital.model_dental_appointment"/>
+            <field name="model_id" ref="afia_dental_core.model_dental_appointment"/>
             <field name="state">code</field>
             <field name="code">model._cron_send_whatsapp_reminders()</field>
             <field name="interval_number">1</field>

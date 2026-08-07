@@ -1,18 +1,19 @@
 {
-    'name': 'Dental Charting Pro (Odontogram)',
-    'version': '18.0.1.1.0',
+    'name': 'Dental Charting Pro',
+    'version': '18.0.1.7.3',
     'category': 'Healthcare/Dental',
     'summary': 'Interactive FDI odontogram with per-tooth conditions, surface mapping and full clinical history.',
     'author': 'ITCS (IT Corner Solutions)',
     'website': 'https://www.itcornersolutions.net/',
     'license': 'OPL-1',
     'depends': [
-        'dental_hospital',
+        'afia_dental_core',
         'mail',
     ],
     'data': [
         'security/security_groups.xml',
         'security/ir.model.access.csv',
+        'report/dental_chart_report.xml',
         'views/dental_tooth_record_views.xml',
     ],
     'assets': {'web.assets_backend': ['dental_charting_pro/static/src/odontogram/odontogram.js', 'dental_charting_pro/static/src/odontogram/odontogram.xml']},

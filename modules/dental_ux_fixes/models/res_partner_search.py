@@ -8,7 +8,7 @@ class ResPartnerPatientSearch(models.Model):
     def name_search(self, name='', args=None, operator='ilike', limit=100):
         """QA fix: make patient-number lookup actually work.
 
-        dental_hospital.name_search already tries this, but it appends the
+        afia_dental_core.name_search already tries this, but it appends the
         patient_no condition to the domain AND still forwards `name` to
         super(), which ANDs an unmatchable display-name filter on top and
         returns nothing. Here we resolve patient_no matches first, ourselves,

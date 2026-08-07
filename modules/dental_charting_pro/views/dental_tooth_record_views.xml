@@ -67,7 +67,7 @@
     <menuitem id="menu_dental_tooth_record"
               name="Dental Charting"
               action="action_dental_tooth_record"
-              parent="dental_hospital.hospital_root_menu"
+              parent="afia_dental_core.hospital_root_menu"
               sequence="25"/>
 
     <!-- Odontogram tab on the patient form -->

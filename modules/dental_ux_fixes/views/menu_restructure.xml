@@ -14,17 +14,14 @@
     ─────────────────────────────────────────────────────────────────────── -->
 
     <!-- 0. Rename root menu from "Dental Clinic" → "Afia Clinic"
-         dental_hospital.hospital_root_menu defines id=447; we override name here
-         so the branding survives every future upgrade of dental_hospital. -->
+         afia_dental_core.hospital_root_menu defines id=447; we override name here
+         so the branding survives every future upgrade of afia_dental_core. -->
     <function model="ir.ui.menu" name="write"
-              eval="([ref('dental_hospital.hospital_root_menu')], {'name': 'Afia Clinic'})"/>
+              eval="([ref('afia_dental_core.hospital_root_menu')], {'name': 'Afia Clinic'})"/>
 
-    <!-- 1. Patient Flow → under Appointments (was a root-level item, seq=10)
-         Using <function> to guarantee the write runs regardless of ir.model.data state. -->
-    <function model="ir.ui.menu" name="write"
-              eval="([ref('dental_patient_flow.menu_patient_flow_board')],
-                     {'parent_id': ref('dental_hospital.hospital_appointment_info'),
-                      'sequence': 30})"/>
+    <!-- 1. Patient Flow → menu is created directly under Appointments in
+         dental_patient_flow/views/patient_flow_board.xml. Overriding it here
+         created a circular module dependency (see menu_quick_actions.xml). -->
 
     <!-- 2. Clinical Notes → under Patients (was root-level, seq=15) -->
     <function model="ir.ui.menu" name="write"

@@ -1,0 +1,39 @@
+# Translation for dental_branch - Arabic
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 18.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: dental_branch
+#: model_terms:ir.ui.view,arch_db:dental_branch.view_company_branch_form
+msgid "Branch Info"
+msgstr "معلومات الفرع"
+
+#. module: dental_branch
+#: model:ir.model.fields,field_description:dental_branch.field_res_company__is_branch
+msgid "Is Branch Clinic"
+msgstr "عيادة فرعية"
+
+#. module: dental_branch
+#: model:ir.model.fields,field_description:dental_branch.field_res_company__parent_clinic_id
+msgid "Parent Clinic"
+msgstr "العيادة الرئيسية"
+
+#. module: dental_branch
+#: model:ir.model.fields,field_description:dental_branch.field_res_company__branch_ids
+msgid "Branch Clinics"
+msgstr "العيادات الفرعية"
+
+#. module: dental_branch
+#: model:ir.model.fields,field_description:dental_branch.field_res_company__branch_code
+msgid "Branch Code"
+msgstr "رمز الفرع"
+
+#. module: dental_branch
+#: model:ir.model.fields,field_description:dental_branch.field_dental_appointment__branch_id
+msgid "Branch / Location"
+msgstr "الفرع / الموقع"

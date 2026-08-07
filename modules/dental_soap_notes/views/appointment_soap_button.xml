@@ -4,7 +4,7 @@
     <record id="view_appointment_soap_button" model="ir.ui.view">
         <field name="name">dental.appointment.form.soap.button</field>
         <field name="model">dental.appointment</field>
-        <field name="inherit_id" ref="dental_hospital.view_dental_appointment_form"/>
+        <field name="inherit_id" ref="afia_dental_core.view_dental_appointment_form"/>
         <!-- priority 20: must run AFTER dental_ux_fixes (priority 16) creates
              the button_box div so we can inject into it. -->
         <field name="priority">20</field>
@@ -12,7 +12,7 @@
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button name="action_open_soap_notes" type="object"
                         class="oe_stat_button" icon="fa-file-text-o"
-                        groups="clinic_core.group_clinic_admin,clinic_core.group_clinic_dentist,clinic_core.group_clinic_receptionist">
+                        groups="clinic_core.group_clinic_admin,clinic_core.group_clinic_dentist,clinic_core.group_clinic_receptionist,dental_clinical_permissions.group_clinic_hygienist">
                     <field name="soap_note_count" widget="statinfo"
                            string="Clinical Notes"/>
                 </button>

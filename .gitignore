@@ -31,3 +31,4 @@ docker/volumes/
 # Secrets
 .env
 *.env.local
+modules/itcs_license_manager/secret_config.py

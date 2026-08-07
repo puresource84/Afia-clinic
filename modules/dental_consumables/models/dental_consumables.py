@@ -14,7 +14,7 @@ class DentalTreatmentConsumable(models.Model):
         'dental.treatment', required=True, ondelete='cascade')
     product_id = fields.Many2one(
         'product.product', string='Material', required=True,
-        domain="[('type', 'in', ('consu', 'product'))]")
+        domain="[('type', '=', 'consu')]")
     quantity = fields.Float(string='Qty / Procedure', default=1.0)
     uom_id = fields.Many2one(related='product_id.uom_id', string='Unit')
     standard_cost = fields.Float(
@@ -92,14 +92,27 @@ class DentalAppointmentConsume(models.Model):
         lines = self.treatments.mapped('consumable_line_ids')
         if not lines:
             return
-        # Company-filtered: on shared/multi-company DBs an unfiltered search
-        # returns another company's location → "Incompatible companies"
-        # crash → move stuck in 'confirmed' (root cause of Omar's finding).
+        # Use the company's default warehouse stock location explicitly,
+        # consistent with afia_dental_core's dental_prescription.py pattern
+        # (warehouse = stock.warehouse search by company, then
+        # warehouse.lot_stock_id). The previous
+        # search([('usage','=','internal')], limit=1) was non-deterministic
+        # on companies with multiple internal locations (e.g. WH/Stock,
+        # WH/Input/Order Processing, WH/Output, ...) and could silently pick
+        # a location that was never actually stocked, producing negative
+        # on-hand quantities there instead of consuming from the real stock
+        # location (QA finding, 2026-07-03 smoke test, stock.quant id=36).
         company = self.env.company
+        warehouse = self.env['stock.warehouse'].search(
+            [('company_id', '=', company.id)], limit=1)
+        if not warehouse:
+            _logger.warning(
+                'No warehouse found for company %s — cannot consume '
+                'materials for %s.', company.display_name,
+                self.appointment_no)
+            return
+        src = warehouse.lot_stock_id
         Location = self.env['stock.location']
-        src = Location.search([
-            ('usage', '=', 'internal'),
-            ('company_id', '=', company.id)], limit=1)
         dest = Location.search([
             ('usage', '=', 'production'),
             ('company_id', '=', company.id)], limit=1) or \

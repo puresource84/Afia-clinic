@@ -1,13 +1,13 @@
 {
-    'name': 'Dental Multi-Branch Management',
-    'version': '18.0.1.0.0',
+    'name': 'Dental Multi-Branch',
+    'version': '18.0.1.0.1',
     'category': 'Dental',
     'summary': 'Multi-branch and clinic chain management with per-branch configuration, staff assignment and cross-branch reporting.',
     'author': 'ITCS (IT Corner Solutions)',
     'website': 'https://www.itcornersolutions.net/',
     'license': 'OPL-1',
     'depends': [
-        'dental_hospital',
+        'afia_dental_core',
     ],
     'data': [
         'views/res_company_branch_views.xml',

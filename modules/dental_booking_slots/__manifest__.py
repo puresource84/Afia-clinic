@@ -1,5 +1,5 @@
 {
-    'name': 'Dental Online Booking — Time Slots',
+    'name': 'Dental Booking Slots',
     'version': '18.0.1.0.0',
     'category': 'Healthcare/Dental',
     'summary': 'Real-time slot-based online booking computed from dentist shifts — patients book exact appointment times.',
@@ -8,7 +8,7 @@
     'license': 'OPL-1',
     'depends': [
         'dental_portal_booking',
-        'dental_hospital',
+        'afia_dental_core',
     ],
     'data': [
         'views/templates.xml',
