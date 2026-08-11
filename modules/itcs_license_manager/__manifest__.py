@@ -1,10 +1,15 @@
 {
     # ITCS-internal module: manages self-hosted client license/AMC expiry,
-    # renewal codes, and Telegram alerts to ITCS. Deliberately kept as its
-    # own standalone module (depends only on 'base') so it never touches or
-    # depends on any clinical module — it can be added, updated, or removed
-    # from any clinic instance without affecting appointments, patients,
-    # billing, or any other clinical functionality.
+    # renewal codes, dentist/patient plan-capacity enforcement, and
+    # Telegram alerts to ITCS.
+    #
+    # 2026-08: now depends on 'hr' and 'afia_dental_core' (previously just
+    # 'base') so it can add the dentist/patient availability banners
+    # directly onto the staff form, patient form, and patients list. The
+    # itcs.license MODEL, its own menu, and its own sensitive fields
+    # (clinic_code, telegram creds, renewal history) remain hidden from
+    # clinic staff via group_itcs_license_admin — only the small
+    # banner text (via a sudo()'d read-only compute) is ever shown to them.
     #
     # Design principles (2026-07-17, per Manhel's direction):
     # - Never hard-block a clinic's access to patient data. Past the grace
@@ -23,12 +28,14 @@
     'author': 'ITCS (IT Corner Solutions)',
     'website': 'https://www.itcornersolutions.net/',
     'license': 'OPL-1',
-    'depends': ['base'],
+    'depends': ['base', 'hr', 'afia_dental_core'],
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
         'views/itcs_license_views.xml',
         'views/apply_code_wizard_views.xml',
+        'views/hr_employee_license_banner_views.xml',
+        'views/patient_license_banner_views.xml',
         'data/ir_cron.xml',
     ],
     'installable': True,

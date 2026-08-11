@@ -129,6 +129,106 @@ class ItcsLicense(models.Model):
     )
     last_alert_sent = fields.Date(readonly=True)
 
+    # -- Dentist/patient capacity (per Manhel, 2026-08) -----------------
+    # Separate concern from expiry/AMC above: this is the *plan* the
+    # clinic purchased (how many active dentists/patients it covers).
+    # Set these directly on this record when provisioning or upgrading a
+    # clinic — this form IS the "generator UI", there is no separate
+    # code/token for these numbers.
+    plan = fields.Selection(
+        [("starter", "Starter"), ("professional", "Professional"),
+         ("multi_branch", "Multi-Branch")],
+        help="Plan tier the clinic purchased. Informational + shown on "
+             "the availability banners; only max_dentists/max_patients "
+             "below are actually enforced.",
+    )
+    max_dentists = fields.Integer(
+        help="Max ACTIVE dentists (hr.employee, is_dentist=True, active) "
+             "allowed under this plan. 0 = not enforced (unlimited).",
+    )
+    max_patients = fields.Integer(
+        help="Max ACTIVE patients (res.partner, is_patient=True, active) "
+             "allowed under this plan. 0 = not enforced (unlimited).",
+    )
+    active_dentist_count = fields.Integer(
+        compute="_compute_capacity_counts",
+        help="Active dentists right now, for reference on this form.",
+    )
+    active_patient_count = fields.Integer(
+        compute="_compute_capacity_counts",
+        help="Active patients right now, for reference on this form.",
+    )
+    last_cap_alert_dentist = fields.Date(readonly=True)
+    last_cap_alert_patient = fields.Date(readonly=True)
+
+    def _compute_capacity_counts(self):
+        Employee = self.env["hr.employee"].sudo()
+        Partner = self.env["res.partner"].sudo()
+        dentist_count = Employee.search_count([("is_dentist", "=", True)])
+        patient_count = Partner.search_count([("is_patient", "=", True)])
+        for rec in self:
+            rec.active_dentist_count = dentist_count
+            rec.active_patient_count = patient_count
+
+    @api.model
+    def get_active_license(self):
+        """The one itcs.license record ITCS is tracking for THIS instance.
+        Deliberately just the first record — one clinic per database in
+        this architecture. Returns an empty recordset if none configured
+        yet (fail-open: no license set up means unenforced, not blocked).
+        """
+        return self.sudo().search([], limit=1)
+
+    def _afia_banner_info(self, kind):
+        """kind: 'dentist' or 'patient'. Returns a dict for the banner
+        views — never exposes clinic_code, telegram creds, or anything
+        else from this internal model to clinic staff."""
+        self.ensure_one()
+        current = self.active_dentist_count if kind == "dentist" else self.active_patient_count
+        max_allowed = self.max_dentists if kind == "dentist" else self.max_patients
+        label = "dentists" if kind == "dentist" else "patients"
+        if not max_allowed:
+            return {"type": "none", "text": ""}
+        ceiling = int(max_allowed * 1.10)
+        plan_label = f" — {dict(self._fields['plan'].selection).get(self.plan, '')} plan" if self.plan else ""
+        if current < max_allowed:
+            return {"type": "ok", "text": f"{current} of {max_allowed} active {label} used{plan_label}"}
+        if current <= ceiling:
+            return {"type": "warning", "text": (
+                f"{current} of {max_allowed} active {label} used{plan_label} — "
+                "at the plan limit. Contact ITCS to upgrade soon."
+            )}
+        return {"type": "danger", "text": (
+            f"{current} of {max_allowed} active {label} used{plan_label} — "
+            "limit reached, new records will be blocked. Contact ITCS to upgrade."
+        )}
+
+    def _afia_check_cap(self, kind, current_count):
+        """Raise UserError past the 110% buffer; send a one-time Telegram
+        alert to ITCS the moment the plain plan limit is first crossed."""
+        self.ensure_one()
+        max_allowed = self.max_dentists if kind == "dentist" else self.max_patients
+        if not max_allowed:
+            return
+        ceiling = int(max_allowed * 1.10)
+        today = fields.Date.context_today(self)
+        alert_field = "last_cap_alert_dentist" if kind == "dentist" else "last_cap_alert_patient"
+        if current_count > max_allowed and self[alert_field] != today:
+            self._send_telegram_alert(
+                f"📈 {self.clinic_code}: active {kind}s ({current_count}) crossed "
+                f"the plan limit ({max_allowed}). A 10% buffer is in place "
+                f"before new records get blocked — plan an upgrade."
+            )
+            self[alert_field] = today
+        if current_count > ceiling:
+            raise UserError(self.env._(
+                "This clinic's plan allows %(max_allowed)s active %(kind)ss "
+                "(a small buffer is already included). You're at "
+                "%(current_count)s. Please contact ITCS to upgrade the plan "
+                "before adding more.",
+                max_allowed=max_allowed, kind=kind, current_count=current_count,
+            ))
+
     state = fields.Selection(
         [("active", "Active"), ("grace", "Grace period"), ("read_only", "Read-only")],
         compute="_compute_state",

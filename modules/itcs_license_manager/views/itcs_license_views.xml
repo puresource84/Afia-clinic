@@ -23,6 +23,17 @@
                             <field name="last_alert_sent" readonly="1"/>
                         </group>
                     </group>
+                    <group string="Plan / Capacity (dentists &amp; patients)">
+                        <group>
+                            <field name="plan"/>
+                            <field name="max_dentists"/>
+                            <field name="max_patients"/>
+                        </group>
+                        <group>
+                            <field name="active_dentist_count" readonly="1"/>
+                            <field name="active_patient_count" readonly="1"/>
+                        </group>
+                    </group>
                     <div class="mt-2 mb-2">
                         <button name="action_open_apply_code_wizard" type="object"
                                 string="Apply Renewal Code" class="btn-primary"/>
@@ -54,6 +65,9 @@
                 <field name="expiry_date"/>
                 <field name="state"/>
                 <field name="days_to_expiry"/>
+                <field name="plan"/>
+                <field name="max_dentists"/>
+                <field name="max_patients"/>
             </list>
         </field>
     </record>
