@@ -1,6 +1,6 @@
 {
     'name': 'Payment Provider: PayTabs',
-    'version': '18.0.1.0.1',
+    'version': '18.0.1.0.2',
     'category': 'Accounting/Payment Providers',
     'summary': 'PayTabs payment gateway integration for Odoo — card payments for merchants in Iraq and the GCC.',
     'description': "Payment Provider: PayTabs\n=========================\nAdds PayTabs as a fully integrated payment provider in Odoo.\n\nSupported Payment Methods\n-------------------------\n- Visa / Mastercard (3D Secure)\n- PayTabs hosted payment page\n\nFeatures\n--------\n- Configuration in Odoo's standard Payment Providers settings\n- Automatic payment confirmation via webhook\n- Refund support from Odoo backend\n- Test mode / live mode toggle\n- IQD (Iraqi Dinar) and USD currency support\n- Transaction log with PayTabs reference number\n\nSetup\n-----\n1. Create a PayTabs account and obtain your Profile ID and Server Key\n2. Enter credentials in Accounting → Configuration → Payment Providers → PayTabs\n3. Activate and test with the PayTabs sandbox\n",

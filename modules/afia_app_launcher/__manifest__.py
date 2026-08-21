@@ -1,6 +1,6 @@
 {
     'name': 'Afia App Launcher',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.0.2',
     'category': 'Dental/Afia',
     'summary': 'Enterprise-style home screen with role-filtered app tiles, live search and drag-and-drop personalisation.',
     'author': 'ITCS (IT Corner Solutions)',

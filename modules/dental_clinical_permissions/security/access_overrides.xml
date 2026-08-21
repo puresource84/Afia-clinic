@@ -25,11 +25,6 @@
         <field name="perm_create" eval="False"/>
         <field name="perm_unlink" eval="False"/>
     </record>
-    <record id="afia_dental_core.access_teeth_chart" model="ir.model.access">
-        <field name="perm_write" eval="False"/>
-        <field name="perm_create" eval="False"/>
-        <field name="perm_unlink" eval="False"/>
-    </record>
     <record id="afia_dental_core.access_xray_report" model="ir.model.access">
         <field name="perm_read" eval="False"/>
         <field name="perm_write" eval="False"/>

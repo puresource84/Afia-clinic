@@ -22,3 +22,11 @@ msgstr "مفتاح الخادم"
 #: model:ir.model.fields,field_description:payment_paytabs.field_payment_provider__paytabs_region
 msgid "Region / Endpoint"
 msgstr "المنطقة / نقطة الاتصال"
+
+#. module: payment_paytabs
+msgid "API Credentials"
+msgstr "بيانات اعتماد واجهة API"
+
+#. module: payment_paytabs
+msgid "PayTabs Credentials"
+msgstr "بيانات اعتماد PayTabs"

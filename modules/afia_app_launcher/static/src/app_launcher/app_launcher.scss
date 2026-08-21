@@ -18,7 +18,19 @@ $dropdown-radius:   16px;
 
 .afia-launcher {
     position: relative;             // anchor for the ::before pseudo-element
-    min-height: calc(100vh - 46px);
+    // 2026-08-16: was `min-height: calc(100vh - 46px)`, which assumes the
+    // outer page/body scrolls. It doesn't — Odoo's OWL client hands every
+    // action a FIXED-height slot (.o_action_manager, overflow-y: hidden)
+    // and expects the action's own root to scroll internally. This rarely
+    // overflowed on wide desktop windows (enough vertical room for ~12-15
+    // tiles), which is why it went unnoticed, but on a mobile-height
+    // viewport the tile grid overflows almost immediately and — with no
+    // scroll container anywhere — everything past the fold was just
+    // unreachable. `height: 100%` + `overflow-y: auto` makes this element
+    // itself the scroll region, filling exactly the slot it's given.
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; // momentum scroll on iOS Safari
     background: $launcher-bg;
     display: flex;
     flex-direction: column;

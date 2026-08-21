@@ -1,6 +1,6 @@
 {
     'name': 'Dental Appointment Times',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.0.1',
     'category': 'Medical',
     'summary': 'Adds proper start and end time fields to dental appointments with calendar drag-and-drop support.',
     'author': 'ITCS (IT Corner Solutions)',

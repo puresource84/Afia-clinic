@@ -1,6 +1,6 @@
 {
     'name': 'Afia Dental Clinic',
-    'version': '18.0.2.0.0',
+    'version': '18.0.2.0.5',
     'category': 'Healthcare',
     'summary': 'Dental clinic core: patients, appointments, dentists, treatments, prescriptions and billing.',
     'description': """
@@ -64,7 +64,6 @@ Clinic module.
         'views/dental_prescription_views.xml',
         'views/dental_medicine_views.xml',
         'views/medical_questions_views.xml',
-        'views/teeth_chart_views.xml',
         'views/account_payment_views.xml',
         'views/menus.xml',
         'report/dental_prescription_report.xml',

@@ -1,6 +1,6 @@
 {
     'name': 'Dental Analytics & KPIs',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.0.1',
     'category': 'Dental',
     'summary': 'Dental-specific KPI dashboards: chair utilisation, revenue per dentist, no-show rate and patient retention.',
     'author': 'ITCS (IT Corner Solutions)',

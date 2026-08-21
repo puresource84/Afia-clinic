@@ -1,0 +1,670 @@
+# Translation of Afia Dental Clinic (afia_dental_core).
+msgid ""
+msgstr ""
+"Project-Id-Version: Afia Dental Clinic\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: afia_dental_core
+msgid "A user with this login already exists."
+msgstr "يوجد مستخدم بهذا الاسم مسبقاً."
+
+#. module: afia_dental_core
+msgid "Access Groups"
+msgstr "مجموعات الصلاحيات"
+
+#. module: afia_dental_core
+msgid "After Food"
+msgstr "بعد الطعام"
+
+#. module: afia_dental_core
+msgid "Afternoon"
+msgstr "بعد الظهر"
+
+#. module: afia_dental_core
+msgid "Age"
+msgstr "العمر"
+
+#. module: afia_dental_core
+msgid "Answer"
+msgstr "الإجابة"
+
+#. module: afia_dental_core
+msgid "Appointment"
+msgstr "الموعد"
+
+#. module: afia_dental_core
+msgid "Appointment No."
+msgstr "رقم الموعد"
+
+#. module: afia_dental_core
+msgid "Appointments"
+msgstr "المواعيد"
+
+#. module: afia_dental_core
+msgid "Available Times"
+msgstr "الأوقات المتاحة"
+
+#. module: afia_dental_core
+msgid "Balance Due"
+msgstr "الرصيد المستحق"
+
+#. module: afia_dental_core
+msgid "Before Food"
+msgstr "قبل الطعام"
+
+#. module: afia_dental_core
+msgid "Booking Time"
+msgstr "وقت الحجز"
+
+#. module: afia_dental_core
+msgid "Calendar Entry"
+msgstr "إدخال التقويم"
+
+#. module: afia_dental_core
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: afia_dental_core
+msgid "Cancelled"
+msgstr "ملغى"
+
+#. module: afia_dental_core
+msgid "Capsules"
+msgstr "كبسولات"
+
+#. module: afia_dental_core
+msgid "Category"
+msgstr "الفئة"
+
+#. module: afia_dental_core
+msgid "Cavity"
+msgstr "تسوس"
+
+#. module: afia_dental_core
+msgid "Choose a different dentist when referring the patient onward."
+msgstr "اختر طبيب أسنان آخر عند إحالة المريض."
+
+#. module: afia_dental_core
+msgid "Clinic"
+msgstr "العيادة"
+
+#. module: afia_dental_core
+msgid "Close"
+msgstr "إغلاق"
+
+#. module: afia_dental_core
+msgid "Confirm"
+msgstr "تأكيد"
+
+#. module: afia_dental_core
+msgid "Confirmed"
+msgstr "مؤكد"
+
+#. module: afia_dental_core
+msgid "Cost"
+msgstr "التكلفة"
+
+#. module: afia_dental_core
+msgid "Create Invoice(s)"
+msgstr "إنشاء فاتورة (فواتير)"
+
+#. module: afia_dental_core
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: afia_dental_core
+msgid "Date of Birth"
+msgstr "تاريخ الميلاد"
+
+#. module: afia_dental_core
+msgid "Day"
+msgstr "اليوم"
+
+#. module: afia_dental_core
+msgid "Dentist"
+msgstr "طبيب الأسنان"
+
+#. module: afia_dental_core
+msgid "Designation"
+msgstr "المسمى الوظيفي"
+
+#. module: afia_dental_core
+msgid "Doctor"
+msgstr "الطبيب"
+
+#. module: afia_dental_core
+msgid "Done"
+msgstr "منجز"
+
+#. module: afia_dental_core
+msgid "Dosage Strength"
+msgstr "قوة الجرعة"
+
+#. module: afia_dental_core
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: afia_dental_core
+msgid "Duration (hours)"
+msgstr "المدة (ساعات)"
+
+#. module: afia_dental_core
+msgid "Email is preferred. Falls back to mobile number if the"
+msgstr "يفضل البريد الإلكتروني. يتم الرجوع لرقم الجوال إذا لم يتوفر"
+
+#. module: afia_dental_core
+msgid "End"
+msgstr "النهاية"
+
+#. module: afia_dental_core
+msgid "End Time"
+msgstr "وقت الانتهاء"
+
+#. module: afia_dental_core
+msgid "Evening"
+msgstr "المساء"
+
+#. module: afia_dental_core
+msgid "Expected chair time for this appointment."
+msgstr "الوقت المتوقع لهذا الموعد على الكرسي."
+
+#. module: afia_dental_core
+msgid "Female"
+msgstr "أنثى"
+
+#. module: afia_dental_core
+msgid "Filename"
+msgstr "اسم الملف"
+
+#. module: afia_dental_core
+msgid "Filled"
+msgstr "محشو"
+
+#. module: afia_dental_core
+msgid "Frequency"
+msgstr "التكرار"
+
+#. module: afia_dental_core
+msgid "Gender"
+msgstr "الجنس"
+
+#. module: afia_dental_core
+msgid "Generic Name"
+msgstr "الاسم العلمي"
+
+#. module: afia_dental_core
+msgid "Grant Access"
+msgstr "منح الصلاحية"
+
+#. module: afia_dental_core
+msgid "Grant System Access"
+msgstr "منح صلاحية الدخول للنظام"
+
+#. module: afia_dental_core
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: afia_dental_core
+msgid "Healthy"
+msgstr "سليم"
+
+#. module: afia_dental_core
+msgid "In Progress"
+msgstr "قيد التنفيذ"
+
+#. module: afia_dental_core
+msgid "Injections"
+msgstr "حقن"
+
+#. module: afia_dental_core
+msgid "Invoice Total"
+msgstr "إجمالي الفاتورة"
+
+#. module: afia_dental_core
+msgid "Invoiced"
+msgstr "تمت الفوترة"
+
+#. module: afia_dental_core
+msgid "Is Medicine"
+msgstr "دواء"
+
+#. module: afia_dental_core
+msgid "Is a Dentist"
+msgstr "طبيب أسنان"
+
+#. module: afia_dental_core
+msgid "Is a Patient"
+msgstr "مريض"
+
+#. module: afia_dental_core
+msgid "Linked Odoo Calendar entry, kept in sync automatically so"
+msgstr "إدخال تقويم أودو المرتبط، ويتم مزامنته تلقائياً بحيث"
+
+#. module: afia_dental_core
+msgid "Liquid"
+msgstr "سائل"
+
+#. module: afia_dental_core
+msgid "Login"
+msgstr "اسم الدخول"
+
+#. module: afia_dental_core
+msgid "Male"
+msgstr "ذكر"
+
+#. module: afia_dental_core
+msgid "Mark Done"
+msgstr "وضع علامة منجز"
+
+#. module: afia_dental_core
+msgid "Mark Prescribed"
+msgstr "وضع علامة موصوف"
+
+#. module: afia_dental_core
+msgid "Medical Questionnaire"
+msgstr "الاستبيان الطبي"
+
+#. module: afia_dental_core
+msgid "Medicament"
+msgstr "الدواء"
+
+#. module: afia_dental_core
+msgid "Medicine Distributor"
+msgstr "موزع الدواء"
+
+#. module: afia_dental_core
+msgid "Medicines"
+msgstr "الأدوية"
+
+#. module: afia_dental_core
+msgid "Missing"
+msgstr "مفقود"
+
+#. module: afia_dental_core
+msgid "Mobile"
+msgstr "الجوال"
+
+#. module: afia_dental_core
+msgid "Morning"
+msgstr "الصباح"
+
+#. module: afia_dental_core
+msgid "New"
+msgstr "جديد"
+
+#. module: afia_dental_core
+msgid "Next Appointment Date"
+msgstr "تاريخ الموعد القادم"
+
+#. module: afia_dental_core
+msgid "Night"
+msgstr "الليل"
+
+#. module: afia_dental_core
+msgid "No"
+msgstr "لا"
+
+#. module: afia_dental_core
+msgid "Normal"
+msgstr "طبيعي"
+
+#. module: afia_dental_core
+msgid "Notes"
+msgstr "ملاحظات"
+
+#. module: afia_dental_core
+msgid "Only confirmed appointments can be started."
+msgstr "يمكن بدء المواعيد المؤكدة فقط."
+
+#. module: afia_dental_core
+msgid "Patient"
+msgstr "المريض"
+
+#. module: afia_dental_core
+msgid "Patient Category"
+msgstr "فئة المريض"
+
+#. module: afia_dental_core
+msgid "Patient Details"
+msgstr "تفاصيل المريض"
+
+#. module: afia_dental_core
+msgid "Patient Name"
+msgstr "اسم المريض"
+
+#. module: afia_dental_core
+msgid "Patient No."
+msgstr "رقم المريض"
+
+#. module: afia_dental_core
+msgid "Patient Payments"
+msgstr "مدفوعات المريض"
+
+#. module: afia_dental_core
+msgid "Patient Signature"
+msgstr "توقيع المريض"
+
+#. module: afia_dental_core
+msgid "Payments"
+msgstr "المدفوعات"
+
+#. module: afia_dental_core
+msgid "Prescribed"
+msgstr "موصوف"
+
+#. module: afia_dental_core
+msgid "Prescribed Doctor"
+msgstr "الطبيب الواصف"
+
+#. module: afia_dental_core
+msgid "Prescription"
+msgstr "الوصفة الطبية"
+
+#. module: afia_dental_core
+msgid "Prescription Invoice"
+msgstr "فاتورة الوصفة الطبية"
+
+#. module: afia_dental_core
+msgid "Prescriptions"
+msgstr "الوصفات الطبية"
+
+#. module: afia_dental_core
+msgid "Print"
+msgstr "طباعة"
+
+#. module: afia_dental_core
+msgid "Provide an email or mobile number to use as the login."
+msgstr "أدخل بريداً إلكترونياً أو رقم جوال لاستخدامه كاسم دخول."
+
+#. module: afia_dental_core
+msgid "Purpose"
+msgstr "الغرض"
+
+#. module: afia_dental_core
+msgid "Question"
+msgstr "السؤال"
+
+#. module: afia_dental_core
+msgid "Receptionist"
+msgstr "موظف الاستقبال"
+
+#. module: afia_dental_core
+msgid "Referred Dentist"
+msgstr "طبيب الأسنان المحال إليه"
+
+#. module: afia_dental_core
+msgid "Register No."
+msgstr "رقم السجل"
+
+#. module: afia_dental_core
+msgid "Related Invoice"
+msgstr "الفاتورة المرتبطة"
+
+#. module: afia_dental_core
+msgid "Responsible"
+msgstr "المسؤول"
+
+#. module: afia_dental_core
+msgid "Responsible Name"
+msgstr "اسم المسؤول"
+
+#. module: afia_dental_core
+msgid "Returning"
+msgstr "مراجع سابق"
+
+#. module: afia_dental_core
+msgid "Revoke Access"
+msgstr "إلغاء الصلاحية"
+
+#. module: afia_dental_core
+msgid "Scan Image"
+msgstr "صورة ممسوحة ضوئياً"
+
+#. module: afia_dental_core
+msgid "Select a treatment before invoicing."
+msgstr "اختر علاجاً قبل إصدار الفاتورة."
+
+#. module: afia_dental_core
+msgid "Selected Teeth"
+msgstr "الأسنان المحددة"
+
+#. module: afia_dental_core
+msgid "Sequence No"
+msgstr "الرقم التسلسلي"
+
+#. module: afia_dental_core
+msgid "Sex"
+msgstr "الجنس"
+
+#. module: afia_dental_core
+msgid "Shift Type"
+msgstr "نوع الوردية"
+
+#. module: afia_dental_core
+msgid "Show All"
+msgstr "عرض الكل"
+
+#. module: afia_dental_core
+msgid "Specialised In"
+msgstr "التخصص في"
+
+#. module: afia_dental_core
+msgid "Start"
+msgstr "البدء"
+
+#. module: afia_dental_core
+msgid "Start Time"
+msgstr "وقت البدء"
+
+#. module: afia_dental_core
+msgid "Status"
+msgstr "الحالة"
+
+#. module: afia_dental_core
+msgid "System Access Granted"
+msgstr "تم منح صلاحية الدخول للنظام"
+
+#. module: afia_dental_core
+msgid "Tablets"
+msgstr "أقراص"
+
+#. module: afia_dental_core
+msgid "Teeth Affected"
+msgstr "الأسنان المتأثرة"
+
+#. module: afia_dental_core
+msgid "Teeth Chart (legacy)"
+msgstr "مخطط الأسنان (قديم)"
+
+#. module: afia_dental_core
+msgid "Time Shifts"
+msgstr "الورديات الزمنية"
+
+#. module: afia_dental_core
+msgid "Today"
+msgstr "اليوم"
+
+#. module: afia_dental_core
+msgid "Tooth 1"
+msgstr "السن رقم 1"
+
+#. module: afia_dental_core
+msgid "Tooth 10"
+msgstr "السن رقم 10"
+
+#. module: afia_dental_core
+msgid "Tooth 11"
+msgstr "السن رقم 11"
+
+#. module: afia_dental_core
+msgid "Tooth 12"
+msgstr "السن رقم 12"
+
+#. module: afia_dental_core
+msgid "Tooth 13"
+msgstr "السن رقم 13"
+
+#. module: afia_dental_core
+msgid "Tooth 14"
+msgstr "السن رقم 14"
+
+#. module: afia_dental_core
+msgid "Tooth 15"
+msgstr "السن رقم 15"
+
+#. module: afia_dental_core
+msgid "Tooth 16"
+msgstr "السن رقم 16"
+
+#. module: afia_dental_core
+msgid "Tooth 17"
+msgstr "السن رقم 17"
+
+#. module: afia_dental_core
+msgid "Tooth 18"
+msgstr "السن رقم 18"
+
+#. module: afia_dental_core
+msgid "Tooth 19"
+msgstr "السن رقم 19"
+
+#. module: afia_dental_core
+msgid "Tooth 2"
+msgstr "السن رقم 2"
+
+#. module: afia_dental_core
+msgid "Tooth 20"
+msgstr "السن رقم 20"
+
+#. module: afia_dental_core
+msgid "Tooth 21"
+msgstr "السن رقم 21"
+
+#. module: afia_dental_core
+msgid "Tooth 22"
+msgstr "السن رقم 22"
+
+#. module: afia_dental_core
+msgid "Tooth 23"
+msgstr "السن رقم 23"
+
+#. module: afia_dental_core
+msgid "Tooth 24"
+msgstr "السن رقم 24"
+
+#. module: afia_dental_core
+msgid "Tooth 25"
+msgstr "السن رقم 25"
+
+#. module: afia_dental_core
+msgid "Tooth 26"
+msgstr "السن رقم 26"
+
+#. module: afia_dental_core
+msgid "Tooth 27"
+msgstr "السن رقم 27"
+
+#. module: afia_dental_core
+msgid "Tooth 28"
+msgstr "السن رقم 28"
+
+#. module: afia_dental_core
+msgid "Tooth 29"
+msgstr "السن رقم 29"
+
+#. module: afia_dental_core
+msgid "Tooth 3"
+msgstr "السن رقم 3"
+
+#. module: afia_dental_core
+msgid "Tooth 30"
+msgstr "السن رقم 30"
+
+#. module: afia_dental_core
+msgid "Tooth 31"
+msgstr "السن رقم 31"
+
+#. module: afia_dental_core
+msgid "Tooth 32"
+msgstr "السن رقم 32"
+
+#. module: afia_dental_core
+msgid "Tooth 4"
+msgstr "السن رقم 4"
+
+#. module: afia_dental_core
+msgid "Tooth 5"
+msgstr "السن رقم 5"
+
+#. module: afia_dental_core
+msgid "Tooth 6"
+msgstr "السن رقم 6"
+
+#. module: afia_dental_core
+msgid "Tooth 7"
+msgstr "السن رقم 7"
+
+#. module: afia_dental_core
+msgid "Tooth 8"
+msgstr "السن رقم 8"
+
+#. module: afia_dental_core
+msgid "Tooth 9"
+msgstr "السن رقم 9"
+
+#. module: afia_dental_core
+msgid "Tooth Number"
+msgstr "رقم السن"
+
+#. module: afia_dental_core
+msgid "Treatment"
+msgstr "العلاج"
+
+#. module: afia_dental_core
+msgid "Treatment & Prescription Invoices"
+msgstr "فواتير العلاج والوصفات الطبية"
+
+#. module: afia_dental_core
+msgid "Treatment Cost"
+msgstr "تكلفة العلاج"
+
+#. module: afia_dental_core
+msgid "Treatment Done"
+msgstr "العلاج منجز"
+
+#. module: afia_dental_core
+msgid "Treatment Invoice"
+msgstr "فاتورة العلاج"
+
+#. module: afia_dental_core
+msgid "Treatment Name"
+msgstr "اسم العلاج"
+
+#. module: afia_dental_core
+msgid "Treatment Type"
+msgstr "نوع العلاج"
+
+#. module: afia_dental_core
+msgid "Treatments"
+msgstr "العلاجات"
+
+#. module: afia_dental_core
+msgid "Urgent"
+msgstr "عاجل"
+
+#. module: afia_dental_core
+msgid "X-Ray Reports"
+msgstr "تقارير الأشعة السينية"
+
+#. module: afia_dental_core
+msgid "Yes"
+msgstr "نعم"
+
+#. module: afia_dental_core
+msgid "doctor@example.com or mobile number"
+msgstr "doctor@example.com أو رقم الجوال"

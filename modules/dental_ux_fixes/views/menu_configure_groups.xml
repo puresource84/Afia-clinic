@@ -20,11 +20,9 @@
 
     <!-- ════════════════ Clinical Setup items ════════════════ -->
 
-    <!-- Teeth numbering chart / charting legend -->
-    <record id="afia_dental_core.teeth_chart_menu" model="ir.ui.menu">
-        <field name="parent_id" ref="menu_configure_clinical_setup"/>
-        <field name="sequence">10</field>
-    </record>
+    <!-- Teeth numbering chart / charting legend re-parent removed 2026-08-15:
+         afia_dental_core.teeth_chart_menu no longer exists (legacy
+         teeth.chart model removed, superseded by dental_charting_pro). -->
 
     <!-- Intake questionnaire questions -->
     <record id="afia_dental_core.medical_question_menu" model="ir.ui.menu">

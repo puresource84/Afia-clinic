@@ -14,8 +14,6 @@ access_dental_time_shift_user,dental.time.shift.user,model_dental_time_shift,bas
 access_dental_time_shift_manager,dental.time.shift.manager,model_dental_time_shift,group_dental_manager,1,1,1,1
 access_dental_tooth_user,dental.tooth.user,model_dental_tooth,base.group_user,1,0,0,0
 access_dental_tooth_manager,dental.tooth.manager,model_dental_tooth,group_dental_manager,1,1,1,1
-access_teeth_chart,teeth.chart.user,model_teeth_chart,base.group_user,1,1,1,0
-access_teeth_chart_manager,teeth.chart.manager,model_teeth_chart,group_dental_manager,1,1,1,1
 access_medical_questions_user,medical.questions.user,model_medical_questions,base.group_user,1,0,0,0
 access_medical_questions_manager,medical.questions.manager,model_medical_questions,group_dental_manager,1,1,1,1
 access_medical_questionnaire,medical.questionnaire.user,model_medical_questionnaire,base.group_user,1,1,1,0

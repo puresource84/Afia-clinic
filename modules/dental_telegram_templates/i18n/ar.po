@@ -90,3 +90,75 @@ msgstr "رسالة تيليجرام مرسلة"
 #, python-format
 msgid "Test message sent to %s."
 msgstr "تم إرسال رسالة اختبارية إلى %s."
+
+#. module: dental_telegram_templates
+msgid "Appointment"
+msgstr "الموعد"
+
+#. module: dental_telegram_templates
+msgid "Exclude Tests"
+msgstr "استبعاد الاختبارات"
+
+#. module: dental_telegram_templates
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: dental_telegram_templates
+msgid "Message"
+msgstr "الرسالة"
+
+#. module: dental_telegram_templates
+msgid "Message Type"
+msgstr "نوع الرسالة"
+
+#. module: dental_telegram_templates
+msgid "Message name"
+msgstr "اسم الرسالة"
+
+#. module: dental_telegram_templates
+msgid "Patient"
+msgstr "المريض"
+
+#. module: dental_telegram_templates
+msgid "Preview on a real phone"
+msgstr "معاينة على هاتف حقيقي"
+
+#. module: dental_telegram_templates
+msgid "Send Test"
+msgstr "إرسال اختبار"
+
+#. module: dental_telegram_templates
+msgid "Sent At"
+msgstr "وقت الإرسال"
+
+#. module: dental_telegram_templates
+msgid "Sent Date"
+msgstr "تاريخ الإرسال"
+
+#. module: dental_telegram_templates
+msgid "Telegram Message"
+msgstr "رسالة تيليجرام"
+
+#. module: dental_telegram_templates
+msgid "Template"
+msgstr "القالب"
+
+#. module: dental_telegram_templates
+msgid "Test"
+msgstr "اختبار"
+
+#. module: dental_telegram_templates
+msgid "Text (Arabic + English in one message)"
+msgstr "النص (عربي + إنجليزي في رسالة واحدة)"
+
+#. module: dental_telegram_templates
+msgid "Timing (clinic timezone)"
+msgstr "التوقيت (المنطقة الزمنية للعيادة)"
+
+#. module: dental_telegram_templates
+msgid "Today"
+msgstr "اليوم"
+
+#. module: dental_telegram_templates
+msgid "مرحباً {patient_name}… / Hello {patient_name}…"
+msgstr "مرحباً {patient_name}… / Hello {patient_name}…"

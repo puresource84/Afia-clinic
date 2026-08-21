@@ -5,7 +5,6 @@ from . import dental_treatment  # defines both TreatmentCategory and DentalTreat
 from . import dental_purpose
 from . import medicine_frequency
 from . import medical_questionnaire
-from . import teeth_chart
 from . import xray_report
 from . import res_partner
 from . import hr_employee

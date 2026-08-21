@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from markupsafe import Markup
+
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
@@ -36,6 +38,12 @@ class ClinicUserWizard(models.TransientModel):
         help="If enabled, the new staff member receives an email to set their own password. "
              "If disabled, you will need to set a password for them manually afterwards."
     )
+    capacity_info = fields.Html(
+        string='Plan Capacity', readonly=True,
+        help="Live dentist-seat usage against the clinic's ITCS license plan. "
+             "Only shown/enforced for the Clinic Dentist role — see "
+             "itcs_license_manager for what this counts."
+    )
 
     _ROLE_GROUP_XMLID = {
         'admin': 'clinic_core.group_clinic_admin',
@@ -51,11 +59,74 @@ class ClinicUserWizard(models.TransientModel):
             if self.employee_id.work_email:
                 self.login = self.employee_id.work_email
 
+    @api.model
+    def default_get(self, fields_list):
+        res = super().default_get(fields_list)
+        if 'capacity_info' in fields_list:
+            res['capacity_info'] = self._capacity_info_html(res.get('role', 'receptionist'))
+        return res
+
+    @api.onchange('role')
+    def _onchange_role_capacity_info(self):
+        self.capacity_info = self._capacity_info_html(self.role)
+
+    def _capacity_info_html(self, role):
+        """Live dentist-seat usage banner, shown only for the Clinic Dentist
+        role since that's the only role this wizard's cap check applies to
+        (the ITCS license only tracks dentist/patient capacity — see
+        itcs_license_manager/models/itcs_license.py). Mirrors the wording
+        style of the list-view seat banners (list_banner.js) for consistency,
+        but is rendered server-side here since this is a plain form field,
+        not a list view the OWL patch can hook into.
+        """
+        if role != 'dentist':
+            return False
+        # itcs_license_manager is a soft/optional dependency, not declared in
+        # this module's manifest (see App Store scoping note in
+        # ADD_STAFF_USER_CAPACITY.md) — this wizard must keep working when
+        # that module isn't installed (e.g. an Odoo App Store build of this
+        # package), so guard the model lookup instead of assuming it exists.
+        if 'itcs.license' not in self.env:
+            return False
+        License = self.env['itcs.license'].sudo()
+        license_rec = License.get_active_license()
+        if not license_rec:
+            return False
+        info = license_rec._afia_banner_info('dentist')
+        if info['type'] == 'none':
+            return False
+        css_class = {
+            'ok': 'alert alert-success py-1 px-2 mb-0',
+            'warning': 'alert alert-warning py-1 px-2 mb-0',
+            'danger': 'alert alert-danger py-1 px-2 mb-0',
+        }.get(info['type'], 'alert alert-secondary py-1 px-2 mb-0')
+        return Markup('<div class="%s"><strong>%s</strong></div>') % (
+            css_class, info['text']
+        )
+
     def action_create_user(self):
         self.ensure_one()
 
         if not self.login or '@' not in self.login:
             raise UserError(_('Please enter a valid email address for the login.'))
+
+        # Enforce the clinic's dentist-seat plan cap when onboarding a new
+        # Clinic Dentist login. The ITCS license only counts hr.employee
+        # records flagged is_dentist=True (see itcs_license_manager), which
+        # this wizard does not create/flag on its own — so this check treats
+        # "one more Clinic Dentist login about to be created" as +1 against
+        # the current active_dentist_count as a deliberate, slightly
+        # conservative proxy for "onboarding a new dentist," rather than
+        # waiting for a separate hr.employee edit to trip the cap later.
+        # 2026-08-21, per Manhel: enforced version of the wizard-level
+        # capacity check, see dental_ux_fixes/ADD_STAFF_USER_CAPACITY.md.
+        # Same optional-dependency guard as _capacity_info_html() above —
+        # skip the cap check entirely (not just fail open, but not error)
+        # when itcs_license_manager isn't installed.
+        if self.role == 'dentist' and 'itcs.license' in self.env:
+            license_rec = self.env['itcs.license'].sudo().get_active_license()
+            if license_rec:
+                license_rec._afia_check_cap('dentist', license_rec.active_dentist_count + 1)
 
         existing = self.env['res.users'].sudo().search([('login', '=', self.login)], limit=1)
         if existing:

@@ -27,3 +27,83 @@ msgstr "مطالبات التأمين"
 #: model:ir.ui.menu,name:dental_insurance.menu_insurance_root
 msgid "Insurance"
 msgstr "التأمين"
+
+#. module: dental_insurance
+msgid "Annual Maximum"
+msgstr "الحد الأقصى السنوي"
+
+#. module: dental_insurance
+msgid "Appointment"
+msgstr "الموعد"
+
+#. module: dental_insurance
+msgid "Approve"
+msgstr "الموافقة"
+
+#. module: dental_insurance
+msgid "Approved Amount"
+msgstr "المبلغ المعتمد"
+
+#. module: dental_insurance
+msgid "Claim No."
+msgstr "رقم المطالبة"
+
+#. module: dental_insurance
+msgid "Contact"
+msgstr "جهة الاتصال"
+
+#. module: dental_insurance
+msgid "Coverage %"
+msgstr "نسبة التغطية %"
+
+#. module: dental_insurance
+msgid "Group Number"
+msgstr "رقم المجموعة"
+
+#. module: dental_insurance
+msgid "Mark Paid"
+msgstr "وضع علامة مدفوع"
+
+#. module: dental_insurance
+msgid "Member ID"
+msgstr "رقم العضوية"
+
+#. module: dental_insurance
+msgid "Patient Portion"
+msgstr "حصة المريض"
+
+#. module: dental_insurance
+msgid "Policy Number"
+msgstr "رقم بوليصة التأمين"
+
+#. module: dental_insurance
+msgid "Pre-Authorise"
+msgstr "تفويض مسبق"
+
+#. module: dental_insurance
+msgid "Reject"
+msgstr "رفض"
+
+#. module: dental_insurance
+msgid "Rejection reason..."
+msgstr "سبب الرفض..."
+
+#. module: dental_insurance
+msgid "Submit"
+msgstr "إرسال"
+
+#. module: dental_insurance
+msgid "Total Billed"
+msgstr "إجمالي المفوتر"
+
+#. module: dental_insurance
+msgid "Treatments"
+msgstr "العلاجات"
+
+#. module: dental_insurance
+msgid "Valid From"
+msgstr "ساري من"
+
+#. module: dental_insurance
+msgid "Valid To"
+msgstr "ساري حتى"

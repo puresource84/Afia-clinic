@@ -6,6 +6,7 @@ from . import res_partner_smart_buttons
 from . import clinical_safety
 from . import commission_report
 from . import soft_delete
+from . import res_users_staff
 
 # appointment_invoicing.py (action_view_invoices / action_create_invoice /
 # invoice_ids / invoice_count on dental.appointment, referenced by this

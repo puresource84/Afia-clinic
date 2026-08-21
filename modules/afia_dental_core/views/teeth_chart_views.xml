@@ -1,25 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_teeth_chart_form" model="ir.ui.view">
-        <field name="name">teeth.chart.form</field>
-        <field name="model">teeth.chart</field>
-        <field name="arch" type="xml">
-            <form string="Teeth Chart (legacy)">
-                <div class="alert alert-warning" role="alert">
-                    Legacy flat chart. Use Dental Charting Pro's odontogram for new records.
-                </div>
-                <sheet>
-                    <group>
-                        <field name="name"/>
-                        <field name="selected_teeth" readonly="1"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-    <record id="action_teeth_chart" model="ir.actions.act_window">
-        <field name="name">Teeth Chart (legacy)</field>
-        <field name="res_model">teeth.chart</field>
-        <field name="view_mode">list,form</field>
-    </record>
+
+    <!-- Removed 2026-08-15: legacy teeth.chart form/action, superseded by
+         dental_charting_pro's odontogram. Not referenced from the manifest
+         data list anymore; kept as an empty stub because this addons path
+         can't be deleted while the Odoo service holds a file lock on it
+         from this environment. Safe to delete for real next time the
+         service is stopped. -->
+
 </odoo>

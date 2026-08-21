@@ -159,3 +159,11 @@ msgstr "مخطط الأسنان"
 #: model:ir.ui.menu,name:dental_charting_pro.menu_dental_charting_patient
 msgid "Dental Charting"
 msgstr "تخطيط الأسنان"
+
+#. module: dental_charting_pro
+msgid "Dental Chart"
+msgstr "المخطط السني"
+
+#. module: dental_charting_pro
+msgid "Tooth Record"
+msgstr "سجل السن"

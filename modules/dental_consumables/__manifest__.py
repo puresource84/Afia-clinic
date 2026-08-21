@@ -1,6 +1,6 @@
 {
     'name': 'Dental Consumables',
-    'version': '18.0.1.3.1',
+    'version': '18.0.1.3.2',
     'category': 'Healthcare/Dental',
     'summary': 'Auto-deduct consumable stock when a dental treatment is completed — composite, anaesthetic, gloves and more.',
     'author': 'ITCS (IT Corner Solutions)',

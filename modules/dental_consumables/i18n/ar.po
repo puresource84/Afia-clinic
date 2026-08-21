@@ -52,3 +52,47 @@ msgstr "حركات المواد"
 #: model:ir.model.fields,field_description:dental_consumables.field_stock_move__dental_appointment_id
 msgid "Dental Appointment"
 msgstr "موعد الأسنان"
+
+#. module: dental_consumables
+msgid "Category"
+msgstr "الفئة"
+
+#. module: dental_consumables
+msgid "Clinic Consumable"
+msgstr "مستهلكات العيادة"
+
+#. module: dental_consumables
+msgid "Clinic Stock"
+msgstr "مخزون العيادة"
+
+#. module: dental_consumables
+msgid "Forecasted"
+msgstr "المتوقع"
+
+#. module: dental_consumables
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: dental_consumables
+msgid "Low Stock (≤ 5)"
+msgstr "مخزون منخفض (≤ 5)"
+
+#. module: dental_consumables
+msgid "On Hand"
+msgstr "المتوفر"
+
+#. module: dental_consumables
+msgid "Out of Stock"
+msgstr "نفذ من المخزون"
+
+#. module: dental_consumables
+msgid "Treatment"
+msgstr "العلاج"
+
+#. module: dental_consumables
+msgid "Unit Cost (IQD)"
+msgstr "تكلفة الوحدة (دينار عراقي)"
+
+#. module: dental_consumables
+msgid "When checked, this product appears in the Clinic Stock view. "
+msgstr "عند التفعيل، يظهر هذا المنتج في عرض مخزون العيادة. "

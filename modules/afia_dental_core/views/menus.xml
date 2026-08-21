@@ -41,6 +41,8 @@
               action="action_dental_medicine" sequence="50"/>
     <menuitem id="medical_question_menu" name="Medical Questions"
               parent="dental_configure" action="action_medical_questions" sequence="60"/>
-    <menuitem id="teeth_chart_menu" name="Teeth Chart (legacy)"
-              parent="dental_configure" action="action_teeth_chart" sequence="70"/>
+    <!-- teeth_chart_menu removed 2026-08-15: the legacy flat tooth chart
+         (teeth.chart model) is fully superseded by dental_charting_pro's
+         FDI odontogram. Zero real teeth.chart records existed on db_odoo
+         at removal time; do not re-add without re-checking that. -->
 </odoo>

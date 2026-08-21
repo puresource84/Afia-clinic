@@ -1,6 +1,6 @@
 {
     'name': 'Dental Audit Trail',
-    'version': '18.0.1.2.0',
+    'version': '18.0.1.2.1',
     'category': 'Healthcare/Dental',
     'summary': 'Field-level audit trail on all clinical records — every change is logged with user, timestamp and old value.',
     'author': 'ITCS (IT Corner Solutions)',

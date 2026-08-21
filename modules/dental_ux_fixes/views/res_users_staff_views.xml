@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Staff list — every clinic login regardless of role (Administrator,
+         Dentist, Hygienist, Receptionist). Manhel, 2026-08-21: previously
+         there was nowhere in the app to see this at a glance; the existing
+         "Dentists" menu (afia_dental_core.dental_staff) only lists
+         hr.employee records flagged is_dentist, not clinic user logins. -->
+    <record id="view_clinic_staff_list" model="ir.ui.view">
+        <field name="name">clinic.staff.list</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <list string="Staff" create="false">
+                <field name="name"/>
+                <field name="login"/>
+                <field name="clinic_role_label" string="Role"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_clinic_staff_form" model="ir.ui.view">
+        <field name="name">clinic.staff.form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="create">false</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_clinic_staff_list" model="ir.actions.act_window">
+        <field name="name">Staff</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">list,form</field>
+        <!-- Any login belonging to one of the 4 Afia Clinic staff role
+             groups — i.e. anyone onboarded via the Add Staff User wizard,
+             regardless of role. Same group list clinic_user_wizard.py's
+             _ROLE_GROUP_XMLID uses, kept here as explicit refs so it stays
+             correct across module upgrades/reinstalls. -->
+        <field name="domain" eval="[('groups_id', 'in', [
+            ref('clinic_core.group_clinic_admin'),
+            ref('clinic_core.group_clinic_dentist'),
+            ref('dental_clinical_permissions.group_clinic_hygienist'),
+            ref('clinic_core.group_clinic_receptionist'),
+        ])]"/>
+        <field name="context">{}</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'list', 'view_id': ref('view_clinic_staff_list')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('view_clinic_staff_form')})]"/>
+    </record>
+</odoo>

@@ -27,3 +27,11 @@ msgstr "المفتاح السري"
 #: model:ir.model.fields,field_description:payment_zaincash.field_payment_provider__zaincash_api_base_url
 msgid "API Base URL"
 msgstr "رابط API الأساسي"
+
+#. module: payment_zaincash
+msgid "API Credentials"
+msgstr "بيانات اعتماد واجهة API"
+
+#. module: payment_zaincash
+msgid "ZainCash Credentials"
+msgstr "بيانات اعتماد زين كاش"

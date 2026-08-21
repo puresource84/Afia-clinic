@@ -60,17 +60,37 @@ class ResPartner(models.Model):
     def create(self, vals_list):
         records = super().create(vals_list)
         new_patients = records.filtered('is_patient')
-        for record in new_patients:
+        self._onboard_new_patients(new_patients)
+        return records
+
+    def write(self, vals):
+        # A partner can also become a patient later — e.g. auto-flagged by
+        # account.move._sync_patient_flag() when a treatment invoice is
+        # created for a contact that wasn't made through the Patients app's
+        # own "New" button. Run the same onboarding (patient number,
+        # medical questionnaire) that create() does, but only for partners
+        # that are newly becoming a patient here.
+        newly_flagged = self.env['res.partner']
+        if vals.get('is_patient'):
+            newly_flagged = self.filtered(lambda p: not p.is_patient)
+        res = super().write(vals)
+        if newly_flagged:
+            self._onboard_new_patients(newly_flagged)
+        return res
+
+    def _onboard_new_patients(self, patients):
+        for record in patients:
             if not record.patient_no:
                 record.patient_no = self.env['ir.sequence'].next_by_code(
                     'dental.patient') or _('New')
-        if new_patients:
+        if patients:
             questions = self.env['medical.questions'].search([('active', '=', True)])
             self.env['medical.questionnaire'].create([
                 {'patient_id': p.id, 'question_id': q.id}
-                for p in new_patients for q in questions
+                for p in patients for q in questions
+                if not self.env['medical.questionnaire'].search_count(
+                    [('patient_id', '=', p.id), ('question_id', '=', q.id)])
             ])
-        return records
 
     def action_view_appointments(self):
         self.ensure_one()

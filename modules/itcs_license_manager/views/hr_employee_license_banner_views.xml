@@ -21,4 +21,13 @@
             </xpath>
         </field>
     </record>
+
+    <!-- List-view seat-availability banner (2026-08-16): see the matching
+         comment in patient_license_banner_views.xml for why this is a
+         context key + JS patch rather than an invalid banner_route attribute. -->
+    <record id="afia_dental_core.view_employee_list_dentists" model="ir.actions.act_window">
+        <!-- Merged, not replaced: base context carries default_is_dentist
+             for the New button. Keep in sync with hr_employee_views.xml. -->
+        <field name="context">{'default_is_dentist': True, 'itcs_banner_kind': 'dentist'}</field>
+    </record>
 </odoo>

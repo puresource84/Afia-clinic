@@ -1,6 +1,6 @@
 {
     'name': 'Dental Charting Pro',
-    'version': '18.0.1.7.3',
+    'version': '18.0.1.7.4',
     'category': 'Healthcare/Dental',
     'summary': 'Interactive FDI odontogram with per-tooth conditions, surface mapping and full clinical history.',
     'author': 'ITCS (IT Corner Solutions)',

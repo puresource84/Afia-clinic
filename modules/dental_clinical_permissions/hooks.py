@@ -12,8 +12,6 @@ ACCESS_OVERRIDES = [
      {'perm_write': False, 'perm_create': False, 'perm_unlink': False}),
     ('afia_dental_core.access_medical_questionnaire',
      {'perm_write': False, 'perm_create': False, 'perm_unlink': False}),
-    ('afia_dental_core.access_teeth_chart',
-     {'perm_write': False, 'perm_create': False, 'perm_unlink': False}),
     ('afia_dental_core.access_xray_report',
      {'perm_read': False, 'perm_write': False, 'perm_create': False, 'perm_unlink': False}),
     ('afia_dental_core.access_dental_treatment',

@@ -22,7 +22,7 @@
     #   see this module's menu, model, or data. Only the group defined in
     #   security/security.xml can.
     'name': 'ITCS License Manager',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.1.0',
     'category': 'Hidden/Tools',
     'summary': 'ITCS-internal: self-hosted license/AMC expiry tracking, renewal codes, Telegram alerts.',
     'author': 'ITCS (IT Corner Solutions)',
@@ -38,6 +38,11 @@
         'views/patient_license_banner_views.xml',
         'data/ir_cron.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'itcs_license_manager/static/src/js/list_banner.js',
+        ],
+    },
     'installable': True,
     'application': False,
     'auto_install': False,

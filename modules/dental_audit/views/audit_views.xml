@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Appointment form: inject chatter (prescription already has <chatter/> built in) -->
-    <record id="view_appointment_form_chatter" model="ir.ui.view">
-        <field name="name">dental.appointment.form.chatter</field>
-        <field name="model">dental.appointment</field>
-        <field name="inherit_id" ref="afia_dental_core.view_dental_appointment_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//sheet" position="after">
-                <chatter/>
-            </xpath>
-        </field>
-    </record>
+    <!-- NOTE (2026-08-15): the old dental_hospital appointment form had no
+         chatter, so this module used to inject one. The rewritten
+         afia_dental_core.view_dental_appointment_form already ships its own
+         <chatter/> — adding a second one here caused two ChatterContainer
+         components to mount at once (squished sheet, duplicated
+         "Creating a new record..." log entries). Record intentionally
+         removed; do not re-add without checking the base form first. -->
 
 </odoo>
