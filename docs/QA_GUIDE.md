@@ -6,21 +6,30 @@ code with the Arabic demo dataset loaded.
 
 ## 1. Start it
 
-Docker Desktop must be running. From the repo root:
+Docker Desktop must be running.
 
 ```powershell
-cd docker
+cd "D:\ITCS\ITCS Projects\Dental Clinic Odoo\afia-clinic-repo\docker"
 "POSTGRES_PASSWORD=afia_qa_pw" | Out-File -Encoding ascii .env
 docker compose up -d
 ```
 
 First start pulls the images and takes a few minutes. Then create the QA
-database with everything installed in one command:
+database. The running server has to be stopped first: it holds open sessions
+on the database and binds the port inside the container, so an install run
+alongside it fails on both counts.
 
 ```powershell
-docker compose exec odoo odoo -d afia_qa -i afia_menu --stop-after-init
-docker compose restart odoo
+docker compose stop odoo
+docker compose exec db dropdb -U odoo --if-exists afia_qa
+docker compose run --rm --no-deps odoo odoo -d afia_qa -i afia_menu --stop-after-init
+docker compose start odoo
 ```
+
+`docker compose run` is deliberate: unlike `exec` it starts a throwaway
+container that publishes no ports, so it cannot collide with the service.
+Dropping the database first is what guarantees the Arabic demo dataset loads
+— demo data is only ever loaded at database creation.
 
 `afia_menu` is the glue layer, so installing it alone pulls in all 19 modules
 through their dependencies.
@@ -29,15 +38,30 @@ through their dependencies.
 
 | | |
 | --- | --- |
-| URL | http://localhost:8069 |
+| URL | http://localhost:8169 |
 | Login | `admin` |
 | Password | `admin` |
 
 Change the admin password before this is ever reachable from outside your
 machine. The stack binds to `127.0.0.1` only, so nothing is exposed by default.
 
-If the login fails, the database was created without demo data — drop it and
-re-run the command in step 1, which creates it with demo data on.
+If the login fails, or the Apps list is empty, the module install did not
+complete — re-run the four commands above and read the output of the third.
+
+### Scaffolding faults hit on first run (2026-10-30), now fixed
+
+These were in the Docker setup, not in Afia. Listed so nobody debugs them twice:
+
+- `docker/odoo.generated.conf` is produced by `install.ps1`. Running
+  `docker compose` without it makes Docker create a *directory* at that path
+  and the mount then fails. It is generated now.
+- Host port 8069 was already taken on the build machine by another Odoo, so
+  the stack publishes **8169** instead.
+- `docker compose exec` bypasses the image entrypoint, which is what normally
+  injects the database host — so `db_host`/`db_user`/`db_password` are set in
+  `odoo.generated.conf` directly.
+- Compose took its project name from the folder (`docker`), colliding with an
+  unrelated wordpress stack. The project is named `afia-qa` now.
 
 ## 3. Create one user per role
 
