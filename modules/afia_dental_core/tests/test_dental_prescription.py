@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from odoo import fields
 from odoo.tests import TransactionCase, tagged
 
 
@@ -83,7 +84,9 @@ class TestDentalPrescription(TransactionCase):
         existing = self.env['dental.appointment'].search([
             ('patient_id', '=', self.patient.id),
         ])
-        rx.write({'next_appointment_date': '2026-09-01'})
+        # Relative, not hardcoded: a literal date silently becomes a past date
+        # and trips the future-date constraint once that day passes.
+        rx.write({'next_appointment_date': fields.Date.add(fields.Date.today(), days=14)})
         follow_ups = self.env['dental.appointment'].search([
             ('patient_id', '=', self.patient.id),
         ]) - existing

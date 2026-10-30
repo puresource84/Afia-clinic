@@ -17,6 +17,15 @@ class DentalAppointmentArchive(models.Model):
     )
 
     def unlink(self):
-        """Archive instead of permanently deleting to preserve history."""
+        """Archive instead of permanently deleting, to preserve the clinical
+        record for audit.
+
+        The linked calendar event must still be deactivated. This override
+        replaces dental_appointment.unlink(), which deleted the event, so
+        without this the slot stayed booked on the dentist's calendar and a
+        deleted appointment showed up as a ghost booking. Deactivating rather
+        than deleting matches action_cancel().
+        """
+        self.calendar_event_id.write({'active': False})
         self.write({'active': False})
         return True

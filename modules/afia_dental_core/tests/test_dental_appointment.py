@@ -89,11 +89,16 @@ class TestDentalAppointment(TransactionCase):
         self.assertEqual(appt.state, 'cancelled')
         self.assertFalse(appt.calendar_event_id.active)
 
-    def test_unlink_removes_linked_calendar_event(self):
+    def test_unlink_archives_and_frees_calendar_slot(self):
+        """Appointments are soft-deleted: the clinical record is kept for the
+        audit trail, but the calendar slot must be freed or the dentist's day
+        shows a booking for an appointment that no longer exists."""
         appt = self._create_appointment()
         event = appt.calendar_event_id
         appt.unlink()
-        self.assertFalse(event.exists())
+        self.assertFalse(appt.active, 'appointment should be archived, not deleted')
+        self.assertTrue(event.exists(), 'calendar event kept for audit')
+        self.assertFalse(event.active, 'calendar slot must be freed')
 
     def test_duration_must_be_positive(self):
         with self.assertRaises(Exception):

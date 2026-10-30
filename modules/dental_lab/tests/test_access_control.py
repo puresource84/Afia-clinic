@@ -19,7 +19,8 @@ class TestLabOrderAccessControl(TransactionCase):
         })
         cls.reception_user = cls.env['res.users'].create({
             'name': 'Reception User', 'login': 'reception_user_lab_test',
-            'group_ids': [(6, 0, [cls.reception_group.id])],
+            # Odoo 18 field name is groups_id; group_ids is the 19/20 spelling.
+            'groups_id': [(6, 0, [cls.reception_group.id])],
         })
         cls.patient = cls.env['res.partner'].create({'name': 'Lab Patient', 'is_patient': True})
 

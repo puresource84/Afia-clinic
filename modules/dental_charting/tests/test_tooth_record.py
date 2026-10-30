@@ -42,7 +42,7 @@ class TestToothRecord(TransactionCase):
         self._rec(fdi='21', condition='caries')
         self._rec(fdi='21', condition='root_canal')
         data = self.patient.odontogram_data
-        self.assertEqual(data.get('21'), 'root_canal',
+        self.assertEqual(data.get('21', {}).get('condition'), 'root_canal',
                          'odontogram must show latest current condition')
 
     def test_history_preserved(self):

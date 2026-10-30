@@ -45,7 +45,7 @@
         <field name="implied_ids" eval="[
             (4, ref('afia_dental_core.group_clinic_dentist')),
             (4, ref('afia_dental_core.group_clinic_receptionist')),
-            (4, ref('group_clinic_hygienist')),
+            (4, ref('afia_dental_core.group_clinic_hygienist')),
             (4, ref('base.group_user')),
             (4, ref('stock.group_stock_user')),
             (4, ref('hr.group_hr_user')),

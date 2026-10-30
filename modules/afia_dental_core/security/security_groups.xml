@@ -8,6 +8,11 @@
     <record id="group_dental_reception" model="res.groups">
         <field name="name">Receptionist</field>
         <field name="category_id" ref="module_category_dental"/>
+        <!-- base.group_user: a clinic role is useless without internal-user
+             access. Without it a user holding only this group cannot read
+             mail.message.subtype, so creating any chattered record (a claim,
+             a lab order) fails with an AccessError. -->
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
         <field name="comment">Books/manages appointments and patients; no clinical record access.</field>
     </record>
 

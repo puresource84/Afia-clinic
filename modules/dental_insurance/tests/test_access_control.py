@@ -21,7 +21,8 @@ class TestInsuranceAccessControl(TransactionCase):
         })
         cls.reception_user = cls.env['res.users'].create({
             'name': 'Reception User', 'login': 'reception_user_insurance_test',
-            'group_ids': [(6, 0, [cls.reception_group.id])],
+            # Odoo 18 field name is groups_id; group_ids is the 19/20 spelling.
+            'groups_id': [(6, 0, [cls.reception_group.id])],
         })
         cls.insurer = cls.env['dental.insurer'].create({'name': 'Test Insurer'})
 

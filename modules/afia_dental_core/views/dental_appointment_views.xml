@@ -52,6 +52,11 @@
                            statusbar_visible="draft,confirmed,in_progress,done"/>
                 </header>
                 <sheet>
+                    <!-- Owned here because this module owns the form. Every module
+                         that adds a smart button xpaths into it with position="inside";
+                         none of them has to create it, and none has to out-prioritise
+                         another to get its button in. -->
+                    <div class="oe_button_box" name="button_box"/>
                     <div class="oe_title">
                         <h1><field name="appointment_no" readonly="1"/></h1>
                     </div>

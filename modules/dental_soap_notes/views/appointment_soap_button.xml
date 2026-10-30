@@ -5,9 +5,7 @@
         <field name="name">dental.appointment.form.soap.button</field>
         <field name="model">dental.appointment</field>
         <field name="inherit_id" ref="afia_dental_core.view_dental_appointment_form"/>
-        <!-- priority 20: must run AFTER dental_ux_fixes (priority 16) creates
-             the button_box div so we can inject into it. -->
-        <field name="priority">20</field>
+        <!-- No priority needed: afia_dental_core declares the button_box. -->
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button name="action_open_soap_notes" type="object"

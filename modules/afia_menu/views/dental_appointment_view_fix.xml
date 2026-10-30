@@ -10,13 +10,10 @@
                         string="Start Treatment" class="oe_highlight"
                         invisible="state != 'confirmed'"/>
             </xpath>
-            <!-- button_box inside sheet as its first child (Odoo 18 canonical position).
-                 position="before" on //sheet causes OWL FormRenderer to render
-                 the oe_button_box twice (once in the control panel, once in the sheet).
-                 All modules inject additional buttons here via xpath position="inside". -->
-            <xpath expr="//sheet/group[1]" position="before">
-                <div class="oe_button_box" name="button_box">
-                    <button name="action_view_dental_chart" type="object"
+            <!-- The button_box itself is declared by afia_dental_core on the form;
+                 this only adds the cross-module stat buttons to it. -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_dental_chart" type="object"
                             class="oe_stat_button" icon="fa-stethoscope"
                             invisible="not patient_id">
                         <field name="tooth_record_count" widget="statinfo"
@@ -48,7 +45,6 @@
                             <span class="o_stat_text">Create Invoice</span>
                         </div>
                     </button>
-                </div>
             </xpath>
             <!-- Allergy alert before the sheet so it spans full width above the form -->
             <xpath expr="//sheet" position="before">
@@ -57,24 +53,6 @@
                     <strong>&#9888; CLINICAL ALERT: </strong>
                     <field name="allergy_alert" readonly="1" nolabel="1"/>
                 </div>
-            </xpath>
-            <!-- Perio Chart button (dental_perio_charting module) -->
-            <xpath expr="//div[@name='button_box']" position="inside">
-                <button name="action_open_perio_exams" type="object"
-                        class="oe_stat_button" icon="fa-stethoscope"
-                        groups="afia_dental_core.group_clinic_admin,afia_dental_core.group_clinic_dentist,afia_dental_core.group_clinic_receptionist">
-                    <field name="perio_exam_count" widget="statinfo"
-                           string="Perio Chart"/>
-                </button>
-            </xpath>
-            <!-- Clinical Notes button (dental_soap_notes module) -->
-            <xpath expr="//div[@name='button_box']" position="inside">
-                <button name="action_open_soap_notes" type="object"
-                        class="oe_stat_button" icon="fa-file-text-o"
-                        groups="afia_dental_core.group_clinic_admin,afia_dental_core.group_clinic_dentist,afia_dental_core.group_clinic_receptionist">
-                    <field name="soap_note_count" widget="statinfo"
-                           string="Clinical Notes"/>
-                </button>
             </xpath>
         </field>
     </record>

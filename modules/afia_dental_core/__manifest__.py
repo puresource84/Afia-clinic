@@ -72,7 +72,6 @@
           'views/res_company_branch_views.xml',
           'views/patient_action_fix.xml',
           'views/ux_res_partner_views.xml',
-          'views/dental_appointment_view_fix.xml',
           'views/dental_prescription_rtl_fix.xml',
           'views/res_partner_calendar_meetings_fix.xml'],
  'installable': True,

@@ -5,7 +5,9 @@ from datetime import datetime
 from odoo import http
 from odoo.http import request
 
-from odoo.addons.dental_portal.controllers.main import (
+# DentalBookingController moved to dental_portal_booking_main.py when the
+# portal modules were merged (three controllers/main.py collided).
+from odoo.addons.dental_portal.controllers.dental_portal_booking_main import (
     DentalBookingController,
 )
 

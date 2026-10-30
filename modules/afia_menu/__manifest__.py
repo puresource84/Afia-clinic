@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {'name': 'Dental Clinic Menu',
- 'version': '18.0.1.0.0',
+ 'version': '18.0.1.1.0',
  'category': 'Dental',
  'summary': 'Reorganises the dental clinic menu into intuitive Patient and Billing groups for '
             'faster navigation.',
@@ -20,8 +20,10 @@
              'dental_consumables',
              'dental_patient_flow',
              'dental_reminders',
-             'dental_soap_notes'],
- 'data': ['views/menu_patch.xml',
+             'dental_soap_notes',
+             'dental_clinical_permissions'],
+ 'data': ['views/dental_appointment_view_fix.xml',
+          'views/menu_patch.xml',
           'views/menu_dedupe.xml',
           'views/menu_quick_actions.xml',
           'views/menu_configure_groups.xml',

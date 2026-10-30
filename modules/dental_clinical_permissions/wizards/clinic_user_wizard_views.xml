@@ -39,13 +39,6 @@
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
-
-    <!-- Placed just above the existing "Staffs" (employee records) menu,
-         under Configure > System, restricted to Clinic Administrators. -->
-    <menuitem id="menu_add_staff_user"
-              name="Add Staff User"
-              parent="menu_configure_system"
-              action="action_clinic_user_wizard"
-              sequence="15"
-              groups="afia_dental_core.group_clinic_admin,base.group_system"/>
+    <!-- The menu entry for this wizard lives in afia_menu (the menu layer);
+         this module owns only the action. -->
 </odoo>
