@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {'name': 'Dental Analytics & KPIs',
- 'version': '18.0.1.1.0',
+ 'version': '18.0.1.2.0',
  'category': 'Dental',
  'summary': 'Dental-specific KPI dashboards: chair utilisation, revenue per dentist, no-show rate '
             'and patient retention.',

@@ -4,7 +4,15 @@ from odoo import fields, models, tools
 class HrEmployeeCommission(models.Model):
     _inherit = 'hr.employee'
 
+    # groups: compensation data. With the restriction here on hr.employee,
+    # Odoo removes the field from views and from fields_get for anyone outside
+    # these groups, so the web client never requests it and no read can trip
+    # over it. Protecting it only on the form view is not enough - the field
+    # still reaches reads made for other screens, and a single such field
+    # makes Odoo refuse the whole hr.employee read for users without HR
+    # access, which locked receptionists out of the appointment calendar.
     commission_pct = fields.Float(
+        groups='base.group_system,afia_dental_core.group_clinic_admin',
         string='Commission %', default=0.0,
         help='Percentage of production (sum of treatment costs of Done '
              'appointments) paid as commission to this dentist.')
