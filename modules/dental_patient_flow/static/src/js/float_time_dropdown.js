@@ -71,7 +71,7 @@ function filterSlots(raw) {
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export class FloatTimeDropdown extends Component {
-    static template = "dental_appointment_times.FloatTimeDropdown";
+    static template = "dental_patient_flow.FloatTimeDropdown";
     static props = {
         ...standardFieldProps,
         placeholder: { type: String, optional: true },

@@ -60,7 +60,7 @@ const OUTLINE_PATHS = {
 const REGION_KEYS = ["top", "right", "bottom", "left", "center"];
 
 export class OdontogramField extends Component {
-    static template = "dental_charting_pro.Odontogram";
+    static template = "dental_charting.Odontogram";
     static props = { ...standardFieldProps };
 
     setup() {
