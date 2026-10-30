@@ -19,6 +19,16 @@ def migrate(cr, version):
     from odoo import api, SUPERUSER_ID
     env = api.Environment(cr, SUPERUSER_ID, {})
 
+    # Safety guard: this rewrites commissions, FX rates, shifts and archives
+    # patients. Only ever run it on a database created with demo data -
+    # never on a real clinic database that happens to have this module.
+    base = env['ir.module.module'].search([('name', '=', 'base')], limit=1)
+    if not base.demo:
+        _logger.warning(
+            'sprint_a_migration: skipped - database was not created with '
+            'demo data, refusing to modify real clinic records.')
+        return
+
     # ── 1. Dentist commission % ───────────────────────────────────────────
     dentists_no_commission = env['hr.employee'].search([
         ('is_dentist', '=', True),
