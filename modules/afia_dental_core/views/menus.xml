@@ -26,7 +26,7 @@
          (clinic_core, dental_clinical_permissions, ...) hang their own
          config sub-items off this menu with their own group scoping, and
          a group restriction on the parent would hide the whole subtree
-         from anyone not also in group_dental_manager. -->
+         from anyone not also in group_clinic_admin. -->
     <menuitem id="dental_configure" name="Configuration" parent="hospital_root_menu"
               sequence="90"/>
     <menuitem id="dental_treatment_menu" name="Treatments" parent="dental_configure"

@@ -3,7 +3,7 @@
 (Domain A1): dental.insurer/dental.policy/dental.claim used to grant full
 CRUD to base.group_user (every internal user, regardless of clinic role).
 Fixed by demoting that row to read-only and adding a proper role-scoped
-grant to afia_dental_core.group_dental_reception (which cascades up to
+grant to afia_dental_core.group_clinic_receptionist (which cascades up to
 Dentist and Clinic Administrator via implied_ids)."""
 from odoo.exceptions import AccessError
 from odoo.tests import TransactionCase, tagged
@@ -15,7 +15,7 @@ class TestInsuranceAccessControl(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.reception_group = cls.env.ref('afia_dental_core.group_dental_reception')
+        cls.reception_group = cls.env.ref('afia_dental_core.group_clinic_receptionist')
         cls.bare_user = cls.env['res.users'].create({
             'name': 'Bare Internal User', 'login': 'bare_user_insurance_test',
         })

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {'name': 'Afia Dental Clinic',
- 'version': '18.0.2.3.0',
+ 'version': '18.0.2.4.0',
  'category': 'Healthcare',
  'summary': 'Dental clinic core: patients, appointments, dentists, treatments, prescriptions and '
             'billing.',
@@ -42,7 +42,7 @@
              'calendar',
              'mail',
              'resource'],
- 'data': ['security/security_groups.xml',
+ 'data': ['security/clinic_security.xml',
           'security/ir.model.access.csv',
           'security/ir_rule.xml',
           'data/sequences.xml',
@@ -66,7 +66,6 @@
           'report/dental_prescription_report.xml',
           'report/dental_prescription_templates.xml',
           'wizard/doctor_invite_views.xml',
-          'security/clinic_security.xml',
           'views/clinic_menu.xml',
           'views/res_config_settings_views.xml',
           'views/res_company_branch_views.xml',

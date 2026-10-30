@@ -28,7 +28,7 @@ class DentalDoctorInvite(models.TransientModel):
     group_ids = fields.Many2many(
         'res.groups', string='Access Groups',
         default=lambda self: self.env.ref(
-            'afia_dental_core.group_dental_dentist', raise_if_not_found=False))
+            'afia_dental_core.group_clinic_dentist', raise_if_not_found=False))
     temp_password = fields.Char(readonly=True, copy=False)
     state = fields.Selection([('draft', 'Draft'), ('done', 'Done')], default='draft')
 

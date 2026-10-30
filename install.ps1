@@ -20,7 +20,10 @@ $MODULES_DIR = Join-Path $SCRIPT_DIR "modules"
 $ODOO_NIGHTLY = "https://nightly.odoo.com/18.0/nightly/windows/odoo_setup_18.0.latest.exe"
 
 # Module install layers.
-# 2026-08-07: rebuilt against the current afia_dental_core rewrite (35
+# 2026-10-30: rebuilt for the 19-module consolidated tree (was 35).
+# afia_menu is the glue layer and installs last; installing it alone pulls
+# in everything else through depends.
+# Previously: rebuilt against the current afia_dental_core rewrite (35
 # modules - dental_report_builder is gone entirely, clinic_core_plus and
 # dental_hide_re_tabs are excluded from this package). Odoo's ORM resolves
 # the full dependency graph internally on button_immediate_install, so
@@ -30,13 +33,12 @@ $ODOO_NIGHTLY = "https://nightly.odoo.com/18.0/nightly/windows/odoo_setup_18.0.l
 # correctly; it just won't log in as tidy a sequence.
 $LAYERS = @(
     @("afia_dental_core"),
-    @("clinic_core","dental_analytics","dental_charting_pro","dental_communication","dental_consent","dental_insurance","dental_lab","dental_patient_flow","dental_patient_portal","dental_portal_booking","dental_sterilization","dental_treatment_plan"),
-    @("afia_app_launcher","dental_appointment_times","dental_booking_slots","dental_case_acceptance","dental_clinical_permissions","dental_consumables","dental_imaging","dental_insurance_v2","dental_reminders_telegram"),
-    @("custom_dental_menu","dental_soap_notes","dental_telegram_templates"),
-    @("dental_perio_charting","dental_portal_v2"),
-    @("dental_ux_fixes"),
-    @("dental_allergy_guard"),
-    @("dental_audit")
+    @("dental_charting","dental_analytics","dental_consent","dental_insurance","dental_lab",
+      "dental_sterilization","dental_treatment_plan","dental_patient_flow","dental_portal",
+      "dental_reminders","dental_consumables"),
+    @("dental_clinical_permissions","dental_soap_notes","afia_app_launcher","dental_demo_data"),
+    @("dental_allergy_guard","dental_audit"),
+    @("afia_menu")
 )
 # v1.1 (single clinic, cash only, Telegram + email reminders) deliberately
 # does NOT auto-install: dental_branch, dental_reminders_whatsapp,

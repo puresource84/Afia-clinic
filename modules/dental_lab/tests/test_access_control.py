@@ -2,7 +2,7 @@
 """Regression guard for the ACL gap found in the 2026-09-20 system audit
 (Domain A2): dental.lab.order used to grant full CRUD to base.group_user
 (every internal user). Fixed by demoting that row to read-only and adding
-a role-scoped grant to afia_dental_core.group_dental_reception."""
+a role-scoped grant to afia_dental_core.group_clinic_receptionist."""
 from odoo.exceptions import AccessError
 from odoo.tests import TransactionCase, tagged
 
@@ -13,7 +13,7 @@ class TestLabOrderAccessControl(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.reception_group = cls.env.ref('afia_dental_core.group_dental_reception')
+        cls.reception_group = cls.env.ref('afia_dental_core.group_clinic_receptionist')
         cls.bare_user = cls.env['res.users'].create({
             'name': 'Bare Internal User', 'login': 'bare_user_lab_test',
         })

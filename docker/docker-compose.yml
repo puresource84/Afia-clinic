@@ -4,7 +4,9 @@
 
 services:
   db:
-    image: postgres:15.19-bookworm
+    # PostgreSQL 16: the version this build was verified against
+    # (see docs/TEST_REPORT_2026-10-30.md).
+    image: postgres:16
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: odoo

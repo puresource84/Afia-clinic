@@ -2,6 +2,6 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 dental_insurance.access_insurer,dental.insurer,model_dental_insurer,base.group_user,1,0,0,0
 dental_insurance.access_policy,dental.policy,model_dental_policy,base.group_user,1,0,0,0
 dental_insurance.access_claim,dental.claim,model_dental_claim,base.group_user,1,0,0,0
-dental_insurance.access_insurer_clinic,dental.insurer.clinic,model_dental_insurer,afia_dental_core.group_dental_reception,1,1,1,1
-dental_insurance.access_policy_clinic,dental.policy.clinic,model_dental_policy,afia_dental_core.group_dental_reception,1,1,1,1
-dental_insurance.access_claim_clinic,dental.claim.clinic,model_dental_claim,afia_dental_core.group_dental_reception,1,1,1,1
+dental_insurance.access_insurer_clinic,dental.insurer.clinic,model_dental_insurer,afia_dental_core.group_clinic_receptionist,1,1,1,1
+dental_insurance.access_policy_clinic,dental.policy.clinic,model_dental_policy,afia_dental_core.group_clinic_receptionist,1,1,1,1
+dental_insurance.access_claim_clinic,dental.claim.clinic,model_dental_claim,afia_dental_core.group_clinic_receptionist,1,1,1,1
