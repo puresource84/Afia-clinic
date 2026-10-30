@@ -22,4 +22,23 @@
             <field name="category_id" ref="afia_dental_core.clinic_category"/>
         </record>
     </data>
+
+    <!-- Moved here 2026-10-30 from dental_charting / dental_clinical_permissions.
+         Security groups are foundational: every module references them, so a group
+         defined above the base forces an upward dependency. Keeping all five clinic
+         roles in core is what keeps the dependency graph acyclic. -->
+    <record id="group_dental_clinician" model="res.groups">
+        <field name="name">Dental Clinician</field>
+        <field name="comment">Dentists/hygienists: may create and edit clinical tooth records. Reception stays read-only.</field>
+    </record>
+
+    <record id="group_clinic_hygienist" model="res.groups">
+        <field name="name">Clinic Hygienist</field>
+        <field name="category_id" ref="afia_dental_core.clinic_category"/>
+        <field name="comment">May edit charting and questionnaires; cannot prescribe or edit treatment plans.</field>
+        <field name="implied_ids" eval="[
+            (4, ref('afia_dental_core.group_dental_clinician')),
+            (4, ref('base.group_user')),
+        ]"/>
+    </record>
 </odoo>

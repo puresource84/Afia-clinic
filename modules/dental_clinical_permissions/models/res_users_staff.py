@@ -19,7 +19,7 @@ from odoo import api, fields, models
 _ROLE_LABELS = [
     ('afia_dental_core.group_clinic_admin', 'Administrator'),
     ('afia_dental_core.group_clinic_dentist', 'Dentist'),
-    ('dental_clinical_permissions.group_clinic_hygienist', 'Hygienist'),
+    ('afia_dental_core.group_clinic_hygienist', 'Hygienist'),
     ('afia_dental_core.group_clinic_receptionist', 'Receptionist'),
 ]
 

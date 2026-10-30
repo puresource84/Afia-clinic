@@ -21,3 +21,11 @@ from . import res_config_settings
 from . import res_company_branch
 from . import dental_appointment_branch
 # NOTE: teeth_chart is intentionally NOT imported - see the file header.
+# from dental_ux_fixes (dissolved 2026-10-30)
+from . import appointment_smart_buttons
+from . import dental_appointment_fixes
+from . import dental_time_shift_fixes
+from . import soft_delete
+from . import res_partner_search
+from . import res_partner_smart_buttons
+from . import clinical_safety

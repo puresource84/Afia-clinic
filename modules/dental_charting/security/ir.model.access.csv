@@ -5,8 +5,8 @@ access_dental_tooth_record_manager,dental.tooth.record.manager,model_dental_toot
 access_perio_exam_admin,dental.perio.exam admin,model_dental_perio_exam,afia_dental_core.group_clinic_admin,1,1,1,1
 access_perio_exam_dentist,dental.perio.exam dentist,model_dental_perio_exam,afia_dental_core.group_clinic_dentist,1,1,1,0
 access_perio_exam_receptionist,dental.perio.exam receptionist,model_dental_perio_exam,afia_dental_core.group_clinic_receptionist,1,0,0,0
-access_perio_exam_hygienist,dental.perio.exam hygienist,model_dental_perio_exam,dental_clinical_permissions.group_clinic_hygienist,1,1,1,0
+access_perio_exam_hygienist,dental.perio.exam hygienist,model_dental_perio_exam,afia_dental_core.group_clinic_hygienist,1,1,1,0
 access_perio_reading_admin,dental.perio.reading admin,model_dental_perio_reading,afia_dental_core.group_clinic_admin,1,1,1,1
 access_perio_reading_dentist,dental.perio.reading dentist,model_dental_perio_reading,afia_dental_core.group_clinic_dentist,1,1,1,0
 access_perio_reading_receptionist,dental.perio.reading receptionist,model_dental_perio_reading,afia_dental_core.group_clinic_receptionist,1,0,0,0
-access_perio_reading_hygienist,dental.perio.reading hygienist,model_dental_perio_reading,dental_clinical_permissions.group_clinic_hygienist,1,1,1,0
+access_perio_reading_hygienist,dental.perio.reading hygienist,model_dental_perio_reading,afia_dental_core.group_clinic_hygienist,1,1,1,0

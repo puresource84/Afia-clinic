@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {'name': 'Afia Dental Clinic',
- 'version': '18.0.2.2.0',
+ 'version': '18.0.2.3.0',
  'category': 'Healthcare',
  'summary': 'Dental clinic core: patients, appointments, dentists, treatments, prescriptions and '
             'billing.',
@@ -69,7 +69,12 @@
           'security/clinic_security.xml',
           'views/clinic_menu.xml',
           'views/res_config_settings_views.xml',
-          'views/res_company_branch_views.xml'],
+          'views/res_company_branch_views.xml',
+          'views/patient_action_fix.xml',
+          'views/ux_res_partner_views.xml',
+          'views/dental_appointment_view_fix.xml',
+          'views/dental_prescription_rtl_fix.xml',
+          'views/res_partner_calendar_meetings_fix.xml'],
  'installable': True,
  'auto_install': False,
  'application': True,
@@ -77,4 +82,5 @@
  'maintainer': 'ITCS (IT Corner Solutions)',
  'support': 'support@itcornersolutions.net',
  'price': 599,
- 'currency': 'USD'}
+ 'currency': 'USD',
+ 'assets': {'web.assets_backend': ['afia_dental_core/static/src/patient_form/patient_details.scss']}}

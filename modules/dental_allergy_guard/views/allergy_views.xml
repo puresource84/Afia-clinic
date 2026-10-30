@@ -45,7 +45,7 @@
     <record id="view_partner_form_allergy_lines" model="ir.ui.view">
         <field name="name">res.partner.form.allergy.lines</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="dental_ux_fixes.view_partner_form_dental_ux"/>
+        <field name="inherit_id" ref="afia_dental_core.view_partner_form_dental_ux"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='allergy_alert']" position="after">
                 <field name="allergy_ids" invisible="not is_patient"

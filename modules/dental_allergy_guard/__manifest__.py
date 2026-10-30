@@ -25,7 +25,7 @@
  'author': 'ITCS (IT Corner Solutions)',
  'website': 'https://www.itcornersolutions.net/',
  'license': 'OPL-1',
- 'depends': ['afia_dental_core', 'dental_ux_fixes', 'dental_charting'],
+ 'depends': ['afia_dental_core', 'dental_charting'],
  'data': ['security/ir.model.access.csv', 'data/allergy_substances.xml', 'views/allergy_views.xml'],
  'images': ['static/description/icon.png'],
  'installable': True,

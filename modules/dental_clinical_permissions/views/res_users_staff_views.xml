@@ -42,7 +42,7 @@
         <field name="domain" eval="[('groups_id', 'in', [
             ref('afia_dental_core.group_clinic_admin'),
             ref('afia_dental_core.group_clinic_dentist'),
-            ref('dental_clinical_permissions.group_clinic_hygienist'),
+            ref('afia_dental_core.group_clinic_hygienist'),
             ref('afia_dental_core.group_clinic_receptionist'),
         ])]"/>
         <field name="context">{}</field>

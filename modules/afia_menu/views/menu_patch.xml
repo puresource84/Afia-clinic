@@ -42,27 +42,8 @@
         <field name="parent_id" ref="afia_dental_core.hospital_root_menu"/>
         <field name="sequence">10</field>
     </record>
-    <record id="afia_dental_core.dental_staff" model="ir.ui.menu">
-        <field name="parent_id" ref="afia_dental_core.hospital_root_menu"/>
-        <field name="sequence">30</field>
-    </record>
-    <record id="dental_insurance.menu_insurance_root" model="ir.ui.menu">
-        <field name="parent_id" ref="afia_dental_core.hospital_root_menu"/>
-        <field name="sequence">50</field>
-    </record>
-    <record id="dental_analytics.menu_dental_analytics" model="ir.ui.menu">
-        <field name="parent_id" ref="afia_dental_core.hospital_root_menu"/>
-        <field name="sequence">80</field>
-    </record>
-    <record id="dental_portal.menu_dental_book_link" model="ir.ui.menu">
-        <field name="parent_id" ref="afia_dental_core.hospital_root_menu"/>
-        <field name="sequence">99</field>
-    </record>
-    <record id="afia_dental_core.dental_configure" model="ir.ui.menu">
-        <field name="parent_id" ref="afia_dental_core.hospital_root_menu"/>
-        <field name="sequence">100</field>
-    </record>
-
+    <!-- afia_dental_core.dental_configure: duplicate re-parent removed 2026-10-30; the definitive
+         record is in views/menu_quick_actions.xml, which loaded last and therefore won at runtime. -->
     <!-- ══════════════════════════════════════════════════════
          PATIENT KANBAN VIEW
          REF: ODOO18-PATIENT-KANBAN-026

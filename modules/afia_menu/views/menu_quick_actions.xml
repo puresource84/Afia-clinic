@@ -100,14 +100,8 @@
     <record id="dental_analytics.menu_dental_analytics" model="ir.ui.menu">
         <field name="name">Reporting</field>
     </record>
-    <record id="afia_dental_core.dental_staff" model="ir.ui.menu">
-        <field name="parent_id" ref="afia_dental_core.dental_configure"/>
-        <field name="sequence">95</field>
-    </record>
-    <record id="dental_portal.menu_dental_book_link" model="ir.ui.menu">
-        <field name="parent_id" ref="afia_dental_core.dental_configure"/>
-        <field name="sequence">98</field>
-    </record>
+    <!-- dental_portal.menu_dental_book_link: duplicate re-parent removed 2026-10-30; the definitive
+         record is in views/menu_configure_groups.xml, which loaded last and therefore won at runtime. -->
     <record id="afia_dental_core.dental_configure" model="ir.ui.menu">
         <field name="name">Configuration</field>
     </record>

@@ -11,7 +11,7 @@
         <field name="inherit_id" ref="afia_dental_core.view_partner_form_dental"/>
         <field name="arch" type="xml">
             <xpath expr="//page[@name='xray_reports']" position="attributes">
-                <attribute name="groups">dental_charting.group_dental_clinician,afia_dental_core.group_clinic_admin</attribute>
+                <attribute name="groups">afia_dental_core.group_dental_clinician,afia_dental_core.group_clinic_admin</attribute>
             </xpath>
         </field>
     </record>

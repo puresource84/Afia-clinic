@@ -48,7 +48,7 @@ class ClinicUserWizard(models.TransientModel):
     _ROLE_GROUP_XMLID = {
         'admin': 'afia_dental_core.group_clinic_admin',
         'dentist': 'afia_dental_core.group_clinic_dentist',
-        'hygienist': 'dental_clinical_permissions.group_clinic_hygienist',
+        'hygienist': 'afia_dental_core.group_clinic_hygienist',
         'receptionist': 'afia_dental_core.group_clinic_receptionist',
     }
 

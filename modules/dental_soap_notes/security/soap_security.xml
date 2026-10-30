@@ -13,7 +13,7 @@
         <field name="domain_force">[('state', '=', 'draft')]</field>
         <field name="groups" eval="[
             (4, ref('afia_dental_core.group_clinic_dentist')),
-            (4, ref('dental_clinical_permissions.group_clinic_hygienist')),
+            (4, ref('afia_dental_core.group_clinic_hygienist')),
         ]"/>
         <field name="perm_read">0</field>
         <field name="perm_write">1</field>

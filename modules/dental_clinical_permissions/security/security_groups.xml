@@ -4,15 +4,6 @@
          clinic_core already ships Administrator / Dentist / Receptionist;
          we add Hygienist and wire the implication chain. -->
 
-    <record id="group_clinic_hygienist" model="res.groups">
-        <field name="name">Clinic Hygienist</field>
-        <field name="category_id" ref="afia_dental_core.clinic_category"/>
-        <field name="comment">May edit charting and questionnaires; cannot prescribe or edit treatment plans.</field>
-        <field name="implied_ids" eval="[
-            (4, ref('dental_charting.group_dental_clinician')),
-            (4, ref('base.group_user')),
-        ]"/>
-    </record>
 
     <!-- Dentists are clinicians (tooth-record gate from dental_charting_pro).
          Also need base internal-user access plus Stock (Clinic Stock menu reads
@@ -21,7 +12,7 @@
          that opens Clinic Stock. -->
     <record id="afia_dental_core.group_clinic_dentist" model="res.groups">
         <field name="implied_ids" eval="[
-            (4, ref('dental_charting.group_dental_clinician')),
+            (4, ref('afia_dental_core.group_dental_clinician')),
             (4, ref('base.group_user')),
             (4, ref('stock.group_stock_user')),
         ]"/>
