@@ -1,4 +1,5 @@
 import json
+import logging
 from datetime import datetime
 
 from odoo import http
@@ -7,6 +8,8 @@ from odoo.http import request
 from odoo.addons.dental_portal_booking.controllers.main import (
     DentalBookingController,
 )
+
+_logger = logging.getLogger(__name__)
 
 
 class DentalBookingSlotsController(DentalBookingController):
@@ -36,7 +39,7 @@ class DentalBookingSlotsController(DentalBookingController):
     def booking_submit(self, patient_name=None, patient_mobile=None,
                        dentist_id=None, appointment_date=None,
                        patient_notes=None, slot_value=None,
-                       slot_dentist=None, **kwargs):
+                       slot_dentist=None, website=None, **kwargs):
         """Slot-aware submission. Falls back to the date-only flow when no
         slot was picked (JS disabled)."""
         slot = None
@@ -48,7 +51,13 @@ class DentalBookingSlotsController(DentalBookingController):
             return super().booking_submit(
                 patient_name=patient_name, patient_mobile=patient_mobile,
                 dentist_id=dentist_id, appointment_date=appointment_date,
-                patient_notes=patient_notes, **kwargs)
+                patient_notes=patient_notes, website=website, **kwargs)
+
+        # Same honeypot + rate limit as the date-only form (previously
+        # skipped whenever a slot was picked).
+        blocked = self._antispam_guard(website)
+        if blocked:
+            return blocked
 
         if not patient_name or not appointment_date:
             return self._render_error('Please fill all required fields.')
@@ -82,27 +91,27 @@ class DentalBookingSlotsController(DentalBookingController):
             return self._render_error(
                 'Sorry, that time was just taken. Please pick another slot.')
 
-        partner = request.env['res.partner'].sudo().search(
-            [('name', '=', patient_name),
-             ('mobile', '=', patient_mobile)], limit=1)
-        if not partner:
-            partner = request.env['res.partner'].sudo().create({
-                'name': patient_name,
-                'mobile': patient_mobile or '',
-                'is_patient': True,
-            })
+        partner = self._find_or_create_patient(patient_name, patient_mobile)
         shift = Appointment._shift_for_slot(final_dentist, slot)
+        booking_vals = {
+            'patient_id': partner.id,
+            'start_datetime': Appointment._local_to_utc(date_val, slot),
+            'dentist_id': final_dentist,
+            'shift_id': shift.id or False,
+            'booking_slot': slot,
+            'booking_source': 'online',
+            'patient_notes': patient_notes or '',
+        }
         try:
-            Appointment.create({
-                'patient_id': partner.id,
-                'appointment_date': appointment_date,
-                'dentist_id': final_dentist,
-                'shift_id': shift.id or False,
-                'booking_slot': slot,
-                'booking_source': 'online',
-                'patient_notes': patient_notes or '',
-            })
+            Appointment.create(booking_vals)
         except Exception:
+            # 2026-09-20 (afia_dental_core-silent-booking-failure, system
+            # audit Domain C2): see dental_portal_booking's identical fix —
+            # never expose a traceback publicly, but log server-side now.
+            _logger.exception(
+                'dental_booking_slots: booking_submit failed for %s '
+                '(mobile %s, date %s). vals=%r',
+                patient_name, patient_mobile, appointment_date, booking_vals)
             return self._render_error(
                 'We could not register your booking. Please call the clinic '
                 'or try again later.')

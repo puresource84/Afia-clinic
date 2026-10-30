@@ -668,3 +668,31 @@ msgstr "نعم"
 #. module: afia_dental_core
 msgid "doctor@example.com or mobile number"
 msgstr "doctor@example.com أو رقم الجوال"
+
+#. module: afia_dental_core
+#. odoo-python
+#: code:addons/afia_dental_core/models/dental_appointment.py:0
+msgid "Only draft appointments can be confirmed."
+msgstr "يمكن تأكيد المواعيد المسودة فقط."
+
+#. module: afia_dental_core
+#. odoo-python
+#: code:addons/afia_dental_core/models/dental_appointment.py:0
+msgid "Only confirmed or in-progress appointments can be marked done."
+msgstr "يمكن إنهاء المواعيد المؤكدة أو الجارية فقط."
+
+#. module: afia_dental_core
+#. odoo-python
+#: code:addons/afia_dental_core/models/dental_appointment.py:0
+msgid "A completed appointment cannot be cancelled."
+msgstr "لا يمكن إلغاء موعد مكتمل."
+
+#. module: afia_dental_core
+#. odoo-python
+#: code:addons/afia_dental_core/models/dental_appointment.py:0
+msgid ""
+"Dr. %(dentist)s is already booked at %(when)s (%(ref)s). Pick another time,"
+" or mark the appointment Urgent to squeeze it in."
+msgstr ""
+"د. %(dentist)s محجوز مسبقاً في %(when)s (%(ref)s). اختر وقتاً آخر، أو اجعل"
+" الموعد طارئاً لإدخاله بين المواعيد."

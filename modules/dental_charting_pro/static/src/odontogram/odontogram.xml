@@ -3,51 +3,146 @@
 
     <t t-name="dental_charting_pro.Odontogram">
         <div class="o_odontogram p-2">
-            <div class="mb-2">
+            <div class="mb-2 d-flex align-items-center" style="gap: 10px;">
                 <button class="btn btn-sm"
                         t-att-class="ui.pediatric ? 'btn-primary' : 'btn-outline-secondary'"
                         t-on-click="togglePediatric">
-                    <t t-if="ui.pediatric">🧒 Pediatric (51–85) — switch to Adult</t>
-                    <t t-else="">🧑 Adult (11–48) — switch to Pediatric</t>
+                    <t t-if="ui.pediatric">Pediatric (51–85) — switch to Adult</t>
+                    <t t-else="">Adult (11–48) — switch to Pediatric</t>
                 </button>
+                <span class="badge text-bg-warning" t-if="pendingCount">
+                    <t t-esc="pendingCount"/> tooth<t t-if="pendingCount > 1">s</t> staged, unsaved
+                </span>
             </div>
-            <svg t-att-width="svgWidth" height="170" xmlns="http://www.w3.org/2000/svg">
-                <t t-foreach="upper" t-as="fdi" t-key="fdi">
-                    <g style="cursor: pointer;" t-on-click="() => this.openTooth(fdi)">
-                        <title t-esc="toothTitle(fdi)"/>
-                        <t t-foreach="toothRegions(fdi, 4 + fdi_index * toothWidth, 8, toothWidth - 6, 48, 'upper')"
-                           t-as="region" t-key="region.key">
-                            <polygon t-att-points="region.points" t-att-fill="region.fill"
-                                     stroke="#9e9e9e" stroke-width="0.6"/>
+            <div class="d-flex flex-wrap align-items-start" style="gap: 16px;">
+
+                <div class="o_odontogram_ring">
+                    <svg width="300" height="330" viewBox="0 0 300 340" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <clipPath id="clip-molar" clipPathUnits="userSpaceOnUse">
+                                <path t-att-d="outlinePath('molar')"/>
+                            </clipPath>
+                            <clipPath id="clip-premolar" clipPathUnits="userSpaceOnUse">
+                                <path t-att-d="outlinePath('premolar')"/>
+                            </clipPath>
+                            <clipPath id="clip-canine" clipPathUnits="userSpaceOnUse">
+                                <path t-att-d="outlinePath('canine')"/>
+                            </clipPath>
+                            <clipPath id="clip-incisor" clipPathUnits="userSpaceOnUse">
+                                <path t-att-d="outlinePath('incisor')"/>
+                            </clipPath>
+                        </defs>
+                        <line x1="150" y1="10" x2="150" y2="330" stroke="#e0e0e0" stroke-width="0.75"/>
+                        <line x1="15" y1="170" x2="285" y2="170" stroke="#e0e0e0" stroke-width="0.75"/>
+                        <t t-foreach="ringTeeth" t-as="rt" t-key="rt.fdi">
+                            <g t-att-transform="'translate(' + (rt.x - 18) + ',' + (rt.y - 18) + ')'"
+                               style="cursor: pointer;"
+                               t-on-click="() => this.selectActive(rt.fdi)">
+                                <title t-esc="toothTitle(rt.fdi)"/>
+                                <t t-set="regions" t-value="toothRegions(rt.fdi, rt.arch)"/>
+                                <g t-att-clip-path="'url(#clip-' + rt.type + ')'">
+                                    <path d="M0,0 L36,0 L18,18 Z" t-att-fill="regions.top" stroke="#bdbdbd" stroke-width="0.5"/>
+                                    <path d="M36,0 L36,36 L18,18 Z" t-att-fill="regions.right" stroke="#bdbdbd" stroke-width="0.5"/>
+                                    <path d="M36,36 L0,36 L18,18 Z" t-att-fill="regions.bottom" stroke="#bdbdbd" stroke-width="0.5"/>
+                                    <path d="M0,36 L0,0 L18,18 Z" t-att-fill="regions.left" stroke="#bdbdbd" stroke-width="0.5"/>
+                                </g>
+                                <circle cx="18" cy="18" r="6" t-att-fill="regions.center" stroke="#bdbdbd" stroke-width="0.5"/>
+                                <path t-att-d="outlinePath(rt.type)" fill="none"
+                                      t-att-stroke="ui.active === rt.fdi ? '#1976d2' : (isStaged(rt.fdi) ? '#f9a825' : '#757575')"
+                                      t-att-stroke-width="ui.active === rt.fdi ? 2 : (isStaged(rt.fdi) ? 2 : 1)"
+                                      t-att-stroke-dasharray="isStaged(rt.fdi) and ui.active !== rt.fdi ? '3,2' : '0'"/>
+                                <text x="18" y="52" text-anchor="middle" font-size="9" font-family="sans-serif"
+                                      t-att-fill="ui.active === rt.fdi ? '#1976d2' : (isStaged(rt.fdi) ? '#f9a825' : '#616161')"
+                                      style="pointer-events: none;" t-esc="rt.fdi"/>
+                            </g>
                         </t>
-                        <rect t-att-x="4 + fdi_index * toothWidth" y="8" t-att-width="toothWidth - 6" height="48" rx="2"
-                              fill="none" stroke="#616161" stroke-width="1.2"/>
-                        <text t-att-x="4 + fdi_index * toothWidth + (toothWidth - 6) / 2" y="68" text-anchor="middle"
-                              font-size="11" font-family="sans-serif" fill="#212121"
-                              style="pointer-events: none;" t-esc="fdi"/>
-                    </g>
-                </t>
-                <line x1="4" y1="82" t-att-x2="svgWidth - 4" y2="82"
-                      stroke="#9e9e9e" stroke-dasharray="4 3"/>
-                <t t-foreach="lower" t-as="fdi" t-key="fdi">
-                    <g style="cursor: pointer;" t-on-click="() => this.openTooth(fdi)">
-                        <title t-esc="toothTitle(fdi)"/>
-                        <text t-att-x="4 + fdi_index * toothWidth + (toothWidth - 6) / 2" y="100" text-anchor="middle"
-                              font-size="11" font-family="sans-serif" fill="#212121"
-                              style="pointer-events: none;" t-esc="fdi"/>
-                        <t t-foreach="toothRegions(fdi, 4 + fdi_index * toothWidth, 108, toothWidth - 6, 48, 'lower')"
-                           t-as="region" t-key="region.key">
-                            <polygon t-att-points="region.points" t-att-fill="region.fill"
-                                     stroke="#9e9e9e" stroke-width="0.6"/>
+                    </svg>
+                    <div class="d-flex flex-wrap" style="gap: 10px; font-size: 11px; padding-top: 6px;">
+                        <t t-foreach="legendEntries" t-as="entry" t-key="entry.code">
+                            <span class="d-flex align-items-center text-muted" style="gap: 4px;">
+                                <span t-attf-style="width:10px;height:10px;border-radius:3px;display:inline-block;border:0.5px solid #bdbdbd;background:{{entry.color}};"/>
+                                <t t-esc="entry.label"/>
+                            </span>
                         </t>
-                        <rect t-att-x="4 + fdi_index * toothWidth" y="108" t-att-width="toothWidth - 6" height="48" rx="2"
-                              fill="none" stroke="#616161" stroke-width="1.2"/>
-                    </g>
-                </t>
-            </svg>
-            <div class="text-muted small">
-                Click a tooth to view or add clinical records (FDI notation).
-                Surfaces colored individually: M/D toward/away from midline, B outer, L inner, O center.
+                    </div>
+                </div>
+
+                <div class="o_odontogram_focus" style="min-width: 260px;">
+                    <t t-if="ui.active">
+                        <div class="border rounded p-3">
+                            <div class="fw-bold mb-1">Tooth <t t-esc="ui.active"/></div>
+                            <div class="text-muted small mb-3" t-esc="activeType"/>
+                            <div class="d-grid" style="grid-template-columns: 48px 120px 48px; grid-template-rows: 24px 120px 24px; justify-items: center; align-items: center; column-gap: 4px; margin: 0 auto;">
+                                <div/>
+                                <div class="text-center small text-muted">Facial/Buccal</div>
+                                <div/>
+                                <div class="text-center small text-muted">Mesial</div>
+                                <svg width="120" height="120" viewBox="0 0 36 36">
+                                    <g t-att-clip-path="'url(#clip-' + activeType + ')'">
+                                        <path d="M0,0 L36,0 L18,18 Z" t-att-fill="activeRegions.top" stroke="#bdbdbd" stroke-width="0.5"
+                                              style="cursor: pointer;" t-on-click="() => this.toggleSurface('top')"/>
+                                        <path d="M36,0 L36,36 L18,18 Z" t-att-fill="activeRegions.right" stroke="#bdbdbd" stroke-width="0.5"
+                                              style="cursor: pointer;" t-on-click="() => this.toggleSurface('right')"/>
+                                        <path d="M36,36 L0,36 L18,18 Z" t-att-fill="activeRegions.bottom" stroke="#bdbdbd" stroke-width="0.5"
+                                              style="cursor: pointer;" t-on-click="() => this.toggleSurface('bottom')"/>
+                                        <path d="M0,36 L0,0 L18,18 Z" t-att-fill="activeRegions.left" stroke="#bdbdbd" stroke-width="0.5"
+                                              style="cursor: pointer;" t-on-click="() => this.toggleSurface('left')"/>
+                                    </g>
+                                    <circle cx="18" cy="18" r="6" t-att-fill="activeRegions.center" stroke="#bdbdbd" stroke-width="0.5"
+                                            style="cursor: pointer;" t-on-click="() => this.toggleSurface('center')"/>
+                                    <path t-att-d="outlinePath(activeType)" fill="none" stroke="#757575" stroke-width="1" style="pointer-events: none;"/>
+                                </svg>
+                                <div class="text-center small text-muted">Distal</div>
+                                <div/>
+                                <div class="text-center small text-muted">Lingual/Palatal</div>
+                                <div/>
+                            </div>
+                            <div class="text-center small mt-2 text-muted">
+                                Click surfaces above to stage them for this tooth.
+                            </div>
+                            <div class="text-center small mt-1" t-if="activeInfo.condition">
+                                Saved: <span t-esc="conditionLabel(activeInfo.condition)"/>
+                                <t t-if="activeInfo.surfaces.length"> [<t t-esc="activeInfo.surfaces.join(', ')"/>]</t>
+                            </div>
+
+                            <div class="mt-3 border-top pt-2">
+                                <div class="mb-2">
+                                    <label class="form-label small mb-1">Condition (applies to all staged teeth)</label>
+                                    <select class="form-select form-select-sm" t-model="ui.condition">
+                                        <t t-foreach="conditions" t-as="c" t-key="c.code">
+                                            <option t-att-value="c.code" t-esc="c.label"/>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label small mb-1">Clinical note (shared across staged teeth)</label>
+                                    <textarea class="form-control form-control-sm" rows="2" t-model="ui.note"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <div class="border rounded p-4 text-center text-muted">
+                            Click a tooth to focus it, then click its surfaces to stage a finding.
+                        </div>
+                    </t>
+
+                    <div class="mt-2 d-flex" style="gap: 8px;" t-if="pendingCount">
+                        <button class="btn btn-sm btn-primary" t-on-click="saveBatch" t-att-disabled="ui.saving">
+                            <t t-if="ui.saving">Saving…</t>
+                            <t t-else="">Save (<t t-esc="pendingCount"/>)</t>
+                        </button>
+                        <button class="btn btn-sm btn-outline-secondary" t-on-click="clearSelection" t-att-disabled="ui.saving">
+                            Clear
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="text-muted small mt-2">
+                Click a tooth to focus it, click its surfaces to stage a finding, set the condition/note, then Save
+                to log records for every staged tooth (FDI notation). M/D face toward/away from the midline, B/L are
+                outer/inner, O is the center.
             </div>
         </div>
     </t>

@@ -109,6 +109,33 @@ class ResPartnerDental(models.Model):
         'dental.tooth.record', 'patient_id', string='Tooth Records')
     odontogram_data = fields.Json(
         compute='_compute_odontogram_data', string='Odontogram')
+    tooth_record_count = fields.Integer(
+        string='Dental Chart', compute='_compute_tooth_record_count')
+
+    @api.depends('tooth_record_ids')
+    def _compute_tooth_record_count(self):
+        for partner in self:
+            partner.tooth_record_count = len(partner.tooth_record_ids)
+
+    def action_view_dental_chart(self):
+        """Open the dedicated full-page Dental Chart view for this patient —
+        the standalone page (chart + Print Chart button + full history list)
+        that used to be reached only via the Appointment form's stat button.
+        Restored 2026-08-24 as a stat button directly on the patient profile,
+        matching how it worked before dental_charting_pro was refactored to
+        the notebook-tab-only layout (see
+        project_afia_odontogram_smart_button_restore memory)."""
+        self.ensure_one()
+        view = self.env.ref('dental_charting_pro.view_partner_form_dental_chart')
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Dental Chart',
+            'res_model': 'res.partner',
+            'res_id': self.id,
+            'view_mode': 'form',
+            'views': [(view.id, 'form')],
+            'target': 'current',
+        }
 
     @api.depends('tooth_record_ids.condition', 'tooth_record_ids.is_current',
                  'tooth_record_ids.surface_mesial', 'tooth_record_ids.surface_occlusal',

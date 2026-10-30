@@ -119,3 +119,17 @@ msgid ""
 "We could not register your booking. Please call the clinic or try again "
 "later."
 msgstr "تعذر تسجيل حجزك. يرجى الاتصال بالعيادة أو المحاولة مرة أخرى لاحقاً."
+
+#. module: dental_portal_booking
+#. odoo-python
+#: code:addons/dental_portal_booking/controllers/main.py:0
+msgid "Invalid appointment date."
+msgstr "تاريخ الموعد غير صالح."
+
+#. module: dental_portal_booking
+#. odoo-python
+#: code:addons/dental_portal_booking/controllers/main.py:0
+msgid ""
+"Sorry, there is no free time on that day. Please pick another date or call "
+"the clinic."
+msgstr "عذراً، لا توجد أوقات متاحة في هذا اليوم. يرجى اختيار تاريخ آخر أو الاتصال بالعيادة."

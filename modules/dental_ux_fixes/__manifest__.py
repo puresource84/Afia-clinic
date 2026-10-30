@@ -1,6 +1,6 @@
 {
     'name': 'Clinic UX & Branding',
-    'version': '18.0.2.1.8',
+    'version': '18.0.2.2.7',
     'category': 'Healthcare/Dental',
     'summary': 'Afia Clinic branding, UI polish and UX improvements — refined menus, colour theme and booking-time validation.',
     'author': 'ITCS (IT Corner Solutions)',
@@ -8,6 +8,7 @@
     'license': 'OPL-1',
     'depends': [
         'afia_dental_core',
+        'calendar',
         'dental_insurance',
         'dental_treatment_plan',
         'dental_consent',
@@ -54,7 +55,13 @@
         'views/menu_restructure.xml',
         'views/res_users_staff_views.xml',
         'views/menu_staff.xml',
+        'views/res_partner_calendar_meetings_fix.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'dental_ux_fixes/static/src/patient_form/patient_details.scss',
+        ],
+    },
     'images': [
         'static/description/icon.png',
     ],

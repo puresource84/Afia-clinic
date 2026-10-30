@@ -6,27 +6,39 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="priority">99</field>
         <field name="arch" type="xml">
-            <!-- Smart button box: patient actions -->
-            <xpath expr="//sheet" position="before">
-                <div class="oe_button_box" name="button_box"
-                     invisible="not is_patient">
-                    <button name="action_view_appointments" type="object"
-                            class="oe_stat_button" icon="fa-calendar">
-                        <field name="appointment_count" widget="statinfo"
-                               string="Appointments"/>
-                    </button>
-                    <button name="action_new_appointment" type="object"
-                            class="oe_stat_button" icon="fa-plus-circle"
-                            string="New Appt"/>
-                    <button name="action_telegram_link" type="object"
-                            class="oe_stat_button" icon="fa-paper-plane-o"
-                            string="Telegram Link"/>
-                </div>
+            <!-- Smart buttons: New Appt / Telegram Link folded into the ONE
+                 real button box that afia_dental_core.view_partner_form_dental
+                 already creates (dental_button_box), instead of this module
+                 creating its own separate div via `//sheet position="before"`.
+                 That old pattern is the exact Odoo 18 bug documented in
+                 odoo-dev-loop-gotchas rule 23/29: a `//sheet position="before"`
+                 div renders TWICE (once in the control panel, once inline in
+                 the sheet), and having two independent button_box divs on the
+                 same form (this one duplicating "Appointments") is exactly the
+                 "3 areas doing almost the same thing" redundancy Manhel
+                 flagged 2026-08-24 — see
+                 project_afia_patient_profile_button_dedup_2026-08-24 memory.
+                 The "Appointments" button itself is dropped here since
+                 afia_dental_core's box already has one — no need to duplicate
+                 it. -->
+            <xpath expr="//div[@name='dental_button_box']" position="inside">
+                <button name="action_new_appointment" type="object"
+                        class="oe_stat_button" icon="fa-plus-circle"
+                        string="New Appt"/>
+                <button name="action_telegram_link" type="object"
+                        class="oe_stat_button" icon="fa-paper-plane-o"
+                        string="Telegram Link"/>
             </xpath>
             <xpath expr="//field[@name='is_patient']" position="attributes">
                 <attribute name="string">Is a Patient</attribute>
             </xpath>
-            <xpath expr="//field[@name='is_patient']" position="after">
+            <!-- Moved into the right-hand column of afia_dental_core's
+                 "Patient Details" group (2026-08-24) — was previously
+                 `position="after"` on is_patient, stacking everything into
+                 one long single column and leaving the right side of the
+                 page empty. dental_allergy_guard's structured allergy table
+                 still anchors on this field and follows it in automatically. -->
+            <xpath expr="//group[@name='patient_details_right']" position="inside">
                 <field name="allergy_alert" invisible="not is_patient"
                        class="text-danger fw-bold"
                        placeholder="Allergies / clinical alerts (e.g. PENICILLIN)"/>

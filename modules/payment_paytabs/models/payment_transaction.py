@@ -82,20 +82,42 @@ class PaymentTransactionPayTabs(models.Model):
             "PayTabs callback for TX %s:\n%s",
             self.reference, pprint.pformat(notification_data))
 
-        # Prefer server-verified status over raw callback when possible
+        # 2026-09-20 (afia_dental_core-paytabs-verification-bypass, found
+        # in the system audit): this used to fall back to the raw,
+        # UNVERIFIED webhook POST data whenever _paytabs_verify_transaction
+        # raised for any reason — meaning a forced/transient verification
+        # failure let an attacker-controlled payload decide payment state.
+        # Server-side verification is mandatory now: if it fails, the
+        # transaction is left/set pending (never marked done or failed
+        # from unverified data) and the failure is logged loudly.
+        # PayTabs retries webhooks on non-2xx / repeated delivery, and the
+        # /payment/paytabs/return handler also calls
+        # _handle_notification_data as a second chance — so a transient
+        # verification failure gets another opportunity rather than being
+        # silently trusted or permanently stuck.
         tran_ref = (
             notification_data.get('tran_ref') or
             self.provider_reference
         )
-        if tran_ref and self.provider_id:
-            try:
-                verified = self.provider_id._paytabs_verify_transaction(tran_ref)
-                # Use verified data instead of raw callback data
-                notification_data = verified
-            except Exception:
-                _logger.warning(
-                    "PayTabs: could not verify TX %s; using raw callback data.",
-                    self.reference)
+        if not tran_ref or not self.provider_id:
+            _logger.error(
+                "PayTabs: cannot verify TX %s — missing tran_ref or "
+                "provider. Leaving transaction pending; raw callback data "
+                "will NOT be trusted.", self.reference)
+            self._set_pending()
+            return
+
+        try:
+            notification_data = self.provider_id._paytabs_verify_transaction(tran_ref)
+        except Exception:
+            _logger.exception(
+                "PayTabs: server-side verification failed for TX %s. "
+                "Leaving transaction pending — raw callback data is never "
+                "trusted for the done/failed decision. Will be "
+                "re-evaluated on the next webhook/return delivery.",
+                self.reference)
+            self._set_pending()
+            return
 
         response     = notification_data.get('payment_result', {}) or \
                        notification_data.get('response', {})

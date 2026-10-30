@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 """Deliberate, auditable doctor system-access invite. Replaces the old
 silent/passwordless auto-user-creation on every employee record."""
+import logging
 import secrets
 import string
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+
+_logger = logging.getLogger(__name__)
 
 
 def _generate_temp_password(length=14):
@@ -51,7 +54,7 @@ class DentalDoctorInvite(models.TransientModel):
             'password': temp_password,
             'employee_id': self.employee_id.id,
             'company_id': self.employee_id.company_id.id,
-            'group_ids': [(6, 0, self.group_ids.ids)],
+            'groups_id': [(6, 0, self.group_ids.ids)],
         })
         self.employee_id.user_id = user.id
         self.employee_id.message_post(body=_(
@@ -61,10 +64,32 @@ class DentalDoctorInvite(models.TransientModel):
         # Prefer Odoo's normal signup/reset-password email if outgoing
         # mail is configured; the temporary password is still shown below
         # as a fallback for clinics without SMTP set up yet.
+        #
+        # 2026-09-20 (afia_dental_core-doctor-invite-swallowed-exception):
+        # this used to be a bare `except Exception: pass`, silently
+        # discarding ANY failure with no log trace. Odoo core's own
+        # action_reset_password() (auth_signup/models/res_users.py)
+        # already catches the low-level MailDeliveryException itself and
+        # re-raises it as a plain UserError for exactly the "mail not
+        # configured" case this fallback exists for — so UserError is the
+        # only exception type the anticipated scenario can actually raise
+        # here. Anything else is a genuinely unexpected failure and must
+        # not be hidden identically. Neither path re-raises: the doctor's
+        # user account must still be created successfully even if email
+        # delivery fails, matching the original design intent — but now
+        # every failure at least leaves a trace for support/debugging.
         try:
             user.action_reset_password()
+        except UserError as e:
+            _logger.info(
+                'dental.doctor.invite: reset-password email not sent for '
+                '%s (expected if outgoing mail isn\'t configured yet): %s',
+                self.login, e)
         except Exception:
-            pass
+            _logger.exception(
+                'dental.doctor.invite: unexpected error sending the '
+                'reset-password email for %s. The user account was still '
+                'created successfully; only the email failed.', self.login)
 
         self.write({'temp_password': temp_password, 'state': 'done'})
         return {

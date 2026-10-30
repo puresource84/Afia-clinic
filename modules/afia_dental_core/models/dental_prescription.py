@@ -94,8 +94,13 @@ class DentalPrescription(models.Model):
     def action_prescribed(self):
         for rec in self:
             rec.state = 'done'
-            if rec.appointment_id:
-                rec.appointment_id.state = 'done'
+            apt = rec.appointment_id
+            if apt and apt.state not in ('done', 'cancelled'):
+                # Use the real workflow so hooks on action_done run
+                # (consumable stock deduction, recall date, end time).
+                if apt.state == 'draft':
+                    apt.action_confirm()
+                apt.action_done()
 
     def _get_treatment_income_account(self):
         """Dental treatments aren't backed by a product.template, so

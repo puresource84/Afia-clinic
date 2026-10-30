@@ -202,7 +202,10 @@ class TestAfiaCoreSmokeFlow(TransactionCase):
 
     def test_03_cannot_invoice_appointment_not_done(self):
         """action_create_invoice must refuse non-done appointments
-        (UserError guard in dental_ux_fixes/models/appointment_invoicing.py)."""
+        (UserError guard in dental_patient_flow/models/appointment_invoicing.py
+        — corrected 2026-09-20, this comment used to point at
+        dental_ux_fixes's copy of that file, which is dead code, never
+        imported; see afia_dental_core-duplicate-invoicing-file)."""
         from odoo.exceptions import UserError
 
         appointment = self.env['dental.appointment'].create({

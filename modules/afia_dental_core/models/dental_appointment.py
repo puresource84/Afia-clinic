@@ -10,10 +10,15 @@ dentists get a proper calendar, capacity checks and ICS export, instead
 of a bespoke date-only field with denormalized patient data copied onto
 every row.
 """
+from datetime import datetime, time, timedelta
+
 import pytz
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
+
+SLOT_HOURS = 0.5  # granularity of bookable slots (30 min)
+DEFAULT_CLINIC_TZ = 'Asia/Baghdad'
 
 
 class DentalAppointment(models.Model):
@@ -243,9 +248,105 @@ class DentalAppointment(models.Model):
             else:
                 rec.calendar_event_id = Calendar.create(values)
 
+    # -- Availability -----------------------------------------------------
+    # Single source of truth for "is the dentist free?", used by the
+    # double-booking constraint, the website slot picker and the date-only
+    # booking form alike.
+    @api.model
+    def _clinic_tz(self):
+        tz_name = self.env.company.partner_id.tz or DEFAULT_CLINIC_TZ
+        try:
+            return pytz.timezone(tz_name)
+        except pytz.UnknownTimeZoneError:
+            return pytz.timezone(DEFAULT_CLINIC_TZ)
+
+    @api.model
+    def _local_to_utc(self, date_val, hours):
+        """Clinic-local date + float hour (8.5 = 08:30) -> naive UTC."""
+        tz = self._clinic_tz()
+        local = tz.localize(datetime.combine(date_val, time()) + timedelta(hours=hours))
+        return local.astimezone(pytz.utc).replace(tzinfo=None)
+
+    @api.model
+    def _dentist_busy_appointments(self, dentist_id, start, stop, exclude_ids=()):
+        """Non-cancelled appointments of a dentist overlapping [start, stop)."""
+        return self.sudo().search([
+            ('id', 'not in', list(exclude_ids)),
+            ('dentist_id', '=', dentist_id),
+            ('state', '!=', 'cancelled'),
+            ('start_datetime', '<', stop),
+            ('stop_datetime', '>', start),
+        ])
+
+    @api.model
+    def _dentist_on_leave(self, dentist, start, stop):
+        """Time off / public holidays from the dentist's working calendar."""
+        resource = dentist.resource_id
+        domain = [
+            ('date_from', '<', stop), ('date_to', '>', start),
+            '|', ('resource_id', '=', resource.id),
+            '&', ('resource_id', '=', False),
+            ('calendar_id', 'in', [dentist.resource_calendar_id.id, False]),
+        ]
+        return bool(self.env['resource.calendar.leaves'].sudo().search_count(domain))
+
+    @api.model
+    def get_available_slots(self, dentist_id, date_val, duration=SLOT_HOURS):
+        """Free start times (float hours, clinic-local) for one dentist on one
+        date: every SLOT_HOURS step inside the dentist's shifts where a visit
+        of ``duration`` fits without overlapping another appointment, a
+        leave or a public holiday, and that is not already in the past."""
+        dentist = self.env['hr.employee'].sudo().browse(dentist_id)
+        if not dentist.exists():
+            return []
+        tz = self._clinic_tz()
+        now_utc = fields.Datetime.now()
+        day_start = self._local_to_utc(date_val, 0)
+        day_stop = self._local_to_utc(date_val, 24)
+        busy = [(a.start_datetime, a.stop_datetime) for a in
+                self._dentist_busy_appointments(dentist.id, day_start, day_stop)]
+        slots = set()
+        for shift in dentist.time_shift_ids:
+            t = shift.start_time or 0.0
+            while t + duration <= (shift.end_time or 0.0) + 1e-6:
+                start = self._local_to_utc(date_val, t)
+                stop = start + timedelta(hours=duration)
+                if (start > now_utc
+                        and not any(b0 < stop and b1 > start for b0, b1 in busy)
+                        and not self._dentist_on_leave(dentist, start, stop)):
+                    slots.add(round(t, 4))
+                t += SLOT_HOURS
+        return sorted(slots)
+
+    @api.constrains('dentist_id', 'start_datetime', 'duration', 'state', 'urgency')
+    def _check_dentist_double_booking(self):
+        """Hard stop on double-booking a dentist. Urgent appointments are the
+        deliberate exception (emergency squeeze-ins), on either side."""
+        for apt in self:
+            if apt.state == 'cancelled' or apt.urgency == 'urgent'                     or not (apt.dentist_id and apt.start_datetime):
+                continue
+            clash = self._dentist_busy_appointments(
+                apt.dentist_id.id, apt.start_datetime, apt.stop_datetime,
+                exclude_ids=apt.ids,
+            ).filtered(lambda a: a.urgency != 'urgent')
+            if clash:
+                local = fields.Datetime.context_timestamp(
+                    apt.with_context(tz=self._clinic_tz().zone), clash[0].start_datetime)
+                raise ValidationError(_(
+                    'Dr. %(dentist)s is already booked at %(when)s '
+                    '(%(ref)s). Pick another time, or mark the appointment '
+                    'Urgent to squeeze it in.',
+                    dentist=apt.dentist_id.name,
+                    when=local.strftime('%Y-%m-%d %H:%M'),
+                    ref=clash[0].appointment_no or clash[0].patient_id.name))
+
     # -- Workflow ---------------------------------------------------------
     def action_confirm(self):
         for rec in self:
+            if rec.state == 'confirmed':
+                continue
+            if rec.state != 'draft':
+                raise UserError(_('Only draft appointments can be confirmed.'))
             rec.state = 'confirmed'
 
     def action_start(self):
@@ -269,8 +370,16 @@ class DentalAppointment(models.Model):
 
     def action_done(self):
         for rec in self:
+            if rec.state == 'done':
+                continue
+            if rec.state not in ('confirmed', 'in_progress'):
+                raise UserError(_(
+                    'Only confirmed or in-progress appointments can be '
+                    'marked done.'))
             rec.state = 'done'
 
     def action_cancel(self):
         for rec in self:
+            if rec.state == 'done':
+                raise UserError(_('A completed appointment cannot be cancelled.'))
             rec.state = 'cancelled'

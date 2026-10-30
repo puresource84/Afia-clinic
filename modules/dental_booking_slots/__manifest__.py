@@ -1,6 +1,6 @@
 {
     'name': 'Dental Booking Slots',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.0.2',
     'category': 'Healthcare/Dental',
     'summary': 'Real-time slot-based online booking computed from dentist shifts — patients book exact appointment times.',
     'author': 'ITCS (IT Corner Solutions)',

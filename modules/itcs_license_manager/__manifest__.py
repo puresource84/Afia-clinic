@@ -22,7 +22,7 @@
     #   see this module's menu, model, or data. Only the group defined in
     #   security/security.xml can.
     'name': 'ITCS License Manager',
-    'version': '18.0.1.1.0',
+    'version': '18.0.1.1.1',
     'category': 'Hidden/Tools',
     'summary': 'ITCS-internal: self-hosted license/AMC expiry tracking, renewal codes, Telegram alerts.',
     'author': 'ITCS (IT Corner Solutions)',

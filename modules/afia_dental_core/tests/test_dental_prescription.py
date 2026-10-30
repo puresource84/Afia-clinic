@@ -110,6 +110,7 @@ class TestDentalPrescription(TransactionCase):
             'appointment_id': self.appointment.id,
             'treatment_id': self.treatment.id,
         })
+        rx.action_prescribed()
         rx.action_create_invoice()
         self.assertEqual(rx.state, 'invoiced')
         self.assertTrue(rx.treatment_invoice_id)

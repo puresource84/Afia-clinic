@@ -55,7 +55,7 @@ Hello {patient_name}, reminder of your dental appointment at {clinic_name} on {d
             <field name="sequence">50</field>
             <field name="template_key">patient_not_found</field>
             <field name="name">Linking Failed — Not Found</field>
-            <field name="body">لم نتمكن من العثور على رقم المريض {patient_no} — يرجى مراجعة الاستقبال. / Patient number {patient_no} not found, please contact reception.</field>
+            <field name="body">رابط التفعيل غير صالح أو مستخدم مسبقاً — يرجى طلب رابط جديد من الاستقبال. / This link is invalid or already used, please ask reception for a new one.</field>
         </record>
 
         <record id="tmpl_no_upcoming" model="dental.telegram.template">

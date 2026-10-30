@@ -1,3 +1,20 @@
+# ══════════════════════════════════════════════════════════════════════
+# DEAD CODE — NOT IMPORTED, DO NOT RE-ADD TO models/__init__.py
+# ══════════════════════════════════════════════════════════════════════
+# Found during the 2026-09-20 system audit
+# (afia_dental_core-duplicate-invoicing-file): this file is a byte-for-byte
+# duplicate of dental_patient_flow/models/appointment_invoicing.py, which
+# is the ONE live, imported copy (see dental_patient_flow/models/__init__.py).
+# This copy was already correctly excluded from
+# dental_ux_fixes/models/__init__.py before this audit (with an
+# explanatory comment there) — it has never run in the live system.
+# Kept on disk rather than deleted only because this sandbox cannot
+# delete pre-existing files in this connected folder; if Manhel is
+# comfortable removing it by hand, it is safe to delete entirely — the
+# real implementation lives in dental_patient_flow.
+#
+# Original file content below, unchanged, for reference only.
+# ══════════════════════════════════════════════════════════════════════
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 

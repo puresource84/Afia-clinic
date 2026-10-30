@@ -1,6 +1,6 @@
 {
     'name': 'Dental Online Booking',
-    'version': '18.0.1.1.0',
+    'version': '18.0.1.1.2',
     'category': 'Website',
     'summary': 'Public online appointment booking page for dental clinics — patients book without logging in.',
     'author': 'ITCS (IT Corner Solutions)',

@@ -222,8 +222,7 @@ class DentalAppointmentTgTemplates(models.Model):
         Partner = self.env['res.partner'].sudo()
         parts = text.split(maxsplit=1)
         code = parts[1].strip() if len(parts) > 1 else ''
-        patient = code and Partner.search(
-            [('is_patient', '=', True), ('patient_no', '=', code)], limit=1)
+        patient = Partner._tg_consume_link_token(self.env, code)
         if patient:
             patient.telegram_chat_id = chat_id
             fallback = (
@@ -234,11 +233,11 @@ class DentalAppointmentTgTemplates(models.Model):
                 'welcome_linked', fallback, patient=patient))
         elif code:
             fallback = (
-                'لم نتمكن من العثور على رقم المريض %s — يرجى مراجعة '
-                'الاستقبال. / Patient number %s not found, please '
-                'contact reception.') % (code, code)
+                'رابط التفعيل غير صالح أو مستخدم مسبقاً — يرجى طلب رابط '
+                'جديد من الاستقبال. / This link is invalid or already '
+                'used, please ask reception for a new one.')
             self._tg_send(chat_id, self._tg_text(
-                'patient_not_found', fallback, extra={'patient_no': code}))
+                'patient_not_found', fallback, extra={'patient_no': ''}))
 
     def _tg_handle_reply(self, chat_id, text):
         patient = self.env['res.partner'].sudo().search(

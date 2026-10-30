@@ -1,35 +1,18 @@
-from odoo import api, fields, models
+from odoo import models
 
 
 class ResPartnerDentalButtons(models.Model):
     _inherit = 'res.partner'
 
-    appointment_count = fields.Integer(
-        string='Appointments',
-        compute='_compute_appointment_count',
-    )
-
-    @api.depends()
-    def _compute_appointment_count(self):
-        Apt = self.env['dental.appointment']
-        for partner in self:
-            partner.appointment_count = Apt.search_count(
-                [('patient_id', '=', partner.id)]) if partner.id else 0
-
-    def action_view_appointments(self):
-        """Open this patient's appointments; offer New Appointment from there."""
-        self.ensure_one()
-        return {
-            'type': 'ir.actions.act_window',
-            'name': 'Appointments',
-            'res_model': 'dental.appointment',
-            'view_mode': 'list,form',
-            'domain': [('patient_id', '=', self.id)],
-            'context': {
-                'default_patient_id': self.id,
-                'search_default_patient_id': self.id,
-            },
-        }
+    # appointment_count field + _compute_appointment_count() +
+    # action_view_appointments() used to be redefined here as well,
+    # shadowing afia_dental_core's originals (this module loads after
+    # afia_dental_core, so this copy silently won at runtime). That
+    # duplication is fixed 2026-09-20 — see
+    # afia_dental_core/.spec/bugs/afia_dental_core-duplicate-appointment-button/.
+    # The single remaining implementation of both lives in
+    # afia_dental_core/models/res_partner.py; this module keeps only the
+    # two actions genuinely unique to it below.
 
     def action_new_appointment(self):
         """Jump straight to a blank new appointment pre-filled with patient."""
@@ -76,6 +59,5 @@ class ResPartnerDentalButtons(models.Model):
                     'sticky': False,
                 },
             }
-        url = 'https://t.me/%s?start=%s' % (
-            bot_username.lstrip('@'), patient_no)
+        url = self._tg_deep_link()
         return {'type': 'ir.actions.act_url', 'url': url, 'target': 'new'}

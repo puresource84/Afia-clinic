@@ -1,0 +1,44 @@
+// Compact spacing for the "Patient Details" group on the patient profile
+// (afia_dental_core.view_partner_form_dental) — Manhel flagged 2026-08-24
+// that the group had too much vertical whitespace between rows once split
+// into a 2-column layout (see project_afia_patient_profile_button_dedup
+// and the same-day layout follow-up). Scoped to .o_afia_patient_details so
+// it never touches spacing anywhere else in the app.
+.o_afia_patient_details {
+    .o_group .o_cell {
+        padding-top: 1px !important;
+        padding-bottom: 1px !important;
+    }
+    .o_form_label {
+        line-height: 1.15;
+        padding-bottom: 0;
+    }
+    // Structured allergy table (dental_allergy_guard's allergy_ids list)
+    // and the Medical Questionnaire-style x2many lists reuse this class
+    // via the same group — tighten row height there too.
+    .o_field_x2many_list .o_list_table > tbody > tr > td,
+    .o_field_x2many_list .o_list_table > tbody > tr > th,
+    .o_field_x2many_list .o_list_table > thead > tr > td,
+    .o_field_x2many_list .o_list_table > thead > tr > th {
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+}
+
+// Collapse the standard Odoo address block (street/street2/city/state/zip/
+// country, normally stacked one-per-line) into a wrapped single/double line
+// on the patient form only — 2026-08-24 request to free up the vertical
+// space on the left side, since these fields rarely change once set.
+// Scoped via :has() to forms that render our Patient Details group, so
+// vendor/company contact forms are unaffected. Fields stay fully visible
+// and editable, just laid out horizontally instead of stacked.
+.o_form_view:has(.o_afia_patient_details) .o_address_format {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 2px 10px;
+
+    > * {
+        flex: 0 0 auto;
+    }
+}

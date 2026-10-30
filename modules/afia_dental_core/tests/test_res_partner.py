@@ -21,11 +21,14 @@ class TestResPartner(TransactionCase):
     def test_appointment_count_batched(self):
         dentist = self.env['hr.employee'].create({'name': 'Dr. Count', 'is_dentist': True})
         patient = self.env['res.partner'].create({'name': 'Count Patient', 'is_patient': True})
+        # Different times: the same dentist can't be double-booked.
         self.env['dental.appointment'].create({
             'patient_id': patient.id, 'dentist_id': dentist.id,
+            'start_datetime': '2030-01-01 08:00:00',
         })
         self.env['dental.appointment'].create({
             'patient_id': patient.id, 'dentist_id': dentist.id,
+            'start_datetime': '2030-01-01 09:00:00',
         })
         self.assertEqual(patient.appointment_count, 2)
 
@@ -34,3 +37,27 @@ class TestResPartner(TransactionCase):
             'name': 'Age Patient', 'is_patient': True, 'dob': '2000-08-04',
         })
         self.assertGreaterEqual(patient.patient_age, 25)
+
+    def test_appointment_count_uses_batched_afia_dental_core_compute(self):
+        """Regression guard for
+        afia_dental_core-duplicate-appointment-button: dental_ux_fixes
+        used to redefine appointment_count with a per-record
+        search_count() loop that shadowed this module's batched
+        _read_group() implementation (dental_ux_fixes loads after
+        afia_dental_core, so its copy silently won). Assert the compute
+        method Odoo actually registered is this module's, not a
+        redefinition elsewhere, so an N+1 regression can't silently
+        creep back in via another module doing the same thing."""
+        compute_method = type(self.env['res.partner'])._compute_appointment_count
+        self.assertIn(
+            'afia_dental_core', compute_method.__module__,
+            'appointment_count compute must resolve to afia_dental_core\'s '
+            'batched implementation, not a per-record override from '
+            'another module.')
+
+    def test_action_view_appointments_single_definition(self):
+        """Regression guard: action_view_appointments must not be
+        redefined in dental_ux_fixes (or elsewhere) shadowing this
+        module's copy — see afia_dental_core-duplicate-appointment-button."""
+        action_method = type(self.env['res.partner']).action_view_appointments
+        self.assertIn('afia_dental_core', action_method.__module__)

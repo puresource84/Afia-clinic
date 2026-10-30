@@ -15,6 +15,21 @@
         <field name="model">dental.appointment</field>
         <field name="arch" type="xml">
             <form string="New Appointment">
+                <!-- 2026-09-13 fix: the calendar's date_start/date_stop point to
+                     apt_start/apt_end (dental_appointment_times, priority 15).
+                     Dragging a time range on the calendar sets
+                     default_apt_start/default_apt_end in the new record's
+                     context, but apt_start/apt_end were never fields on THIS
+                     view — so the dragged range never reached the record, and
+                     apt_start_time/apt_end_time (computed FROM apt_start/
+                     apt_end) plus appointment_date (set by an onchange on
+                     apt_start) all stayed blank/00:00. Adding them here
+                     (invisible — the visible HH:MM/date fields below are what
+                     staff actually edit) lets the drag-selected range land on
+                     real fields so the existing compute/onchange chain fills
+                     in the rest. -->
+                <field name="apt_start" invisible="1"/>
+                <field name="apt_end" invisible="1"/>
                 <group>
                     <field name="patient_id"/>
                     <field name="dentist_id"/>

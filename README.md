@@ -6,7 +6,7 @@
 <p align="center">Full-stack dental practice management suite for Odoo 18 CE</p>
 <p align="center">
   <img src="https://img.shields.io/badge/Odoo-18%20CE-714B67?style=flat-square&logo=odoo"/>
-  <img src="https://img.shields.io/badge/Modules-35-1a73a7?style=flat-square"/>
+  <img src="https://img.shields.io/badge/Modules-36-1a73a7?style=flat-square"/>
   <img src="https://img.shields.io/badge/License-OPL--1-orange?style=flat-square"/>
   <img src="https://img.shields.io/badge/Made%20by-ITCS-0d5a8a?style=flat-square"/>
 </p>
@@ -37,7 +37,7 @@ cd Afia-clinic
 ```
 The Windows installer is a guided wizard: it detects or installs Odoo 18
 CE (downloading the official public installer for the same 18.0 CE branch
-if it isn't already present), copies all 35 modules, then walks you
+if it isn't already present), copies the modules, then walks you
 through either creating a new database or connecting to one you already
 have — no manual steps in Apps needed. If you already have Odoo running,
 choose "I already have Odoo running" on the first screen to skip straight
@@ -47,8 +47,11 @@ to the database/module step.
 ```bash
 bash install.sh
 ```
-Detects Docker or a native Odoo install, copies the modules, and gives
-you the manual install-from-Apps steps below.
+Detects Docker or a native Odoo install. With Docker, the first run
+generates random database and master passwords into `docker/.env`
+(never committed - keep it safe; the master password is needed to create
+the database). Without Docker it copies the modules and gives you the
+manual install-from-Apps steps below.
 
 ### Step 3 — Open your browser
 
@@ -58,13 +61,13 @@ http://localhost:8069
 
 If you used the Windows installer, modules are already installed and
 you're logged in. Otherwise: create a database, go to **Apps**, search
-for **Afia Dental Clinic** and install it — all 34 companion modules
+for **Afia Dental Clinic** and install it — the companion modules
 appear in the Apps list and can be installed from there based on what
 your clinic needs.
 
 ---
 
-## What's Included — 35 Modules
+## What's Included — 36 Modules
 
 | Category | Modules |
 |----------|---------|
@@ -79,7 +82,12 @@ your clinic needs.
 | **Analytics** | dental_analytics |
 | **UX & Branding** | dental_ux_fixes, custom_dental_menu, afia_app_launcher |
 | **Payments** | payment_paytabs, payment_zaincash |
-| **Other** | dental_clinical_permissions, dental_demo_data |
+| **Other** | dental_clinical_permissions, dental_demo_data, itcs_license_manager (ITCS internal) |
+
+**v1.1 scope (single clinic, cash payments, Telegram + email reminders).**
+The Windows installer does not auto-install `dental_branch`,
+`dental_reminders_whatsapp`, `payment_paytabs` or `payment_zaincash`;
+they remain in `modules/` but are not production-ready for v1.1.
 
 `dental_demo_data` seeds fake Arabic patient records for sales demos and
 training — install it only on a separate, disposable database, never on
@@ -97,9 +105,7 @@ For manual installs, follow this sequence:
 3. Companion modules grouped by what your clinic needs (charting,
    scheduling/reminders, insurance/billing, operations, admin, branding)
 
-Full walkthrough: see [`INSTALLATION.md`](../INSTALLATION.md) in the
-Unified Package, or [`docs/Afia_Clinic_v1_Install_Guide.docx`](docs/Afia_Clinic_v1_Install_Guide.docx)
-(legacy v1 guide — being superseded by INSTALLATION.md).
+Full walkthrough: [`docs/Afia_Clinic_v1_Install_Guide.docx`](docs/Afia_Clinic_v1_Install_Guide.docx).
 
 ---
 

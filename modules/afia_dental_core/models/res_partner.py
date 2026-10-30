@@ -27,6 +27,20 @@ class ResPartner(models.Model):
     appointment_count = fields.Integer(compute='_compute_appointment_count')
     report_ids = fields.One2many(
         'xray.report', 'patient_id', string='X-Ray Reports')
+    medical_alert_summary = fields.Char(
+        string='Medical Alerts', compute='_compute_medical_alert_summary',
+        help='Questions answered "Yes" on the Medical Questionnaire tab — '
+             'surfaced here so front-desk staff see it without opening the '
+             'tab. Added 2026-08-24 to use the empty space next to Patient '
+             'Details instead of burying this in a tab.')
+
+    @api.depends('medical_questionnaire_ids.yes_no', 'medical_questionnaire_ids.question_id')
+    def _compute_medical_alert_summary(self):
+        for partner in self:
+            flagged = partner.medical_questionnaire_ids.filtered(
+                lambda q: q.yes_no == 'yes')
+            partner.medical_alert_summary = ', '.join(
+                flagged.mapped('question_id.name')) if flagged else False
 
     @api.depends('dob')
     def _compute_patient_age(self):
@@ -50,10 +64,28 @@ class ResPartner(models.Model):
 
     @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):
+        """2026-08-26 fix: this used to `return self._search(args, limit=limit)`
+        — `_search()` returns a raw Query object (or bare ids), NOT the list
+        of (id, display_name) tuples that `name_search` callers require.
+        Every partner autocomplete across the ENTIRE app (Contacts, invoices,
+        appointment patient picker, calendar attendees, etc.) that fell
+        through to this method for a non-empty search term was silently
+        getting a Query object back instead of results — surfaced to the
+        user as a generic "UncaughtPromiseError" in the widget JS the moment
+        it tried to read `.length`/iterate over it. Root-caused via
+        dental_ux_fixes.name_search's patient_no fast-path calling
+        super().name_search() and landing here whenever the term didn't
+        match a patient number (e.g. searching a dentist/staff name in the
+        calendar attendees field). Fixed by using `search()` (returns a
+        recordset) and mapping to proper (id, display_name) tuples, exactly
+        like the base implementation does. See
+        project_afia_partner_name_search_fix_2026-08-26 memory.
+        """
         args = list(args or [])
         if name:
-            args = ['|', ('name', operator, name), ('patient_no', operator, name)] + args
-            return self._search(args, limit=limit)
+            domain = ['|', ('name', operator, name), ('patient_no', operator, name)] + args
+            partners = self.search(domain, limit=limit)
+            return [(p.id, p.display_name) for p in partners]
         return super().name_search(name=name, args=args, operator=operator, limit=limit)
 
     @api.model_create_multi
@@ -84,23 +116,38 @@ class ResPartner(models.Model):
                 record.patient_no = self.env['ir.sequence'].next_by_code(
                     'dental.patient') or _('New')
         if patients:
-            questions = self.env['medical.questions'].search([('active', '=', True)])
-            self.env['medical.questionnaire'].create([
+            # sudo: receptionists may create patients but (once
+            # dental_clinical_permissions is installed) have no create
+            # right on the clinical questionnaire rows seeded here.
+            Questionnaire = self.env['medical.questionnaire'].sudo()
+            questions = self.env['medical.questions'].sudo().search([('active', '=', True)])
+            Questionnaire.create([
                 {'patient_id': p.id, 'question_id': q.id}
                 for p in patients for q in questions
-                if not self.env['medical.questionnaire'].search_count(
+                if not Questionnaire.search_count(
                     [('patient_id', '=', p.id), ('question_id', '=', q.id)])
             ])
 
     def action_view_appointments(self):
+        # 2026-09-20: this was previously duplicated (with a slightly
+        # different context) in dental_ux_fixes/models/res_partner_smart_buttons.py,
+        # which loaded after this module and silently won at runtime — see
+        # afia_dental_core/.spec/bugs/afia_dental_core-duplicate-appointment-button/.
+        # That copy is removed; this is now the single authoritative
+        # implementation. search_default_patient_id is carried over from
+        # the removed copy (redundant with the domain below, but harmless
+        # and preserves prior behavior exactly).
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
             'name': _('Appointments'),
             'res_model': 'dental.appointment',
-            'view_mode': 'list,form,calendar',
+            'view_mode': 'list,form',
             'domain': [('patient_id', '=', self.id)],
-            'context': {'default_patient_id': self.id},
+            'context': {
+                'default_patient_id': self.id,
+                'search_default_patient_id': self.id,
+            },
         }
 
     def action_prescription(self):

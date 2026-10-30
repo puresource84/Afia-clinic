@@ -114,11 +114,13 @@
                                     <t t-if="record.invoice_count.raw_value > 0">📄 View Invoice</t>
                                     <t t-else="">🧾 Invoice</t>
                                 </button>
-                                <!-- Mark Paid: advances flow_state only, no invoice created -->
+                                <!-- Take payment: posts the visit invoice and opens Register
+                                     Payment on the cash journal; the card moves to Paid once
+                                     the invoice is actually paid. -->
                                 <button name="action_flow_paid" type="object"
                                         class="btn btn-sm btn-outline-secondary"
-                                        title="Mark as paid without creating an invoice">
-                                    ✓ Paid
+                                        title="Register the cash payment for this visit">
+                                    💵 Take Payment
                                 </button>
                             </t>
                             <!-- Cancel button: available on all non-cancelled stages -->

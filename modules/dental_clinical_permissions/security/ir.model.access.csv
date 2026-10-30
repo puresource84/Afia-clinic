@@ -13,3 +13,6 @@ access_treatment_plan_line_clinic_admin,dental.treatment.plan.line.clinic.admin,
 access_consent_template_clinic_admin,dental.consent.template.clinic.admin,dental_consent.model_dental_consent_template,clinic_core.group_clinic_admin,1,1,1,1
 access_dental_treatment_clinic_admin,dental.treatment.clinic.admin,afia_dental_core.model_dental_treatment,clinic_core.group_clinic_admin,1,1,1,1
 access_treatment_category_clinic_admin,treatment.category.clinic.admin,afia_dental_core.model_treatment_category,clinic_core.group_clinic_admin,1,1,1,1
+access_medical_questions_clinician,medical.questions.clinician,afia_dental_core.model_medical_questions,dental_charting_pro.group_dental_clinician,1,1,1,0
+access_medical_questions_receptionist,medical.questions.receptionist,afia_dental_core.model_medical_questions,clinic_core.group_clinic_receptionist,1,1,1,0
+access_medical_questions_clinic_admin,medical.questions.clinic.admin,afia_dental_core.model_medical_questions,clinic_core.group_clinic_admin,1,1,1,1

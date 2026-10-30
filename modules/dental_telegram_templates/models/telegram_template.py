@@ -6,7 +6,7 @@ TEMPLATE_KEYS = [
     ('review_request', 'Review Request (after visit)'),
     ('recall', 'Recall / Recare Campaign'),
     ('welcome_linked', 'Welcome — Patient Linked'),
-    ('patient_not_found', 'Linking Failed — Patient No. Not Found'),
+    ('patient_not_found', 'Linking Failed — Invalid or Used Link'),
     ('no_upcoming', 'Reply — No Upcoming Appointment'),
     ('confirm_ack', 'Reply — Appointment Confirmed'),
     ('cancel_ack', 'Reply — Appointment Cancelled'),

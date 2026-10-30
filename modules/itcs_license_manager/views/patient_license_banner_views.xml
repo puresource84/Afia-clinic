@@ -5,16 +5,23 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="afia_dental_core.view_partner_form_dental"/>
         <field name="arch" type="xml">
-            <xpath expr="//sheet" position="inside">
-                <div class="alert alert-success mb-0" role="alert"
+            <!-- Moved to the very top of the sheet (2026-08-24, Manhel's
+                 request) — was `//sheet position="inside"`, which appends at
+                 the END of the sheet (after the notebook), so the seat-limit
+                 banner was the LAST thing on the page instead of the first.
+                 Anchoring `before` the title block puts it right under the
+                 smart buttons, above the patient's name — the first thing a
+                 receptionist sees when opening a profile during data entry. -->
+            <xpath expr="//div[hasclass('oe_title')]" position="before">
+                <div class="alert alert-success mb-2" role="alert"
                      invisible="not is_patient or afia_patient_banner_type != 'ok'">
                     <field name="afia_patient_banner_text" readonly="1"/>
                 </div>
-                <div class="alert alert-warning mb-0" role="alert"
+                <div class="alert alert-warning mb-2" role="alert"
                      invisible="not is_patient or afia_patient_banner_type != 'warning'">
                     <field name="afia_patient_banner_text" readonly="1"/>
                 </div>
-                <div class="alert alert-danger mb-0" role="alert"
+                <div class="alert alert-danger mb-2" role="alert"
                      invisible="not is_patient or afia_patient_banner_type != 'danger'">
                     <field name="afia_patient_banner_text" readonly="1"/>
                 </div>

@@ -1,4 +1,5 @@
 import logging
+import secrets
 from datetime import timedelta
 
 import pytz
@@ -29,7 +30,7 @@ class ResConfigSettingsTelegram(models.TransientModel):
     dental_tg_bot_username = fields.Char(
         string='Bot Username',
         config_parameter='dental_telegram.bot_username',
-        help='Without @. Used to build patient deep links: t.me/<bot>?start=<PatientNo>')
+        help='Without @. Used to build patient deep links: t.me/<bot>?start=<link token>')
     dental_tg_recall_months = fields.Integer(
         string='Recall After (months)', default=6,
         config_parameter='dental_telegram.recall_months',
@@ -49,7 +50,42 @@ class ResPartnerTelegram(models.Model):
     telegram_chat_id = fields.Char(
         string='Telegram Chat ID', copy=False,
         help='Filled automatically when the patient opens the clinic bot '
-             'deep link (t.me/<bot>?start=<PatientNo>).')
+             'deep link (t.me/<bot>?start=<link token>).')
+    # Random, single-use code put in the deep link instead of the patient
+    # number: patient numbers are sequential (PAT/00001), so anyone could
+    # have linked their own chat to another patient and received (or
+    # cancelled) that patient's appointments.
+    telegram_link_token = fields.Char(
+        string='Telegram Link Token', copy=False, groups='base.group_user')
+
+    def _tg_get_link_token(self):
+        self.ensure_one()
+        if not self.telegram_link_token:
+            self.sudo().telegram_link_token = secrets.token_urlsafe(16)
+        return self.telegram_link_token
+
+    def _tg_deep_link(self):
+        """Return the t.me deep link for this patient, or '' if the bot
+        username is not configured."""
+        self.ensure_one()
+        bot = (self.env['ir.config_parameter'].sudo().get_param(
+            'dental_telegram.bot_username') or '').lstrip('@')
+        if not bot:
+            return ''
+        return 'https://t.me/%s?start=%s' % (bot, self._tg_get_link_token())
+
+    @staticmethod
+    def _tg_consume_link_token(env, code):
+        """Find the patient owning ``code`` and burn the token so a leaked
+        card or link cannot be reused to hijack the chat later."""
+        if not code:
+            return env['res.partner']
+        patient = env['res.partner'].sudo().search([
+            ('is_patient', '=', True),
+            ('telegram_link_token', '=', code)], limit=1)
+        if patient:
+            patient.telegram_link_token = False
+        return patient
 
 
 class DentalAppointmentTelegram(models.Model):
@@ -140,8 +176,7 @@ class DentalAppointmentTelegram(models.Model):
         Partner = self.env['res.partner'].sudo()
         parts = text.split(maxsplit=1)
         code = parts[1].strip() if len(parts) > 1 else ''
-        patient = code and Partner.search(
-            [('is_patient', '=', True), ('patient_no', '=', code)], limit=1)
+        patient = Partner._tg_consume_link_token(self.env, code)
         if patient:
             patient.telegram_chat_id = chat_id
             self._tg_send(chat_id, (
@@ -150,9 +185,9 @@ class DentalAppointmentTelegram(models.Model):
                 'will arrive here.') % patient.name)
         elif code:
             self._tg_send(chat_id, (
-                'لم نتمكن من العثور على رقم المريض %s — يرجى مراجعة '
-                'الاستقبال. / Patient number %s not found, please '
-                'contact reception.') % (code, code))
+                'رابط التفعيل غير صالح أو مستخدم مسبقاً — يرجى طلب رابط '
+                'جديد من الاستقبال. / This link is invalid or already '
+                'used, please ask reception for a new one.'))
 
     def _tg_handle_reply(self, chat_id, text):
         """NOW-bucket C1 + C3: CONFIRM / CANCEL / review score replies."""

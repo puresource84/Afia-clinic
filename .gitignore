@@ -30,5 +30,13 @@ docker/volumes/
 
 # Secrets
 .env
+docker/odoo.generated.conf
 *.env.local
 modules/itcs_license_manager/secret_config.py
+
+# Internal engineering process docs (bug Report/Analyze/Fix/Verify records,
+# module test-plan scaffolding) — not meant for the public repo. Added
+# 2026-09-20 per Manhel: these get copied in by packaging/sync_to_repo.py
+# (it mirrors each module folder as-is) but should never actually be
+# committed/pushed.
+modules/**/.spec/

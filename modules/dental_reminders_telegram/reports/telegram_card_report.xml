@@ -6,8 +6,7 @@
     <template id="report_telegram_card">
         <t t-call="web.basic_layout">
             <t t-foreach="docs" t-as="o">
-                <t t-set="bot" t-value="o.env['ir.config_parameter'].sudo().get_param('dental_telegram.bot_username') or ''"/>
-                <t t-set="link" t-value="'https://t.me/%s?start=%s' % (bot, o.patient_no or '')"/>
+                <t t-set="link" t-value="o._tg_deep_link()"/>
                 <div class="page" style="page-break-after: always; font-family: sans-serif;">
                     <div style="border: 2px solid #0e7c7b; border-radius: 14px; max-width: 420px; margin: 20px auto; padding: 22px; text-align: center;">
                         <h3 style="color:#0e7c7b; margin: 0 0 4px;" t-esc="o.env.company.name"/>

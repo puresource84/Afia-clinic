@@ -1,6 +1,6 @@
 {
     'name': 'Dental Patient Portal',
-    'version': '18.0.1.0.1',
+    'version': '18.0.1.0.2',
     'category': 'Portal',
     'summary': 'Patient self-service portal — view appointments, download invoices, prescriptions and consent documents.',
     'author': 'ITCS (IT Corner Solutions)',

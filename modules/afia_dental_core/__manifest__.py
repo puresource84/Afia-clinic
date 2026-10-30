@@ -1,6 +1,6 @@
 {
     'name': 'Afia Dental Clinic',
-    'version': '18.0.2.0.5',
+    'version': '18.0.2.0.12',
     'category': 'Healthcare',
     'summary': 'Dental clinic core: patients, appointments, dentists, treatments, prescriptions and billing.',
     'description': """

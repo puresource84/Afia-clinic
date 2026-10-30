@@ -139,3 +139,43 @@ msgstr "منتظر"
 #: model_terms:ir.ui.view,arch_db:dental_patient_flow.action_patient_flow_board
 msgid "Move each card as the patient progresses: Arrived → In Chair → Done → Paid."
 msgstr "حرّك كل بطاقة مع تقدم المريض: وصل → على الكرسي → منتهى → مدفوع."
+
+#. module: dental_patient_flow
+#: model_terms:ir.ui.view,arch_db:dental_patient_flow.view_patient_flow_kanban
+msgid "💵 Take Payment"
+msgstr "💵 استلام الدفع"
+
+#. module: dental_patient_flow
+#: model_terms:ir.ui.view,arch_db:dental_patient_flow.view_patient_flow_kanban
+msgid "Register the cash payment for this visit"
+msgstr "تسجيل الدفع النقدي لهذه الزيارة"
+
+#. module: dental_patient_flow
+#. odoo-python
+#: code:addons/dental_patient_flow/models/appointment_invoicing.py:0
+msgid "Appointment %s is already invoiced."
+msgstr "تمت فوترة الموعد %s مسبقاً."
+
+#. module: dental_patient_flow
+#. odoo-python
+#: code:addons/dental_patient_flow/models/appointment_invoicing.py:0
+msgid "You can only invoice a completed appointment."
+msgstr "لا يمكن إصدار فاتورة إلا لموعد مكتمل."
+
+#. module: dental_patient_flow
+#. odoo-python
+#: code:addons/dental_patient_flow/models/appointment_invoicing.py:0
+msgid "No treatments are linked to this appointment."
+msgstr "لا توجد علاجات مرتبطة بهذا الموعد."
+
+#. module: dental_patient_flow
+#. odoo-python
+#: code:addons/dental_patient_flow/models/dental_prescription.py:0
+msgid "Select a treatment before invoicing."
+msgstr "اختر علاجاً قبل إصدار الفاتورة."
+
+#. module: dental_patient_flow
+#. odoo-python
+#: code:addons/dental_patient_flow/models/dental_prescription.py:0
+msgid "Mark the prescription as Prescribed (this completes the visit) before invoicing."
+msgstr "علّم الوصفة كـ\"موصوفة\" (يؤدي ذلك إلى إكمال الزيارة) قبل إصدار الفاتورة."

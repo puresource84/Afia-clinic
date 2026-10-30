@@ -30,8 +30,12 @@
     <!-- Receptionist also touches Clinic Stock (dispensing/consumable lookups)
          and needs base internal-user access to use the system at all. -->
     <record id="clinic_core.group_clinic_receptionist" model="res.groups">
+        <!-- base.group_partner_manager ("Contact Creation"): registering a
+             walk-in patient creates a res.partner, which plain internal
+             users are not allowed to do. -->
         <field name="implied_ids" eval="[
             (4, ref('base.group_user')),
+            (4, ref('base.group_partner_manager')),
             (4, ref('stock.group_stock_user')),
         ]"/>
     </record>

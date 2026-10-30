@@ -34,15 +34,6 @@ class DentalAppointmentFlow(models.Model):
     cancellation_reason = fields.Text(
         string='Cancellation Reason', copy=False)
 
-    # Stub field so the kanban view validates while this module loads.
-    # dental_ux_fixes (which depends on this module and loads after it)
-    # re-defines invoice_count with the real Many2many-based compute.
-    invoice_count = fields.Integer(
-        string='Invoices',
-        compute='_compute_invoice_count_stub',
-        store=False,
-    )
-
     @api.model
     def _group_expand_flow_state(self, states, domain):
         return [key for key, _label in self._fields['flow_state'].selection]
@@ -56,13 +47,6 @@ class DentalAppointmentFlow(models.Model):
                 apt.wait_minutes = int(delta.total_seconds() // 60)
             else:
                 apt.wait_minutes = 0
-
-    def _compute_invoice_count_stub(self):
-        # Placeholder — dental_ux_fixes overrides invoice_count with the
-        # real compute once it loads.  This stub prevents a view-validation
-        # ParseError when dental_patient_flow loads before dental_ux_fixes.
-        for apt in self:
-            apt.invoice_count = 0
 
     def write(self, vals):
         result = super().write(vals)
@@ -103,12 +87,42 @@ class DentalAppointmentFlow(models.Model):
             apt._set_flow_state('in_chair')
 
     def action_flow_done(self):
+        # Go through the real workflow so everything hooked on action_done
+        # runs (consumable stock deduction, recall dates, end-time stamp).
         for apt in self:
-            apt._set_flow_state('done')
+            if apt.state == 'draft':
+                apt.action_confirm()
+            apt.action_done()
 
     def action_flow_paid(self):
+        """Take payment at the desk: post the visit invoice if needed and
+        open the standard Register Payment dialog on the cash journal. The
+        card only moves to Paid once the invoice is actually paid."""
+        self.ensure_one()
+        invoice = self._get_active_invoices()[:1] or self._create_visit_invoice()
+        if invoice.state == 'draft':
+            invoice.action_post()
+        if invoice.payment_state in ('paid', 'in_payment', 'reversed'):
+            self._set_flow_state('paid')
+            return True
+        action = invoice.action_register_payment()
+        cash_journal = self.env['account.journal'].search([
+            *self.env['account.journal']._check_company_domain(invoice.company_id),
+            ('type', '=', 'cash'),
+        ], limit=1)
+        if cash_journal:
+            action['context'] = dict(action.get('context') or {},
+                                     default_journal_id=cash_journal.id)
+        return action
+
+    def _sync_flow_paid_from_invoices(self):
         for apt in self:
-            apt._set_flow_state('paid')
+            invoices = apt._get_active_invoices().filtered(
+                lambda m: m.state == 'posted')
+            if (apt.flow_state == 'done' and invoices and all(
+                    m.payment_state in ('paid', 'in_payment')
+                    for m in invoices)):
+                apt._set_flow_state('paid')
 
     def action_request_cancel(self):
         self.ensure_one()
@@ -123,34 +137,8 @@ class DentalAppointmentFlow(models.Model):
 
     def action_flow_invoice(self):
         self.ensure_one()
-        if self.invoice_count:
-            return self.action_view_invoices()
-        if not self.treatments:
-            raise UserError(
-                _('No treatments linked to appointment %s. Add treatments before invoicing.')
-                % (self.appointment_no or self.id)
-            )
-        product = self._get_dental_service_product()
-        invoice = self.env['account.move'].create({
-            'move_type': 'out_invoice',
-            'partner_id': self.patient_id.id,
-            'is_treatment_invoice': True,
-            'invoice_origin': self.appointment_no or '',
-            'invoice_line_ids': [
-                (0, 0, {
-                    'product_id': product.id,
-                    'name': treatment.name,
-                    'quantity': 1.0,
-                    'price_unit': treatment.cost,
-                })
-                for treatment in self.treatments
-            ],
-        })
-        self.invoice_ids = [(4, invoice.id)]
-        return {
-            'type': 'ir.actions.act_window',
-            'res_model': 'account.move',
-            'res_id': invoice.id,
-            'view_mode': 'form',
-            'target': 'current',
-        }
+        invoice = self._get_active_invoices()[:1]
+        if not invoice:
+            invoice = self._create_visit_invoice()
+            invoice.action_post()
+        return self._action_open_invoice(invoice)

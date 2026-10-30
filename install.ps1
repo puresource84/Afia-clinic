@@ -30,15 +30,18 @@ $ODOO_NIGHTLY = "https://nightly.odoo.com/18.0/nightly/windows/odoo_setup_18.0.l
 # correctly; it just won't log in as tidy a sequence.
 $LAYERS = @(
     @("afia_dental_core"),
-    @("clinic_core","dental_analytics","dental_branch","dental_charting_pro","dental_communication","dental_consent","dental_insurance","dental_lab","dental_patient_flow","dental_patient_portal","dental_portal_booking","dental_sterilization","dental_treatment_plan"),
-    @("afia_app_launcher","dental_appointment_times","dental_booking_slots","dental_case_acceptance","dental_clinical_permissions","dental_consumables","dental_imaging","dental_insurance_v2","dental_reminders_telegram","dental_reminders_whatsapp"),
+    @("clinic_core","dental_analytics","dental_charting_pro","dental_communication","dental_consent","dental_insurance","dental_lab","dental_patient_flow","dental_patient_portal","dental_portal_booking","dental_sterilization","dental_treatment_plan"),
+    @("afia_app_launcher","dental_appointment_times","dental_booking_slots","dental_case_acceptance","dental_clinical_permissions","dental_consumables","dental_imaging","dental_insurance_v2","dental_reminders_telegram"),
     @("custom_dental_menu","dental_soap_notes","dental_telegram_templates"),
     @("dental_perio_charting","dental_portal_v2"),
     @("dental_ux_fixes"),
     @("dental_allergy_guard"),
-    @("dental_audit"),
-    @("payment_zaincash","payment_paytabs")
+    @("dental_audit")
 )
+# v1.1 (single clinic, cash only, Telegram + email reminders) deliberately
+# does NOT auto-install: dental_branch, dental_reminders_whatsapp,
+# payment_paytabs, payment_zaincash. They stay in modules/ and can be
+# installed from Apps once they are production-ready.
 # dental_demo_data is intentionally NOT in this list - it seeds fake
 # patient data and should only ever be installed on a separate, disposable
 # database, never through this production installer. See
@@ -174,7 +177,7 @@ $f = fnt 18 $true; if($f){$lbl1.Font=$f}
 $p1.Controls.Add($lbl1)
 
 $lbl2 = New-Object System.Windows.Forms.Label
-$lbl2.Text = "This wizard will:`n`n   1.  Detect Odoo 18 Community Edition, or install it from`n        Odoo's official public build server`n   2.  Copy all 35 Afia Clinic modules`n   3.  Let you create a new database or connect to an existing one`n   4.  Configure Odoo and open your browser"
+$lbl2.Text = "This wizard will:`n`n   1.  Detect Odoo 18 Community Edition, or install it from`n        Odoo's official public build server`n   2.  Copy the Afia Clinic modules`n   3.  Let you create a new database or connect to an existing one`n   4.  Configure Odoo and open your browser"
 $lbl2.Left=30; $lbl2.Top=60; $lbl2.Width=490; $lbl2.Height=130
 $lbl2.ForeColor=$GREY
 $f = fnt 10; if($f){$lbl2.Font=$f}
@@ -270,7 +273,7 @@ $p4.SetBounds(0,90,560,310); $p4.BackColor=$WHITE; $p4.Visible=$false
 $form.Controls.Add($p4)
 
 $p4.Controls.Add((& { $l=New-Object System.Windows.Forms.Label; $l.Text="Database & Modules"; $l.SetBounds(30,14,500,28); $f=fnt 15 $true; if($f){$l.Font=$f}; $l }))
-$p4.Controls.Add((& { $l=New-Object System.Windows.Forms.Label; $l.Text="Create a new Odoo database or connect to one you already have, then install all 35 modules automatically."; $l.SetBounds(30,44,500,30); $l.ForeColor=$GREY; $f=fnt 9; if($f){$l.Font=$f}; $l }))
+$p4.Controls.Add((& { $l=New-Object System.Windows.Forms.Label; $l.Text="Create a new Odoo database or connect to one you already have, then install the Afia Clinic modules automatically."; $l.SetBounds(30,44,500,30); $l.ForeColor=$GREY; $f=fnt 9; if($f){$l.Font=$f}; $l }))
 
 $rbCreate = New-Object System.Windows.Forms.RadioButton
 $rbCreate.Text = "Create a new database"
@@ -589,13 +592,15 @@ $btnInstallMods.Add_Click({
     $pyScript = Join-Path $env:TEMP "afia_install_modules.py"
     $layersPy = ($LAYERS | ForEach-Object { "    ['" + ($_ -join "','") + "']" }) -join ",`n"
     @"
-import xmlrpc.client, sys
+import xmlrpc.client, sys, os
 url = 'http://localhost:8069'
 mode        = sys.argv[1]
 db          = sys.argv[2]
 admin_login = sys.argv[3]
-admin_pwd   = sys.argv[4]
-master_pwd  = sys.argv[5]
+# Passwords come via environment variables, never argv: command lines are
+# visible to every local user in Task Manager / process listings.
+admin_pwd   = os.environ.get('AFIA_ADMIN_PWD', '')
+master_pwd  = os.environ.get('AFIA_MASTER_PWD', '')
 try:
     if mode == 'create':
         print('CREATING:Creating database (this installs Odoo base modules first, can take 1-2 minutes)', flush=True)
@@ -628,7 +633,11 @@ except Exception as e:
     $errFile = Join-Path $env:TEMP "afia_mod_err.txt"
     Remove-Item $outFile,$errFile -EA SilentlyContinue
 
-    $proc = Start-Process -FilePath $python -ArgumentList "`"$pyScript`" `"$mode`" `"$db`" `"$adminLogin`" `"$adminPwd`" `"$masterPwd`"" -NoNewWindow -PassThru -RedirectStandardOutput $outFile -RedirectStandardError $errFile
+    # Child process inherits these; cleared again as soon as it has started.
+    $env:AFIA_ADMIN_PWD = $adminPwd
+    $env:AFIA_MASTER_PWD = $masterPwd
+    $proc = Start-Process -FilePath $python -ArgumentList "`"$pyScript`" `"$mode`" `"$db`" `"$adminLogin`"" -NoNewWindow -PassThru -RedirectStandardOutput $outFile -RedirectStandardError $errFile
+    Remove-Item Env:AFIA_ADMIN_PWD, Env:AFIA_MASTER_PWD -EA SilentlyContinue
 
     $lastLine = 0
     $sawAllDone = $false
