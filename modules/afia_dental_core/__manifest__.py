@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {'name': 'Afia Dental Clinic',
- 'version': '18.0.2.4.0',
+ 'version': '18.0.2.5.0',
  'category': 'Healthcare',
  'summary': 'Dental clinic core: patients, appointments, dentists, treatments, prescriptions and '
             'billing.',
