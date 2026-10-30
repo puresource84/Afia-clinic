@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {'name': 'Dental Analytics & KPIs',
- 'version': '18.0.1.0.1',
+ 'version': '18.0.1.1.0',
  'category': 'Dental',
  'summary': 'Dental-specific KPI dashboards: chair utilisation, revenue per dentist, no-show rate '
             'and patient retention.',
@@ -8,7 +8,7 @@
  'website': 'https://www.itcornersolutions.net/',
  'license': 'OPL-1',
  'images': ['static/description/icon.png'],
- 'depends': ['afia_dental_core', 'web'],
+ 'depends': ['afia_dental_core', 'web', 'hr'],
  'data': ['security/ir.model.access.csv',
           'views/dental_analytics_views.xml',
           'views/menus.xml',
