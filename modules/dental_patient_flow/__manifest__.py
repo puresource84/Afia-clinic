@@ -39,7 +39,5 @@
  'installable': True,
  'auto_install': False,
  'application': False,
- 'price': 0,
- 'currency': 'USD',
  'assets': {'web.assets_backend': ['dental_patient_flow/static/src/xml/float_time_dropdown.xml',
                                    'dental_patient_flow/static/src/js/float_time_dropdown.js']}}

@@ -50,6 +50,4 @@
                 '- Reception staff find billing tasks instantly without scrolling past clinical '
                 'menus\n'
                 '- Clinicians see only clinical items during consultations\n'
-                "- Fully compatible with Odoo's standard access rights\n",
- 'price': 0,
- 'currency': 'USD'}
+                "- Fully compatible with Odoo's standard access rights\n"}

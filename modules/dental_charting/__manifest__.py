@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {'name': 'Dental Charting Pro',
- 'version': '18.0.1.9.0',
+ 'version': '18.0.1.10.0',
  'category': 'Healthcare/Dental',
  'summary': 'Interactive FDI odontogram with per-tooth conditions, surface mapping and full '
             'clinical history.',
@@ -13,7 +13,8 @@
           'views/dental_tooth_record_views.xml',
           'views/perio_exam_views.xml',
           'views/imaging_tooth_views.xml',
-          'views/imaging_appointment_views.xml'],
+          'views/imaging_appointment_views.xml',
+          'views/appointment_perio_button.xml'],
  'assets': {'web.assets_backend': ['dental_charting/static/src/odontogram/odontogram.js',
                                    'dental_charting/static/src/odontogram/odontogram.xml']},
  'images': ['static/description/icon.png'],
@@ -34,6 +35,4 @@
                 '- Print-ready chart report (PDF)\n'
                 '- Links directly to SOAP notes and treatment plan lines\n'
                 '\n'
-                'Compatible with Dental SOAP Notes and Dental Perio Charting.\n',
- 'price': 0,
- 'currency': 'USD'}
+                'Compatible with Dental SOAP Notes and Dental Perio Charting.\n'}

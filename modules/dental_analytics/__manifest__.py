@@ -28,6 +28,4 @@
                 '- Treatment Acceptance Rate — presented vs accepted treatment plans\n'
                 '\n'
                 'All dashboards support branch and date-range filtering.\n'
-                'Export to PDF and Excel for management reporting.\n',
- 'price': 0,
- 'currency': 'USD'}
+                'Export to PDF and Excel for management reporting.\n'}

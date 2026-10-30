@@ -37,6 +37,4 @@
                 '- Export audit report to PDF for compliance reviews\n'
                 '- Tamper-evident: audit records are read-only after creation\n'
                 '\n'
-                'Supports JCI, MOH and ISO 27001 audit requirements.\n',
- 'price': 0,
- 'currency': 'USD'}
+                'Supports JCI, MOH and ISO 27001 audit requirements.\n'}

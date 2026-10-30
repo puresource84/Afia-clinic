@@ -35,6 +35,4 @@
                 '- Insurance ageing report — outstanding claims by payer\n'
                 '\n'
                 'Upgrade with Dental Insurance v2 for document attachments and payer-specific '
-                'print templates.\n',
- 'price': 0,
- 'currency': 'USD'}
+                'print templates.\n'}

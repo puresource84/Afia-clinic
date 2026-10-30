@@ -29,6 +29,4 @@
                 '- Per-branch stock location support\n'
                 '- Stock movement history linked to the treatment record\n'
                 '\n'
-                'Requires Odoo Inventory (stock) and the base afia_dental_core module.\n',
- 'price': 0,
- 'currency': 'USD'}
+                'Requires Odoo Inventory (stock) and the base afia_dental_core module.\n'}

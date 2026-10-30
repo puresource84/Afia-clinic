@@ -37,6 +37,4 @@
                 '- Print-ready treatment plan PDF for patient\n'
                 '\n'
                 'Integrates with Dental Case Acceptance, Dental Lab Work Orders and Dental '
-                'Insurance.\n',
- 'price': 0,
- 'currency': 'USD'}
+                'Insurance.\n'}

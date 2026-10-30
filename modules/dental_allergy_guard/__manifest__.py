@@ -29,6 +29,4 @@
  'data': ['security/ir.model.access.csv', 'data/allergy_substances.xml', 'views/allergy_views.xml'],
  'images': ['static/description/icon.png'],
  'installable': True,
- 'application': False,
- 'price': 0,
- 'currency': 'USD'}
+ 'application': False}

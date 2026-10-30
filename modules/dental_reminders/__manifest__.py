@@ -39,6 +39,4 @@
                 '- Manual send option from the appointment form\n'
                 '\n'
                 'Integrates with Dental Telegram Reminders and Dental WhatsApp Reminders for '
-                'additional channels.\n',
- 'price': 0,
- 'currency': 'USD'}
+                'additional channels.\n'}

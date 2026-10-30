@@ -41,6 +41,4 @@
                 'Portal Access\n'
                 '-------------\n'
                 'Patients receive a portal invitation email. Login via the standard Odoo portal.\n'
-                'Multi-language: English and Arabic supported.\n',
- 'price': 0,
- 'currency': 'USD'}
+                'Multi-language: English and Arabic supported.\n'}

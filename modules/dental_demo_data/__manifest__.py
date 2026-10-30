@@ -57,6 +57,4 @@
                 'Usage\n'
                 '-----\n'
                 'Install on a clean Odoo instance before demonstrating the Afia Clinic suite.\n'
-                'Uninstall to remove all demo records without affecting configuration.\n',
- 'price': 0,
- 'currency': 'USD'}
+                'Uninstall to remove all demo records without affecting configuration.\n'}

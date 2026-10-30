@@ -79,6 +79,4 @@
  'company': 'ITCS (IT Corner Solutions)',
  'maintainer': 'ITCS (IT Corner Solutions)',
  'support': 'support@itcornersolutions.net',
- 'price': 599,
- 'currency': 'USD',
  'assets': {'web.assets_backend': ['afia_dental_core/static/src/patient_form/patient_details.scss']}}
