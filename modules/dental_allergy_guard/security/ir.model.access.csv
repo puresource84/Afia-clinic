@@ -1,6 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_allergy_substance_user,dental.allergy.substance.user,model_dental_allergy_substance,base.group_user,1,0,0,0
-access_allergy_substance_admin,dental.allergy.substance.admin,model_dental_allergy_substance,clinic_core.group_clinic_admin,1,1,1,1
+access_allergy_substance_admin,dental.allergy.substance.admin,model_dental_allergy_substance,afia_dental_core.group_clinic_admin,1,1,1,1
 access_patient_allergy_user,dental.patient.allergy.user,model_dental_patient_allergy,base.group_user,1,0,0,0
-access_patient_allergy_clinician,dental.patient.allergy.clinician,model_dental_patient_allergy,dental_charting_pro.group_dental_clinician,1,1,1,1
-access_patient_allergy_admin,dental.patient.allergy.admin,model_dental_patient_allergy,clinic_core.group_clinic_admin,1,1,1,1
+access_patient_allergy_clinician,dental.patient.allergy.clinician,model_dental_patient_allergy,dental_charting.group_dental_clinician,1,1,1,1
+access_patient_allergy_admin,dental.patient.allergy.admin,model_dental_patient_allergy,afia_dental_core.group_clinic_admin,1,1,1,1

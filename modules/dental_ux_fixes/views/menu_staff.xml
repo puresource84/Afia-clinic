@@ -15,7 +15,7 @@
               name="Staff"
               parent="afia_dental_core.hospital_root_menu"
               sequence="60"
-              groups="clinic_core.group_clinic_admin,base.group_system"/>
+              groups="afia_dental_core.group_clinic_admin,base.group_system"/>
 
     <menuitem id="menu_staff_list"
               name="Staff"

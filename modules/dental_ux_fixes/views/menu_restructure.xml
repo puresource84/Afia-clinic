@@ -26,13 +26,13 @@
     <!-- 2. Clinical Notes → under Patients (was root-level, seq=15) -->
     <function model="ir.ui.menu" name="write"
               eval="([ref('dental_soap_notes.menu_soap_notes')],
-                     {'parent_id': ref('custom_dental_menu.menu_patient_group'),
+                     {'parent_id': ref('afia_menu.menu_patient_group'),
                       'sequence': 20})"/>
 
     <!-- 3. Perio Exams → under Patients (was root-level, seq=16) -->
     <function model="ir.ui.menu" name="write"
-              eval="([ref('dental_perio_charting.menu_perio_exams')],
-                     {'parent_id': ref('custom_dental_menu.menu_patient_group'),
+              eval="([ref('dental_charting.menu_perio_exams')],
+                     {'parent_id': ref('afia_menu.menu_patient_group'),
                       'sequence': 25})"/>
 
 </odoo>

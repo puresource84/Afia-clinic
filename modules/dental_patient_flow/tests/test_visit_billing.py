@@ -13,7 +13,7 @@ class TestVisitBilling(AccountTestInvoicingCommon):
         super().setUpClass()
         # The accounting fixture runs as a dedicated accountant user; give
         # it the clinic role a front-desk manager would have.
-        cls.env.user.groups_id |= cls.env.ref('clinic_core.group_clinic_admin')
+        cls.env.user.groups_id |= cls.env.ref('afia_dental_core.group_clinic_admin')
         cls.patient = cls.env['res.partner'].create(
             {'name': 'Billing Patient', 'is_patient': True})
         cls.dentist = cls.env['hr.employee'].create(

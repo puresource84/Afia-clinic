@@ -66,7 +66,7 @@ class DentalAppointmentSmartButtons(models.Model):
 
     def action_view_dental_chart(self):
         self.ensure_one()
-        view = self.env.ref('dental_charting_pro.view_partner_form_dental_chart')
+        view = self.env.ref('dental_charting.view_partner_form_dental_chart')
         return {
             'type': 'ir.actions.act_window',
             'name': 'Dental Chart',

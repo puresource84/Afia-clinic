@@ -1,1 +1,1 @@
-﻿from . import dental_kpi
+from . import dental_kpi

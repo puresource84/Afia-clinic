@@ -1,0 +1,387 @@
+# Translation for dental_communication - Arabic
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 18.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: dental_communication
+#: model:ir.model.fields,field_description:dental_communication.field_dental_appointment__reminder_sent
+msgid "Reminder Sent"
+msgstr "تم إرسال التذكير"
+
+#. module: dental_communication
+#: model:ir.model.fields,field_description:dental_communication.field_dental_appointment__recall_due_date
+msgid "Recall Due Date"
+msgstr "تاريخ استحقاق المتابعة"
+
+#. module: dental_communication
+#: model:ir.cron,name:dental_communication.cron_appointment_reminders
+msgid "Dental: Send Appointment Reminders"
+msgstr "طب الأسنان: إرسال تذكيرات المواعيد"
+
+#. module: dental_communication
+#: model:ir.cron,name:dental_communication.cron_patient_recall
+msgid "Dental: Patient Recall Notices"
+msgstr "طب الأسنان: إشعارات متابعة المرضى"
+
+#. module: dental_communication
+#: model:mail.template,name:dental_communication.email_template_appointment_reminder
+msgid "Dental: Appointment Reminder"
+msgstr "طب الأسنان: تذكير بالموعد"
+
+#. module: dental_communication
+#: model:mail.template,subject:dental_communication.email_template_appointment_reminder
+msgid "Reminder: Your Dental Appointment Tomorrow"
+msgstr "تذكير: موعد طب الأسنان الخاص بك غداً"
+
+#. module: dental_communication
+#: model:mail.template,body_html:dental_communication.email_template_appointment_reminder
+msgid ""
+"\n"
+"<p>Dear {{ object.patient_id.name }},</p>\n"
+"<p>This is a friendly reminder that you have a dental appointment scheduled for\n"
+"<strong>{{ object.appointment_date }}</strong>\n"
+"with <strong>{{ object.dentist_id.name }}</strong>.</p>\n"
+"<p>Please arrive 10 minutes early. If you need to reschedule, contact us as soon as possible.</p>\n"
+"<p>Thank you,<br/>{{ object.company_id.name }}</p>\n"
+"        "
+msgstr ""
+"\n"
+"<p>عزيزي/عزيزتي {{ object.patient_id.name }}،</p>\n"
+"<p>هذا تذكير ودي بأن لديك موعداً لطب الأسنان محدداً بتاريخ\n"
+"<strong>{{ object.appointment_date }}</strong>\n"
+"مع <strong>{{ object.dentist_id.name }}</strong>.</p>\n"
+"<p>يرجى الحضور قبل 10 دقائق من الموعد. إذا كنت بحاجة لإعادة الجدولة، يرجى التواصل معنا في أقرب وقت ممكن.</p>\n"
+"<p>شكراً لك،<br/>{{ object.company_id.name }}</p>\n"
+"        "
+
+#. module: dental_communication
+#: model:mail.template,name:dental_communication.email_template_patient_recall
+msgid "Dental: Patient Recall"
+msgstr "طب الأسنان: متابعة المريض"
+
+#. module: dental_communication
+#: model:mail.template,subject:dental_communication.email_template_patient_recall
+msgid "Time for Your Regular Dental Check-up!"
+msgstr "حان وقت فحصك الدوري لطب الأسنان!"
+
+#. module: dental_communication
+#: model:mail.template,body_html:dental_communication.email_template_patient_recall
+msgid ""
+"\n"
+"<p>Dear {{ object.patient_id.name }},</p>\n"
+"<p>It has been about 6 months since your last visit. Regular dental check-ups help keep your\n"
+"smile healthy!</p>\n"
+"<p>Please call us or visit our website to book your next appointment.</p>\n"
+"<p>Thank you,<br/>{{ object.company_id.name }}</p>\n"
+"        "
+msgstr ""
+"\n"
+"<p>عزيزي/عزيزتي {{ object.patient_id.name }}،</p>\n"
+"<p>لقد مرّ حوالي 6 أشهر منذ زيارتك الأخيرة. الفحوصات الدورية لطب الأسنان تساعد في الحفاظ على\n"
+"ابتسامتك صحية!</p>\n"
+"<p>يرجى الاتصال بنا أو زيارة موقعنا الإلكتروني لحجز موعدك القادم.</p>\n"
+"<p>شكراً لك،<br/>{{ object.company_id.name }}</p>\n"
+"        "
+
+# merged from dental_reminders_whatsapp
+
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 18.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: dental_reminders_whatsapp
+#: model:ir.model.fields,field_description:dental_reminders_whatsapp.field_res_config_settings__dental_wa_api_url
+msgid "WhatsApp Gateway URL"
+msgstr "رابط بوابة واتساب"
+
+#. module: dental_reminders_whatsapp
+#: model:ir.model.fields,field_description:dental_reminders_whatsapp.field_res_config_settings__dental_wa_api_token
+msgid "WhatsApp API Token"
+msgstr "رمز واجهة برمجة واتساب"
+
+#. module: dental_reminders_whatsapp
+#: model:ir.model.fields,field_description:dental_reminders_whatsapp.field_dental_appointment__wa_reminder_sent
+msgid "WhatsApp Reminder Sent"
+msgstr "تم إرسال التذكير عبر واتساب"
+
+#. module: dental_reminders_whatsapp
+#: model_terms:ir.ui.view,arch_db:dental_reminders_whatsapp.res_config_settings_view_form_wa
+msgid "Dental WhatsApp"
+msgstr "واتساب العيادة"
+
+#. module: dental_reminders_whatsapp
+#: model_terms:ir.ui.view,arch_db:dental_reminders_whatsapp.res_config_settings_view_form_wa
+msgid "WhatsApp Gateway"
+msgstr "بوابة واتساب"
+
+#. module: dental_reminders_whatsapp
+#: model_terms:ir.ui.view,arch_db:dental_reminders_whatsapp.res_config_settings_view_form_wa
+msgid "Gateway URL"
+msgstr "رابط البوابة"
+
+#. module: dental_reminders_whatsapp
+#: model_terms:ir.ui.view,arch_db:dental_reminders_whatsapp.res_config_settings_view_form_wa
+msgid "WhatsApp Business API endpoint used for reminders"
+msgstr "نقطة اتصال واجهة برمجة واتساب للأعمال المستخدمة للتذكيرات"
+
+#. module: dental_reminders_whatsapp
+#: model_terms:ir.ui.view,arch_db:dental_reminders_whatsapp.res_config_settings_view_form_wa
+msgid "API Token"
+msgstr "رمز API"
+
+# merged from dental_reminders_telegram
+
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 18.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: dental_reminders_telegram
+#: model:ir.model.fields,field_description:dental_reminders_telegram.field_res_config_settings__dental_tg_enabled
+msgid "Enable Telegram"
+msgstr "تفعيل تيليغرام"
+
+#. module: dental_reminders_telegram
+#: model:ir.model.fields,field_description:dental_reminders_telegram.field_res_config_settings__dental_tg_bot_token
+msgid "Telegram Bot Token"
+msgstr "رمز بوت تيليغرام"
+
+#. module: dental_reminders_telegram
+#: model:ir.model.fields,field_description:dental_reminders_telegram.field_res_config_settings__dental_tg_bot_username
+msgid "Bot Username"
+msgstr "اسم مستخدم البوت"
+
+#. module: dental_reminders_telegram
+#: model:ir.model.fields,field_description:dental_reminders_telegram.field_res_config_settings__dental_tg_recall_months
+msgid "Recall After (months)"
+msgstr "الاستدعاء بعد (أشهر)"
+
+#. module: dental_reminders_telegram
+#: model:ir.model.fields,field_description:dental_reminders_telegram.field_res_config_settings__dental_tg_review_link
+msgid "Review Link (Google Maps)"
+msgstr "رابط التقييم (خرائط جوجل)"
+
+#. module: dental_reminders_telegram
+#: model:ir.model.fields,field_description:dental_reminders_telegram.field_res_config_settings__dental_tg_clinic_tz
+msgid "Clinic Timezone"
+msgstr "المنطقة الزمنية للعيادة"
+
+#. module: dental_reminders_telegram
+#: model:ir.model.fields,field_description:dental_reminders_telegram.field_res_partner__telegram_chat_id
+msgid "Telegram Chat ID"
+msgstr "معرف محادثة تيليغرام"
+
+#. module: dental_reminders_telegram
+#: model:ir.model.fields,field_description:dental_reminders_telegram.field_dental_appointment__tg_reminder_sent
+msgid "Telegram Reminder Sent"
+msgstr "تم إرسال التذكير عبر تيليغرام"
+
+#. module: dental_reminders_telegram
+#: model:ir.model.fields,field_description:dental_reminders_telegram.field_dental_appointment__tg_recall_sent
+msgid "Telegram Recall Sent"
+msgstr "تم إرسال الاستدعاء عبر تيليغرام"
+
+#. module: dental_reminders_telegram
+#: model:ir.model.fields,field_description:dental_reminders_telegram.field_dental_appointment__review_sent
+msgid "Review Request Sent"
+msgstr "تم إرسال طلب التقييم"
+
+#. module: dental_reminders_telegram
+#: model:ir.model.fields,field_description:dental_reminders_telegram.field_dental_appointment__review_score
+msgid "Review Score"
+msgstr "درجة التقييم"
+
+#. module: dental_reminders_telegram
+#: model_terms:ir.ui.view,arch_db:dental_reminders_telegram.res_config_settings_view_form_tg
+msgid "Telegram"
+msgstr "تيليغرام"
+
+#. module: dental_reminders_telegram
+#: model_terms:ir.ui.view,arch_db:dental_reminders_telegram.res_config_settings_view_form_tg
+msgid "Automated appointment reminders and patient self-linking through the clinic's Telegram bot"
+msgstr "تذكيرات المواعيد الآلية وربط المريض تلقائياً عبر بوت عيادة تيليغرام"
+
+#. module: dental_reminders_telegram
+#: model_terms:ir.ui.view,arch_db:dental_reminders_telegram.res_config_settings_view_form_tg
+msgid "From @BotFather (e.g. 123456:ABC-DEF...)"
+msgstr "من @BotFather (مثال: 123456:ABC-DEF...)"
+
+# merged from dental_telegram_templates
+
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 18.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: dental_telegram_templates
+#: model:ir.actions.act_window,name:dental_telegram_templates.action_telegram_templates
+#: model:ir.ui.menu,name:dental_telegram_templates.menu_telegram_templates
+msgid "Telegram Messages"
+msgstr "رسائل تيليجرام"
+
+#. module: dental_telegram_templates
+#: model:ir.model,name:dental_telegram_templates.model_dental_telegram_template
+msgid "Telegram Message Template"
+msgstr "قالب رسالة تيليجرام"
+
+#. module: dental_telegram_templates
+#: model:ir.model.fields,field_description:dental_telegram_templates.field_dental_telegram_template__body
+msgid "Message Text"
+msgstr "نص الرسالة"
+
+#. module: dental_telegram_templates
+#: model:ir.model.fields,field_description:dental_telegram_templates.field_dental_telegram_template__days_offset
+msgid "Days Before/After Visit"
+msgstr "أيام قبل/بعد الزيارة"
+
+#. module: dental_telegram_templates
+#: model:ir.model.fields,field_description:dental_telegram_templates.field_dental_telegram_template__send_after_hour
+msgid "Earliest Send Hour (clinic time)"
+msgstr "أبكر ساعة إرسال (بتوقيت العيادة)"
+
+#. module: dental_telegram_templates
+#: model:ir.model.fields,field_description:dental_telegram_templates.field_dental_telegram_template__test_partner_id
+msgid "Send Test To"
+msgstr "إرسال تجربة إلى"
+
+#. module: dental_telegram_templates
+#: model:ir.model.fields,field_description:dental_telegram_templates.field_dental_telegram_template__offset_value
+msgid "Send Offset"
+msgstr "مقدار الإزاحة"
+
+#. module: dental_telegram_templates
+#: model:ir.model.fields,field_description:dental_telegram_templates.field_dental_telegram_template__offset_unit
+msgid "Offset Unit"
+msgstr "وحدة الإزاحة"
+
+#. module: dental_telegram_templates
+#: model:ir.model.fields.selection,name:dental_telegram_templates.selection__dental_telegram_template__offset_unit__days
+msgid "Day(s)"
+msgstr "يوم/أيام"
+
+#. module: dental_telegram_templates
+#: model:ir.model.fields.selection,name:dental_telegram_templates.selection__dental_telegram_template__offset_unit__hours
+msgid "Hour(s)"
+msgstr "ساعة/ساعات"
+
+#. module: dental_telegram_templates
+#: model:ir.model.fields,field_description:dental_telegram_templates.field_dental_telegram_template__offset_direction
+msgid "Direction"
+msgstr "الاتجاه"
+
+#. module: dental_telegram_templates
+#: model:ir.model.fields.selection,name:dental_telegram_templates.selection__dental_telegram_template__offset_direction__before
+msgid "Before the visit"
+msgstr "قبل الزيارة"
+
+#. module: dental_telegram_templates
+#: model:ir.model.fields.selection,name:dental_telegram_templates.selection__dental_telegram_template__offset_direction__after
+msgid "After the visit"
+msgstr "بعد الزيارة"
+
+#. module: dental_telegram_templates
+#: model:ir.actions.act_window,name:dental_telegram_templates.action_telegram_log
+#: model:ir.ui.menu,name:dental_telegram_templates.menu_telegram_log
+msgid "Telegram Sent Log"
+msgstr "سجل رسائل تيليجرام"
+
+#. module: dental_telegram_templates
+#: model:ir.model,name:dental_telegram_templates.model_dental_telegram_message_log
+msgid "Telegram Sent Message"
+msgstr "رسالة تيليجرام مرسلة"
+
+#. module: dental_telegram_templates
+#: code:addons/dental_telegram_templates/models/telegram_template.py:0
+#, python-format
+msgid "Test message sent to %s."
+msgstr "تم إرسال رسالة اختبارية إلى %s."
+
+#. module: dental_telegram_templates
+msgid "Appointment"
+msgstr "الموعد"
+
+#. module: dental_telegram_templates
+msgid "Exclude Tests"
+msgstr "استبعاد الاختبارات"
+
+#. module: dental_telegram_templates
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: dental_telegram_templates
+msgid "Message"
+msgstr "الرسالة"
+
+#. module: dental_telegram_templates
+msgid "Message Type"
+msgstr "نوع الرسالة"
+
+#. module: dental_telegram_templates
+msgid "Message name"
+msgstr "اسم الرسالة"
+
+#. module: dental_telegram_templates
+msgid "Patient"
+msgstr "المريض"
+
+#. module: dental_telegram_templates
+msgid "Preview on a real phone"
+msgstr "معاينة على هاتف حقيقي"
+
+#. module: dental_telegram_templates
+msgid "Send Test"
+msgstr "إرسال اختبار"
+
+#. module: dental_telegram_templates
+msgid "Sent At"
+msgstr "وقت الإرسال"
+
+#. module: dental_telegram_templates
+msgid "Sent Date"
+msgstr "تاريخ الإرسال"
+
+#. module: dental_telegram_templates
+msgid "Telegram Message"
+msgstr "رسالة تيليجرام"
+
+#. module: dental_telegram_templates
+msgid "Template"
+msgstr "القالب"
+
+#. module: dental_telegram_templates
+msgid "Test"
+msgstr "اختبار"
+
+#. module: dental_telegram_templates
+msgid "Text (Arabic + English in one message)"
+msgstr "النص (عربي + إنجليزي في رسالة واحدة)"
+
+#. module: dental_telegram_templates
+msgid "Timing (clinic timezone)"
+msgstr "التوقيت (المنطقة الزمنية للعيادة)"
+
+#. module: dental_telegram_templates
+msgid "Today"
+msgstr "اليوم"
+
+#. module: dental_telegram_templates
+msgid "مرحباً {patient_name}… / Hello {patient_name}…"
+msgstr "مرحباً {patient_name}… / Hello {patient_name}…"

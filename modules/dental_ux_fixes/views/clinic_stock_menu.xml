@@ -34,7 +34,7 @@
                                 type="object"
                                 class="oe_stat_button"
                                 icon="fa-cubes"
-                                groups="clinic_core.group_clinic_admin">
+                                groups="afia_dental_core.group_clinic_admin">
                             <field name="qty_available" widget="statinfo"
                                    string="On Hand"/>
                         </button>
@@ -42,7 +42,7 @@
                                 type="object"
                                 class="oe_stat_button"
                                 icon="fa-cubes"
-                                groups="!clinic_core.group_clinic_admin">
+                                groups="!afia_dental_core.group_clinic_admin">
                             <field name="qty_available" widget="statinfo"
                                    string="On Hand" readonly="1"/>
                         </button>
@@ -160,6 +160,6 @@
               parent="afia_dental_core.hospital_root_menu"
               action="action_clinic_stock_ux"
               sequence="45"
-              groups="clinic_core.group_clinic_admin,clinic_core.group_clinic_dentist,clinic_core.group_clinic_receptionist"/>
+              groups="afia_dental_core.group_clinic_admin,afia_dental_core.group_clinic_dentist,afia_dental_core.group_clinic_receptionist"/>
 
 </odoo>

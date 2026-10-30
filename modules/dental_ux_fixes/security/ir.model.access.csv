@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_dental_commission_report_mgr,dental.commission.report.manager,model_dental_commission_report,base.group_system,1,0,0,0
-access_dental_commission_report_clinic_admin,dental.commission.report.clinic.admin,model_dental_commission_report,clinic_core.group_clinic_admin,1,0,0,0
-access_clinic_user_wizard_admin,clinic.user.wizard.admin,model_clinic_user_wizard,clinic_core.group_clinic_admin,1,1,1,1
+access_dental_commission_report_clinic_admin,dental.commission.report.clinic.admin,model_dental_commission_report,afia_dental_core.group_clinic_admin,1,0,0,0
+access_clinic_user_wizard_admin,clinic.user.wizard.admin,model_clinic_user_wizard,afia_dental_core.group_clinic_admin,1,1,1,1
 access_clinic_user_wizard_system,clinic.user.wizard.system,model_clinic_user_wizard,base.group_system,1,1,1,1

@@ -40,10 +40,10 @@
              _ROLE_GROUP_XMLID uses, kept here as explicit refs so it stays
              correct across module upgrades/reinstalls. -->
         <field name="domain" eval="[('groups_id', 'in', [
-            ref('clinic_core.group_clinic_admin'),
-            ref('clinic_core.group_clinic_dentist'),
+            ref('afia_dental_core.group_clinic_admin'),
+            ref('afia_dental_core.group_clinic_dentist'),
             ref('dental_clinical_permissions.group_clinic_hygienist'),
-            ref('clinic_core.group_clinic_receptionist'),
+            ref('afia_dental_core.group_clinic_receptionist'),
         ])]"/>
         <field name="context">{}</field>
         <field name="view_ids" eval="[(5, 0, 0),

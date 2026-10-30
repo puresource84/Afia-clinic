@@ -5,7 +5,7 @@
     <record id="view_soap_sentence_list" model="ir.ui.view">
         <field name="name">dental.soap.sentence.list</field>
         <field name="model">dental.soap.sentence</field>
-        <field name="groups_id" eval="[(4, ref('clinic_core.group_clinic_admin'))]"/>
+        <field name="groups_id" eval="[(4, ref('afia_dental_core.group_clinic_admin'))]"/>
         <field name="arch" type="xml">
             <list string="SOAP Content Library"
                   editable="bottom" create="true" delete="true"
@@ -97,6 +97,6 @@
               parent="afia_dental_core.dental_configure"
               action="action_soap_sentences"
               sequence="57"
-              groups="clinic_core.group_clinic_admin"/>
+              groups="afia_dental_core.group_clinic_admin"/>
 
 </odoo>

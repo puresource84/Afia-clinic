@@ -133,7 +133,7 @@
     <menuitem id="menu_commission_report" name="Dentist Commissions"
               parent="dental_analytics.menu_dental_analytics"
               action="action_commission_report" sequence="30"
-              groups="base.group_system,clinic_core.group_clinic_admin"/>
+              groups="base.group_system,afia_dental_core.group_clinic_admin"/>
 
     <!-- Commission % tab on dentist profile (visible to admin + clinic admin only) -->
     <record id="view_hr_employee_commission_pct" model="ir.ui.view">
@@ -143,7 +143,7 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
                 <page string="Commission" name="commission_tab"
-                      groups="base.group_system,clinic_core.group_clinic_admin">
+                      groups="base.group_system,afia_dental_core.group_clinic_admin">
                     <group>
                         <field name="commission_pct" string="Commission %"/>
                     </group>

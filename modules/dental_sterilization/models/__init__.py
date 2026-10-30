@@ -1,1 +1,1 @@
-﻿from . import sterilization_log
+from . import sterilization_log

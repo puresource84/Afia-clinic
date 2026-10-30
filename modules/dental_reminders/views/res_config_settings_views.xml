@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_wa" model="ir.ui.view">
+        <field name="name">res.config.settings.form.dental.whatsapp</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app string="Dental WhatsApp" name="dental_reminders">
+                    <block title="WhatsApp Gateway">
+                        <setting string="Gateway URL"
+                                 help="WhatsApp Business API endpoint used for reminders">
+                            <field name="dental_wa_api_url"/>
+                        </setting>
+                        <setting string="API Token">
+                            <field name="dental_wa_api_token" password="True"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

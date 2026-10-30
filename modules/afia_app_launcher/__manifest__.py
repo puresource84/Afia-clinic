@@ -8,7 +8,7 @@
     'license': 'OPL-1',
     'depends': [
         'web',
-        'clinic_core',
+        'afia_dental_core',
     ],
     'data': [
         'security/ir.model.access.csv',

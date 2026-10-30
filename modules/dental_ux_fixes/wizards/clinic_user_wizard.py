@@ -46,10 +46,10 @@ class ClinicUserWizard(models.TransientModel):
     )
 
     _ROLE_GROUP_XMLID = {
-        'admin': 'clinic_core.group_clinic_admin',
-        'dentist': 'clinic_core.group_clinic_dentist',
+        'admin': 'afia_dental_core.group_clinic_admin',
+        'dentist': 'afia_dental_core.group_clinic_dentist',
         'hygienist': 'dental_clinical_permissions.group_clinic_hygienist',
-        'receptionist': 'clinic_core.group_clinic_receptionist',
+        'receptionist': 'afia_dental_core.group_clinic_receptionist',
     }
 
     @api.onchange('employee_id')

@@ -17,10 +17,10 @@ from odoo import api, fields, models
 # group, the highest-privilege one wins for display purposes. Kept in sync
 # with clinic_user_wizard.py::_ROLE_GROUP_XMLID by hand — small, stable list.
 _ROLE_LABELS = [
-    ('clinic_core.group_clinic_admin', 'Administrator'),
-    ('clinic_core.group_clinic_dentist', 'Dentist'),
+    ('afia_dental_core.group_clinic_admin', 'Administrator'),
+    ('afia_dental_core.group_clinic_dentist', 'Dentist'),
     ('dental_clinical_permissions.group_clinic_hygienist', 'Hygienist'),
-    ('clinic_core.group_clinic_receptionist', 'Receptionist'),
+    ('afia_dental_core.group_clinic_receptionist', 'Receptionist'),
 ]
 
 

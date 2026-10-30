@@ -12,7 +12,7 @@
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button name="action_open_soap_notes" type="object"
                         class="oe_stat_button" icon="fa-file-text-o"
-                        groups="clinic_core.group_clinic_admin,clinic_core.group_clinic_dentist,clinic_core.group_clinic_receptionist,dental_clinical_permissions.group_clinic_hygienist">
+                        groups="afia_dental_core.group_clinic_admin,afia_dental_core.group_clinic_dentist,afia_dental_core.group_clinic_receptionist,dental_clinical_permissions.group_clinic_hygienist">
                     <field name="soap_note_count" widget="statinfo"
                            string="Clinical Notes"/>
                 </button>

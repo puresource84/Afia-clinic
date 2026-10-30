@@ -64,10 +64,10 @@ def post_init_hook(env):
     # Resolve clinic group XML IDs — fail silently if clinic_core not ready yet
     try:
         clinic_group_refs = [
-            'clinic_core.group_clinic_admin',
-            'clinic_core.group_clinic_dentist',
-            'clinic_core.group_clinic_receptionist',
-            'clinic_core.group_clinic_assistant',
+            'afia_dental_core.group_clinic_admin',
+            'afia_dental_core.group_clinic_dentist',
+            'afia_dental_core.group_clinic_receptionist',
+            'afia_dental_core.group_clinic_assistant',
         ]
         group_ids = []
         for ref in clinic_group_refs:

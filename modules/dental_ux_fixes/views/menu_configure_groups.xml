@@ -74,13 +74,13 @@
     </record>
 
     <!-- Online booking page link (dental_portal_booking) -->
-    <record id="dental_portal_booking.menu_dental_book_link" model="ir.ui.menu">
+    <record id="dental_portal.menu_dental_book_link" model="ir.ui.menu">
         <field name="parent_id" ref="menu_configure_system"/>
         <field name="sequence">30</field>
     </record>
 
     <!-- Clinic Core Settings (clinic_core) -->
-    <record id="clinic_core.menu_clinic_core_settings" model="ir.ui.menu">
+    <record id="afia_dental_core.menu_clinic_core_settings" model="ir.ui.menu">
         <field name="parent_id" ref="menu_configure_system"/>
         <field name="sequence">40</field>
     </record>
@@ -89,19 +89,19 @@
          module retired (abandoned duplicate of clinic_core). -->
 
     <!-- Telegram bot settings (dental_reminders_telegram) -->
-    <record id="dental_reminders_telegram.menu_telegram_settings" model="ir.ui.menu">
+    <record id="dental_reminders.menu_telegram_settings" model="ir.ui.menu">
         <field name="parent_id" ref="menu_configure_system"/>
         <field name="sequence">50</field>
     </record>
 
     <!-- Telegram message templates (dental_telegram_templates) -->
-    <record id="dental_telegram_templates.menu_telegram_templates" model="ir.ui.menu">
+    <record id="dental_reminders.menu_telegram_templates" model="ir.ui.menu">
         <field name="parent_id" ref="menu_configure_system"/>
         <field name="sequence">60</field>
     </record>
 
     <!-- Telegram sent log (dental_telegram_templates) -->
-    <record id="dental_telegram_templates.menu_telegram_log" model="ir.ui.menu">
+    <record id="dental_reminders.menu_telegram_log" model="ir.ui.menu">
         <field name="parent_id" ref="menu_configure_system"/>
         <field name="sequence">70</field>
     </record>

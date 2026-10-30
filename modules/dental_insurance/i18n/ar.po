@@ -107,3 +107,54 @@ msgstr "ساري من"
 #. module: dental_insurance
 msgid "Valid To"
 msgstr "ساري حتى"
+
+# merged from dental_insurance_v2_ar.po
+
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 18.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: dental_insurance_v2
+#: model:ir.model.fields,field_description:dental_insurance_v2.field_dental_insurer__requires_pre_auth
+msgid "Requires Pre-Authorisation"
+msgstr "يتطلب موافقة مسبقة"
+
+#. module: dental_insurance_v2
+#: model:ir.model.fields,field_description:dental_insurance_v2.field_dental_insurer__claim_template_body
+msgid "Claim Form Template Text"
+msgstr "نص نموذج المطالبة"
+
+#. module: dental_insurance_v2
+#: model:ir.model.fields,field_description:dental_insurance_v2.field_dental_claim__pre_auth_attachment_ids
+msgid "Pre-Auth Documents"
+msgstr "مستندات الموافقة المسبقة"
+
+#. module: dental_insurance_v2
+#: model:ir.model.fields,field_description:dental_insurance_v2.field_dental_claim__pre_auth_no
+msgid "Pre-Auth Reference"
+msgstr "رقم الموافقة المسبقة"
+
+#. module: dental_insurance_v2
+#: model:ir.model.fields,field_description:dental_insurance_v2.field_dental_claim__pre_auth_date
+msgid "Pre-Auth Date"
+msgstr "تاريخ الموافقة المسبقة"
+
+#. module: dental_insurance_v2
+#: model:ir.model.fields,field_description:dental_insurance_v2.field_dental_claim__requires_pre_auth
+msgid "Payer Needs Pre-Auth"
+msgstr "الجهة تتطلب موافقة مسبقة"
+
+#. module: dental_insurance_v2
+#: model_terms:ir.ui.view,arch_db:dental_insurance_v2.view_claim_form_v2
+msgid "Pre-Authorisation"
+msgstr "الموافقة المسبقة"
+
+#. module: dental_insurance_v2
+#: model:ir.actions.report,name:dental_insurance_v2.action_report_claim_form
+msgid "Insurance Claim Form"
+msgstr "نموذج مطالبة التأمين"

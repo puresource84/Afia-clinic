@@ -72,26 +72,26 @@
                      {'arch_base': '&lt;data&gt;&lt;calendar position=\'attributes\'&gt;&lt;attribute name=\'mode\'&gt;day&lt;/attribute&gt;&lt;attribute name=\'quick_create\'&gt;1&lt;/attribute&gt;&lt;attribute name=\'quick_create_view_id\'&gt;%d&lt;/attribute&gt;&lt;/calendar&gt;&lt;/data&gt;' % ref('view_appointment_quick_create')}]"/>
 
     <!-- 5-item root structure -->
-    <record id="custom_dental_menu.menu_patient_group" model="ir.ui.menu">
+    <record id="afia_menu.menu_patient_group" model="ir.ui.menu">
         <field name="name">Patients</field>
     </record>
-    <record id="dental_charting_pro.menu_dental_tooth_record" model="ir.ui.menu">
-        <field name="parent_id" ref="custom_dental_menu.menu_patient_group"/>
+    <record id="dental_charting.menu_dental_tooth_record" model="ir.ui.menu">
+        <field name="parent_id" ref="afia_menu.menu_patient_group"/>
         <field name="sequence">15</field>
     </record>
-    <record id="custom_dental_menu.menu_billing_group" model="ir.ui.menu">
+    <record id="afia_menu.menu_billing_group" model="ir.ui.menu">
         <field name="name">Billing &amp; Insurance</field>
     </record>
     <record id="dental_insurance.menu_insurers" model="ir.ui.menu">
-        <field name="parent_id" ref="custom_dental_menu.menu_billing_group"/>
+        <field name="parent_id" ref="afia_menu.menu_billing_group"/>
         <field name="sequence">30</field>
     </record>
     <record id="dental_insurance.menu_policies" model="ir.ui.menu">
-        <field name="parent_id" ref="custom_dental_menu.menu_billing_group"/>
+        <field name="parent_id" ref="afia_menu.menu_billing_group"/>
         <field name="sequence">40</field>
     </record>
     <record id="dental_insurance.menu_claims" model="ir.ui.menu">
-        <field name="parent_id" ref="custom_dental_menu.menu_billing_group"/>
+        <field name="parent_id" ref="afia_menu.menu_billing_group"/>
         <field name="sequence">50</field>
     </record>
     <record id="dental_insurance.menu_insurance_root" model="ir.ui.menu">
@@ -104,7 +104,7 @@
         <field name="parent_id" ref="afia_dental_core.dental_configure"/>
         <field name="sequence">95</field>
     </record>
-    <record id="dental_portal_booking.menu_dental_book_link" model="ir.ui.menu">
+    <record id="dental_portal.menu_dental_book_link" model="ir.ui.menu">
         <field name="parent_id" ref="afia_dental_core.dental_configure"/>
         <field name="sequence">98</field>
     </record>

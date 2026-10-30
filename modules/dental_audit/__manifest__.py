@@ -10,7 +10,7 @@
         'afia_dental_core',
         'dental_treatment_plan',
         'dental_consent',
-        'dental_charting_pro',
+        'dental_charting',
         'dental_allergy_guard',
         'dental_ux_fixes',
     ],

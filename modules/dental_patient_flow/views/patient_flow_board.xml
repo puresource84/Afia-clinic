@@ -224,6 +224,6 @@
               parent="afia_dental_core.hospital_appointment_info"
               action="action_patient_flow_board"
               sequence="30"
-              groups="clinic_core.group_clinic_admin,clinic_core.group_clinic_receptionist"/>
+              groups="afia_dental_core.group_clinic_admin,afia_dental_core.group_clinic_receptionist"/>
 
 </odoo>

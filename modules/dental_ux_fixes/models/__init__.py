@@ -20,3 +20,4 @@ from . import res_users_staff
 # marked with a clear dead-code banner at its top and safe to delete by
 # hand whenever convenient (this sandbox can't delete pre-existing files
 # in this connected folder). See .odoo-dev/audits/system-audit-2026-09-20.md. 
+# NOTE: appointment_invoicing is intentionally NOT imported - see the file header.

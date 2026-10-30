@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="dental_patient_flow.FloatTimeDropdown">
+        <!--
+            Wrapper div carries the .o_float_time_dd class so the document-level
+            mousedown listener can detect "click inside widget" and keep the
+            dropdown open when the user interacts with the slot list.
+        -->
+        <div class="o_float_time_dd" style="position: relative; display: contents;">
+
+            <!-- Text input — always visible, shows HH:MM -->
+            <input
+                t-ref="input"
+                type="text"
+                class="o_input"
+                t-att-id="props.id"
+                t-att-placeholder="props.placeholder or '00:00'"
+                t-att-readonly="props.readonly"
+                t-att-disabled="!props.record.isInEdition"
+                t-model="state.text"
+                t-on-focus="onFocus"
+                t-on-input="onInput"
+                t-on-blur="onBlur"
+                t-on-keydown="onKeydown"
+            />
+
+            <!--
+                Dropdown list — rendered with position:fixed so it escapes any
+                overflow:hidden ancestor (Odoo form group containers often have this).
+                The top / left / minWidth values are set by _reposition() using the
+                input's getBoundingClientRect().
+            -->
+            <div t-if="state.open"
+                 class="o_float_time_dd_menu dropdown-menu show"
+                 t-att-style="'position:fixed; z-index:1050; overflow-y:auto; max-height:220px; '
+                               + 'top:' + state.top + 'px; '
+                               + 'left:' + state.left + 'px; '
+                               + 'min-width:' + state.minWidth + 'px;'">
+
+                <t t-if="state.slots.length === 0">
+                    <div class="dropdown-item disabled text-muted">No matches</div>
+                </t>
+
+                <t t-foreach="state.slots" t-as="slot" t-key="slot.label">
+                    <!--
+                        t-on-mousedown.prevent prevents the input from losing focus
+                        before the click event fires, which would cause the blur handler
+                        to run first and close the dropdown before pickSlot() runs.
+                    -->
+                    <div class="dropdown-item"
+                         style="cursor: pointer; padding: 4px 12px;"
+                         t-on-mousedown.prevent="() => this.pickSlot(slot)">
+                        <t t-esc="slot.label"/>
+                    </div>
+                </t>
+            </div>
+
+        </div>
+    </t>
+
+</templates>

@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-dental_portal_booking.access_booking_attempt_user,dental.booking.attempt.user,model_dental_booking_attempt,base.group_user,1,0,0,0
-dental_portal_booking.access_booking_attempt_system,dental.booking.attempt.system,model_dental_booking_attempt,base.group_system,1,1,1,1

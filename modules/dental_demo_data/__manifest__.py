@@ -8,7 +8,7 @@
     'license': 'OPL-1',
     'depends': [
         'afia_dental_core',
-        'dental_charting_pro',
+        'dental_charting',
         'dental_ux_fixes',
     ],
     'images': [

@@ -47,5 +47,5 @@
               parent="menu_configure_system"
               action="action_clinic_user_wizard"
               sequence="15"
-              groups="clinic_core.group_clinic_admin,base.group_system"/>
+              groups="afia_dental_core.group_clinic_admin,base.group_system"/>
 </odoo>

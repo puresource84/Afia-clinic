@@ -13,3 +13,11 @@ from . import account_move
 from . import account_payment
 from . import dental_appointment
 from . import dental_prescription
+
+# merged from clinic_core
+from . import res_config_settings
+
+# merged from dental_branch
+from . import res_company_branch
+from . import dental_appointment_branch
+# NOTE: teeth_chart is intentionally NOT imported - see the file header.

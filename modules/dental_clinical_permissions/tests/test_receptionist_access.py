@@ -15,7 +15,7 @@ class TestReceptionistAccess(TransactionCase):
         cls.env['medical.questions'].create({'question': 'Any allergies?'})
         cls.receptionist = new_test_user(
             cls.env, login='afia_reception_test',
-            groups='clinic_core.group_clinic_receptionist')
+            groups='afia_dental_core.group_clinic_receptionist')
 
     def test_receptionist_can_create_patient(self):
         Partner = self.env['res.partner'].with_user(self.receptionist)

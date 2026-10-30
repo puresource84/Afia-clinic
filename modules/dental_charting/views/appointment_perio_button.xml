@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_appointment_perio_button" model="ir.ui.view">
+        <field name="name">dental.appointment.form.perio.button</field>
+        <field name="model">dental.appointment</field>
+        <field name="inherit_id" ref="afia_dental_core.view_dental_appointment_form"/>
+        <!-- priority 20: must apply AFTER dental_ux_fixes (priority 16) adds
+             the button_box div; at default priority 16 perio loads first and
+             the xpath target does not yet exist. -->
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_perio_exams" type="object"
+                        class="oe_stat_button" icon="fa-stethoscope"
+                        groups="afia_dental_core.group_clinic_admin,afia_dental_core.group_clinic_dentist,afia_dental_core.group_clinic_receptionist,dental_clinical_permissions.group_clinic_hygienist">
+                    <field name="perio_exam_count" widget="statinfo"
+                           string="Perio Chart"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
