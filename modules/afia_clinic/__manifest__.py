@@ -5,7 +5,7 @@
  'summary': 'Complete dental clinic suite: patients, appointments, charting, billing, insurance, '
             'lab and portal. Installs everything in one click.',
  'description': 'Afia Clinic\n'
-                '==========\n'
+                '===========\n'
                 '\n'
                 'Install this one module to get the whole suite. It pulls in every Afia\n'
                 'Clinic module through its dependencies, so nothing has to be installed by\n'

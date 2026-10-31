@@ -66,10 +66,22 @@ hardcoded list and was missed.
 
 ## Still not covered
 
-- **No automated test runs as a non-administrator.** Every defect found over
-  the last two days was invisible to the 76-test suite for this reason. A
-  handful of tests that act as each role is the highest-value thing to add
-  before store submission; this document lists the scenarios to write.
+- **Correction (2026-11-01).** This section first claimed no automated test
+  runs as a non-administrator. That was wrong, and it was repeated several
+  times before anyone checked. Three test files do exactly that, using
+  new_test_user and with_user: test_receptionist_access, and the two
+  test_access_control files written after the 2026-09-20 audit.
+
+  The real gap was narrower and more specific. Those tests assert **model
+  permissions**, and every defect this pass found was a **menu, view or
+  asset** fault — a menu the hygienist could not reach though the ACLs
+  allowed it, Configuration reachable by a dentist, buttons whose owning
+  views sat in no manifest. Nothing in the suite asserted what the
+  navigation renders for a given role, so nothing could have caught them.
+
+  Role tests covering both halves were added on 2026-11-01:
+  dental_clinical_permissions/tests/test_role_matrix.py for capability
+  boundaries and afia_menu/tests/test_role_menus.py for menu visibility.
 - The patient portal and online booking were not exercised.
 - Telegram and WhatsApp reminders need real credentials.
 - The Iraq pack is not installed in this build.

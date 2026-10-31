@@ -1,9 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_dental_appointment_user,dental.appointment.user,model_dental_appointment,base.group_user,1,1,1,0
 access_dental_appointment_manager,dental.appointment.manager,model_dental_appointment,group_clinic_admin,1,1,1,1
-access_dental_prescription,dental.prescription.user,model_dental_prescription,base.group_user,1,1,1,0
+access_dental_prescription,dental.prescription.user,model_dental_prescription,base.group_user,1,0,0,0
 access_dental_prescription_manager,dental.prescription.manager,model_dental_prescription,group_clinic_admin,1,1,1,1
-access_dental_prescription_lines,dental.prescription_lines.user,model_dental_prescription_lines,base.group_user,1,1,1,1
+access_dental_prescription_lines,dental.prescription_lines.user,model_dental_prescription_lines,base.group_user,1,0,0,0
 access_dental_treatment,dental.treatment.user,model_dental_treatment,base.group_user,1,0,0,0
 access_dental_treatment_manager,dental.treatment.manager,model_dental_treatment,group_clinic_admin,1,1,1,1
 access_treatment_category,treatment.category.user,model_treatment_category,base.group_user,1,0,0,0
