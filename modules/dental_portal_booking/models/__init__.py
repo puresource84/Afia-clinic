@@ -1,1 +1,0 @@
-﻿from . import dental_appointment_ext

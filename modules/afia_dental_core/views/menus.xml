@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- External IDs on every menu/action below are load-bearing: 33
+         companion modules reference them directly (verified 2026-08-04
+         against the full addons_v2 tree). Renaming any of these without
+         updating every dependent module will break menu re-parenting on
+         install. -->
+
+    <menuitem id="hospital_root_menu" name="Afia Dental Clinic" sequence="10"
+              web_icon="afia_dental_core,static/description/icon.png"/>
+
+    <menuitem id="hospital_appointment_info" name="Appointments" parent="hospital_root_menu"
+              action="dental_appointment_menu_action" sequence="10"/>
+    <menuitem id="hospital_patient_info" name="Patients" parent="hospital_root_menu"
+              action="dental_patient_menu" sequence="20"/>
+    <menuitem id="dental_staff" name="Dentists" parent="hospital_root_menu"
+              action="view_employee_list_dentists" sequence="30"/>
+    <menuitem id="dental_prescription_menu" name="Prescriptions" parent="hospital_root_menu"
+              action="action_dental_prescription" sequence="40"/>
+    <menuitem id="hospital_invoice_info" name="Invoices" parent="hospital_root_menu"
+              action="action_dental_invoices" sequence="50"/>
+    <menuitem id="hospital_payment_info" name="Payments" parent="hospital_root_menu"
+              action="action_dental_payments" sequence="60"/>
+
+    <!-- Configuration is clinic administration, so it is restricted here at
+         the parent rather than item by item. Companion modules (clinic_core,
+         dental_reminders, dental_soap_notes, afia_app_launcher, ...) hang
+         their own sub-items off this menu, and relying on each of them to
+         scope itself correctly meant one forgotten groups= attribute leaked
+         clinic settings to a clinician: the 2026-10-31 role pass found the
+         Dentist and Hygienist able to reach Shift Times, the online booking
+         page and the Telegram integration. Odoo drops the children of a menu
+         the user cannot see, so one restriction here covers every sub-item,
+         including ones added later.
+
+         A dentist who also runs the clinic — the usual case in a small
+         practice — is given the Clinic Administrator role, not Dentist.
+         group_clinic_admin implies group_clinic_dentist (see
+         security/clinic_security.xml), so that dentist keeps every clinical
+         capability and gains configuration; nothing is lost by moving up a
+         rung. The Add Staff User wizard offers this as "Dentist (also
+         manages the clinic)" so it does not have to be explained. -->
+    <menuitem id="dental_configure" name="Configuration" parent="hospital_root_menu"
+              groups="afia_dental_core.group_clinic_admin"
+              sequence="90"/>
+    <menuitem id="dental_treatment_menu" name="Treatments" parent="dental_configure"
+              action="dental_treatment_menu_action" sequence="10"/>
+    <menuitem id="treatment_category_menu" name="Treatment Categories"
+              parent="dental_configure" action="action_treatment_category" sequence="20"/>
+    <menuitem id="dental_specialist_menu" name="Specialties" parent="dental_configure"
+              action="action_dental_specialist" sequence="30"/>
+    <menuitem id="Shift_time_menu" name="Time Shifts" parent="dental_configure"
+              action="action_dental_time_shift" sequence="40"/>
+    <menuitem id="medicines_menu" name="Medicines" parent="dental_configure"
+              action="action_dental_medicine" sequence="50"/>
+    <menuitem id="medical_question_menu" name="Medical Questions"
+              parent="dental_configure" action="action_medical_questions" sequence="60"/>
+    <!-- teeth_chart_menu removed 2026-08-15: the legacy flat tooth chart
+         (teeth.chart model) is fully superseded by dental_charting_pro's
+         FDI odontogram. Zero real teeth.chart records existed on db_odoo
+         at removal time; do not re-add without re-checking that. -->
+</odoo>

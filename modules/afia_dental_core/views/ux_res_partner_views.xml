@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_dental_ux" model="ir.ui.view">
+        <field name="name">res.partner.form.dental.ux.fixes</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <!-- Smart buttons: New Appt / Telegram Link folded into the ONE
+                 real button box that afia_dental_core.view_partner_form_dental
+                 already creates (dental_button_box), instead of this module
+                 creating its own separate div via `//sheet position="before"`.
+                 That old pattern is the exact Odoo 18 bug documented in
+                 odoo-dev-loop-gotchas rule 23/29: a `//sheet position="before"`
+                 div renders TWICE (once in the control panel, once inline in
+                 the sheet), and having two independent button_box divs on the
+                 same form (this one duplicating "Appointments") is exactly the
+                 "3 areas doing almost the same thing" redundancy Manhel
+                 flagged 2026-08-24 — see
+                 project_afia_patient_profile_button_dedup_2026-08-24 memory.
+                 The "Appointments" button itself is dropped here since
+                 afia_dental_core's box already has one — no need to duplicate
+                 it. -->
+            <xpath expr="//div[@name='dental_button_box']" position="inside">
+                <button name="action_new_appointment" type="object"
+                        class="oe_stat_button" icon="fa-plus-circle"
+                        string="New Appt"/>
+                <button name="action_telegram_link" type="object"
+                        class="oe_stat_button" icon="fa-paper-plane-o"
+                        string="Telegram Link"/>
+            </xpath>
+            <xpath expr="//field[@name='is_patient']" position="attributes">
+                <attribute name="string">Is a Patient</attribute>
+            </xpath>
+            <!-- Moved into the right-hand column of afia_dental_core's
+                 "Patient Details" group (2026-08-24) — was previously
+                 `position="after"` on is_patient, stacking everything into
+                 one long single column and leaving the right side of the
+                 page empty. dental_allergy_guard's structured allergy table
+                 still anchors on this field and follows it in automatically. -->
+            <xpath expr="//group[@name='patient_details_right']" position="inside">
+                <field name="allergy_alert" invisible="not is_patient"
+                       class="text-danger fw-bold"
+                       placeholder="Allergies / clinical alerts (e.g. PENICILLIN)"/>
+            </xpath>
+
+            <!-- Internal Notes tab: clinic-specific medical fields for patients;
+                 standard Odoo comment field kept for non-patient contacts. -->
+            <xpath expr="//page[@name='internal_notes']" position="replace">
+                <page name="internal_notes" string="Internal Notes"
+                      invisible="not is_patient">
+                    <group string="Clinical Notes">
+                        <field name="clinical_notes" nolabel="1"
+                               placeholder="Ongoing conditions, treatment observations, clinician notes..."
+                               widget="text"/>
+                    </group>
+                    <group string="Allergies / Clinical Alerts">
+                        <field name="allergy_alert" nolabel="1"
+                               class="text-danger fw-bold"
+                               placeholder="e.g. PENICILLIN allergy, anticoagulant therapy, diabetic"
+                               widget="text"/>
+                    </group>
+                    <group string="Insurance / Coverage">
+                        <field name="insurance_notes" nolabel="1"
+                               placeholder="Provider, policy number, coverage limits, pre-auth requirements..."
+                               widget="text"/>
+                    </group>
+                    <group string="Consent">
+                        <field name="consent_signed"/>
+                        <field name="consent_date" invisible="not consent_signed"/>
+                    </group>
+                    <group string="General Notes">
+                        <field name="comment" nolabel="1"
+                               placeholder="Any other internal notes..."
+                               widget="text"/>
+                    </group>
+                </page>
+                <page name="internal_notes_vendor" string="Internal Notes"
+                      invisible="is_patient">
+                    <field name="comment" nolabel="1" placeholder="Notes..."/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

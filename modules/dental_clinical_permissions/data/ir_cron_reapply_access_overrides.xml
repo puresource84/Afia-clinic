@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 2026-08-21, per Manhel's request during a GTM readiness review: the
+         ACL-tightening in access_overrides.xml only self-heals via
+         hooks.py's post_init_hook when THIS module itself is
+         installed/upgraded — if a self-hosted clinic (with no ITCS engineer
+         watching) upgrades afia_dental_core / dental_treatment_plan /
+         dental_consent on its own (e.g. via a future update script) without
+         also re-upgrading dental_clinical_permissions right after, the
+         silently-reset ACLs (see hooks.py's reapply_access_overrides
+         docstring) could stay wide open indefinitely with nothing to catch
+         it. A daily cron closes that gap without depending on remembering
+         the right upgrade order. -->
+    <record id="ir_cron_reapply_access_overrides" model="ir.cron">
+        <field name="name">Dental Clinical Permissions: re-apply ACL overrides</field>
+        <field name="model_id" ref="base.model_ir_model_access"/>
+        <field name="state">code</field>
+        <!-- ir.cron's sandboxed exec forbids IMPORT_NAME/IMPORT_FROM, so this
+             can't just call hooks.py's reapply_access_overrides() via import
+             — the same (xmlid, vals) list is duplicated here instead. Keep
+             both lists in sync if access_overrides.xml/hooks.py ever change;
+             hooks.py stays the source of truth for install/upgrade-time
+             re-apply (post_init_hook), this is only the daily safety net. -->
+        <field name="code">
+overrides = [
+    ('afia_dental_core.access_dental_prescription',
+     {'perm_write': False, 'perm_create': False, 'perm_unlink': False}),
+    ('afia_dental_core.access_dental_prescription_lines',
+     {'perm_write': False, 'perm_create': False, 'perm_unlink': False}),
+    ('afia_dental_core.access_medical_questionnaire',
+     {'perm_write': False, 'perm_create': False, 'perm_unlink': False}),
+    ('afia_dental_core.access_xray_report',
+     {'perm_read': False, 'perm_write': False, 'perm_create': False, 'perm_unlink': False}),
+    ('afia_dental_core.access_dental_treatment',
+     {'perm_write': False, 'perm_create': False, 'perm_unlink': False}),
+    ('afia_dental_core.access_treatment_category',
+     {'perm_write': False, 'perm_create': False, 'perm_unlink': False}),
+    ('dental_treatment_plan.access_plan',
+     {'perm_write': False, 'perm_create': False, 'perm_unlink': False}),
+    ('dental_treatment_plan.access_plan_line',
+     {'perm_write': False, 'perm_create': False, 'perm_unlink': False}),
+    ('dental_consent.access_consent_tmpl',
+     {'perm_write': False, 'perm_create': False, 'perm_unlink': False}),
+    ('dental_consent.access_consent_form',
+     {'perm_unlink': False}),
+]
+updated = 0
+for xmlid, vals in overrides:
+    access = env.ref(xmlid, raise_if_not_found=False)
+    if not access:
+        continue
+    diff = {k: v for k, v in vals.items() if access[k] != v}
+    if diff:
+        access.write(diff)
+        updated += 1
+log('dental_clinical_permissions: daily ACL override re-apply cron ran, %d row(s) changed.' % updated)
+        </field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active" eval="True"/>
+    </record>
+</odoo>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="treatment_checkup" model="dental.treatment">
+        <field name="name">Routine Check-up</field>
+        <field name="treatment_categ_id" ref="treatment_categ_preventive"/>
+        <field name="cost">15.0</field>
+    </record>
+    <record id="treatment_cleaning" model="dental.treatment">
+        <field name="name">Scaling &amp; Polishing</field>
+        <field name="treatment_categ_id" ref="treatment_categ_preventive"/>
+        <field name="cost">25.0</field>
+    </record>
+    <record id="treatment_filling" model="dental.treatment">
+        <field name="name">Composite Filling</field>
+        <field name="treatment_categ_id" ref="treatment_categ_restorative"/>
+        <field name="cost">40.0</field>
+    </record>
+    <record id="treatment_rootcanal" model="dental.treatment">
+        <field name="name">Root Canal Treatment</field>
+        <field name="treatment_categ_id" ref="treatment_categ_endodontic"/>
+        <field name="cost">120.0</field>
+    </record>
+    <record id="treatment_extraction" model="dental.treatment">
+        <field name="name">Tooth Extraction</field>
+        <field name="treatment_categ_id" ref="treatment_categ_surgical"/>
+        <field name="cost">30.0</field>
+    </record>
+    <record id="treatment_whitening" model="dental.treatment">
+        <field name="name">Teeth Whitening</field>
+        <field name="treatment_categ_id" ref="treatment_categ_cosmetic"/>
+        <field name="cost">80.0</field>
+    </record>
+</odoo>

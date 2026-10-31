@@ -1,0 +1,106 @@
+# Translation for dental_sterilization - Arabic
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 18.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: dental_sterilization
+#: model:ir.ui.menu,name:dental_sterilization.menu_dental_sterilization
+msgid "Sterilization"
+msgstr "التعقيم"
+
+#. module: dental_sterilization
+#: model:ir.model,name:dental_sterilization.model_dental_sterilization_log
+msgid "Instrument Sterilization Cycle Log"
+msgstr "سجل دورة تعقيم الأدوات"
+
+#. module: dental_sterilization
+#: model_terms:ir.ui.view,arch_db:dental_sterilization.view_steril_log_form
+msgid "Mark PASS"
+msgstr "تحديد كـ ناجحة"
+
+#. module: dental_sterilization
+#: model_terms:ir.ui.view,arch_db:dental_sterilization.view_steril_log_form
+msgid "Mark FAIL"
+msgstr "تحديد كـ فاشلة"
+
+#. module: dental_sterilization
+#: model:ir.model.fields,field_description:dental_sterilization.field_dental_sterilization_log__name
+msgid "Cycle Ref"
+msgstr "مرجع الدورة"
+
+#. module: dental_sterilization
+#: model:ir.model.fields,field_description:dental_sterilization.field_dental_sterilization_log__instrument_set
+msgid "Instrument Set / Cassette"
+msgstr "طقم الأدوات / الكاسيت"
+
+#. module: dental_sterilization
+#: model:ir.model.fields,field_description:dental_sterilization.field_dental_sterilization_log__autoclave_id
+msgid "Autoclave Unit ID"
+msgstr "معرّف جهاز التعقيم بالبخار"
+
+#. module: dental_sterilization
+#: model:ir.model.fields,field_description:dental_sterilization.field_dental_sterilization_log__cycle_type
+msgid "Cycle Type"
+msgstr "نوع الدورة"
+
+#. module: dental_sterilization
+msgid "Class B (Vacuum)"
+msgstr "الفئة B (تفريغ الهواء)"
+
+#. module: dental_sterilization
+msgid "Class S (Simple)"
+msgstr "الفئة S (بسيطة)"
+
+#. module: dental_sterilization
+msgid "Class N (Gravity)"
+msgstr "الفئة N (جاذبية)"
+
+#. module: dental_sterilization
+msgid "Chemical Disinfection"
+msgstr "تطهير كيميائي"
+
+#. module: dental_sterilization
+#: model:ir.model.fields,field_description:dental_sterilization.field_dental_sterilization_log__temperature
+msgid "Temperature (°C)"
+msgstr "درجة الحرارة (°م)"
+
+#. module: dental_sterilization
+#: model:ir.model.fields,field_description:dental_sterilization.field_dental_sterilization_log__pressure
+msgid "Pressure (bar)"
+msgstr "الضغط (بار)"
+
+#. module: dental_sterilization
+#: model:ir.model.fields,field_description:dental_sterilization.field_dental_sterilization_log__duration_min
+msgid "Duration (min)"
+msgstr "المدة (دقيقة)"
+
+#. module: dental_sterilization
+#: model:ir.model.fields,field_description:dental_sterilization.field_dental_sterilization_log__load_number
+msgid "Load / Batch Number"
+msgstr "رقم الحمولة / الدفعة"
+
+#. module: dental_sterilization
+msgid "Not Used"
+msgstr "غير مستخدم"
+
+#. module: dental_sterilization
+msgid "Pass"
+msgstr "ناجح"
+
+#. module: dental_sterilization
+msgid "Fail"
+msgstr "فاشل"
+
+#. module: dental_sterilization
+#: model:ir.model.fields,field_description:dental_sterilization.field_dental_sterilization_log__expiry_date
+msgid "Pack Expiry Date"
+msgstr "تاريخ انتهاء صلاحية الحزمة"
+
+#. module: dental_sterilization
+msgid "Pending Validation"
+msgstr "بانتظار التحقق"

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_dental_appointment_list" model="ir.ui.view">
+        <field name="name">dental.appointment.list</field>
+        <field name="model">dental.appointment</field>
+        <field name="arch" type="xml">
+            <list string="Appointments" decoration-muted="state == 'cancelled'"
+                  decoration-success="state == 'done'" decoration-info="state == 'confirmed'">
+                <field name="appointment_no"/>
+                <field name="patient_id"/>
+                <field name="dentist_id"/>
+                <field name="start_datetime"/>
+                <field name="duration" widget="float_time"/>
+                <field name="urgency"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_dental_appointment_calendar" model="ir.ui.view">
+        <field name="name">dental.appointment.calendar</field>
+        <field name="model">dental.appointment</field>
+        <field name="arch" type="xml">
+            <calendar string="Appointments" date_start="start_datetime" date_stop="stop_datetime"
+                      color="dentist_id" mode="week" event_open_popup="true"
+                      quick_create="false">
+                <field name="appointment_no"/>
+                <field name="patient_no"/>
+                <field name="patient_id"/>
+                <field name="dentist_id" filters="1"/>
+                <field name="shift_id"/>
+                <field name="state"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="view_dental_appointment_form" model="ir.ui.view">
+        <field name="name">dental.appointment.form</field>
+        <field name="model">dental.appointment</field>
+        <field name="arch" type="xml">
+            <form string="Appointment">
+                <header>
+                    <button name="action_confirm" string="Confirm" type="object"
+                            invisible="state != 'draft'" class="oe_highlight"/>
+                    <button name="action_start" string="Start" type="object"
+                            invisible="state != 'confirmed'" class="oe_highlight"/>
+                    <button name="action_done" string="Mark Done" type="object"
+                            invisible="state != 'in_progress'" class="oe_highlight"/>
+                    <button name="action_cancel" string="Cancel" type="object"
+                            invisible="state in ('done', 'cancelled')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,in_progress,done"/>
+                </header>
+                <sheet>
+                    <!-- Owned here because this module owns the form. Every module
+                         that adds a smart button xpaths into it with position="inside";
+                         none of them has to create it, and none has to out-prioritise
+                         another to get its button in. -->
+                    <div class="oe_button_box" name="button_box"/>
+                    <div class="oe_title">
+                        <h1><field name="appointment_no" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="patient_id" options="{'no_create': True}"/>
+                            <field name="patient_no" readonly="1"/>
+                            <field name="gender" readonly="1"/>
+                            <field name="age" readonly="1"/>
+                            <field name="mobile" readonly="1"/>
+                            <field name="patient_categ"/>
+                        </group>
+                        <group>
+                            <field name="dentist_id"/>
+                            <field name="start_datetime"/>
+                            <field name="duration" widget="float_time"/>
+                            <field name="time_shift_ids" widget="many2many_tags" readonly="1"/>
+                            <field name="shift_id"/>
+                            <field name="urgency"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group string="Treatment">
+                        <field name="tooth_ids" widget="many2many_tags"/>
+                        <field name="treatments" widget="many2many_tags"/>
+                        <field name="patient_notes"/>
+                    </group>
+                    <group>
+                        <field name="appointment_date" readonly="1"/>
+                        <field name="calendar_event_id" readonly="1"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_dental_appointment_search" model="ir.ui.view">
+        <field name="name">dental.appointment.search</field>
+        <field name="model">dental.appointment</field>
+        <field name="arch" type="xml">
+            <search string="Appointments">
+                <field name="appointment_no"/>
+                <field name="patient_id"/>
+                <field name="dentist_id"/>
+                <filter string="Today" name="today"
+                        domain="[('appointment_date', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="Draft" name="filter_draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Confirmed" name="filter_confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <filter string="Show All" name="show_all" domain="[]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="Dentist" name="group_dentist" context="{'group_by': 'dentist_id'}"/>
+                    <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="appointment_view_kanban" model="ir.ui.view">
+        <field name="name">dental.appointment.kanban</field>
+        <field name="model">dental.appointment</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state">
+                <field name="appointment_no"/>
+                <field name="patient_id"/>
+                <field name="patient_no"/>
+                <field name="dentist_id"/>
+                <field name="start_datetime"/>
+                <field name="state"/>
+                <templates>
+                    <t t-name="card">
+                        <field name="appointment_no" class="fw-bold"/>
+                        <field name="patient_no"/>
+                        <div>
+                            <field name="patient_id"/>
+                        </div>
+                        <div class="text-muted">
+                            <field name="dentist_id"/>
+                        </div>
+                        <div class="text-muted">
+                            <field name="start_datetime"/>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="dental_appointment_menu_action" model="ir.actions.act_window">
+        <field name="name">Appointments</field>
+        <field name="res_model">dental.appointment</field>
+        <field name="view_mode">calendar,list,kanban,form</field>
+        <field name="search_view_id" ref="view_dental_appointment_search"/>
+    </record>
+</odoo>

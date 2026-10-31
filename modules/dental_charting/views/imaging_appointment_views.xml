@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ── Add "Visit Images" notebook + stat button to the Appointment form ── -->
+    <record id="view_appointment_imaging" model="ir.ui.view">
+        <field name="name">dental.appointment.form.imaging</field>
+        <field name="model">dental.appointment</field>
+        <field name="inherit_id" ref="afia_dental_core.view_dental_appointment_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Stat button in the existing button_box (created by dental_soap_notes) -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_visit_images" type="object"
+                        class="oe_stat_button" icon="fa-camera">
+                    <field name="visit_image_count" widget="statinfo" string="Images"/>
+                </button>
+            </xpath>
+
+            <!-- Images notebook page at the end of the sheet -->
+            <xpath expr="//sheet/group[last()]" position="after">
+                <notebook>
+                    <page string="Visit Images" name="page_visit_images">
+                        <field name="visit_image_ids"
+                               widget="many2many_binary"
+                               string="Photos / X-rays for this visit"/>
+                    </page>
+                </notebook>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

@@ -1,4 +1,4 @@
-﻿from odoo import models, fields, api
+from odoo import models, fields, api
 
 
 class DentalLabOrder(models.Model):
@@ -45,7 +45,9 @@ class DentalLabOrder(models.Model):
     def create(self, vals_list):
         for vals in vals_list:
             if vals.get('name', '/') == '/':
-                vals['name'] = self.env['ir.sequence'].next_by_code(
+                # sudo: reading ir.sequence is an admin right, but a
+                # receptionist must be able to create a lab order.
+                vals['name'] = self.env['ir.sequence'].sudo().next_by_code(
                     'dental.lab.order') or '/'
         return super().create(vals_list)
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="specialist_general" model="dental.specialist">
+        <field name="name">General Dentistry</field>
+        <field name="code">GEN</field>
+    </record>
+    <record id="specialist_ortho" model="dental.specialist">
+        <field name="name">Orthodontics</field>
+        <field name="code">ORT</field>
+    </record>
+    <record id="specialist_endo" model="dental.specialist">
+        <field name="name">Endodontics</field>
+        <field name="code">END</field>
+    </record>
+    <record id="specialist_perio" model="dental.specialist">
+        <field name="name">Periodontics</field>
+        <field name="code">PER</field>
+    </record>
+    <record id="specialist_oral_surgery" model="dental.specialist">
+        <field name="name">Oral Surgery</field>
+        <field name="code">SUR</field>
+    </record>
+    <record id="specialist_pedo" model="dental.specialist">
+        <field name="name">Pediatric Dentistry</field>
+        <field name="code">PED</field>
+    </record>
+    <record id="specialist_prostho" model="dental.specialist">
+        <field name="name">Prosthodontics</field>
+        <field name="code">PRO</field>
+    </record>
+</odoo>

@@ -18,10 +18,10 @@ launcher = env['ir.actions.client'].search([('tag', '=', 'afia_app_launcher')], 
 count = 0
 if launcher:
     group_ids = []
-    for ref in ['clinic_core.group_clinic_admin',
-                'clinic_core.group_clinic_dentist',
-                'clinic_core.group_clinic_receptionist',
-                'clinic_core.group_clinic_assistant']:
+    for ref in ['afia_dental_core.group_clinic_admin',
+                'afia_dental_core.group_clinic_dentist',
+                'afia_dental_core.group_clinic_hygienist',
+                'afia_dental_core.group_clinic_receptionist']:
         try:
             group_ids.append(env.ref(ref).id)
         except Exception:
@@ -48,7 +48,7 @@ action = {
 
     <record id="menu_reapply_launcher_home" model="ir.ui.menu">
         <field name="name">Re-apply App Launcher as Home</field>
-        <field name="parent_id" ref="dental_hospital.dental_configure"/>
+        <field name="parent_id" ref="afia_dental_core.dental_configure"/>
         <field name="action" ref="action_reapply_launcher_home"/>
         <field name="sequence">95</field>
         <field name="groups_id" eval="[(4, ref('base.group_system'))]"/>

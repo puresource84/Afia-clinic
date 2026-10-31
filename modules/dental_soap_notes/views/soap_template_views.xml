@@ -17,7 +17,7 @@
     <record id="view_soap_template_form" model="ir.ui.view">
         <field name="name">dental.soap.template.form</field>
         <field name="model">dental.soap.template</field>
-        <field name="groups_id" eval="[(4, ref('clinic_core.group_clinic_admin'))]"/>
+        <field name="groups_id" eval="[(4, ref('afia_dental_core.group_clinic_admin'))]"/>
         <field name="arch" type="xml">
             <form string="SOAP Note Template">
                 <sheet>
@@ -42,7 +42,7 @@
                     <notebook>
                         <page string="S — Subjective" name="page_s">
                             <field name="s_sentence_ids"
-                                   groups="clinic_core.group_clinic_admin"
+                                   groups="afia_dental_core.group_clinic_admin"
                                    context="{'default_section': 'S',
                                              'default_template_id': id}">
                                 <list editable="bottom" create="true" delete="true">
@@ -55,7 +55,7 @@
                         </page>
                         <page string="O — Objective" name="page_o">
                             <field name="o_sentence_ids"
-                                   groups="clinic_core.group_clinic_admin"
+                                   groups="afia_dental_core.group_clinic_admin"
                                    context="{'default_section': 'O',
                                              'default_template_id': id}">
                                 <list editable="bottom" create="true" delete="true">
@@ -68,7 +68,7 @@
                         </page>
                         <page string="A — Assessment" name="page_a">
                             <field name="a_sentence_ids"
-                                   groups="clinic_core.group_clinic_admin"
+                                   groups="afia_dental_core.group_clinic_admin"
                                    context="{'default_section': 'A',
                                              'default_template_id': id}">
                                 <list editable="bottom" create="true" delete="true">
@@ -81,7 +81,7 @@
                         </page>
                         <page string="P — Plan" name="page_p">
                             <field name="p_sentence_ids"
-                                   groups="clinic_core.group_clinic_admin"
+                                   groups="afia_dental_core.group_clinic_admin"
                                    context="{'default_section': 'P',
                                              'default_template_id': id}">
                                 <list editable="bottom" create="true" delete="true">
@@ -106,9 +106,9 @@
 
     <menuitem id="menu_soap_templates"
               name="SOAP Note Templates"
-              parent="dental_hospital.dental_configure"
+              parent="afia_dental_core.dental_configure"
               action="action_soap_templates"
               sequence="55"
-              groups="clinic_core.group_clinic_admin"/>
+              groups="afia_dental_core.group_clinic_admin"/>
 
 </odoo>

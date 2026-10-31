@@ -114,11 +114,13 @@
                                     <t t-if="record.invoice_count.raw_value > 0">📄 View Invoice</t>
                                     <t t-else="">🧾 Invoice</t>
                                 </button>
-                                <!-- Mark Paid: advances flow_state only, no invoice created -->
+                                <!-- Take payment: posts the visit invoice and opens Register
+                                     Payment on the cash journal; the card moves to Paid once
+                                     the invoice is actually paid. -->
                                 <button name="action_flow_paid" type="object"
                                         class="btn btn-sm btn-outline-secondary"
-                                        title="Mark as paid without creating an invoice">
-                                    ✓ Paid
+                                        title="Register the cash payment for this visit">
+                                    💵 Take Payment
                                 </button>
                             </t>
                             <!-- Cancel button: available on all non-cancelled stages -->
@@ -190,7 +192,7 @@
     <record id="view_appointment_form_flow" model="ir.ui.view">
         <field name="name">dental.appointment.form.flow</field>
         <field name="model">dental.appointment</field>
-        <field name="inherit_id" ref="dental_hospital.view_dental_appointment_form"/>
+        <field name="inherit_id" ref="afia_dental_core.view_dental_appointment_form"/>
         <field name="priority">20</field>
         <field name="arch" type="xml">
             <!-- Add flow statusbar above the main statusbar -->
@@ -201,4 +203,27 @@
             </xpath>
             <!-- Show cancellation reason when cancelled -->
             <xpath expr="//header" position="after">
-                <div 
+                <div class="alert alert-warning" role="alert"
+                     invisible="flow_state != 'cancelled'">
+                    <strong>Cancellation Reason: </strong>
+                    <field name="cancellation_reason" readonly="1" nolabel="1"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Menuitem nested under Appointments (not the Dental Clinic root).
+         Originally created flat and then re-parented via an override in
+         dental_ux_fixes — that override caused a circular module dependency
+         (dental_ux_fixes needs this xmlid; dental_patient_flow needs
+         dental_ux_fixes for action_view_invoices()). Fixed by placing it
+         under afia_dental_core.hospital_appointment_info directly here,
+         since afia_dental_core is already a dependency of this module. -->
+    <menuitem id="menu_patient_flow_board"
+              name="Patient Flow"
+              parent="afia_dental_core.hospital_appointment_info"
+              action="action_patient_flow_board"
+              sequence="30"
+              groups="afia_dental_core.group_clinic_admin,afia_dental_core.group_clinic_receptionist"/>
+
+</odoo>

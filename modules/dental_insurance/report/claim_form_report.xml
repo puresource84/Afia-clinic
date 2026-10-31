@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_claim_form" model="ir.actions.report">
+        <field name="name">Insurance Claim Form</field>
+        <field name="model">dental.claim</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">dental_insurance.report_claim_form</field>
+        <field name="report_file">dental_insurance.report_claim_form</field>
+        <field name="print_report_name">'Claim - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="dental_insurance.model_dental_claim"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_claim_form">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Insurance Claim <span t-field="doc.name"/></h2>
+                        <t t-if="doc.insurer_id.claim_template_body">
+                            <div t-field="doc.insurer_id.claim_template_body"/>
+                            <hr/>
+                        </t>
+                        <div class="row mt-3">
+                            <div class="col-6">
+                                <strong>Payer:</strong> <span t-field="doc.insurer_id"/><br/>
+                                <strong>Policy No.:</strong> <span t-field="doc.policy_id.name"/><br/>
+                                <strong>Member ID:</strong> <span t-field="doc.policy_id.member_id"/><br/>
+                                <strong>Group No.:</strong> <span t-field="doc.policy_id.group_number"/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Patient:</strong> <span t-field="doc.patient_id"/><br/>
+                                <strong>Claim Date:</strong> <span t-field="doc.claim_date"/><br/>
+                                <strong>Appointment:</strong> <span t-field="doc.appointment_id"/><br/>
+                                <t t-if="doc.pre_auth_no">
+                                    <strong>Pre-Auth Ref.:</strong>
+                                    <span t-field="doc.pre_auth_no"/>
+                                    (<span t-field="doc.pre_auth_date"/>)
+                                </t>
+                            </div>
+                        </div>
+                        <h5 class="mt-3">Treatments Claimed</h5>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr><th>Treatment</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="doc.treatment_ids" t-as="tr_line">
+                                    <td><span t-esc="tr_line.display_name"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-sm w-50 ms-auto">
+                            <tr>
+                                <td><strong>Total Billed</strong></td>
+                                <td class="text-end"><span t-field="doc.total_amount"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Approved Amount</strong></td>
+                                <td class="text-end"><span t-field="doc.approved_amount"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Patient Portion</strong></td>
+                                <td class="text-end"><span t-field="doc.patient_portion"/></td>
+                            </tr>
+                        </table>
+                        <t t-if="doc.pre_auth_attachment_ids">
+                            <h6 class="mt-2">Attached Supporting Documents</h6>
+                            <ul>
+                                <li t-foreach="doc.pre_auth_attachment_ids" t-as="att">
+                                    <span t-esc="att.name"/>
+                                </li>
+                            </ul>
+                        </t>
+                        <div class="row mt-5">
+                            <div class="col-6">
+                                <strong>Treating Dentist — signature &amp; stamp</strong>
+                                <div style="height: 70px;"/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Clinic — authorised signature &amp; stamp</strong>
+                                <div style="height: 70px;"/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

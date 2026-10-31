@@ -1,4 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_treatment_consumable_user,dental.treatment.consumable.user,model_dental_treatment_consumable,base.group_user,1,0,0,0
 access_treatment_consumable_admin,dental.treatment.consumable.admin,model_dental_treatment_consumable,base.group_system,1,1,1,1
-access_treatment_consumable_clinic_admin,dental.treatment.consumable.clinic.admin,model_dental_treatment_consumable,clinic_core.group_clinic_admin,1,1,1,1
+access_treatment_consumable_clinic_admin,dental.treatment.consumable.clinic.admin,model_dental_treatment_consumable,afia_dental_core.group_clinic_admin,1,1,1,1

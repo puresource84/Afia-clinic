@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_lab_order_list" model="ir.ui.view">
         <field name="name">dental.lab.order.list</field>
@@ -59,11 +59,7 @@
                     <field name="instructions" placeholder="Lab instructions..."/>
                     <field name="notes"/>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
-                </div>
+                <chatter/>
             </form>
         </field>
     </record>

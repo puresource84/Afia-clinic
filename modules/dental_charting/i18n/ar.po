@@ -1,0 +1,493 @@
+# Translation for dental_charting_pro - Arabic
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 18.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields,field_description:dental_charting_pro.field_dental_tooth_record__patient_id
+msgid "Patient"
+msgstr "المريض"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields,field_description:dental_charting_pro.field_dental_tooth_record__tooth_fdi
+msgid "Tooth (FDI)"
+msgstr "السن (FDI)"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields,field_description:dental_charting_pro.field_dental_tooth_record__condition
+msgid "Condition"
+msgstr "الحالة"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields.selection,name:dental_charting_pro.selection__dental_tooth_record__condition__healthy
+msgid "Healthy"
+msgstr "سليم"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields.selection,name:dental_charting_pro.selection__dental_tooth_record__condition__caries
+msgid "Caries"
+msgstr "تسوس"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields.selection,name:dental_charting_pro.selection__dental_tooth_record__condition__filled
+msgid "Filled"
+msgstr "محشو"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields.selection,name:dental_charting_pro.selection__dental_tooth_record__condition__crown
+msgid "Crown"
+msgstr "تاج"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields.selection,name:dental_charting_pro.selection__dental_tooth_record__condition__root_canal
+msgid "Root Canal"
+msgstr "علاج عصب"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields.selection,name:dental_charting_pro.selection__dental_tooth_record__condition__implant
+msgid "Implant"
+msgstr "زرعة"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields.selection,name:dental_charting_pro.selection__dental_tooth_record__condition__bridge
+msgid "Bridge"
+msgstr "جسر"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields.selection,name:dental_charting_pro.selection__dental_tooth_record__condition__veneer
+msgid "Veneer"
+msgstr "قشرة تجميلية"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields.selection,name:dental_charting_pro.selection__dental_tooth_record__condition__mobile
+msgid "Mobility"
+msgstr "قلقلة"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields.selection,name:dental_charting_pro.selection__dental_tooth_record__condition__fractured
+msgid "Fractured"
+msgstr "مكسور"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields.selection,name:dental_charting_pro.selection__dental_tooth_record__condition__extracted
+msgid "Extracted"
+msgstr "مقلوع"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields.selection,name:dental_charting_pro.selection__dental_tooth_record__condition__missing
+msgid "Missing"
+msgstr "مفقود"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields,field_description:dental_charting_pro.field_dental_tooth_record__surface_mesial
+msgid "Mesial (M)"
+msgstr "أنسي (M)"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields,field_description:dental_charting_pro.field_dental_tooth_record__surface_occlusal
+msgid "Occlusal/Incisal (O)"
+msgstr "إطباقي/قاطع (O)"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields,field_description:dental_charting_pro.field_dental_tooth_record__surface_distal
+msgid "Distal (D)"
+msgstr "وحشي (D)"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields,field_description:dental_charting_pro.field_dental_tooth_record__surface_buccal
+msgid "Buccal/Labial (B)"
+msgstr "دهليزي/شفوي (B)"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields,field_description:dental_charting_pro.field_dental_tooth_record__surface_lingual
+msgid "Lingual/Palatal (L)"
+msgstr "لساني/حنكي (L)"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields,field_description:dental_charting_pro.field_dental_tooth_record__appointment_id
+msgid "Appointment"
+msgstr "الموعد"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields,field_description:dental_charting_pro.field_dental_tooth_record__treatment_id
+msgid "Treatment"
+msgstr "العلاج"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields,field_description:dental_charting_pro.field_dental_tooth_record__doctor_id
+msgid "Doctor"
+msgstr "الطبيب"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields,field_description:dental_charting_pro.field_dental_tooth_record__record_date
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields,field_description:dental_charting_pro.field_dental_tooth_record__is_current
+msgid "Current Status"
+msgstr "الحالة الحالية"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields,field_description:dental_charting_pro.field_dental_tooth_record__notes
+msgid "Clinical Notes"
+msgstr "ملاحظات سريرية"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields,field_description:dental_charting_pro.field_dental_tooth_record__surfaces_label
+msgid "Surfaces"
+msgstr "الأسطح"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields,field_description:dental_charting_pro.field_res_partner__tooth_record_ids
+#: model:ir.actions.act_window,name:dental_charting_pro.action_dental_tooth_record
+msgid "Tooth Records"
+msgstr "سجلات الأسنان"
+
+#. module: dental_charting_pro
+#: model:ir.model.fields,field_description:dental_charting_pro.field_res_partner__odontogram_data
+msgid "Odontogram"
+msgstr "مخطط الأسنان"
+
+#. module: dental_charting_pro
+#: model:ir.actions.act_window,name:dental_charting_pro.action_dental_charting_patient
+#: model:ir.ui.menu,name:dental_charting_pro.menu_dental_charting_patient
+msgid "Dental Charting"
+msgstr "تخطيط الأسنان"
+
+#. module: dental_charting_pro
+msgid "Dental Chart"
+msgstr "المخطط السني"
+
+#. module: dental_charting_pro
+msgid "Tooth Record"
+msgstr "سجل السن"
+
+# merged from dental_perio_charting
+
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 18.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: dental_perio_charting
+#: model:ir.model,name:dental_perio_charting.model_dental_perio_exam
+msgid "Periodontal Examination"
+msgstr "فحص دواعم الأسنان"
+
+#. module: dental_perio_charting
+#: model:ir.model.fields,field_description:dental_perio_charting.field_dental_perio_exam__patient_id
+msgid "Patient"
+msgstr "المريض"
+
+#. module: dental_perio_charting
+#: model:ir.model.fields,field_description:dental_perio_charting.field_dental_perio_exam__dentist_id
+msgid "Dentist"
+msgstr "طبيب الأسنان"
+
+#. module: dental_perio_charting
+#: model:ir.model.fields,field_description:dental_perio_charting.field_dental_perio_exam__appointment_id
+msgid "Appointment"
+msgstr "الموعد"
+
+#. module: dental_perio_charting
+#: model:ir.model.fields,field_description:dental_perio_charting.field_dental_perio_exam__exam_date
+msgid "Exam Date"
+msgstr "تاريخ الفحص"
+
+#. module: dental_perio_charting
+#: model:ir.model.fields,field_description:dental_perio_charting.field_dental_perio_exam__state
+msgid "Status"
+msgstr "الحالة"
+
+#. module: dental_perio_charting
+#: model:ir.model.fields.selection,name:dental_perio_charting.selection__dental_perio_exam__state__draft
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: dental_perio_charting
+#: model:ir.model.fields.selection,name:dental_perio_charting.selection__dental_perio_exam__state__signed
+msgid "Signed"
+msgstr "موقّع"
+
+#. module: dental_perio_charting
+#: model:ir.model.fields,field_description:dental_perio_charting.field_dental_perio_exam__bop_percent
+msgid "BOP %"
+msgstr "نسبة النزيف (%)"
+
+#. module: dental_perio_charting
+#: model:ir.model.fields,field_description:dental_perio_charting.field_dental_perio_exam__avg_pd
+msgid "Avg PD (mm)"
+msgstr "متوسط عمق الجيب (مم)"
+
+#. module: dental_perio_charting
+#: model:ir.model.fields,field_description:dental_perio_charting.field_dental_perio_exam__pocket_4_count
+msgid "Pockets ≥ 4 mm"
+msgstr "جيوب ≥ 4 مم"
+
+#. module: dental_perio_charting
+#: model:ir.model.fields,field_description:dental_perio_charting.field_dental_perio_exam__pocket_6_count
+msgid "Pockets ≥ 6 mm"
+msgstr "جيوب ≥ 6 مم"
+
+#. module: dental_perio_charting
+#: model:ir.model.fields,field_description:dental_perio_charting.field_dental_perio_exam__notes
+msgid "Clinical Notes"
+msgstr "الملاحظات السريرية"
+
+#. module: dental_perio_charting
+#: model:ir.model.fields,field_description:dental_perio_charting.field_dental_perio_exam__reading_ids
+msgid "Tooth Readings"
+msgstr "قراءات الأسنان"
+
+#. module: dental_perio_charting
+#: model:ir.model.fields,field_description:dental_perio_charting.field_dental_perio_exam__upper_reading_ids
+msgid "Upper Arch"
+msgstr "القوس العلوي"
+
+#. module: dental_perio_charting
+#: model:ir.model.fields,field_description:dental_perio_charting.field_dental_perio_exam__lower_reading_ids
+msgid "Lower Arch"
+msgstr "القوس السفلي"
+
+#. module: dental_perio_charting
+#: model:ir.model.fields,field_description:dental_perio_charting.field_dental_appointment__perio_exam_count
+msgid "Perio"
+msgstr "دواعم"
+
+#. module: dental_perio_charting
+#: model:ir.model.fields,field_description:dental_perio_charting.field_dental_appointment__perio_exam_ids
+msgid "Perio Exams"
+msgstr "فحوصات دواعم الأسنان"
+
+#. module: dental_perio_charting
+#: model:ir.actions.act_window,name:dental_perio_charting.action_perio_exams
+#: model:ir.ui.menu,name:dental_perio_charting.menu_perio_exams
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_list
+msgid "Perio Exams"
+msgstr "فحوصات دواعم الأسنان"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_form
+msgid "Periodontal Examination"
+msgstr "فحص دواعم الأسنان"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_form
+msgid "Sign Exam"
+msgstr "توقيع الفحص"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_form
+msgid "Reset to Draft"
+msgstr "إعادة إلى المسودة"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_form
+msgid "Exam Summary"
+msgstr "ملخص الفحص"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_form
+msgid "This Exam"
+msgstr "هذا الفحص"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_form
+msgid "Previous Exam Comparison"
+msgstr "مقارنة الفحص السابق"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_form
+msgid "Upper Arch (17 → 27)"
+msgstr "القوس العلوي (17 ← 27)"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_form
+msgid "Lower Arch (47 → 31)"
+msgstr "القوس السفلي (47 ← 31)"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_form
+msgid "Clinical Notes"
+msgstr "الملاحظات السريرية"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_form
+msgid "Signature"
+msgstr "التوقيع"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_form
+msgid "Tooth"
+msgstr "السن"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_form
+msgid "Miss."
+msgstr "مفقود"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_form
+msgid "Mob"
+msgstr "تحرك"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_form
+msgid "Furc"
+msgstr "تفرع"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_form
+msgid "Max"
+msgstr "أقصى"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_form
+msgid "Avg Pocket Depth (mm)"
+msgstr "متوسط عمق الجيب (مم)"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_form
+msgid "Sites ≥ 4 mm"
+msgstr "مواضع ≥ 4 مم"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_form
+msgid "Sites ≥ 6 mm"
+msgstr "مواضع ≥ 6 مم"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_search
+msgid "Perio Exams"
+msgstr "فحوصات دواعم الأسنان"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_search
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_search
+msgid "Signed"
+msgstr "موقّع"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_search
+msgid "High BOP (≥ 30%)"
+msgstr "نزيف مرتفع (≥ 30%)"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_search
+msgid "Deep Pockets (has ≥ 6mm)"
+msgstr "جيوب عميقة (≥ 6 مم)"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_search
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_search
+msgid "Patient"
+msgstr "المريض"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_search
+msgid "Dentist"
+msgstr "طبيب الأسنان"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_search
+msgid "Exam Month"
+msgstr "شهر الفحص"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.action_perio_exams
+msgid "No periodontal exams yet."
+msgstr "لا توجد فحوصات دواعم أسنان بعد."
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.action_perio_exams
+msgid "Open an appointment and click"
+msgstr "افتح موعداً وانقر على"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.action_perio_exams
+msgid "Perio"
+msgstr "دواعم"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.action_perio_exams
+msgid "to start a new exam, or create one here and link it to a patient."
+msgstr "لبدء فحص جديد، أو أنشئ فحصاً هنا واربطه بمريض."
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_form
+msgid "Reset this signed perio exam to Draft?"
+msgstr "هل تريد إعادة هذا الفحص الموقّع إلى المسودة؟"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_form
+msgid "Visit"
+msgstr "الزيارة"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_form
+msgid "Prev BOP %"
+msgstr "نسبة النزيف السابقة (%)"
+
+#. module: dental_perio_charting
+#: model_terms:ir.ui.view,arch_db:dental_perio_charting.view_perio_exam_form
+msgid "Prev Avg PD (mm)"
+msgstr "متوسط عمق الجيب السابق (مم)"
+
+# merged from dental_imaging
+
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 18.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: dental_imaging
+#: model:ir.model.fields,field_description:dental_imaging.field_dental_tooth_record__image_ids
+msgid "Images / X-rays"
+msgstr "الصور / الأشعة السينية"
+
+#. module: dental_imaging
+#: model:ir.model.fields,field_description:dental_imaging.field_dental_tooth_record__image_count
+msgid "Images"
+msgstr "الصور"
+
+#. module: dental_imaging
+#: model:ir.model.fields,field_description:dental_imaging.field_dental_appointment__visit_image_ids
+msgid "Visit Images"
+msgstr "صور الزيارة"
+
+#. module: dental_imaging
+#: model:ir.model.fields,field_description:dental_imaging.field_dental_appointment__visit_image_count
+msgid "Images"
+msgstr "الصور"
+
+#. module: dental_imaging
+#: model_terms:ir.ui.view,arch_db:dental_imaging.view_appointment_imaging
+msgid "Visit Images"
+msgstr "صور الزيارة"
+
+#. module: dental_imaging
+#: model_terms:ir.ui.view,arch_db:dental_imaging.view_appointment_imaging
+msgid "Photos / X-rays for this visit"
+msgstr "صور وأشعة هذه الزيارة"

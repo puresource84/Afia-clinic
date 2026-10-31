@@ -19,7 +19,7 @@ from odoo import api, fields, models
 class DentalAppointmentAudit(models.Model):
     _inherit = 'dental.appointment'
 
-    # state already has tracking=True in dental_hospital — leave it.
+    # state already has tracking=True in afia_dental_core — leave it.
     patient_id = fields.Many2one(tracking=1)
     dentist_id = fields.Many2one(tracking=2)
     appointment_date = fields.Date(tracking=3)

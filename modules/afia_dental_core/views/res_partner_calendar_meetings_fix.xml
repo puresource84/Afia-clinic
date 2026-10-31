@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Odoo's stock `calendar` module adds its own "Meetings" stat button
+         to EVERY contact form (see calendar/views/res_partner_views.xml,
+         `view_partners_form`), pointing at the standard/base button_box div
+         (name="button_box" — a different, empty div from our own
+         "dental_button_box"). On the patient profile this sat alongside our
+         real "Appointments" button and opened a totally unrelated
+         calendar.event/attendees view with no patient filter at all —
+         exactly what Manhel reported 2026-08-26 as a confusing "generic
+         calendar page" when he meant to see this patient's appointments.
+         Hide it for patients only; our own Appointments button already
+         covers that need, and non-patient contacts (staff, vendors) keep
+         the native Meetings button untouched. -->
+    <record id="view_partner_form_hide_calendar_meetings" model="ir.ui.view">
+        <field name="name">res.partner.form.hide.calendar.meetings</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="calendar.view_partners_form"/>
+        <field name="arch" type="xml">
+            <button name="schedule_meeting" position="attributes">
+                <attribute name="invisible">is_patient</attribute>
+            </button>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Removed 2026-08-15: legacy teeth.chart form/action, superseded by
+         dental_charting_pro's odontogram. Not referenced from the manifest
+         data list anymore; kept as an empty stub because this addons path
+         can't be deleted while the Odoo service holds a file lock on it
+         from this environment. Safe to delete for real next time the
+         service is stopped. -->
+
+</odoo>

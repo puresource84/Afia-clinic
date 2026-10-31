@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_dental" model="ir.ui.view">
+        <field name="name">hr.employee.form.dental</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button name="action_invite_system_access" type="object"
+                        class="oe_stat_button" icon="fa-key"
+                        invisible="not is_dentist or portal_access_granted"
+                        string="Grant System Access"/>
+                <button name="action_revoke_system_access" type="object"
+                        class="oe_stat_button" icon="fa-ban"
+                        invisible="not portal_access_granted"
+                        string="Revoke Access"/>
+            </xpath>
+            <xpath expr="//field[@name='job_title']" position="after">
+                <field name="is_dentist"/>
+                <field name="job_position" invisible="not is_dentist"/>
+                <field name="reg_no" invisible="not is_dentist"/>
+                <field name="specialised_in_id" invisible="not is_dentist"/>
+                <field name="dob" invisible="not is_dentist"/>
+                <field name="doctor_age" readonly="1" invisible="not is_dentist"/>
+                <field name="sex" invisible="not is_dentist"/>
+                <field name="time_shift_ids" widget="many2many_tags" invisible="not is_dentist"/>
+                <field name="portal_access_granted" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_employee_list_dentists" model="ir.actions.act_window">
+        <field name="name">Dentists</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_dentist', '=', True)]</field>
+        <field name="context">{'default_is_dentist': True}</field>
+    </record>
+</odoo>

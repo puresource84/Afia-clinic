@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_clinic_user_wizard_form" model="ir.ui.view">
+        <field name="name">clinic.user.wizard.form</field>
+        <field name="model">clinic.user.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Add Staff User">
+                <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+                    <p class="text-muted mb-0" style="max-width: 480px;">
+                        Create a login for a new clinic staff member. Each role
+                        includes everything the one above it can do — hover the
+                        Role label for what each one covers.
+                    </p>
+                    <!-- Only renders/shows anything for a role that takes a
+                         dentist seat (Dentist, or Dentist who also manages the
+                         clinic), since that is the only cap this wizard
+                         applies — see _capacity_info_html() in
+                         clinic_user_wizard.py and ADD_STAFF_USER_CAPACITY.md. -->
+                    <field name="capacity_info" nolabel="1" readonly="1"
+                           class="flex-shrink-0" widget="html"/>
+                </div>
+                <group>
+                    <field name="name" placeholder="e.g. Sara Kareem"/>
+                    <field name="login" placeholder="e.g. sara@yourclinic.com"/>
+                    <field name="role" widget="radio"/>
+                    <field name="employee_id"/>
+                    <field name="send_invite"/>
+                </group>
+                <footer>
+                    <button name="action_create_user" type="object"
+                            string="Create User" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_clinic_user_wizard" model="ir.actions.act_window">
+        <field name="name">Add Staff User</field>
+        <field name="res_model">clinic.user.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <!-- The menu entry for this wizard lives in afia_menu (the menu layer);
+         this module owns only the action. -->
+</odoo>

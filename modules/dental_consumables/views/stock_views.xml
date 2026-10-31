@@ -74,6 +74,6 @@
     </record>
 
     <!-- ─── Menu item under Dental Clinic root ─────────────────────────── -->
-    <menuitem id="menu_clinic_stock" name="Clinic Stock" parent="dental_hospital.hospital_root_menu" action="action_clinic_stock" sequence="50" groups="clinic_core.group_clinic_admin,clinic_core.group_clinic_dentist,clinic_core.group_clinic_receptionist"/>
+    <menuitem id="menu_clinic_stock" name="Clinic Stock" parent="afia_dental_core.hospital_root_menu" action="action_clinic_stock" sequence="50" groups="afia_dental_core.group_clinic_admin,afia_dental_core.group_clinic_dentist,afia_dental_core.group_clinic_receptionist"/>
 
 </odoo>

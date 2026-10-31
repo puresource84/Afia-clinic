@@ -55,7 +55,7 @@
     <!-- Configure menu entry -->
     <menuitem id="menu_afia_launcher_branding"
               name="Launcher Branding"
-              parent="dental_hospital.dental_configure"
+              parent="afia_dental_core.dental_configure"
               action="action_afia_launcher_branding"
               sequence="105"/>
 

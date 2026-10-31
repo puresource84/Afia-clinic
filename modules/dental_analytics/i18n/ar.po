@@ -12,3 +12,79 @@ msgstr ""
 #: model:ir.ui.menu,name:dental_analytics.menu_dental_analytics
 msgid "Reporting"
 msgstr "التقارير"
+
+#. module: dental_analytics
+msgid "Appointments"
+msgstr "المواعيد"
+
+#. module: dental_analytics
+msgid "Avg Revenue / Dentist"
+msgstr "متوسط الإيراد / طبيب الأسنان"
+
+#. module: dental_analytics
+msgid "Cancel %"
+msgstr "نسبة الإلغاء %"
+
+#. module: dental_analytics
+msgid "Cancellation Rate %"
+msgstr "معدل الإلغاء %"
+
+#. module: dental_analytics
+msgid "Cancelled"
+msgstr "ملغى"
+
+#. module: dental_analytics
+msgid "Completed"
+msgstr "مكتمل"
+
+#. module: dental_analytics
+msgid "Completion %"
+msgstr "نسبة الإنجاز %"
+
+#. module: dental_analytics
+msgid "Completion Rate %"
+msgstr "معدل الإنجاز %"
+
+#. module: dental_analytics
+msgid "KPI Snapshot"
+msgstr "لقطة مؤشرات الأداء"
+
+#. module: dental_analytics
+msgid "KPI Snapshots"
+msgstr "لقطات مؤشرات الأداء"
+
+#. module: dental_analytics
+msgid "New Patients This Month"
+msgstr "مرضى جدد هذا الشهر"
+
+#. module: dental_analytics
+msgid "No-Shows"
+msgstr "حالات عدم الحضور"
+
+#. module: dental_analytics
+msgid "Patients"
+msgstr "المرضى"
+
+#. module: dental_analytics
+msgid "Period"
+msgstr "الفترة"
+
+#. module: dental_analytics
+msgid "Refresh Snapshot"
+msgstr "تحديث اللقطة"
+
+#. module: dental_analytics
+msgid "Revenue"
+msgstr "الإيراد"
+
+#. module: dental_analytics
+msgid "Total Active Patients"
+msgstr "إجمالي المرضى النشطين"
+
+#. module: dental_analytics
+msgid "Total Appointments"
+msgstr "إجمالي المواعيد"
+
+#. module: dental_analytics
+msgid "Total Revenue"
+msgstr "إجمالي الإيراد"

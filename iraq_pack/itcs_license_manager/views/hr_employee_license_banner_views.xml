@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_afia_license_banner" model="ir.ui.view">
+        <field name="name">hr.employee.form.afia.license.banner</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <div class="alert alert-success mb-0" role="alert"
+                     invisible="afia_dentist_banner_type != 'ok'">
+                    <field name="afia_dentist_banner_text" readonly="1"/>
+                </div>
+                <div class="alert alert-warning mb-0" role="alert"
+                     invisible="afia_dentist_banner_type != 'warning'">
+                    <field name="afia_dentist_banner_text" readonly="1"/>
+                </div>
+                <div class="alert alert-danger mb-0" role="alert"
+                     invisible="afia_dentist_banner_type != 'danger'">
+                    <field name="afia_dentist_banner_text" readonly="1"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- List-view seat-availability banner (2026-08-16): see the matching
+         comment in patient_license_banner_views.xml for why this is a
+         context key + JS patch rather than an invalid banner_route attribute. -->
+    <record id="afia_dental_core.view_employee_list_dentists" model="ir.actions.act_window">
+        <!-- Merged, not replaced: base context carries default_is_dentist
+             for the New button. Keep in sync with hr_employee_views.xml. -->
+        <field name="context">{'default_is_dentist': True, 'itcs_banner_kind': 'dentist'}</field>
+    </record>
+</odoo>

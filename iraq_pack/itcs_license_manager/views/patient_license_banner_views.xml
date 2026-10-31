@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_afia_license_banner" model="ir.ui.view">
+        <field name="name">res.partner.form.afia.license.banner</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="afia_dental_core.view_partner_form_dental"/>
+        <field name="arch" type="xml">
+            <!-- Moved to the very top of the sheet (2026-08-24, Manhel's
+                 request) — was `//sheet position="inside"`, which appends at
+                 the END of the sheet (after the notebook), so the seat-limit
+                 banner was the LAST thing on the page instead of the first.
+                 Anchoring `before` the title block puts it right under the
+                 smart buttons, above the patient's name — the first thing a
+                 receptionist sees when opening a profile during data entry. -->
+            <xpath expr="//div[hasclass('oe_title')]" position="before">
+                <div class="alert alert-success mb-2" role="alert"
+                     invisible="not is_patient or afia_patient_banner_type != 'ok'">
+                    <field name="afia_patient_banner_text" readonly="1"/>
+                </div>
+                <div class="alert alert-warning mb-2" role="alert"
+                     invisible="not is_patient or afia_patient_banner_type != 'warning'">
+                    <field name="afia_patient_banner_text" readonly="1"/>
+                </div>
+                <div class="alert alert-danger mb-2" role="alert"
+                     invisible="not is_patient or afia_patient_banner_type != 'danger'">
+                    <field name="afia_patient_banner_text" readonly="1"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- List-view seat-availability banner (2026-08-16 rebuild): fetches
+         from /itcs_license/patients_banner via static/src/js/list_banner.js,
+         gated on the `itcs_banner_kind` context key set below — NOT a
+         `banner_route` arch attribute (that was invalid Odoo XML and broke
+         module loading; see project_afia_click_everywhere_qa_2026-08-15). -->
+    <record id="afia_dental_core.dental_patient_menu" model="ir.actions.act_window">
+        <!-- Merged, not replaced: the base record's context also carries
+             default_is_patient/default_company_type for the New button —
+             overwriting it here would silently break patient creation
+             defaults. Keep this in sync with res_partner_views.xml. -->
+        <field name="context">{'default_is_patient': True, 'default_company_type': 'person', 'itcs_banner_kind': 'patient'}</field>
+    </record>
+</odoo>

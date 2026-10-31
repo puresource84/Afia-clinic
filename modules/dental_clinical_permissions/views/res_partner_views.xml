@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- access_overrides.xml removes xray.report read access from plain
+         internal users (receptionists). The patient form's X-Ray tab is
+         ungated in afia_dental_core, so opening any patient as a
+         receptionist raised an AccessError. Gate the tab to the roles that
+         can actually read X-ray reports. -->
+    <record id="view_partner_form_xray_tab_clinical_only" model="ir.ui.view">
+        <field name="name">res.partner.form.xray.tab.clinical.only</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="afia_dental_core.view_partner_form_dental"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='xray_reports']" position="attributes">
+                <attribute name="groups">afia_dental_core.group_dental_clinician,afia_dental_core.group_clinic_admin</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

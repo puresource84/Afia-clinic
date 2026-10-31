@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- NOW-bucket B1: demote the blanket base.group_user full-CRUD ACLs that
-         ship in dental_hospital / dental_treatment_plan / dental_consent CSVs
+         ship in afia_dental_core / dental_treatment_plan / dental_consent CSVs
          to READ-ONLY. Write access comes back via the role ACLs in this
          module's own CSV.
 
@@ -9,39 +9,34 @@
          reloads their CSVs and resets these rows to 1,1,1,1 — re-upgrade
          dental_clinical_permissions afterwards. -->
 
-    <!-- dental_hospital -->
-    <record id="dental_hospital.access_dental_prescription" model="ir.model.access">
+    <!-- afia_dental_core -->
+    <record id="afia_dental_core.access_dental_prescription" model="ir.model.access">
         <field name="perm_write" eval="False"/>
         <field name="perm_create" eval="False"/>
         <field name="perm_unlink" eval="False"/>
     </record>
-    <record id="dental_hospital.access_dental_prescription_lines" model="ir.model.access">
+    <record id="afia_dental_core.access_dental_prescription_lines" model="ir.model.access">
         <field name="perm_write" eval="False"/>
         <field name="perm_create" eval="False"/>
         <field name="perm_unlink" eval="False"/>
     </record>
-    <record id="dental_hospital.access_medical_questionnaire" model="ir.model.access">
+    <record id="afia_dental_core.access_medical_questionnaire" model="ir.model.access">
         <field name="perm_write" eval="False"/>
         <field name="perm_create" eval="False"/>
         <field name="perm_unlink" eval="False"/>
     </record>
-    <record id="dental_hospital.access_teeth_chart" model="ir.model.access">
-        <field name="perm_write" eval="False"/>
-        <field name="perm_create" eval="False"/>
-        <field name="perm_unlink" eval="False"/>
-    </record>
-    <record id="dental_hospital.access_xray_report" model="ir.model.access">
+    <record id="afia_dental_core.access_xray_report" model="ir.model.access">
         <field name="perm_read" eval="False"/>
         <field name="perm_write" eval="False"/>
         <field name="perm_create" eval="False"/>
         <field name="perm_unlink" eval="False"/>
     </record>
-    <record id="dental_hospital.access_dental_treatment" model="ir.model.access">
+    <record id="afia_dental_core.access_dental_treatment" model="ir.model.access">
         <field name="perm_write" eval="False"/>
         <field name="perm_create" eval="False"/>
         <field name="perm_unlink" eval="False"/>
     </record>
-    <record id="dental_hospital.access_treatment_category" model="ir.model.access">
+    <record id="afia_dental_core.access_treatment_category" model="ir.model.access">
         <field name="perm_write" eval="False"/>
         <field name="perm_create" eval="False"/>
         <field name="perm_unlink" eval="False"/>

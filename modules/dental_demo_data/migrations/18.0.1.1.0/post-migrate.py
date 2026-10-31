@@ -19,6 +19,16 @@ def migrate(cr, version):
     from odoo import api, SUPERUSER_ID
     env = api.Environment(cr, SUPERUSER_ID, {})
 
+    # Safety guard: this rewrites commissions, FX rates, shifts and archives
+    # patients. Only ever run it on a database created with demo data -
+    # never on a real clinic database that happens to have this module.
+    base = env['ir.module.module'].search([('name', '=', 'base')], limit=1)
+    if not base.demo:
+        _logger.warning(
+            'sprint_a_migration: skipped - database was not created with '
+            'demo data, refusing to modify real clinic records.')
+        return
+
     # ── 1. Dentist commission % ───────────────────────────────────────────
     dentists_no_commission = env['hr.employee'].search([
         ('is_dentist', '=', True),
@@ -63,9 +73,11 @@ def migrate(cr, version):
     # ── 3. Blank shift artifact ──────────────────────────────────────────
     # dental.time.shift.create() fires before start/end are populated,
     # leaving a record where both fields = 0.0 (shown as "00:00 – 00:00").
+    # 2026-08: field names updated to match the clean-room core
+    # (start_time/end_time), which renamed them from shift_start/shift_end.
     blank_shifts = env['dental.time.shift'].search([
-        ('shift_start', '=', 0.0),
-        ('shift_end', '=', 0.0),
+        ('start_time', '=', 0.0),
+        ('end_time', '=', 0.0),
     ])
     if blank_shifts:
         count = len(blank_shifts)

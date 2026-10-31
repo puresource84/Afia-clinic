@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_dental_tooth_record_list" model="ir.ui.view">
+        <field name="name">dental.tooth.record.list</field>
+        <field name="model">dental.tooth.record</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="record_date"/>
+                <field name="patient_id"/>
+                <field name="tooth_fdi"/>
+                <field name="condition"/>
+                <field name="surfaces_label"/>
+                <field name="treatment_id"/>
+                <field name="doctor_id"/>
+                <field name="is_current"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_dental_tooth_record_form" model="ir.ui.view">
+        <field name="name">dental.tooth.record.form</field>
+        <field name="model">dental.tooth.record</field>
+        <field name="arch" type="xml">
+            <form string="Tooth Record">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="patient_id"/>
+                            <field name="tooth_fdi"/>
+                            <field name="condition"/>
+                            <field name="record_date"/>
+                            <field name="is_current"/>
+                        </group>
+                        <group>
+                            <field name="appointment_id"/>
+                            <field name="treatment_id"/>
+                            <field name="doctor_id"/>
+                        </group>
+                    </group>
+                    <group string="Surfaces">
+                        <group>
+                            <field name="surface_mesial"/>
+                            <field name="surface_occlusal"/>
+                            <field name="surface_distal"/>
+                        </group>
+                        <group>
+                            <field name="surface_buccal"/>
+                            <field name="surface_lingual"/>
+                        </group>
+                    </group>
+                    <group string="Clinical Notes">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_dental_tooth_record" model="ir.actions.act_window">
+        <field name="name">Tooth Records</field>
+        <field name="res_model">dental.tooth.record</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_dental_tooth_record"
+              name="Dental Charting"
+              action="action_dental_tooth_record"
+              parent="afia_dental_core.hospital_root_menu"
+              sequence="25"/>
+
+    <!-- Odontogram tab on the patient form -->
+    <record id="view_partner_form_odontogram" model="ir.ui.view">
+        <field name="name">res.partner.form.odontogram</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Dental Chart" name="dental_chart"
+                      invisible="not is_patient">
+                    <field name="is_patient" invisible="1"/>
+                    <field name="odontogram_data" widget="odontogram" nolabel="1"/>
+                    <field name="tooth_record_ids" nolabel="1"
+                           context="{'default_patient_id': id}">
+                        <list>
+                            <field name="record_date"/>
+                            <field name="tooth_fdi"/>
+                            <field name="condition"/>
+                            <field name="surfaces_label"/>
+                            <field name="treatment_id"/>
+                            <field name="is_current"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Dedicated full-page Dental Chart view — chart on top, Print Chart
+         button, full clinical history below. Restored 2026-08-24: this view
+         (and the action_view_dental_chart external id it provides) used to
+         exist here before dental_charting_pro was refactored to the
+         notebook-tab-only layout above; the Appointment form's "Dental
+         Chart" stat button kept referencing this external id the whole
+         time, so it silently broke (missing external ID) once this record
+         was dropped. Restoring it fixes that button and also backs the new
+         stat button on the patient profile below. -->
+    <record id="view_partner_form_dental_chart" model="ir.ui.view">
+        <field name="name">res.partner.form.dental.chart</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <form string="Dental Chart">
+                <sheet>
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="oe_title">
+                            <h1><field name="name" readonly="1"/></h1>
+                            <field name="phone" readonly="1"/>
+                        </div>
+                        <button type="action" name="%(action_report_dental_chart)d"
+                                string="Print Chart" icon="fa-print"
+                                class="btn btn-secondary"/>
+                    </div>
+                    <group string="Odontogram">
+                        <field name="odontogram_data" widget="odontogram" nolabel="1"/>
+                    </group>
+                    <group string="Charting Records">
+                        <field name="tooth_record_ids" nolabel="1"
+                               context="{'default_patient_id': id}">
+                            <list>
+                                <field name="record_date"/>
+                                <field name="tooth_fdi"/>
+                                <field name="condition"/>
+                                <field name="surfaces_label"/>
+                                <field name="treatment_id"/>
+                                <field name="doctor_id"/>
+                                <field name="notes" optional="show"/>
+                                <field name="is_current"/>
+                            </list>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Dental Chart stat button on the patient profile itself, alongside
+         Appointments/Prescription/Payments — the "smart button" the user
+         remembered as living on the patient profile directly, not just
+         reachable via an appointment. -->
+    <record id="view_partner_form_dental_button" model="ir.ui.view">
+        <field name="name">res.partner.form.dental.chart.button</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="afia_dental_core.view_partner_form_dental"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='dental_button_box']" position="inside">
+                <button name="action_view_dental_chart" type="object"
+                        class="oe_stat_button" icon="fa-stethoscope">
+                    <field name="tooth_record_count" widget="statinfo"
+                           string="Dental Chart"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

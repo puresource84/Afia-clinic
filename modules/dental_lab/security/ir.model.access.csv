@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-dental_lab.access_lab_order,dental.lab.order,model_dental_lab_order,base.group_user,1,1,1,1
+dental_lab.access_lab_order,dental.lab.order,model_dental_lab_order,base.group_user,1,0,0,0
+dental_lab.access_lab_order_clinic,dental.lab.order.clinic,model_dental_lab_order,afia_dental_core.group_clinic_receptionist,1,1,1,1

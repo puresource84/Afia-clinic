@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ─── "Staff" top-level menu (Manhel, 2026-08-21) ──────────────────────
+         Afia Clinic can create 4 different staff roles (Administrator,
+         Dentist, Hygienist, Receptionist) via the Add Staff User wizard, but
+         there was no menu anywhere to see the resulting staff/users list —
+         only "Dentists" (afia_dental_core.dental_staff), which is filtered
+         to hr.employee records flagged is_dentist, a different thing.
+
+         Placed between "Clinic Stock" (sequence 45) and "Reporting"
+         (sequence 80) on the Afia Clinic root menu, per Manhel's explicit
+         placement request.
+    ──────────────────────────────────────────────────────────────────────── -->
+    <menuitem id="menu_staff_root"
+              name="Staff"
+              parent="afia_dental_core.hospital_root_menu"
+              sequence="60"
+              groups="afia_dental_core.group_clinic_admin,base.group_system"/>
+
+    <menuitem id="menu_staff_list"
+              name="Staff"
+              parent="menu_staff_root"
+              action="dental_clinical_permissions.action_clinic_staff_list"
+              sequence="10"/>
+    <!-- Add Staff User. Defined here rather than beside its action in
+         dental_clinical_permissions: the menu layer loads last and may
+         reference anything, while a module below it may not reach up here
+         for a parent menu. -->
+    <menuitem id="menu_add_staff_user"
+              name="Add Staff User"
+              parent="menu_staff_root"
+              action="dental_clinical_permissions.action_clinic_user_wizard"
+              sequence="20"
+              groups="afia_dental_core.group_clinic_admin,base.group_system"/>
+</odoo>

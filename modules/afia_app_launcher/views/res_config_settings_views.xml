@@ -3,9 +3,9 @@
     <record id="res_config_settings_view_afia_launcher" model="ir.ui.view">
         <field name="name">res.config.settings.view.afia.launcher</field>
         <field name="model">res.config.settings</field>
-        <field name="inherit_id" ref="clinic_core.view_clinic_core_res_config_settings"/>
+        <field name="inherit_id" ref="afia_dental_core.view_clinic_core_res_config_settings"/>
         <field name="arch" type="xml">
-            <xpath expr="//app[@name='clinic_core']" position="inside">
+            <xpath expr="//app[@name='afia_dental_core']" position="inside">
                 <block title="Afia Launcher Branding">
                     <setting string="Background Image"
                              help="Upload a logo or pattern for the app launcher page background. PNG recommended.">

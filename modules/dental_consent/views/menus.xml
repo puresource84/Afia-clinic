@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <menuitem id="menu_consent_root" name="Consent"
-        parent="dental_hospital.hospital_root_menu" sequence="55"/>
+        parent="afia_dental_core.hospital_root_menu" sequence="55"/>
     <menuitem id="menu_consent_forms" name="Consent Forms"
         parent="menu_consent_root" action="action_consent_form" sequence="10"/>
     <menuitem id="menu_consent_templates" name="Templates"

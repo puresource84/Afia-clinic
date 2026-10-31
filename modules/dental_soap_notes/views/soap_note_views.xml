@@ -33,7 +33,7 @@
                             string="Sign Note"
                             class="btn-primary"
                             invisible="state == 'signed'"
-                            groups="clinic_core.group_clinic_dentist,clinic_core.group_clinic_admin,base.group_system"/>
+                            groups="afia_dental_core.group_clinic_dentist,afia_dental_core.group_clinic_admin,base.group_system"/>
                     <button name="action_reset_draft" type="object"
                             string="Reset to Draft"
                             invisible="state == 'draft'"
@@ -200,8 +200,8 @@
 
     <!-- ─── Menu under Dental Clinic ─────────────────────────────────── -->
     <menuitem id="menu_soap_notes" name="Clinical Notes"
-              parent="dental_hospital.hospital_root_menu"
+              parent="afia_dental_core.hospital_root_menu"
               action="action_soap_notes" sequence="15"
-              groups="clinic_core.group_clinic_admin,clinic_core.group_clinic_dentist"/>
+              groups="afia_dental_core.group_clinic_admin,afia_dental_core.group_clinic_dentist"/>
 
 </odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_itcs_license_admin,itcs.license admin,model_itcs_license,group_itcs_license_admin,1,1,1,1
+access_itcs_license_renewal_admin,itcs.license.renewal admin,model_itcs_license_renewal,group_itcs_license_admin,1,1,1,1
+access_itcs_license_apply_code_wizard_admin,itcs.license.apply.code.wizard admin,model_itcs_license_apply_code_wizard,group_itcs_license_admin,1,1,1,1

@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 dental_analytics.access_kpi_admin,dental.kpi admin,model_dental_kpi,base.group_system,1,1,1,1
 dental_analytics.access_kpi_user,dental.kpi user,model_dental_kpi,base.group_user,1,0,0,0
+access_dental_commission_report_mgr,dental.commission.report.manager,model_dental_commission_report,base.group_system,1,0,0,0
+access_dental_commission_report_clinic_admin,dental.commission.report.clinic.admin,model_dental_commission_report,afia_dental_core.group_clinic_admin,1,0,0,0

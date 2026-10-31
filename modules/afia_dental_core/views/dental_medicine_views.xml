@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_template_form_medicine" model="ir.ui.view">
+        <field name="name">product.template.form.medicine</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='group_general']" position="inside">
+                <field name="is_medicine"/>
+                <field name="generic_name" invisible="not is_medicine"/>
+                <field name="dosage_strength" invisible="not is_medicine"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_dental_medicine" model="ir.actions.act_window">
+        <field name="name">Medicines</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_medicine', '=', True)]</field>
+        <field name="context">{'default_is_medicine': True}</field>
+    </record>
+</odoo>

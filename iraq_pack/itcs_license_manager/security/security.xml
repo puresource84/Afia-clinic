@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ITCS-internal group. Only this group (plus superuser) can see or
+         touch the license model, menu, and views. Never assign clinic
+         staff — including the clinic's own "admin" login — to this group.
+         See the chat discussion 2026-07-17 re: why Odoo's built-in
+         Administration/Settings group is NOT a safe substitute for this. -->
+    <record id="module_category_itcs_internal" model="ir.module.category">
+        <field name="name">ITCS Internal</field>
+        <field name="description">Internal ITCS tools, hidden from all clinic-facing roles.</field>
+        <field name="sequence">100</field>
+    </record>
+
+    <record id="group_itcs_license_admin" model="res.groups">
+        <field name="name">ITCS License Administrator</field>
+        <field name="category_id" ref="module_category_itcs_internal"/>
+        <field name="comment">Grants access to ITCS's internal license/AMC tracking for this instance. Reserved for ITCS staff only.</field>
+    </record>
+</odoo>

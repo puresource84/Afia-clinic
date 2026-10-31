@@ -1,7 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_dental_report_base_model,dental.report.base.model,model_dental_report_base_model,,1,1,1,1
-access_dental_report_base_model_column,dental.report.base.model.column,model_dental_report_base_model_column,,1,1,1,1
-access_dental_report_table_mapping,dental.report.table.mapping,model_dental_report_table_mapping,,1,1,1,1
-access_dental_report_advanced_model,dental.report.advanced.model,model_dental_report_advanced_model,,1,1,1,1
-access_dental_report_advanced_filter,dental.report.advanced.filter,model_dental_report_advanced_filter,,1,1,1,1
-access_dental_report_instance,dental.report.instance,model_dental_report_instance,,1,1,1,1

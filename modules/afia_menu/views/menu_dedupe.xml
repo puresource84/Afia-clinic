@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- QA/UX fix (Manhel, 2026-06-11): Dental app > Configure showed TWO
+         identical "Core Settings" entries — one from clinic_core, one from
+         clinic_core_plus, both opening res.config.settings. Originally fixed
+         by deactivating clinic_core_plus's duplicate menu entry here.
+
+         Superseded 2026-07-15: clinic_core_plus has been retired entirely
+         (abandoned duplicate of clinic_core, no real functionality of its
+         own — see clinic_core_plus/__manifest__.py). The record that used to
+         be deactivated here no longer exists, so this file is now a no-op
+         kept only for history. -->
+</odoo>
