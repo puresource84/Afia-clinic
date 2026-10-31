@@ -22,12 +22,26 @@
     <menuitem id="hospital_payment_info" name="Payments" parent="hospital_root_menu"
               action="action_dental_payments" sequence="60"/>
 
-    <!-- No blanket "groups" restriction here: several companion modules
-         (clinic_core, dental_clinical_permissions, ...) hang their own
-         config sub-items off this menu with their own group scoping, and
-         a group restriction on the parent would hide the whole subtree
-         from anyone not also in group_clinic_admin. -->
+    <!-- Configuration is clinic administration, so it is restricted here at
+         the parent rather than item by item. Companion modules (clinic_core,
+         dental_reminders, dental_soap_notes, afia_app_launcher, ...) hang
+         their own sub-items off this menu, and relying on each of them to
+         scope itself correctly meant one forgotten groups= attribute leaked
+         clinic settings to a clinician: the 2026-10-31 role pass found the
+         Dentist and Hygienist able to reach Shift Times, the online booking
+         page and the Telegram integration. Odoo drops the children of a menu
+         the user cannot see, so one restriction here covers every sub-item,
+         including ones added later.
+
+         A dentist who also runs the clinic — the usual case in a small
+         practice — is given the Clinic Administrator role, not Dentist.
+         group_clinic_admin implies group_clinic_dentist (see
+         security/clinic_security.xml), so that dentist keeps every clinical
+         capability and gains configuration; nothing is lost by moving up a
+         rung. The Add Staff User wizard offers this as "Dentist (also
+         manages the clinic)" so it does not have to be explained. -->
     <menuitem id="dental_configure" name="Configuration" parent="hospital_root_menu"
+              groups="afia_dental_core.group_clinic_admin"
               sequence="90"/>
     <menuitem id="dental_treatment_menu" name="Treatments" parent="dental_configure"
               action="dental_treatment_menu_action" sequence="10"/>

@@ -7,12 +7,14 @@
             <form string="Add Staff User">
                 <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
                     <p class="text-muted mb-0" style="max-width: 480px;">
-                        Create a login for a new clinic staff member. Only the four
-                        clinic roles used by this system are offered below.
+                        Create a login for a new clinic staff member. Each role
+                        includes everything the one above it can do — hover the
+                        Role label for what each one covers.
                     </p>
-                    <!-- Only renders/shows anything when Role = Clinic Dentist,
-                         since that's the only role this wizard's plan cap
-                         applies to — see _capacity_info_html() in
+                    <!-- Only renders/shows anything for a role that takes a
+                         dentist seat (Dentist, or Dentist who also manages the
+                         clinic), since that is the only cap this wizard
+                         applies — see _capacity_info_html() in
                          clinic_user_wizard.py and ADD_STAFF_USER_CAPACITY.md. -->
                     <field name="capacity_info" nolabel="1" readonly="1"
                            class="flex-shrink-0" widget="html"/>

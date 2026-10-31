@@ -14,6 +14,15 @@ class ClinicUserWizard(models.TransientModel):
     (Administrator, Dentist, Hygienist, Receptionist). The legacy "Hospital"
     groups are intentionally not exposed — see the Access Rights cleanup in
     project memory (2026-07-05).
+
+    Five options for four groups: "Dentist (also manages the clinic)" maps to
+    the same group as Clinic Administrator. In a small practice the dentist
+    IS the administrator, and the role ladder already covers that case —
+    group_clinic_admin implies group_clinic_dentist, so such a dentist keeps
+    every clinical capability and gains configuration. It is offered as its
+    own option because an owner-dentist reading "Clinic Administrator" has
+    no way to know it includes treating patients, and would otherwise pick
+    Dentist and then find Configuration missing.
     """
     _name = 'clinic.user.wizard'
     _description = 'Create Clinic Staff User'
@@ -24,11 +33,22 @@ class ClinicUserWizard(models.TransientModel):
         help='Used as the login and, if an invitation is sent, the address it is sent to.'
     )
     role = fields.Selection([
+        ('receptionist', 'Receptionist'),
+        ('hygienist', 'Hygienist'),
+        ('dentist', 'Dentist'),
+        ('dentist_admin', 'Dentist (also manages the clinic)'),
         ('admin', 'Clinic Administrator'),
-        ('dentist', 'Clinic Dentist'),
-        ('hygienist', 'Clinic Hygienist'),
-        ('receptionist', 'Clinic Receptionist'),
-    ], string='Role', required=True, default='receptionist')
+    ], string='Role', required=True, default='receptionist',
+        help="Each role includes everything the one above it can do.\n\n"
+             "Receptionist — appointments, patients, billing, lab orders.\n"
+             "Hygienist — the above, plus charting and periodontal exams.\n"
+             "Dentist — the above, plus prescriptions, clinical notes and "
+             "treatment plans.\n"
+             "Dentist (also manages the clinic) — a dentist who also gets "
+             "clinic Configuration. Choose this for the owner-dentist of a "
+             "small practice.\n"
+             "Clinic Administrator — full access, including staff accounts "
+             "and reports.")
     employee_id = fields.Many2one(
         'hr.employee', string='Link to Employee Record',
         help='Optional: attach this login to an existing employee/dentist record.'
@@ -45,8 +65,12 @@ class ClinicUserWizard(models.TransientModel):
              "itcs_license_manager for what this counts."
     )
 
+    # dentist_admin and admin deliberately share a group: see the class
+    # docstring. The two options differ only in how they read to the person
+    # filling in the form.
     _ROLE_GROUP_XMLID = {
         'admin': 'afia_dental_core.group_clinic_admin',
+        'dentist_admin': 'afia_dental_core.group_clinic_admin',
         'dentist': 'afia_dental_core.group_clinic_dentist',
         'hygienist': 'afia_dental_core.group_clinic_hygienist',
         'receptionist': 'afia_dental_core.group_clinic_receptionist',
@@ -79,7 +103,9 @@ class ClinicUserWizard(models.TransientModel):
         but is rendered server-side here since this is a plain form field,
         not a list view the OWL patch can hook into.
         """
-        if role != 'dentist':
+        # dentist_admin is a dentist and takes a dentist seat, so the banner
+        # applies to it too.
+        if role not in ('dentist', 'dentist_admin'):
             return False
         # itcs_license_manager is a soft/optional dependency, not declared in
         # this module's manifest (see App Store scoping note in
@@ -123,7 +149,7 @@ class ClinicUserWizard(models.TransientModel):
         # Same optional-dependency guard as _capacity_info_html() above —
         # skip the cap check entirely (not just fail open, but not error)
         # when itcs_license_manager isn't installed.
-        if self.role == 'dentist' and 'itcs.license' in self.env:
+        if self.role in ('dentist', 'dentist_admin') and 'itcs.license' in self.env:
             license_rec = self.env['itcs.license'].sudo().get_active_license()
             if license_rec:
                 license_rec._afia_check_cap('dentist', license_rec.active_dentist_count + 1)

@@ -241,11 +241,24 @@
     </record>
 
     <!-- ─── Menu item under Dental Clinic ───────────────────────────────── -->
+    <!-- Hygienist and up. Periodontal charting is hygienist work, and the
+         ACLs have always granted the hygienist read/write/create on
+         dental.perio.exam and dental.perio.reading (see
+         security/ir.model.access.csv) — only this menu was scoped to
+         dentist and above, so the role that does the charting could not
+         reach the screen (found in the 2026-10-31 role pass).
+
+         Naming only the hygienist group is deliberate and not an
+         under-restriction: the clinic roles form a ladder in which Dentist
+         implies Hygienist and Clinic Administrator implies Dentist (see
+         afia_dental_core/security/clinic_security.xml), so both still see
+         this menu. Listing them as well would be noise that the next person
+         to add a role has to keep in step. -->
     <menuitem id="menu_perio_exams"
               name="Perio Exams"
               parent="afia_dental_core.hospital_root_menu"
               action="action_perio_exams"
               sequence="16"
-              groups="afia_dental_core.group_clinic_admin,afia_dental_core.group_clinic_dentist"/>
+              groups="afia_dental_core.group_clinic_hygienist"/>
 
 </odoo>
