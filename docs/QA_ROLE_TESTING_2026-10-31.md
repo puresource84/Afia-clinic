@@ -86,3 +86,48 @@ hardcoded list and was missed.
 
 Throwaway credentials for a localhost-only test database. They are not part
 of the product and must never reach a clinic install.
+
+---
+
+# Re-test after the fixes
+
+Commit `d8eb675`, verified the same afternoon against the same stack after
+`-u afia_dental_core,dental_charting,dental_clinical_permissions`.
+
+| | Receptionist | Hygienist | Dentist | Dentist + manages clinic | Administrator |
+| --- | :-: | :-: | :-: | :-: | :-: |
+| Configuration menu | no | **no** | **no** | **yes** | yes |
+| Staff menu | no | no | no | **yes** | yes |
+| Perio Exams menu | no | **yes** | yes | yes | yes |
+| Clinical Notes menu | no | no | yes | **yes** | yes |
+| Create a prescription | no | no | yes | **yes** | yes |
+
+Findings 1, 2 and 4 are closed. Finding 3 (the Receptionist being shown
+read-only clinical menus) is left open by decision, not oversight.
+
+**Configuration** is gone from both the Dentist and the Hygienist, and both
+keep everything clinical they had before — the Dentist still shows Clinical
+Notes, Perio Exams, Treatment Plans and a New button on Prescriptions.
+
+**Perio Exams** is now on the Hygienist's Patients menu, and the Hygienist
+created exam id 1 against a demo patient, which saved and computed its
+summary (Avg Pocket Depth 2.0). The ACLs had always allowed this; only the
+menu had been in the way.
+
+**The owner-dentist case** was exercised end to end rather than reasoned
+about. A new account was created through the wizard's "Dentist (also manages
+the clinic)" option; the user record shows **Clinic: Clinic Administrator**,
+confirming the option maps to group_clinic_admin. Signed in as that account:
+the full clinical menu, a New button on Prescriptions, plus Configuration and
+Staff. One role selector, no new group, nothing lost by moving up a rung.
+
+The clinic role selector renders as a single dropdown rather than loose
+checkboxes, which confirms the group chain is still linear after this change.
+
+## QA account added
+
+| Role | Login | Password |
+| --- | --- | --- |
+| Dentist (also manages the clinic) | `ownerdentist@qa.test` | `qatest2026` |
+
+Same throwaway-credential caveat as the table above.
