@@ -47,12 +47,30 @@ $dropdown-radius:   16px;
         position: absolute;
         inset: 0;
         background-image: var(--afia-bg-image, none);
-        background-size: contain;       // show the full logo, not cropped
-        background-position: center;
+
+        // `cover` rather than `contain`: the launcher slot is whatever shape
+        // the browser window happens to be, and `contain` letterboxed the
+        // artwork into it — a band of flat $launcher-bg above and below on
+        // anything but the image's own aspect ratio. `cover` fills the slot
+        // at every window size and crops the overflow instead.
+        //
+        // Anchored to the bottom because that is where the shipped artwork
+        // puts the tooth and the Afia Clinic lockup, clear of the tile rows.
+        // Cropping therefore eats into the empty upper field, which is what
+        // the tiles cover anyway, and the branding survives.
+        background-size: cover;
+        background-position: center bottom;
         background-repeat: no-repeat;
         opacity: var(--afia-bg-opacity, 0);
         z-index: 0;
         pointer-events: none;
+
+        // Portrait and narrow windows are the one case where `cover` would
+        // crop horizontally and cut the lockup in half, so fit the whole
+        // image instead and accept the letterboxing there.
+        @media (max-aspect-ratio: 1 / 1) {
+            background-size: contain;
+        }
     }
 
     // All direct children float above the background image

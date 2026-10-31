@@ -49,7 +49,11 @@
  'data': [],
  # First entry is the artwork the Odoo App Store shows on the listing page.
  # icon.png stays listed so the tile and the listing stay in step.
+ # First entry is the listing cover. Odoo displays the first image whose
+ # name ends in _screenshot as the large one, so the odontogram leads.
  'images': ['static/description/banner.png',
+            'static/description/odontogram_screenshot.png',
+            'static/description/appointments_screenshot.png',
             'static/description/icon.png'],
  'installable': True,
  'application': True,
