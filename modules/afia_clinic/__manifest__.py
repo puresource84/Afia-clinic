@@ -47,6 +47,10 @@
              'dental_sterilization',
              'dental_treatment_plan'],
  'data': [],
+ # First entry is the artwork the Odoo App Store shows on the listing page.
+ # icon.png stays listed so the tile and the listing stay in step.
+ 'images': ['static/description/banner.png',
+            'static/description/icon.png'],
  'installable': True,
  'application': True,
  'auto_install': False,

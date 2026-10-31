@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import base64
+import binascii
+import hashlib
 import logging
 import os
 
@@ -16,29 +18,80 @@ _DEFAULT_BG_RELPATH = os.path.join(
 )
 _DEFAULT_BG_OPACITY = '0.6'
 
+# Key recording the sha256 of whatever bundled default this module last
+# seeded. It is what makes an upgrade able to tell "the image we shipped"
+# from "the image this clinic uploaded", so a new default can roll out
+# without ever overwriting a clinic's own artwork. See _seed_default_background.
+_BG_SHA_PARAM = 'afia_launcher.bg_default_sha'
 
-def _seed_default_background(env):
-    """Populate afia_launcher.bg_image with the bundled default, but only
-    if no image is configured yet — never clobber an admin's own upload
-    on a module upgrade/reinstall."""
-    ICP = env['ir.config_parameter'].sudo()
-    if ICP.get_param('afia_launcher.bg_image'):
-        return  # already configured (either by us before, or by an admin)
+# sha256 of every background this module has ever shipped. Needed because
+# the seeding hook predates _BG_SHA_PARAM: on a database seeded by the old
+# hook there is no recorded sha, and without this list the unbranded image
+# those installs are still showing would be mistaken for a clinic upload and
+# left in place forever. Append, never remove.
+_SHIPPED_DEFAULT_SHAS = {
+    # Unbranded dental background, shipped until 18.0.1.0.3.
+    'cbbdeab419e244c1851b15da649a0faf979f4f2797e38e6aa3e24147872119ec',
+}
 
+
+def _read_bundled_default():
+    """Return (base64_str, sha256_hex) of the bundled background, or (None, None)."""
     module_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     image_path = os.path.join(module_path, _DEFAULT_BG_RELPATH)
     try:
         with open(image_path, 'rb') as f:
-            b64 = base64.b64encode(f.read()).decode('ascii')
+            raw = f.read()
     except OSError:
         _logger.warning(
             'afia_app_launcher: bundled default background not found at %s, '
             'skipping.', image_path,
         )
+        return None, None
+    return base64.b64encode(raw).decode('ascii'), hashlib.sha256(raw).hexdigest()
+
+
+def _current_bg_sha(current_b64):
+    """sha256 of the background currently configured, or None if unreadable."""
+    try:
+        return hashlib.sha256(base64.b64decode(current_b64)).hexdigest()
+    except (binascii.Error, ValueError, TypeError):
+        return None
+
+
+def _seed_default_background(env, replace_shipped_default=False):
+    """Install the bundled background.
+
+    Never clobbers a clinic's own upload. With replace_shipped_default the
+    bundled image also supersedes an older bundled one — that is the upgrade
+    path, and it is why the sha is recorded on every write.
+    """
+    ICP = env['ir.config_parameter'].sudo()
+    current = ICP.get_param('afia_launcher.bg_image')
+
+    if current and not replace_shipped_default:
+        return  # already configured (either by us before, or by an admin)
+
+    if current:
+        known = set(_SHIPPED_DEFAULT_SHAS)
+        recorded = ICP.get_param(_BG_SHA_PARAM)
+        if recorded:
+            known.add(recorded)
+        if _current_bg_sha(current) not in known:
+            _logger.info(
+                'afia_app_launcher: launcher background is not one this module '
+                'shipped, leaving the clinic\'s own image in place.'
+            )
+            return
+
+    b64, sha = _read_bundled_default()
+    if not b64:
         return
 
     ICP.set_param('afia_launcher.bg_image', b64)
-    ICP.set_param('afia_launcher.bg_opacity', _DEFAULT_BG_OPACITY)
+    ICP.set_param(_BG_SHA_PARAM, sha)
+    if not ICP.get_param('afia_launcher.bg_opacity'):
+        ICP.set_param('afia_launcher.bg_opacity', _DEFAULT_BG_OPACITY)
     _logger.info('afia_app_launcher: seeded default launcher background.')
 
 
@@ -46,7 +99,7 @@ def post_init_hook(env):
     """Set the Afia App Launcher as the home action for clinic staff only.
 
     Only targets users who belong to at least one clinic group
-    (admin, dentist, receptionist, assistant).  Finance, HR, and other
+    (admin, dentist, hygienist, receptionist).  Finance, HR, and other
     back-office users keep their standard Odoo home so that Purchase,
     Accounting, and Inventory URL routing is not contaminated.
     """
@@ -66,8 +119,8 @@ def post_init_hook(env):
         clinic_group_refs = [
             'afia_dental_core.group_clinic_admin',
             'afia_dental_core.group_clinic_dentist',
+            'afia_dental_core.group_clinic_hygienist',
             'afia_dental_core.group_clinic_receptionist',
-            'afia_dental_core.group_clinic_assistant',
         ]
         group_ids = []
         for ref in clinic_group_refs:
