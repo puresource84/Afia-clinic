@@ -30,7 +30,9 @@ _BG_SHA_PARAM = 'afia_launcher.bg_default_sha'
 # those installs are still showing would be mistaken for a clinic upload and
 # left in place forever. Append, never remove.
 _SHIPPED_DEFAULT_SHAS = {
-    # Unbranded dental background, shipped until 18.0.1.0.4.
+    # Unbranded dental background, shipped until 18.0.1.0.4. The branded ones that followed are
+    # matched by the recorded sha below instead, which every database seeded
+    # since 18.0.1.0.4 carries.
     'cbbdeab419e244c1851b15da649a0faf979f4f2797e38e6aa3e24147872119ec',
 }
 
