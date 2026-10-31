@@ -30,22 +30,28 @@ _BG_SHA_PARAM = 'afia_launcher.bg_default_sha'
 # those installs are still showing would be mistaken for a clinic upload and
 # left in place forever. Append, never remove.
 _SHIPPED_DEFAULT_SHAS = {
-    # Unbranded dental background, shipped until 18.0.1.0.3.
+    # Unbranded dental background, shipped until 18.0.1.0.4.
     'cbbdeab419e244c1851b15da649a0faf979f4f2797e38e6aa3e24147872119ec',
 }
 
 
 def _read_bundled_default():
     """Return (base64_str, sha256_hex) of the bundled background, or (None, None)."""
-    module_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    # hooks.py lives at the module root, so ONE dirname reaches the module
+    # directory. This took dirname twice until 18.0.1.0.4 and so pointed at
+    # the addons directory, where the image will never be; the read failed on
+    # every install, the warning below went unread, and no clinic ever got a
+    # launcher background. Hence the error level: a default that silently
+    # does not arrive looks exactly like a feature that was removed.
+    module_path = os.path.dirname(os.path.abspath(__file__))
     image_path = os.path.join(module_path, _DEFAULT_BG_RELPATH)
     try:
         with open(image_path, 'rb') as f:
             raw = f.read()
     except OSError:
-        _logger.warning(
-            'afia_app_launcher: bundled default background not found at %s, '
-            'skipping.', image_path,
+        _logger.error(
+            'afia_app_launcher: bundled default background missing at %s — '
+            'the launcher will have no background.', image_path,
         )
         return None, None
     return base64.b64encode(raw).decode('ascii'), hashlib.sha256(raw).hexdigest()

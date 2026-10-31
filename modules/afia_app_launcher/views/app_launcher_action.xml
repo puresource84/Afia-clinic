@@ -20,8 +20,8 @@ if launcher:
     group_ids = []
     for ref in ['afia_dental_core.group_clinic_admin',
                 'afia_dental_core.group_clinic_dentist',
-                'afia_dental_core.group_clinic_receptionist',
-                'afia_dental_core.group_clinic_assistant']:
+                'afia_dental_core.group_clinic_hygienist',
+                'afia_dental_core.group_clinic_receptionist']:
         try:
             group_ids.append(env.ref(ref).id)
         except Exception:

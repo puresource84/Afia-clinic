@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {'name': 'Afia App Launcher',
- 'version': '18.0.1.0.3',
+ 'version': '18.0.1.0.4',
  'category': 'Dental/Afia',
  'summary': 'Enterprise-style home screen with role-filtered app tiles, live search and '
             'drag-and-drop personalisation.',
