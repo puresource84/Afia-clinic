@@ -131,17 +131,6 @@ msgstr "منجزة"
 msgid "Skipped"
 msgstr "متجاوَزة"
 
-# merged from dental_case_acceptance_ar.po
-
-msgid ""
-msgstr ""
-"Project-Id-Version: Odoo 18.0\n"
-"Language: ar\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-
 #. module: dental_case_acceptance
 #: model:ir.model.fields.selection,name:dental_case_acceptance.selection__dental_treatment_plan__state__proposed
 msgid "Proposed"

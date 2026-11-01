@@ -1,0 +1,169 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* dental_audit
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-01 00:41+0000\n"
+"PO-Revision-Date: 2026-11-01 00:41+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dental_audit
+#: model:ir.model.fields,field_description:dental_audit.field_res_partner__allergy_alert
+#: model:ir.model.fields,field_description:dental_audit.field_res_users__allergy_alert
+msgid "Allergies / Clinical Alerts"
+msgstr ""
+
+#. module: dental_audit
+#: model:ir.model.fields,field_description:dental_audit.field_dental_treatment_plan_line__appointment_id
+msgid "Appointment"
+msgstr "الموعد"
+
+#. module: dental_audit
+#: model:ir.model.fields,field_description:dental_audit.field_dental_appointment__shift_id
+msgid "Booking Time"
+msgstr ""
+
+#. module: dental_audit
+#: model:ir.model.fields,help:dental_audit.field_dental_prescription__referred_dentist_id
+msgid "Choose a different dentist when referring the patient onward."
+msgstr ""
+
+#. module: dental_audit
+#: model:ir.model.fields,field_description:dental_audit.field_dental_tooth_record__notes
+msgid "Clinical Notes"
+msgstr ""
+
+#. module: dental_audit
+#: model:ir.model,name:dental_audit.model_res_partner
+msgid "Contact"
+msgstr "جهة الاتصال"
+
+#. module: dental_audit
+#: model:ir.model.fields,field_description:dental_audit.field_dental_tooth_record__is_current
+msgid "Current Status"
+msgstr ""
+
+#. module: dental_audit
+#: model:ir.model.fields,field_description:dental_audit.field_dental_appointment__appointment_date
+msgid "Date"
+msgstr ""
+
+#. module: dental_audit
+#: model:ir.model,name:dental_audit.model_dental_appointment
+msgid "Dental Appointment"
+msgstr ""
+
+#. module: dental_audit
+#: model:ir.model,name:dental_audit.model_dental_prescription
+msgid "Dental Prescription"
+msgstr ""
+
+#. module: dental_audit
+#: model:ir.model,name:dental_audit.model_dental_treatment_plan
+msgid "Dental Treatment Plan"
+msgstr "خطة العلاج السنية"
+
+#. module: dental_audit
+#: model:ir.model.fields,field_description:dental_audit.field_dental_appointment__dentist_id
+#: model:ir.model.fields,field_description:dental_audit.field_dental_consent_form__dentist_id
+#: model:ir.model.fields,field_description:dental_audit.field_dental_treatment_plan__dentist_id
+msgid "Dentist"
+msgstr "طبيب الأسنان"
+
+#. module: dental_audit
+#: model:ir.model.fields,field_description:dental_audit.field_dental_treatment_plan__diagnosis
+msgid "Diagnosis / Chief Complaint"
+msgstr "التشخيص / الشكوى الرئيسية"
+
+#. module: dental_audit
+#: model:ir.model.fields,field_description:dental_audit.field_dental_tooth_record__doctor_id
+msgid "Doctor"
+msgstr ""
+
+#. module: dental_audit
+#: model:ir.model.fields,help:dental_audit.field_dental_tooth_record__is_current
+msgid "Latest clinical status of this tooth. Older records form the history."
+msgstr ""
+
+#. module: dental_audit
+#: model:ir.model.fields,field_description:dental_audit.field_dental_prescription__next_appointment_date
+msgid "Next Appointment Date"
+msgstr ""
+
+#. module: dental_audit
+#: model:ir.model.fields,field_description:dental_audit.field_dental_appointment__patient_id
+#: model:ir.model.fields,field_description:dental_audit.field_dental_treatment_plan__patient_id
+msgid "Patient"
+msgstr "المريض"
+
+#. module: dental_audit
+#: model:ir.model,name:dental_audit.model_dental_patient_allergy
+msgid "Patient Allergy"
+msgstr "حساسية المريض"
+
+#. module: dental_audit
+#: model:ir.model,name:dental_audit.model_dental_consent_form
+msgid "Patient Consent Form"
+msgstr "نموذج موافقة المريض"
+
+#. module: dental_audit
+#: model:ir.model,name:dental_audit.model_dental_tooth_record
+msgid "Per-Tooth Clinical Record"
+msgstr ""
+
+#. module: dental_audit
+#: model:ir.model.fields,field_description:dental_audit.field_dental_prescription__referred_dentist_id
+msgid "Referred Dentist"
+msgstr ""
+
+#. module: dental_audit
+#: model:ir.model.fields,field_description:dental_audit.field_dental_treatment_plan_line__scheduled_date
+msgid "Scheduled Date"
+msgstr "التاريخ المجدول"
+
+#. module: dental_audit
+#: model:ir.model.fields,help:dental_audit.field_res_partner__allergy_alert
+#: model:ir.model.fields,help:dental_audit.field_res_users__allergy_alert
+msgid ""
+"Shown as a red alert on the patient and every appointment. E.g. \"PENICILLIN"
+" allergy\", \"anticoagulant therapy\", \"diabetic\"."
+msgstr ""
+
+#. module: dental_audit
+#: model:ir.model.fields,field_description:dental_audit.field_dental_consent_form__signed_by
+msgid "Signed By (Printed Name)"
+msgstr "موقَّع من قبل (الاسم بخط واضح)"
+
+#. module: dental_audit
+#: model:ir.model.fields,field_description:dental_audit.field_dental_consent_form__signed_date
+msgid "Signed On"
+msgstr "تاريخ التوقيع"
+
+#. module: dental_audit
+#: model:ir.model.fields,field_description:dental_audit.field_dental_prescription__state
+#: model:ir.model.fields,field_description:dental_audit.field_dental_treatment_plan_line__state
+msgid "State"
+msgstr ""
+
+#. module: dental_audit
+#: model:ir.model,name:dental_audit.model_dental_treatment_plan_line
+msgid "Treatment Plan Session"
+msgstr "جلسة خطة العلاج"
+
+#. module: dental_audit
+#: model:ir.model.fields,field_description:dental_audit.field_dental_appointment__urgency
+msgid "Treatment Type"
+msgstr ""
+
+#. module: dental_audit
+#: model:ir.model.fields,field_description:dental_audit.field_dental_consent_form__witness_name
+msgid "Witness"
+msgstr "الشاهد"

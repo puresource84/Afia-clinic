@@ -1,13 +1,12 @@
 # Translation of Afia Dental Clinic (afia_dental_core).
 msgid ""
 msgstr ""
-"Project-Id-Version: Afia Dental Clinic\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: Odoo 18.0\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 
 #. module: afia_dental_core
 msgid "A user with this login already exists."
@@ -691,22 +690,11 @@ msgstr "لا يمكن إلغاء موعد مكتمل."
 #. odoo-python
 #: code:addons/afia_dental_core/models/dental_appointment.py:0
 msgid ""
-"Dr. %(dentist)s is already booked at %(when)s (%(ref)s). Pick another time,"
-" or mark the appointment Urgent to squeeze it in."
+"Dr. %(dentist)s is already booked at %(when)s (%(ref)s). Pick another time, "
+"or mark the appointment Urgent to squeeze it in."
 msgstr ""
-"د. %(dentist)s محجوز مسبقاً في %(when)s (%(ref)s). اختر وقتاً آخر، أو اجعل"
-" الموعد طارئاً لإدخاله بين المواعيد."
-
-# merged from clinic_core
-
-msgid ""
-msgstr ""
-"Project-Id-Version: Odoo 18.0\n"
-"Language: ar\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"د. %(dentist)s محجوز مسبقاً في %(when)s (%(ref)s). اختر وقتاً آخر، أو اجعل "
+"الموعد طارئاً لإدخاله بين المواعيد."
 
 #. module: clinic_core
 #: model:ir.ui.menu,name:clinic_core.menu_clinic_core_settings
@@ -737,17 +725,6 @@ msgstr "إلزام رقم الجوال"
 #: model_terms:ir.ui.view,arch_db:clinic_core.view_clinic_core_res_config_settings
 msgid "WhatsApp Reminders"
 msgstr "تذكيرات واتساب"
-
-# merged from dental_branch
-
-msgid ""
-msgstr ""
-"Project-Id-Version: Odoo 18.0\n"
-"Language: ar\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 
 #. module: dental_branch
 #: model_terms:ir.ui.view,arch_db:dental_branch.view_company_branch_form

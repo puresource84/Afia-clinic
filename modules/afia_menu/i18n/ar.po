@@ -1,0 +1,241 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* afia_menu
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-01 00:41+0000\n"
+"PO-Revision-Date: 2026-11-01 00:41+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_dental_appointment_form_workflow_fix
+msgid "<span class=\"o_stat_text\">Create Invoice</span>"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_dental_appointment_form_workflow_fix
+msgid "<strong>⚠ CLINICAL ALERT: </strong>"
+msgstr ""
+
+#. module: afia_menu
+#: model:ir.ui.menu,name:afia_menu.menu_add_staff_user
+msgid "Add Staff User"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_dental_appointment_search_archive
+msgid "Archived"
+msgstr ""
+
+#. module: afia_menu
+#: model:ir.ui.menu,name:afia_menu.menu_billing_group
+msgid "Billing & Insurance"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_product_list_ux
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_search_ux
+msgid "Category"
+msgstr ""
+
+#. module: afia_menu
+#: model:ir.model.fields,field_description:afia_menu.field_dental_appointment__claim_count
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_dental_appointment_form_workflow_fix
+msgid "Claims"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.actions.act_window,help:afia_menu.action_clinic_stock_ux
+msgid ""
+"Click <b>New</b> to add a supply item (gloves, composite, anesthetic…),\n"
+"                or add materials under <b>Configure → Treatments → Consumed Materials</b>\n"
+"                to have them appear here automatically."
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
+msgid "Clinic Consumable"
+msgstr ""
+
+#. module: afia_menu
+#: model:ir.actions.act_window,name:afia_menu.action_clinic_stock_ux
+#: model:ir.ui.menu,name:afia_menu.menu_clinic_stock_ux
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_product_list_ux
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_search_ux
+msgid "Clinic Stock"
+msgstr ""
+
+#. module: afia_menu
+#: model:ir.ui.menu,name:afia_menu.menu_configure_clinical_setup
+msgid "Clinical Setup"
+msgstr ""
+
+#. module: afia_menu
+#: model:ir.model,name:afia_menu.model_dental_appointment
+msgid "Dental Appointment"
+msgstr ""
+
+#. module: afia_menu
+#: model:ir.model.fields,field_description:afia_menu.field_dental_appointment__tooth_record_count
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_dental_appointment_form_workflow_fix
+msgid "Dental Chart"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
+msgid "Details"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_product_list_ux
+msgid "Forecasted"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_search_ux
+msgid "Group By"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
+msgid "Internal Ref"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_dental_appointment_form_workflow_fix
+msgid "Invoices"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_search_ux
+msgid "Low Stock (≤ 5)"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_product_list_ux
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_search_ux
+msgid "Material"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
+msgid "Material Name"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_appointment_quick_create
+msgid "New Appointment"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.actions.act_window,help:afia_menu.action_clinic_stock_ux
+msgid "No clinic consumables yet."
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_product_list_ux
+msgid "On Hand"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_search_ux
+msgid "Out of Stock"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_partner_kanban_dental_patient
+msgid "Patient"
+msgstr ""
+
+#. module: afia_menu
+#: model:ir.ui.menu,name:afia_menu.menu_patient_group
+msgid "Patients"
+msgstr ""
+
+#. module: afia_menu
+#: model:ir.model.fields,field_description:afia_menu.field_dental_appointment__prescription_count
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_dental_appointment_form_workflow_fix
+msgid "Prescriptions"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
+msgid "Pricing & Stock"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
+msgid "Product Type"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_product_list_ux
+msgid "Ref"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_search_ux
+msgid "Reference"
+msgstr ""
+
+#. module: afia_menu
+#: model:ir.ui.menu,name:afia_menu.menu_staff_list
+#: model:ir.ui.menu,name:afia_menu.menu_staff_root
+msgid "Staff"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_dental_appointment_form_workflow_fix
+msgid "Start Treatment"
+msgstr ""
+
+#. module: afia_menu
+#: model:ir.ui.menu,name:afia_menu.menu_configure_system
+msgid "System"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_appointment_quick_create
+msgid "Time"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_product_list_ux
+msgid "Unit"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_product_list_ux
+msgid "Unit Cost"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
+msgid "Unit Cost (IQD)"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
+msgid "Unit of Measure"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
+msgid "e.g. Examination Gloves (S)"
+msgstr ""
+
+#. module: afia_menu
+#: model_terms:ir.ui.view,arch_db:afia_menu.view_partner_kanban_dental_patient
+msgid "yrs"
+msgstr ""
