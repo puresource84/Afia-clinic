@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ════════════════════════════════════════════════════════════════
+             Clinical records, so the clinical screens are not empty.
+
+             Before this, the only prescription and the only treatment plan
+             in a demo database were whatever the last person testing had
+             created by hand. Every clinical menu opened on a blank list —
+             which is both a poor demo and the reason the App Store listing
+             could only be given two screenshots.
+
+             Dated off the past appointments so the patient timelines read
+             in order.
+        ════════════════════════════════════════════════════════════════ -->
+
+        <record id="rx_01" model="dental.prescription">
+            <field name="appointment_id" ref="apt_done_01"/>
+            <field name="patient_id" ref="patient_ali"/>
+            <field name="prescribed_doctor_id" ref="dentist_ahmed"/>
+            <field name="treatment_id" ref="treat_filling"/>
+            <field name="prescription_date"
+                   eval="(DateTime.now() - timedelta(days=65)).strftime('%Y-%m-%d')"/>
+            <field name="selected_teeth">16, 17</field>
+        </record>
+
+        <record id="rx_02" model="dental.prescription">
+            <field name="appointment_id" ref="apt_done_03"/>
+            <field name="patient_id" ref="patient_omar"/>
+            <field name="prescribed_doctor_id" ref="dentist_hassan"/>
+            <field name="treatment_id" ref="treat_rct"/>
+            <field name="prescription_date"
+                   eval="(DateTime.now() - timedelta(days=58)).strftime('%Y-%m-%d')"/>
+            <field name="selected_teeth">36</field>
+        </record>
+
+        <record id="rx_03" model="dental.prescription">
+            <field name="appointment_id" ref="apt_today_02"/>
+            <field name="patient_id" ref="patient_fatima"/>
+            <field name="prescribed_doctor_id" ref="dentist_zainab"/>
+            <field name="treatment_id" ref="treat_filling"/>
+            <field name="prescription_date" eval="DateTime.now().strftime('%Y-%m-%d')"/>
+            <field name="selected_teeth">24</field>
+        </record>
+
+        <!-- A multi-session plan, partly done, so Progress % has something
+             to show and the portal has a plan to accept. -->
+        <record id="plan_01" model="dental.treatment.plan">
+            <field name="patient_id" ref="patient_omar"/>
+            <field name="dentist_id" ref="dentist_hassan"/>
+            <field name="diagnosis">Deep caries on 36 with pulpal involvement. Root canal therapy over three visits, then a crown.</field>
+        </record>
+        <record id="plan_01_line_1" model="dental.treatment.plan.line">
+            <field name="plan_id" ref="plan_01"/>
+            <field name="sequence">10</field>
+            <field name="name">Access opening and canal debridement</field>
+            <field name="treatment_ids" eval="[(6, 0, [ref('dental_demo_data.treat_rct')])]"/>
+            <field name="scheduled_date"
+                   eval="(DateTime.now() - timedelta(days=58)).strftime('%Y-%m-%d')"/>
+            <field name="cost">120.0</field>
+        </record>
+        <record id="plan_01_line_2" model="dental.treatment.plan.line">
+            <field name="plan_id" ref="plan_01"/>
+            <field name="sequence">20</field>
+            <field name="name">Canal shaping and medication</field>
+            <field name="treatment_ids" eval="[(6, 0, [ref('dental_demo_data.treat_rct')])]"/>
+            <field name="scheduled_date"
+                   eval="(DateTime.now() - timedelta(days=44)).strftime('%Y-%m-%d')"/>
+            <field name="cost">90.0</field>
+        </record>
+        <record id="plan_01_line_3" model="dental.treatment.plan.line">
+            <field name="plan_id" ref="plan_01"/>
+            <field name="sequence">30</field>
+            <field name="name">Obturation and crown preparation</field>
+            <field name="treatment_ids" eval="[(6, 0, [ref('dental_demo_data.treat_rct')])]"/>
+            <field name="scheduled_date"
+                   eval="(DateTime.now() + timedelta(days=6)).strftime('%Y-%m-%d')"/>
+            <field name="cost">260.0</field>
+        </record>
+
+        <!-- Work out at the laboratory, one of each state of urgency -->
+        <record id="lab_01" model="dental.lab.order">
+            <field name="patient_id" ref="patient_rania"/>
+            <field name="dentist_id" ref="dentist_ahmed"/>
+            <field name="appointment_id" ref="apt_today_07"/>
+            <field name="lab_name">Basra Dental Laboratory</field>
+            <field name="lab_contact">+964 770 123 4567</field>
+            <field name="material">Zirconia</field>
+            <field name="shade">A2</field>
+            <field name="due_date"
+                   eval="(DateTime.now() + timedelta(days=9)).strftime('%Y-%m-%d')"/>
+        </record>
+
+        <record id="lab_02" model="dental.lab.order">
+            <field name="patient_id" ref="patient_khalid"/>
+            <field name="dentist_id" ref="dentist_zainab"/>
+            <field name="lab_name">Al-Noor Prosthetics</field>
+            <field name="lab_contact">+964 781 998 2211</field>
+            <field name="material">E-max pressed ceramic</field>
+            <field name="shade">B1</field>
+            <field name="due_date"
+                   eval="(DateTime.now() + timedelta(days=3)).strftime('%Y-%m-%d')"/>
+        </record>
+    </data>
+</odoo>

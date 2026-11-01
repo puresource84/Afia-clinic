@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ════════════════════════════════════════════════════════════════
+             A clinic day, always "today".
+
+             The rest of the demo dataset sits in the past so the reports and
+             the commission figures have history to work from. The side
+             effect was that the Front Desk board — the first screen anyone
+             is shown — read "No appointments for today yet" on every day of
+             every demo.
+
+             These seven are dated off DateTime.now(), so the board is alive
+             whenever the demo happens, with one appointment in each visit
+             stage so the drag-across-the-board story can actually be told.
+             Three more sit in the coming days to keep the calendar from
+             looking abandoned.
+
+             apt_start is set on every record deliberately. afia_dental_core
+             refuses to confirm an appointment without it — the front desk
+             must commit to a slot time — so demo data that skips it silently
+             takes the WHOLE dataset down with it: Odoo logs "demo data
+             failed to install, installed without demo data" and carries on
+             with exit code 0, leaving a clinic with no patients at all.
+        ════════════════════════════════════════════════════════════════ -->
+
+        <!-- Finished and paid: the morning is already banked -->
+        <record id="apt_today_01" model="dental.appointment">
+            <field name="patient_id" ref="patient_ali"/>
+            <field name="dentist_id" ref="dentist_ahmed"/>
+            <field name="start_datetime" eval="DateTime.now().strftime('%Y-%m-%d 09:00:00')"/>
+            <field name="apt_start" eval="DateTime.now().strftime('%Y-%m-%d 09:00:00')"/>
+            <field name="apt_end" eval="DateTime.now().strftime('%Y-%m-%d 09:40:00')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_cleaning')])]"/>
+            <field name="state">done</field>
+            <field name="flow_state">paid</field>
+        </record>
+
+        <record id="apt_today_02" model="dental.appointment">
+            <field name="patient_id" ref="patient_fatima"/>
+            <field name="dentist_id" ref="dentist_zainab"/>
+            <field name="start_datetime" eval="DateTime.now().strftime('%Y-%m-%d 10:00:00')"/>
+            <field name="apt_start" eval="DateTime.now().strftime('%Y-%m-%d 10:00:00')"/>
+            <field name="apt_end" eval="DateTime.now().strftime('%Y-%m-%d 10:45:00')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_filling')])]"/>
+            <field name="state">done</field>
+            <field name="flow_state">done</field>
+        </record>
+
+        <!-- Happening right now -->
+        <record id="apt_today_03" model="dental.appointment">
+            <field name="patient_id" ref="patient_omar"/>
+            <field name="dentist_id" ref="dentist_hassan"/>
+            <field name="start_datetime" eval="DateTime.now().strftime('%Y-%m-%d 11:00:00')"/>
+            <field name="apt_start" eval="DateTime.now().strftime('%Y-%m-%d 11:00:00')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_rct')])]"/>
+            <field name="state">in_progress</field>
+            <field name="flow_state">in_chair</field>
+        </record>
+
+        <!-- Sitting in the waiting room -->
+        <record id="apt_today_04" model="dental.appointment">
+            <field name="patient_id" ref="patient_sara"/>
+            <field name="dentist_id" ref="dentist_ahmed"/>
+            <field name="start_datetime" eval="DateTime.now().strftime('%Y-%m-%d 11:30:00')"/>
+            <field name="apt_start" eval="DateTime.now().strftime('%Y-%m-%d 11:30:00')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_cleaning')])]"/>
+            <field name="state">confirmed</field>
+            <field name="flow_state">arrived</field>
+        </record>
+
+        <!-- Still to come -->
+        <record id="apt_today_05" model="dental.appointment">
+            <field name="patient_id" ref="patient_khalid"/>
+            <field name="dentist_id" ref="dentist_zainab"/>
+            <field name="start_datetime" eval="DateTime.now().strftime('%Y-%m-%d 13:00:00')"/>
+            <field name="apt_start" eval="DateTime.now().strftime('%Y-%m-%d 13:00:00')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_veneer')])]"/>
+            <field name="state">confirmed</field>
+            <field name="flow_state">expected</field>
+        </record>
+
+        <record id="apt_today_06" model="dental.appointment">
+            <field name="patient_id" ref="patient_noor"/>
+            <field name="dentist_id" ref="dentist_hassan"/>
+            <field name="start_datetime" eval="DateTime.now().strftime('%Y-%m-%d 15:30:00')"/>
+            <field name="apt_start" eval="DateTime.now().strftime('%Y-%m-%d 15:30:00')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_extraction')])]"/>
+            <field name="state">confirmed</field>
+            <field name="flow_state">expected</field>
+        </record>
+
+        <record id="apt_today_07" model="dental.appointment">
+            <field name="patient_id" ref="patient_rania"/>
+            <field name="dentist_id" ref="dentist_ahmed"/>
+            <field name="start_datetime" eval="DateTime.now().strftime('%Y-%m-%d 17:00:00')"/>
+            <field name="apt_start" eval="DateTime.now().strftime('%Y-%m-%d 17:00:00')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_implant')])]"/>
+            <field name="state">confirmed</field>
+            <field name="flow_state">expected</field>
+        </record>
+
+        <!-- The week ahead, so the calendar is not a desert -->
+        <record id="apt_soon_01" model="dental.appointment">
+            <field name="patient_id" ref="patient_ali"/>
+            <field name="dentist_id" ref="dentist_ahmed"/>
+            <field name="start_datetime"
+                   eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d 09:30:00')"/>
+            <field name="apt_start" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d 09:30:00')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_filling')])]"/>
+            <field name="state">confirmed</field>
+        </record>
+
+        <record id="apt_soon_02" model="dental.appointment">
+            <field name="patient_id" ref="patient_fatima"/>
+            <field name="dentist_id" ref="dentist_zainab"/>
+            <field name="start_datetime"
+                   eval="(DateTime.now() + timedelta(days=3)).strftime('%Y-%m-%d 12:00:00')"/>
+            <field name="apt_start" eval="(DateTime.now() + timedelta(days=3)).strftime('%Y-%m-%d 12:00:00')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_cleaning')])]"/>
+            <field name="state">confirmed</field>
+        </record>
+
+        <record id="apt_soon_03" model="dental.appointment">
+            <field name="patient_id" ref="patient_khalid"/>
+            <field name="dentist_id" ref="dentist_hassan"/>
+            <field name="start_datetime"
+                   eval="(DateTime.now() + timedelta(days=6)).strftime('%Y-%m-%d 16:00:00')"/>
+            <field name="apt_start" eval="(DateTime.now() + timedelta(days=6)).strftime('%Y-%m-%d 16:00:00')"/>
+            <field name="treatments" eval="[(6, 0, [ref('dental_demo_data.treat_rct')])]"/>
+            <field name="state">confirmed</field>
+        </record>
+    </data>
+</odoo>

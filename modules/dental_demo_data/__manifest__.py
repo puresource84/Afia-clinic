@@ -7,14 +7,23 @@
  'author': 'ITCS (IT Corner Solutions)',
  'website': 'https://www.itcornersolutions.net/',
  'license': 'OPL-1',
- 'depends': ['afia_dental_core', 'dental_charting'],
+ # A demo dataset must depend on what it demonstrates: the clinic day
+ # carries visit stages (dental_patient_flow) and the clinical records
+ # include treatment plans and lab orders.
+ 'depends': ['afia_dental_core',
+             'dental_charting',
+             'dental_patient_flow',
+             'dental_treatment_plan',
+             'dental_lab'],
  'images': ['static/description/icon.png'],
  'installable': True,
  'application': False,
  'demo': ['demo/demo_dentists.xml',
           'demo/demo_treatments.xml',
           'demo/demo_patients.xml',
-          'demo/demo_appointments.xml'],
+          'demo/demo_appointments.xml',
+          'demo/demo_today.xml',
+          'demo/demo_clinical.xml'],
  'description': 'Dental Demo Dataset\n'
                 '===================\n'
                 'Load a rich, realistic demo environment for sales demonstrations and training.\n'
