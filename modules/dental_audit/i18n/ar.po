@@ -19,7 +19,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:dental_audit.field_res_partner__allergy_alert
 #: model:ir.model.fields,field_description:dental_audit.field_res_users__allergy_alert
 msgid "Allergies / Clinical Alerts"
-msgstr ""
+msgstr "الحساسيات / التنبيهات السريرية"
 
 #. module: dental_audit
 #: model:ir.model.fields,field_description:dental_audit.field_dental_treatment_plan_line__appointment_id
@@ -29,17 +29,17 @@ msgstr "الموعد"
 #. module: dental_audit
 #: model:ir.model.fields,field_description:dental_audit.field_dental_appointment__shift_id
 msgid "Booking Time"
-msgstr ""
+msgstr "وقت الحجز"
 
 #. module: dental_audit
 #: model:ir.model.fields,help:dental_audit.field_dental_prescription__referred_dentist_id
 msgid "Choose a different dentist when referring the patient onward."
-msgstr ""
+msgstr "اختر طبيباً آخر عند إحالة المريض."
 
 #. module: dental_audit
 #: model:ir.model.fields,field_description:dental_audit.field_dental_tooth_record__notes
 msgid "Clinical Notes"
-msgstr ""
+msgstr "الملاحظات السريرية"
 
 #. module: dental_audit
 #: model:ir.model,name:dental_audit.model_res_partner
@@ -49,22 +49,22 @@ msgstr "جهة الاتصال"
 #. module: dental_audit
 #: model:ir.model.fields,field_description:dental_audit.field_dental_tooth_record__is_current
 msgid "Current Status"
-msgstr ""
+msgstr "الحالة الحالية"
 
 #. module: dental_audit
 #: model:ir.model.fields,field_description:dental_audit.field_dental_appointment__appointment_date
 msgid "Date"
-msgstr ""
+msgstr "التاريخ"
 
 #. module: dental_audit
 #: model:ir.model,name:dental_audit.model_dental_appointment
 msgid "Dental Appointment"
-msgstr ""
+msgstr "موعد الأسنان"
 
 #. module: dental_audit
 #: model:ir.model,name:dental_audit.model_dental_prescription
 msgid "Dental Prescription"
-msgstr ""
+msgstr "وصفة الأسنان"
 
 #. module: dental_audit
 #: model:ir.model,name:dental_audit.model_dental_treatment_plan
@@ -86,17 +86,17 @@ msgstr "التشخيص / الشكوى الرئيسية"
 #. module: dental_audit
 #: model:ir.model.fields,field_description:dental_audit.field_dental_tooth_record__doctor_id
 msgid "Doctor"
-msgstr ""
+msgstr "الطبيب"
 
 #. module: dental_audit
 #: model:ir.model.fields,help:dental_audit.field_dental_tooth_record__is_current
 msgid "Latest clinical status of this tooth. Older records form the history."
-msgstr ""
+msgstr "أحدث حالة سريرية لهذا السن. السجلات الأقدم تُشكّل التاريخ المرضي."
 
 #. module: dental_audit
 #: model:ir.model.fields,field_description:dental_audit.field_dental_prescription__next_appointment_date
 msgid "Next Appointment Date"
-msgstr ""
+msgstr "تاريخ الموعد القادم"
 
 #. module: dental_audit
 #: model:ir.model.fields,field_description:dental_audit.field_dental_appointment__patient_id
@@ -117,12 +117,12 @@ msgstr "نموذج موافقة المريض"
 #. module: dental_audit
 #: model:ir.model,name:dental_audit.model_dental_tooth_record
 msgid "Per-Tooth Clinical Record"
-msgstr ""
+msgstr "السجل السريري لكل سن"
 
 #. module: dental_audit
 #: model:ir.model.fields,field_description:dental_audit.field_dental_prescription__referred_dentist_id
 msgid "Referred Dentist"
-msgstr ""
+msgstr "الطبيب المُحال إليه"
 
 #. module: dental_audit
 #: model:ir.model.fields,field_description:dental_audit.field_dental_treatment_plan_line__scheduled_date
@@ -136,6 +136,8 @@ msgid ""
 "Shown as a red alert on the patient and every appointment. E.g. \"PENICILLIN"
 " allergy\", \"anticoagulant therapy\", \"diabetic\"."
 msgstr ""
+"يظهر كتنبيه أحمر على بطاقة المريض وعلى كل موعد. مثال: «حساسية من البنسلين»، "
+"«علاج مضاد للتخثّر»، «مريض سكّري»."
 
 #. module: dental_audit
 #: model:ir.model.fields,field_description:dental_audit.field_dental_consent_form__signed_by
@@ -151,7 +153,7 @@ msgstr "تاريخ التوقيع"
 #: model:ir.model.fields,field_description:dental_audit.field_dental_prescription__state
 #: model:ir.model.fields,field_description:dental_audit.field_dental_treatment_plan_line__state
 msgid "State"
-msgstr ""
+msgstr "الحالة"
 
 #. module: dental_audit
 #: model:ir.model,name:dental_audit.model_dental_treatment_plan_line
@@ -161,7 +163,7 @@ msgstr "جلسة خطة العلاج"
 #. module: dental_audit
 #: model:ir.model.fields,field_description:dental_audit.field_dental_appointment__urgency
 msgid "Treatment Type"
-msgstr ""
+msgstr "نوع العلاج"
 
 #. module: dental_audit
 #: model:ir.model.fields,field_description:dental_audit.field_dental_consent_form__witness_name

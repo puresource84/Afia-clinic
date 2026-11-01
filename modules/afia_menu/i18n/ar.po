@@ -18,40 +18,40 @@ msgstr ""
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_dental_appointment_form_workflow_fix
 msgid "<span class=\"o_stat_text\">Create Invoice</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">إنشاء فاتورة</span>"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_dental_appointment_form_workflow_fix
 msgid "<strong>⚠ CLINICAL ALERT: </strong>"
-msgstr ""
+msgstr "<strong>⚠ تنبيه سريري: </strong>"
 
 #. module: afia_menu
 #: model:ir.ui.menu,name:afia_menu.menu_add_staff_user
 msgid "Add Staff User"
-msgstr ""
+msgstr "إضافة مستخدم للكادر"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_dental_appointment_search_archive
 msgid "Archived"
-msgstr ""
+msgstr "مؤرشف"
 
 #. module: afia_menu
 #: model:ir.ui.menu,name:afia_menu.menu_billing_group
 msgid "Billing & Insurance"
-msgstr ""
+msgstr "الفوترة والتأمين"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_product_list_ux
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_search_ux
 msgid "Category"
-msgstr ""
+msgstr "الفئة"
 
 #. module: afia_menu
 #: model:ir.model.fields,field_description:afia_menu.field_dental_appointment__claim_count
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_dental_appointment_form_workflow_fix
 msgid "Claims"
-msgstr ""
+msgstr "المطالبات"
 
 #. module: afia_menu
 #: model_terms:ir.actions.act_window,help:afia_menu.action_clinic_stock_ux
@@ -60,11 +60,13 @@ msgid ""
 "                or add materials under <b>Configure → Treatments → Consumed Materials</b>\n"
 "                to have them appear here automatically."
 msgstr ""
+"اضغط <b>جديد</b> لإضافة مادة مستهلكة (قفازات، حشوة مركّبة، مخدّر…)، أو أضف "
+"المواد من <b>الإعدادات ← العلاجات ← المواد المستهلكة</b> لتظهر هنا تلقائياً."
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
 msgid "Clinic Consumable"
-msgstr ""
+msgstr "مستهلكات العيادة"
 
 #. module: afia_menu
 #: model:ir.actions.act_window,name:afia_menu.action_clinic_stock_ux
@@ -72,170 +74,170 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_product_list_ux
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_search_ux
 msgid "Clinic Stock"
-msgstr ""
+msgstr "مخزون العيادة"
 
 #. module: afia_menu
 #: model:ir.ui.menu,name:afia_menu.menu_configure_clinical_setup
 msgid "Clinical Setup"
-msgstr ""
+msgstr "الإعداد السريري"
 
 #. module: afia_menu
 #: model:ir.model,name:afia_menu.model_dental_appointment
 msgid "Dental Appointment"
-msgstr ""
+msgstr "موعد الأسنان"
 
 #. module: afia_menu
 #: model:ir.model.fields,field_description:afia_menu.field_dental_appointment__tooth_record_count
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_dental_appointment_form_workflow_fix
 msgid "Dental Chart"
-msgstr ""
+msgstr "مخطط الأسنان"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
 msgid "Details"
-msgstr ""
+msgstr "التفاصيل"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_product_list_ux
 msgid "Forecasted"
-msgstr ""
+msgstr "المتوقع"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_search_ux
 msgid "Group By"
-msgstr ""
+msgstr "تجميع حسب"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
 msgid "Internal Ref"
-msgstr ""
+msgstr "المرجع الداخلي"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_dental_appointment_form_workflow_fix
 msgid "Invoices"
-msgstr ""
+msgstr "الفواتير"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_search_ux
 msgid "Low Stock (≤ 5)"
-msgstr ""
+msgstr "مخزون منخفض (≤ 5)"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_product_list_ux
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_search_ux
 msgid "Material"
-msgstr ""
+msgstr "المادة"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
 msgid "Material Name"
-msgstr ""
+msgstr "اسم المادة"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_appointment_quick_create
 msgid "New Appointment"
-msgstr ""
+msgstr "موعد جديد"
 
 #. module: afia_menu
 #: model_terms:ir.actions.act_window,help:afia_menu.action_clinic_stock_ux
 msgid "No clinic consumables yet."
-msgstr ""
+msgstr "لا توجد مستهلكات للعيادة بعد."
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_product_list_ux
 msgid "On Hand"
-msgstr ""
+msgstr "المتوفر"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_search_ux
 msgid "Out of Stock"
-msgstr ""
+msgstr "نفد المخزون"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_partner_kanban_dental_patient
 msgid "Patient"
-msgstr ""
+msgstr "المريض"
 
 #. module: afia_menu
 #: model:ir.ui.menu,name:afia_menu.menu_patient_group
 msgid "Patients"
-msgstr ""
+msgstr "المرضى"
 
 #. module: afia_menu
 #: model:ir.model.fields,field_description:afia_menu.field_dental_appointment__prescription_count
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_dental_appointment_form_workflow_fix
 msgid "Prescriptions"
-msgstr ""
+msgstr "الوصفات الطبية"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
 msgid "Pricing & Stock"
-msgstr ""
+msgstr "التسعير والمخزون"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
 msgid "Product Type"
-msgstr ""
+msgstr "نوع المنتج"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_product_list_ux
 msgid "Ref"
-msgstr ""
+msgstr "مرجع"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_search_ux
 msgid "Reference"
-msgstr ""
+msgstr "المرجع"
 
 #. module: afia_menu
 #: model:ir.ui.menu,name:afia_menu.menu_staff_list
 #: model:ir.ui.menu,name:afia_menu.menu_staff_root
 msgid "Staff"
-msgstr ""
+msgstr "كادر"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_dental_appointment_form_workflow_fix
 msgid "Start Treatment"
-msgstr ""
+msgstr "بدء العلاج"
 
 #. module: afia_menu
 #: model:ir.ui.menu,name:afia_menu.menu_configure_system
 msgid "System"
-msgstr ""
+msgstr "النظام"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_appointment_quick_create
 msgid "Time"
-msgstr ""
+msgstr "الوقت"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_product_list_ux
 msgid "Unit"
-msgstr ""
+msgstr "الوحدة"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_stock_product_list_ux
 msgid "Unit Cost"
-msgstr ""
+msgstr "تكلفة الوحدة"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
 msgid "Unit Cost (IQD)"
-msgstr ""
+msgstr "تكلفة الوحدة (د.ع)"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
 msgid "Unit of Measure"
-msgstr ""
+msgstr "وحدة القياس"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_clinic_consumable_form_ux
 msgid "e.g. Examination Gloves (S)"
-msgstr ""
+msgstr "مثال: قفازات فحص (صغير)"
 
 #. module: afia_menu
 #: model_terms:ir.ui.view,arch_db:afia_menu.view_partner_kanban_dental_patient
 msgid "yrs"
-msgstr ""
+msgstr "سنة"
